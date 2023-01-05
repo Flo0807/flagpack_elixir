@@ -1,13 +1,43 @@
 defmodule Flagpack.MixProject do
   use Mix.Project
 
+  @source_url "https://github.com/Flo0807/flagpack_elixir"
+
+  defp description do
+    """
+    Provides 4x3 country flags as Phoenix.Component. Based on flagpack.
+    """
+  end
+
+  defp package do
+    [
+      files: ["lib", "mix.exs", "README*", "LICENSE*"],
+      maintainers: ["Florian Arens"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => @source_url}
+    ]
+  end
+
+  defp docs do
+    [
+      main: "Flagpack",
+      source_ref: "main",
+      source_url_pattern: "#{@source_url}/blob/main/%{path}#L%{line}"
+    ]
+  end
+
   def project do
     [
       app: :flagpack,
       version: "0.1.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      description: description(),
+      package: package(),
+      name: "Flagpack",
+      source_url: @source_url,
+      docs: docs()
     ]
   end
 
@@ -21,8 +51,8 @@ defmodule Flagpack.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:phoenix_live_view, "~> 0.18.3"},
+      {:ex_doc, "~> 0.29.0", only: :dev, runtime: false}
     ]
   end
 end
