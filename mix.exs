@@ -14,7 +14,8 @@ defmodule Flagpack.MixProject do
       files: ["lib", "mix.exs", "README*", "LICENSE*"],
       maintainers: ["Florian Arens"],
       licenses: ["MIT"],
-      links: %{"GitHub" => @source_url}
+      links: %{"GitHub" => @source_url},
+      name: "flagpack"
     ]
   end
 
