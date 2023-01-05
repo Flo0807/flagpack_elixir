@@ -18,7 +18,7 @@ defmodule Flagpack do
   attr :class, :string, default: "", required: false, doc: "extra classes to be added"
   attr :name, :atom, required: true, doc: "the name of the icon to be rendered"
 
-  @moduledoc false
+  @doc false
   def flag(assigns) do
     apply(Flagpack, assigns.name, [assigns])
   end
