@@ -19,14 +19,6 @@ defmodule Flagpack.MixProject do
     ]
   end
 
-  defp docs do
-    [
-      main: "Flagpack",
-      source_ref: "main",
-      source_url_pattern: "#{@source_url}/blob/main/%{path}#L%{line}"
-    ]
-  end
-
   def project do
     [
       app: :flagpack,
@@ -52,6 +44,14 @@ defmodule Flagpack.MixProject do
     [
       {:phoenix_live_view, "~> 0.18.3"},
       {:ex_doc, "~> 0.29.0", only: :dev, runtime: false}
+    ]
+  end
+
+  defp docs do
+    [
+      main: "Flagpack",
+      source_ref: "main",
+      source_url_pattern: "#{@source_url}/blob/main/%{path}#L%{line}"
     ]
   end
 end
