@@ -1,5 +1,9 @@
 # Flagpack
 
+[![CI](https://github.com/Flo0807/flagpack_elixir/actions/workflows/ci.yml/badge.svg)](https://github.com/Flo0807/flagpack_elixir/actions/workflows/ci.yml)
+[![Hex](https://img.shields.io/hexpm/v/flagpack.svg)](https://hex.pm/packages/flagpack)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-green)](https://hexdocs.pm/flagpack/Flagpack.html)
+
 Flagpack provides 4x3 country flags as `Phoenix.Component`. Based on [flagpack.xyz](https://flagpack.xyz/).
 
 The generation of the flags is inspired by [heroicons_elixir](https://github.com/mveytsman/heroicons_elixir).
