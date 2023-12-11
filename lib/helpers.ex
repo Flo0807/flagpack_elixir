@@ -517,6 +517,13 @@ defmodule Flagpack.Helpers do
     |> Map.get(:country_name)
   end
 
+  def country_alpha3_by_alpha2(alpha2) do
+    alpha2 = String.upcase(alpha2)
+
+    Enum.find(@country_codes, &(get_alpha2(&1) == alpha2))
+    |> Map.get(:alpha3)
+  end
+
   defp get_alpha2(country), do: Map.get(country, :alpha2, "")
   defp get_alpha3(country), do: Map.get(country, :alpha3, "")
 end
