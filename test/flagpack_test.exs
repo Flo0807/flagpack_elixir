@@ -43,7 +43,7 @@ defmodule FlagpackTest do
 
              ## Attributes
 
-             * `class` (`:string`) - extra classes to be added. Defaults to `""`.
+             * `class` (`:string`) - class to be added to the component. Defaults to `nil`.
              """
   end
 end
