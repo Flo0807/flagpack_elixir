@@ -1,4 +1,4 @@
-defmodule Helpers do
+defmodule Flagpack.Helpers do
   @country_codes [
     %{country_name: "Andorra", alpha2: "AD", alpha3: "AND", numeric: "020"},
     %{
