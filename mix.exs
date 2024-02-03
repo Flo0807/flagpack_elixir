@@ -23,7 +23,7 @@ defmodule Flagpack.MixProject do
     [
       app: :flagpack,
       version: "0.3.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
