@@ -15,7 +15,7 @@ defmodule Flagpack do
   """
   use Phoenix.Component
 
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
   attr :name, :atom, required: true, doc: "the name of the icon to be rendered"
 
   @doc false
@@ -30,11 +30,11 @@ defmodule Flagpack do
       <Flagpack.abw />
       <Flagpack.abw class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def abw(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ABW_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -65,11 +65,11 @@ defmodule Flagpack do
       <Flagpack.afg />
       <Flagpack.afg class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def afg(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="AFG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -114,11 +114,11 @@ defmodule Flagpack do
       <Flagpack.ago />
       <Flagpack.ago class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ago(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="AGO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -207,11 +207,11 @@ defmodule Flagpack do
       <Flagpack.aia />
       <Flagpack.aia class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def aia(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="AIA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -289,11 +289,11 @@ defmodule Flagpack do
       <Flagpack.ala />
       <Flagpack.ala class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ala(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ALA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -319,11 +319,11 @@ defmodule Flagpack do
       <Flagpack.alb />
       <Flagpack.alb class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def alb(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ALB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -346,11 +346,11 @@ defmodule Flagpack do
       <Flagpack.ad />
       <Flagpack.ad class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ad(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="AND_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -424,11 +424,11 @@ defmodule Flagpack do
       <Flagpack.are />
       <Flagpack.are class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def are(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ARE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -456,11 +456,11 @@ defmodule Flagpack do
       <Flagpack.arg />
       <Flagpack.arg class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def arg(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ARG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -521,11 +521,11 @@ defmodule Flagpack do
       <Flagpack.arm />
       <Flagpack.arm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def arm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ARM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -551,11 +551,11 @@ defmodule Flagpack do
       <Flagpack.asm />
       <Flagpack.asm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def asm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ASM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -610,11 +610,11 @@ defmodule Flagpack do
       <Flagpack.ata />
       <Flagpack.ata class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ata(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ATA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -645,11 +645,11 @@ defmodule Flagpack do
       <Flagpack.atf />
       <Flagpack.atf class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def atf(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ATF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -689,11 +689,11 @@ defmodule Flagpack do
       <Flagpack.atg />
       <Flagpack.atg class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def atg(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ATG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -723,11 +723,11 @@ defmodule Flagpack do
       <Flagpack.aus />
       <Flagpack.aus class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def aus(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="AUS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -784,11 +784,11 @@ defmodule Flagpack do
       <Flagpack.aut />
       <Flagpack.aut class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def aut(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="AUT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -814,11 +814,11 @@ defmodule Flagpack do
       <Flagpack.aze />
       <Flagpack.aze class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def aze(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="AZE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -847,11 +847,11 @@ defmodule Flagpack do
       <Flagpack.bdi />
       <Flagpack.bdi class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bdi(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BDI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -890,11 +890,11 @@ defmodule Flagpack do
       <Flagpack.bel />
       <Flagpack.bel class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bel(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BEL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -917,11 +917,11 @@ defmodule Flagpack do
       <Flagpack.ben />
       <Flagpack.ben class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ben(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BEN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -946,11 +946,11 @@ defmodule Flagpack do
       <Flagpack.bfa />
       <Flagpack.bfa class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bfa(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BFA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -979,11 +979,11 @@ defmodule Flagpack do
       <Flagpack.bgd />
       <Flagpack.bgd class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bgd(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BGD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1008,11 +1008,11 @@ defmodule Flagpack do
       <Flagpack.bgr />
       <Flagpack.bgr class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bgr(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BGR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1038,11 +1038,11 @@ defmodule Flagpack do
       <Flagpack.bhr />
       <Flagpack.bhr class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bhr(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BHR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1067,11 +1067,11 @@ defmodule Flagpack do
       <Flagpack.bhs />
       <Flagpack.bhs class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bhs(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BHS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1094,11 +1094,11 @@ defmodule Flagpack do
       <Flagpack.bih />
       <Flagpack.bih class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bih(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BIH_svg__a" width="34" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h34v24H0z" />
@@ -1121,11 +1121,11 @@ defmodule Flagpack do
       <Flagpack.blm />
       <Flagpack.blm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def blm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BLM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1148,11 +1148,11 @@ defmodule Flagpack do
       <Flagpack.blr />
       <Flagpack.blr class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def blr(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BLR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1218,11 +1218,11 @@ defmodule Flagpack do
       <Flagpack.blz />
       <Flagpack.blz class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def blz(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BLZ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1394,11 +1394,11 @@ defmodule Flagpack do
       <Flagpack.bmu />
       <Flagpack.bmu class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bmu(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BMU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1514,11 +1514,11 @@ defmodule Flagpack do
       <Flagpack.bol />
       <Flagpack.bol class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bol(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BOL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1707,11 +1707,11 @@ defmodule Flagpack do
       <Flagpack.bq_bo />
       <Flagpack.bq_bo class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bq_bo(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BQ-BO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1758,11 +1758,11 @@ defmodule Flagpack do
       <Flagpack.bq_sa />
       <Flagpack.bq_sa class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bq_sa(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BQ-SA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1788,11 +1788,11 @@ defmodule Flagpack do
       <Flagpack.bq_se />
       <Flagpack.bq_se class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bq_se(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BQ-SE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1841,11 +1841,11 @@ defmodule Flagpack do
       <Flagpack.bra />
       <Flagpack.bra class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bra(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BRA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1916,11 +1916,11 @@ defmodule Flagpack do
       <Flagpack.brb />
       <Flagpack.brb class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def brb(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BRB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1946,11 +1946,11 @@ defmodule Flagpack do
       <Flagpack.brn />
       <Flagpack.brn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def brn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BRN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -1999,11 +1999,11 @@ defmodule Flagpack do
       <Flagpack.btn />
       <Flagpack.btn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def btn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BTN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2084,11 +2084,11 @@ defmodule Flagpack do
       <Flagpack.bvt />
       <Flagpack.bvt class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bvt(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BVT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2114,11 +2114,11 @@ defmodule Flagpack do
       <Flagpack.bwa />
       <Flagpack.bwa class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def bwa(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="BWA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2149,11 +2149,11 @@ defmodule Flagpack do
       <Flagpack.caf />
       <Flagpack.caf class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def caf(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CAF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2179,11 +2179,11 @@ defmodule Flagpack do
       <Flagpack.can />
       <Flagpack.can class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def can(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CAN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2206,11 +2206,11 @@ defmodule Flagpack do
       <Flagpack.cck />
       <Flagpack.cck class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cck(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#CCK_svg__CC_-_Cocos_(Keeling)">
           <path fill="#5EAA22" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
@@ -2240,11 +2240,11 @@ defmodule Flagpack do
       <Flagpack.che />
       <Flagpack.che class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def che(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CHE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2270,11 +2270,11 @@ defmodule Flagpack do
       <Flagpack.chl />
       <Flagpack.chl class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def chl(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CHL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2300,11 +2300,11 @@ defmodule Flagpack do
       <Flagpack.chn />
       <Flagpack.chn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def chn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CHN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2327,11 +2327,11 @@ defmodule Flagpack do
       <Flagpack.civ />
       <Flagpack.civ class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def civ(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#CIV_svg__CI_-_Côte_d'Ivoire_(Ivory_Coast)">
           <path fill="#67BD38" d="M22 0h10v24H22V0z" /><path fill="#E47E00" d="M0 0h10v24H0V0z" /><path
@@ -2351,11 +2351,11 @@ defmodule Flagpack do
       <Flagpack.cmr />
       <Flagpack.cmr class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cmr(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CMR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2378,11 +2378,11 @@ defmodule Flagpack do
       <Flagpack.cod />
       <Flagpack.cod class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cod(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="COD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2418,11 +2418,11 @@ defmodule Flagpack do
       <Flagpack.cog />
       <Flagpack.cog class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cog(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="COG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2445,11 +2445,11 @@ defmodule Flagpack do
       <Flagpack.cok />
       <Flagpack.cok class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cok(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="COK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2508,11 +2508,11 @@ defmodule Flagpack do
       <Flagpack.col />
       <Flagpack.col class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def col(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="COL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2538,11 +2538,11 @@ defmodule Flagpack do
       <Flagpack.com />
       <Flagpack.com class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def com(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="COM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2574,11 +2574,11 @@ defmodule Flagpack do
       <Flagpack.cpv />
       <Flagpack.cpv class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cpv(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CPV_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2631,11 +2631,11 @@ defmodule Flagpack do
       <Flagpack.cri />
       <Flagpack.cri class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cri(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CRI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2659,11 +2659,11 @@ defmodule Flagpack do
       <Flagpack.cub />
       <Flagpack.cub class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cub(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CUB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2699,11 +2699,11 @@ defmodule Flagpack do
       <Flagpack.cuw />
       <Flagpack.cuw class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cuw(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CUW_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2732,11 +2732,11 @@ defmodule Flagpack do
       <Flagpack.cym />
       <Flagpack.cym class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cym(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
         <mask id="CYM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
@@ -2838,11 +2838,11 @@ defmodule Flagpack do
       <Flagpack.cyp />
       <Flagpack.cyp class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cyp(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CYP_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2874,11 +2874,11 @@ defmodule Flagpack do
       <Flagpack.cze />
       <Flagpack.cze class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def cze(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="CZE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2905,11 +2905,11 @@ defmodule Flagpack do
       <Flagpack.deu />
       <Flagpack.deu class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def deu(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="DEU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2932,11 +2932,11 @@ defmodule Flagpack do
       <Flagpack.dji />
       <Flagpack.dji class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def dji(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="DJI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -2972,11 +2972,11 @@ defmodule Flagpack do
       <Flagpack.dma />
       <Flagpack.dma class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def dma(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="DMA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3054,11 +3054,11 @@ defmodule Flagpack do
       <Flagpack.dnk />
       <Flagpack.dnk class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def dnk(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="DNK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3084,11 +3084,11 @@ defmodule Flagpack do
       <Flagpack.dom />
       <Flagpack.dom class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def dom(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="DOM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3180,11 +3180,11 @@ defmodule Flagpack do
       <Flagpack.ecu />
       <Flagpack.ecu class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ecu(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ECU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3295,11 +3295,11 @@ defmodule Flagpack do
       <Flagpack.egy />
       <Flagpack.egy class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def egy(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="EGY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3345,11 +3345,11 @@ defmodule Flagpack do
       <Flagpack.eri />
       <Flagpack.eri class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def eri(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 33 24">
         <mask id="ERI_svg__a" width="34" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h34v24H0z" />
@@ -3375,11 +3375,11 @@ defmodule Flagpack do
       <Flagpack.esh />
       <Flagpack.esh class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def esh(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ESH_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3405,11 +3405,11 @@ defmodule Flagpack do
       <Flagpack.esp />
       <Flagpack.esp class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def esp(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ESP_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3594,11 +3594,11 @@ defmodule Flagpack do
       <Flagpack.est />
       <Flagpack.est class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def est(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="EST_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3624,11 +3624,11 @@ defmodule Flagpack do
       <Flagpack.eth />
       <Flagpack.eth class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def eth(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ETH_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3667,11 +3667,11 @@ defmodule Flagpack do
       <Flagpack.fin />
       <Flagpack.fin class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def fin(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="FIN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3702,11 +3702,11 @@ defmodule Flagpack do
       <Flagpack.fji />
       <Flagpack.fji class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def fji(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="FJI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3816,11 +3816,11 @@ defmodule Flagpack do
       <Flagpack.flk />
       <Flagpack.flk class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def flk(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="FLK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3913,11 +3913,11 @@ defmodule Flagpack do
       <Flagpack.fra />
       <Flagpack.fra class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def fra(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="FRA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3940,11 +3940,11 @@ defmodule Flagpack do
       <Flagpack.fro />
       <Flagpack.fro class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def fro(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="FRO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -3970,11 +3970,11 @@ defmodule Flagpack do
       <Flagpack.fsm />
       <Flagpack.fsm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def fsm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="FSM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4000,11 +4000,11 @@ defmodule Flagpack do
       <Flagpack.gab />
       <Flagpack.gab class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gab(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GAB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4027,11 +4027,11 @@ defmodule Flagpack do
       <Flagpack.gb_eng />
       <Flagpack.gb_eng class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gb_eng(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GB-ENG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4051,11 +4051,11 @@ defmodule Flagpack do
       <Flagpack.gb_nir />
       <Flagpack.gb_nir class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gb_nir(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GB-NIR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4112,11 +4112,11 @@ defmodule Flagpack do
       <Flagpack.gb_sct />
       <Flagpack.gb_sct class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gb_sct(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GB-SCT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4142,11 +4142,11 @@ defmodule Flagpack do
       <Flagpack.gb_ukm />
       <Flagpack.gb_ukm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gb_ukm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GB-UKM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4203,11 +4203,11 @@ defmodule Flagpack do
       <Flagpack.gb_wls />
       <Flagpack.gb_wls class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gb_wls(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GB-WLS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4255,11 +4255,11 @@ defmodule Flagpack do
       <Flagpack.gbr />
       <Flagpack.gbr class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gbr(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GBR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4316,11 +4316,11 @@ defmodule Flagpack do
       <Flagpack.geo />
       <Flagpack.geo class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def geo(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GEO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4346,11 +4346,11 @@ defmodule Flagpack do
       <Flagpack.ggy />
       <Flagpack.ggy class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ggy(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GGY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4379,11 +4379,11 @@ defmodule Flagpack do
       <Flagpack.gha />
       <Flagpack.gha class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gha(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GHA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4409,11 +4409,11 @@ defmodule Flagpack do
       <Flagpack.gib />
       <Flagpack.gib class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gib(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GIB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4469,11 +4469,11 @@ defmodule Flagpack do
       <Flagpack.gin />
       <Flagpack.gin class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gin(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GIN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4496,11 +4496,11 @@ defmodule Flagpack do
       <Flagpack.glp />
       <Flagpack.glp class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def glp(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#002488" d="M0 0v7h32V0H0z" /><path fill="#DA121A" d="M0 7v17h32V7H0z" /><path
           fill="#FCDD09"
@@ -4557,11 +4557,11 @@ defmodule Flagpack do
       <Flagpack.gmb />
       <Flagpack.gmb class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gmb(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GMB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4586,11 +4586,11 @@ defmodule Flagpack do
       <Flagpack.gnb />
       <Flagpack.gnb class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gnb(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GNB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4616,11 +4616,11 @@ defmodule Flagpack do
       <Flagpack.gnq />
       <Flagpack.gnq class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gnq(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GNQ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4665,11 +4665,11 @@ defmodule Flagpack do
       <Flagpack.grc />
       <Flagpack.grc class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def grc(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GRC_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4704,11 +4704,11 @@ defmodule Flagpack do
       <Flagpack.grd />
       <Flagpack.grd class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def grd(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GRD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4761,11 +4761,11 @@ defmodule Flagpack do
       <Flagpack.grl />
       <Flagpack.grl class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def grl(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GRL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4798,11 +4798,11 @@ defmodule Flagpack do
       <Flagpack.gtm />
       <Flagpack.gtm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gtm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GTM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4867,11 +4867,11 @@ defmodule Flagpack do
       <Flagpack.guf />
       <Flagpack.guf class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def guf(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GUF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4901,11 +4901,11 @@ defmodule Flagpack do
       <Flagpack.gum />
       <Flagpack.gum class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def gum(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GUM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -4988,11 +4988,11 @@ defmodule Flagpack do
       <Flagpack.guy />
       <Flagpack.guy class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def guy(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="GUY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5017,11 +5017,11 @@ defmodule Flagpack do
       <Flagpack.hkg />
       <Flagpack.hkg class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def hkg(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="HKG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5066,11 +5066,11 @@ defmodule Flagpack do
       <Flagpack.hmd />
       <Flagpack.hmd class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def hmd(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="HMD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5127,11 +5127,11 @@ defmodule Flagpack do
       <Flagpack.hnd />
       <Flagpack.hnd class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def hnd(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="HND_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5157,11 +5157,11 @@ defmodule Flagpack do
       <Flagpack.hrv />
       <Flagpack.hrv class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def hrv(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#HRV_svg__HR_-_Croatia_(Hrvatska)">
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
@@ -5273,11 +5273,11 @@ defmodule Flagpack do
       <Flagpack.hti />
       <Flagpack.hti class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def hti(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="HTI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5380,11 +5380,11 @@ defmodule Flagpack do
       <Flagpack.hun />
       <Flagpack.hun class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def hun(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="HUN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5410,11 +5410,11 @@ defmodule Flagpack do
       <Flagpack.idn />
       <Flagpack.idn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def idn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="IDN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5438,11 +5438,11 @@ defmodule Flagpack do
       <Flagpack.imn />
       <Flagpack.imn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def imn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="IMN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5504,11 +5504,11 @@ defmodule Flagpack do
       <Flagpack.ind />
       <Flagpack.ind class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ind(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="IND_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5540,11 +5540,11 @@ defmodule Flagpack do
       <Flagpack.iot />
       <Flagpack.iot class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def iot(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="IOT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5639,11 +5639,11 @@ defmodule Flagpack do
       <Flagpack.irl />
       <Flagpack.irl class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def irl(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="IRL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5666,11 +5666,11 @@ defmodule Flagpack do
       <Flagpack.irn />
       <Flagpack.irn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def irn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="IRN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5702,11 +5702,11 @@ defmodule Flagpack do
       <Flagpack.irq />
       <Flagpack.irq class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def irq(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="IRQ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5735,11 +5735,11 @@ defmodule Flagpack do
       <Flagpack.isl />
       <Flagpack.isl class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def isl(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ISL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5765,11 +5765,11 @@ defmodule Flagpack do
       <Flagpack.isr />
       <Flagpack.isr class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def isr(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ISR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5795,11 +5795,11 @@ defmodule Flagpack do
       <Flagpack.ita />
       <Flagpack.ita class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ita(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ITA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5822,11 +5822,11 @@ defmodule Flagpack do
       <Flagpack.jam />
       <Flagpack.jam class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def jam(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="JAM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5856,11 +5856,11 @@ defmodule Flagpack do
       <Flagpack.jey />
       <Flagpack.jey class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def jey(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="JEY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5900,11 +5900,11 @@ defmodule Flagpack do
       <Flagpack.jor />
       <Flagpack.jor class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def jor(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="JOR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5942,11 +5942,11 @@ defmodule Flagpack do
       <Flagpack.jpn />
       <Flagpack.jpn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def jpn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="JPN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -5972,11 +5972,11 @@ defmodule Flagpack do
       <Flagpack.kaz />
       <Flagpack.kaz class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def kaz(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="KAZ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6059,11 +6059,11 @@ defmodule Flagpack do
       <Flagpack.ken />
       <Flagpack.ken class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ken(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="KEN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6116,11 +6116,11 @@ defmodule Flagpack do
       <Flagpack.kgz />
       <Flagpack.kgz class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def kgz(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="KGZ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6151,11 +6151,11 @@ defmodule Flagpack do
       <Flagpack.khm />
       <Flagpack.khm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def khm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="KHM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6523,11 +6523,11 @@ defmodule Flagpack do
       <Flagpack.kir />
       <Flagpack.kir class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def kir(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="KIR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6589,11 +6589,11 @@ defmodule Flagpack do
       <Flagpack.kna />
       <Flagpack.kna class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def kna(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="KNA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6628,11 +6628,11 @@ defmodule Flagpack do
       <Flagpack.kor />
       <Flagpack.kor class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def kor(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#KOR_svg__KR_-_Korea_(South)">
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
@@ -6671,11 +6671,11 @@ defmodule Flagpack do
       <Flagpack.kwt />
       <Flagpack.kwt class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def kwt(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="KWT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6702,11 +6702,11 @@ defmodule Flagpack do
       <Flagpack.lao />
       <Flagpack.lao class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def lao(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="LAO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6729,11 +6729,11 @@ defmodule Flagpack do
       <Flagpack.lbn />
       <Flagpack.lbn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def lbn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="LBN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6756,11 +6756,11 @@ defmodule Flagpack do
       <Flagpack.lbr />
       <Flagpack.lbr class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def lbr(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="LBR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6791,11 +6791,11 @@ defmodule Flagpack do
       <Flagpack.lby />
       <Flagpack.lby class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def lby(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="LBY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6821,11 +6821,11 @@ defmodule Flagpack do
       <Flagpack.lca />
       <Flagpack.lca class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def lca(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="LCA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6848,11 +6848,11 @@ defmodule Flagpack do
       <Flagpack.lie />
       <Flagpack.lie class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def lie(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="LIE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6910,11 +6910,11 @@ defmodule Flagpack do
       <Flagpack.lka />
       <Flagpack.lka class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def lka(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="LKA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6945,11 +6945,11 @@ defmodule Flagpack do
       <Flagpack.lso />
       <Flagpack.lso class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def lso(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="LSO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -6975,11 +6975,11 @@ defmodule Flagpack do
       <Flagpack.ltu />
       <Flagpack.ltu class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ltu(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="LTU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7005,11 +7005,11 @@ defmodule Flagpack do
       <Flagpack.lux />
       <Flagpack.lux class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def lux(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="LUX_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7035,11 +7035,11 @@ defmodule Flagpack do
       <Flagpack.lva />
       <Flagpack.lva class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def lva(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="LVA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7062,11 +7062,11 @@ defmodule Flagpack do
       <Flagpack.mac />
       <Flagpack.mac class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mac(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MAC_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7113,11 +7113,11 @@ defmodule Flagpack do
       <Flagpack.maf />
       <Flagpack.maf class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def maf(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MAF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7140,11 +7140,11 @@ defmodule Flagpack do
       <Flagpack.mar />
       <Flagpack.mar class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mar(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MAR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7170,11 +7170,11 @@ defmodule Flagpack do
       <Flagpack.mco  />
       <Flagpack.mco  class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mco(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MCO__svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7200,11 +7200,11 @@ defmodule Flagpack do
       <Flagpack.mda />
       <Flagpack.mda class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mda(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MDA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7282,11 +7282,11 @@ defmodule Flagpack do
       <Flagpack.mdg />
       <Flagpack.mdg class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mdg(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MDG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7309,11 +7309,11 @@ defmodule Flagpack do
       <Flagpack.mdv />
       <Flagpack.mdv class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mdv(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MDV_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7358,11 +7358,11 @@ defmodule Flagpack do
       <Flagpack.mex />
       <Flagpack.mex class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mex(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MEX_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7418,11 +7418,11 @@ defmodule Flagpack do
       <Flagpack.mhl />
       <Flagpack.mhl class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mhl(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MHL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7456,11 +7456,11 @@ defmodule Flagpack do
       <Flagpack.mkd />
       <Flagpack.mkd class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mkd(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MKD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7490,11 +7490,11 @@ defmodule Flagpack do
       <Flagpack.mli />
       <Flagpack.mli class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mli(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MLI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7517,11 +7517,11 @@ defmodule Flagpack do
       <Flagpack.mlt />
       <Flagpack.mlt class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mlt(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#F7FCFF" d="M0 0h32v24H0z" />
         <mask id="MLT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
@@ -7558,11 +7558,11 @@ defmodule Flagpack do
       <Flagpack.mne />
       <Flagpack.mne class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mne(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MNE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7647,11 +7647,11 @@ defmodule Flagpack do
       <Flagpack.mng />
       <Flagpack.mng class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mng(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MNG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7689,11 +7689,11 @@ defmodule Flagpack do
       <Flagpack.mnp />
       <Flagpack.mnp class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mnp(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MNP_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7758,11 +7758,11 @@ defmodule Flagpack do
       <Flagpack.moz />
       <Flagpack.moz class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def moz(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MOZ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7820,11 +7820,11 @@ defmodule Flagpack do
       <Flagpack.mrt />
       <Flagpack.mrt class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mrt(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MRT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7856,11 +7856,11 @@ defmodule Flagpack do
       <Flagpack.msr />
       <Flagpack.msr class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def msr(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MSR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -7960,11 +7960,11 @@ defmodule Flagpack do
       <Flagpack.mtq />
       <Flagpack.mtq class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mtq(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#21428E" d="M0 0h32v24H0z" /><path
           fill="#F7FCFF"
@@ -7989,11 +7989,11 @@ defmodule Flagpack do
       <Flagpack.mus />
       <Flagpack.mus class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mus(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MUS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8022,11 +8022,11 @@ defmodule Flagpack do
       <Flagpack.mwi />
       <Flagpack.mwi class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mwi(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MWI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8055,11 +8055,11 @@ defmodule Flagpack do
       <Flagpack.mys />
       <Flagpack.mys class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def mys(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="MYS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8097,11 +8097,11 @@ defmodule Flagpack do
       <Flagpack.nam />
       <Flagpack.nam class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def nam(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="NAM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8137,11 +8137,11 @@ defmodule Flagpack do
       <Flagpack.ncl />
       <Flagpack.ncl class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ncl(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="NCL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8164,11 +8164,11 @@ defmodule Flagpack do
       <Flagpack.ner />
       <Flagpack.ner class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ner(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="NER_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8197,11 +8197,11 @@ defmodule Flagpack do
       <Flagpack.nfk />
       <Flagpack.nfk class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def nfk(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="NFK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8224,11 +8224,11 @@ defmodule Flagpack do
       <Flagpack.nga />
       <Flagpack.nga class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def nga(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="NGA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8248,11 +8248,11 @@ defmodule Flagpack do
       <Flagpack.nic />
       <Flagpack.nic class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def nic(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="NIC_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8300,11 +8300,11 @@ defmodule Flagpack do
       <Flagpack.niu />
       <Flagpack.niu class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def niu(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="NIU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8364,11 +8364,11 @@ defmodule Flagpack do
       <Flagpack.nld />
       <Flagpack.nld class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def nld(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="NLD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8394,11 +8394,11 @@ defmodule Flagpack do
       <Flagpack.nor />
       <Flagpack.nor class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def nor(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="NOR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8424,11 +8424,11 @@ defmodule Flagpack do
       <Flagpack.npl />
       <Flagpack.npl class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def npl(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#fff" d="M0 0h32v24H0z" /><path
           fill="#C51918"
@@ -8459,11 +8459,11 @@ defmodule Flagpack do
       <Flagpack.nru />
       <Flagpack.nru class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def nru(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
         <mask id="NRU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
@@ -8487,11 +8487,11 @@ defmodule Flagpack do
       <Flagpack.nzl />
       <Flagpack.nzl class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def nzl(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#NZL_svg__NZ_-_New_Zealand_(Aotearoa)">
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
@@ -8541,11 +8541,11 @@ defmodule Flagpack do
       <Flagpack.omn />
       <Flagpack.omn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def omn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="OMN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8581,11 +8581,11 @@ defmodule Flagpack do
       <Flagpack.pak />
       <Flagpack.pak class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def pak(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PAK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8608,11 +8608,11 @@ defmodule Flagpack do
       <Flagpack.pan />
       <Flagpack.pan class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def pan(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PAN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8644,11 +8644,11 @@ defmodule Flagpack do
       <Flagpack.pcn />
       <Flagpack.pcn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def pcn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PCN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8773,11 +8773,11 @@ defmodule Flagpack do
       <Flagpack.per />
       <Flagpack.per class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def per(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PER_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8883,11 +8883,11 @@ defmodule Flagpack do
       <Flagpack.phl />
       <Flagpack.phl class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def phl(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PHL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8920,11 +8920,11 @@ defmodule Flagpack do
       <Flagpack.plw />
       <Flagpack.plw class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def plw(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PLW_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8950,11 +8950,11 @@ defmodule Flagpack do
       <Flagpack.png />
       <Flagpack.png class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def png(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PNG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -8994,11 +8994,11 @@ defmodule Flagpack do
       <Flagpack.pol />
       <Flagpack.pol class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def pol(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="POL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9024,11 +9024,11 @@ defmodule Flagpack do
       <Flagpack.pri />
       <Flagpack.pri class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def pri(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PRI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9064,11 +9064,11 @@ defmodule Flagpack do
       <Flagpack.prk />
       <Flagpack.prk class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def prk(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#PRK_svg__KP_-_Korea_(North)">
           <path fill="#3D58DB" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
@@ -9098,11 +9098,11 @@ defmodule Flagpack do
       <Flagpack.prt />
       <Flagpack.prt class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def prt(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PRT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9272,11 +9272,11 @@ defmodule Flagpack do
       <Flagpack.pry />
       <Flagpack.pry class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def pry(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PRY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9324,11 +9324,11 @@ defmodule Flagpack do
       <Flagpack.pse />
       <Flagpack.pse class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def pse(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PSE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9351,11 +9351,11 @@ defmodule Flagpack do
       <Flagpack.pyf />
       <Flagpack.pyf class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def pyf(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="PYF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9408,11 +9408,11 @@ defmodule Flagpack do
       <Flagpack.qat />
       <Flagpack.qat class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def qat(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="QAT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9437,11 +9437,11 @@ defmodule Flagpack do
       <Flagpack.reu />
       <Flagpack.reu class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def reu(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="REU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9464,11 +9464,11 @@ defmodule Flagpack do
       <Flagpack.rou />
       <Flagpack.rou class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def rou(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ROU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9491,11 +9491,11 @@ defmodule Flagpack do
       <Flagpack.rus />
       <Flagpack.rus class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def rus(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="RUS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9521,11 +9521,11 @@ defmodule Flagpack do
       <Flagpack.rwa />
       <Flagpack.rwa class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def rwa(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="RWA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9554,11 +9554,11 @@ defmodule Flagpack do
       <Flagpack.sau />
       <Flagpack.sau class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def sau(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SAU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9594,11 +9594,11 @@ defmodule Flagpack do
       <Flagpack.sdn />
       <Flagpack.sdn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def sdn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SDN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9621,11 +9621,11 @@ defmodule Flagpack do
       <Flagpack.sen />
       <Flagpack.sen class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def sen(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SEN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9648,11 +9648,11 @@ defmodule Flagpack do
       <Flagpack.sgp />
       <Flagpack.sgp class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def sgp(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SGP_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9681,11 +9681,11 @@ defmodule Flagpack do
       <Flagpack.sgs />
       <Flagpack.sgs class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def sgs(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SGS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9828,11 +9828,11 @@ defmodule Flagpack do
       <Flagpack.shn />
       <Flagpack.shn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def shn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SHN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -9998,11 +9998,11 @@ defmodule Flagpack do
       <Flagpack.sjm />
       <Flagpack.sjm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def sjm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SJM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10028,11 +10028,11 @@ defmodule Flagpack do
       <Flagpack.slb />
       <Flagpack.slb class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def slb(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SLB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10071,11 +10071,11 @@ defmodule Flagpack do
       <Flagpack.sle />
       <Flagpack.sle class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def sle(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SLE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10101,11 +10101,11 @@ defmodule Flagpack do
       <Flagpack.slv />
       <Flagpack.slv class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def slv(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SLV_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10142,11 +10142,11 @@ defmodule Flagpack do
       <Flagpack.smr />
       <Flagpack.smr class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def smr(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SMR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10273,11 +10273,11 @@ defmodule Flagpack do
       <Flagpack.som />
       <Flagpack.som class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def som(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SOM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10300,11 +10300,11 @@ defmodule Flagpack do
       <Flagpack.spm />
       <Flagpack.spm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def spm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#C00" d="M0 0h8v8H0z" /><path fill="#08672F" d="M8 1.04V0h-.978L0 6.96V8h.978L8 1.04z" /><path
           fill="#08672F"
@@ -10357,11 +10357,11 @@ defmodule Flagpack do
       <Flagpack.srb />
       <Flagpack.srb class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def srb(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SRB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10423,11 +10423,11 @@ defmodule Flagpack do
       <Flagpack.ssd />
       <Flagpack.ssd class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ssd(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SSD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10462,11 +10462,11 @@ defmodule Flagpack do
       <Flagpack.stp />
       <Flagpack.stp class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def stp(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="STP_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10492,11 +10492,11 @@ defmodule Flagpack do
       <Flagpack.sur />
       <Flagpack.sur class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def sur(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SUR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10526,11 +10526,11 @@ defmodule Flagpack do
       <Flagpack.svk />
       <Flagpack.svk class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def svk(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SVK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10581,11 +10581,11 @@ defmodule Flagpack do
       <Flagpack.svn />
       <Flagpack.svn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def svn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SVN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10634,11 +10634,11 @@ defmodule Flagpack do
       <Flagpack.swe />
       <Flagpack.swe class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def swe(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SWE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10664,11 +10664,11 @@ defmodule Flagpack do
       <Flagpack.swz />
       <Flagpack.swz class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def swz(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SWZ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10746,11 +10746,11 @@ defmodule Flagpack do
       <Flagpack.sxm />
       <Flagpack.sxm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def sxm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SXM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10821,11 +10821,11 @@ defmodule Flagpack do
       <Flagpack.syc />
       <Flagpack.syc class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def syc(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SYC_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10859,11 +10859,11 @@ defmodule Flagpack do
       <Flagpack.syr />
       <Flagpack.syr class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def syr(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="SYR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10886,11 +10886,11 @@ defmodule Flagpack do
       <Flagpack.tca />
       <Flagpack.tca class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tca(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TCA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10970,11 +10970,11 @@ defmodule Flagpack do
       <Flagpack.tcd />
       <Flagpack.tcd class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tcd(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TCD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -10997,11 +10997,11 @@ defmodule Flagpack do
       <Flagpack.tgo />
       <Flagpack.tgo class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tgo(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TGO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11031,11 +11031,11 @@ defmodule Flagpack do
       <Flagpack.tha />
       <Flagpack.tha class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tha(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="THA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11060,11 +11060,11 @@ defmodule Flagpack do
       <Flagpack.tjk />
       <Flagpack.tjk class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tjk(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TJK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11093,11 +11093,11 @@ defmodule Flagpack do
       <Flagpack.tkm />
       <Flagpack.tkm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tkm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TKM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11317,11 +11317,11 @@ defmodule Flagpack do
       <Flagpack.tls />
       <Flagpack.tls class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tls(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TLS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11351,11 +11351,11 @@ defmodule Flagpack do
       <Flagpack.ton />
       <Flagpack.ton class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ton(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TON_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11386,11 +11386,11 @@ defmodule Flagpack do
       <Flagpack.tto />
       <Flagpack.tto class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tto(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TTO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11421,11 +11421,11 @@ defmodule Flagpack do
       <Flagpack.tun />
       <Flagpack.tun class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tun(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TUN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11454,11 +11454,11 @@ defmodule Flagpack do
       <Flagpack.tur />
       <Flagpack.tur class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tur(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TUR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11489,11 +11489,11 @@ defmodule Flagpack do
       <Flagpack.tuv />
       <Flagpack.tuv class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tuv(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TUV_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11552,11 +11552,11 @@ defmodule Flagpack do
       <Flagpack.twn />
       <Flagpack.twn class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def twn(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TWN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11585,11 +11585,11 @@ defmodule Flagpack do
       <Flagpack.tza />
       <Flagpack.tza class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def tza(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="TZA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11620,11 +11620,11 @@ defmodule Flagpack do
       <Flagpack.uga />
       <Flagpack.uga class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def uga(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="UGA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11683,11 +11683,11 @@ defmodule Flagpack do
       <Flagpack.ukr />
       <Flagpack.ukr class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ukr(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="UKR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11713,11 +11713,11 @@ defmodule Flagpack do
       <Flagpack.umi />
       <Flagpack.umi class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def umi(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="UMI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11747,11 +11747,11 @@ defmodule Flagpack do
       <Flagpack.ury />
       <Flagpack.ury class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ury(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="URY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11822,11 +11822,11 @@ defmodule Flagpack do
       <Flagpack.usa />
       <Flagpack.usa class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def usa(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="USA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11856,11 +11856,11 @@ defmodule Flagpack do
       <Flagpack.uzb />
       <Flagpack.uzb class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def uzb(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="UZB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11890,11 +11890,11 @@ defmodule Flagpack do
       <Flagpack.vat />
       <Flagpack.vat class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def vat(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="VAT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11957,11 +11957,11 @@ defmodule Flagpack do
       <Flagpack.vct />
       <Flagpack.vct class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def vct(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="VCT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -11987,11 +11987,11 @@ defmodule Flagpack do
       <Flagpack.ven />
       <Flagpack.ven class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def ven(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="VEN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -12023,11 +12023,11 @@ defmodule Flagpack do
       <Flagpack.vgb />
       <Flagpack.vgb class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def vgb(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#VGB_svg__VG_-_Virgin_Islands_(British)">
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
@@ -12127,11 +12127,11 @@ defmodule Flagpack do
       <Flagpack.vir />
       <Flagpack.vir class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def vir(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#VIR_svg__VI_-_Virgin_Islands_(U_S_)">
           <path fill="#F7FCFF" d="M0 0v24h32V0H0z" />
@@ -12169,11 +12169,11 @@ defmodule Flagpack do
       <Flagpack.vnm />
       <Flagpack.vnm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def vnm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="VNM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -12209,11 +12209,11 @@ defmodule Flagpack do
       <Flagpack.vut />
       <Flagpack.vut class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def vut(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="VUT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -12273,11 +12273,11 @@ defmodule Flagpack do
       <Flagpack.wlf />
       <Flagpack.wlf class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def wlf(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="WLF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -12300,11 +12300,11 @@ defmodule Flagpack do
       <Flagpack.wsm />
       <Flagpack.wsm class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def wsm(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="WSM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -12333,11 +12333,11 @@ defmodule Flagpack do
       <Flagpack.yem />
       <Flagpack.yem class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def yem(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="YEM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -12363,11 +12363,11 @@ defmodule Flagpack do
       <Flagpack.zaf />
       <Flagpack.zaf class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def zaf(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ZAF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -12404,11 +12404,11 @@ defmodule Flagpack do
       <Flagpack.zmb />
       <Flagpack.zmb class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def zmb(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ZMB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
@@ -12450,11 +12450,11 @@ defmodule Flagpack do
       <Flagpack.zwe />
       <Flagpack.zwe class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def zwe(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <mask id="ZWE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />

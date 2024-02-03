@@ -15,7 +15,7 @@ defmodule Flagpack do
   """
   use Phoenix.Component
 
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
   attr :name, :atom, required: true, doc: "the name of the icon to be rendered"
 
   @doc false
@@ -31,11 +31,11 @@ defmodule Flagpack do
       <Flagpack.<%= func %> />
       <Flagpack.<%= func %> class="w-5 h-5" />
   """
-  attr :class, :string, default: "", required: false, doc: "extra classes to be added"
+  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
 
   def <%= func %>(assigns) do
     ~H"""
-    <div class={"#{@class}"}>
+    <div class={@class}>
       <%= svg %>
     </div>
     """
