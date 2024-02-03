@@ -13,8 +13,8 @@ jobs:
 
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: '25.1.1'
-          elixir-version: '1.14.1'
+          otp-version: '26.2.1'
+          elixir-version: '1.16.0'
 
       - name: Install Dependencies
         run: mix deps.get
