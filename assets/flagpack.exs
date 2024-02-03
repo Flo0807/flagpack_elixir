@@ -25,7 +25,7 @@ defmodule Flagpack do
 
   <%= for %{func: func, alpha: alpha, svg: svg} <- @flags do %>
   @doc """
-  Renders the <%= Helpers.country_name_by_alpha(alpha) %> flag.
+  Renders the <%= Flagpack.Helpers.country_name_by_alpha(alpha) %> flag.
 
   ## Examples
       <Flagpack.<%= func %> />

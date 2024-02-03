@@ -1,4 +1,4 @@
-defmodule Helpers do
+defmodule Flagpack.Helpers do
   @country_codes [
     %{country_name: "Andorra", alpha2: "AD", alpha3: "AND", numeric: "020"},
     %{
@@ -515,6 +515,15 @@ defmodule Helpers do
 
     Enum.find(@country_codes, &(get_alpha2(&1) == alpha or get_alpha3(&1) == alpha))
     |> Map.get(:country_name)
+  end
+
+  def country_alpha3_by_alpha2(alpha2) do
+    alpha2 = String.upcase(alpha2)
+
+    case Enum.find(@country_codes, &(get_alpha2(&1) == alpha2)) do
+      nil -> nil
+      info = %{} -> Map.get(info, :alpha3)
+    end
   end
 
   defp get_alpha2(country), do: Map.get(country, :alpha2, "")

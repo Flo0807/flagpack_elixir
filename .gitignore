@@ -26,3 +26,5 @@ flagpack-*.tar
 /tmp/
 
 .DS_Store
+
+.idea/
