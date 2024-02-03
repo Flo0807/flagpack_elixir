@@ -10,15 +10,21 @@ defmodule Flagpack do
 
   You may use the `Flagpack.flag/1` function and pass a flag name.
 
-      <Flagpack.flag name={:usa}/>
+      <Flagpack.flag name={:usa} />
       <Flagpack.flag name={:usa} class="w-5 h-5" />
   """
   use Phoenix.Component
 
   attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
-  attr :name, :atom, required: true, doc: "the name of the icon to be rendered"
+  attr :name, :atom, required: true, doc: "the name of the flag to be rendered"
 
-  @doc false
+  @doc """
+  Renders a flag by the given name.
+
+  ## Examples
+      <Flagpack.flag name={:usa} />
+      <Flagpack.flag name={:usa} class="w-5 h-5" />
+  """
   def flag(assigns) do
     apply(Flagpack, assigns.name, [assigns])
   end
