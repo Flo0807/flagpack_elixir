@@ -8883,7 +8883,7 @@ defmodule Flagpack do
   end
 
   @doc """
-  Renders the Phillippines (the) flag.
+  Renders the Philippines (the) flag.
 
   ## Examples
       <Flagpack.phl />
@@ -9681,7 +9681,7 @@ defmodule Flagpack do
   end
 
   @doc """
-  Renders the South Gerogia and the South Sandwich Islands flag.
+  Renders the South Georgia and the South Sandwich Islands flag.
 
   ## Examples
       <Flagpack.sgs />
