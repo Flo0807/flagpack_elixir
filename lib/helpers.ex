@@ -171,7 +171,7 @@ defmodule Flagpack.Helpers do
     },
     %{country_name: "Greece", alpha2: "GR", alpha3: "GRC", numeric: "300"},
     %{
-      country_name: "South Gerogia and the South Sandwich Islands",
+      country_name: "South Georgia and the South Sandwich Islands",
       alpha2: "GS",
       alpha3: "SGS",
       numeric: "239"
@@ -333,7 +333,7 @@ defmodule Flagpack.Helpers do
       numeric: "598"
     },
     %{
-      country_name: "Phillippines (the)",
+      country_name: "Philippines (the)",
       alpha2: "PH",
       alpha3: "PHL",
       numeric: "608"
