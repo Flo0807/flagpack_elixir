@@ -8,5 +8,13 @@
   "labels": [
     "dependencies",
     "{{categories}}"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "automerge": true
+    }
   ]
 }
