@@ -12,6 +12,12 @@
   "packageRules": [
     {
       "matchManagers": [
+        "mix"
+      ],
+      "rangeStrategy": "update-lockfile"
+    },
+    {
+      "matchManagers": [
         "github-actions"
       ],
       "automerge": true,
