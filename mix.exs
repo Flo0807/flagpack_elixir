@@ -43,7 +43,7 @@ defmodule Flagpack.MixProject do
   defp deps do
     [
       {:phoenix_live_view, ">= 0.18.0"},
-      {:ex_doc, "~> 0.35.0", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.36.0", only: :dev, runtime: false}
     ]
   end
 
