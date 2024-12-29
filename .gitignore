@@ -27,3 +27,6 @@ flagpack-*.tar
 
 .DS_Store
 .elixir_ls
+
+/blend/_build
+/blend/deps

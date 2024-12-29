@@ -47,8 +47,20 @@ jobs:
       - name: Check unused deps
         run: mix deps.unlock --check-unused
 
+      - name: Install mix dependencies for blend
+        run: mix blend.get
+
+      - name: Run Tests (Phoenix LiveView v0.18)
+        run: BLEND=phoenix_live_view_v0_18 mix test
+
+      - name: Run Tests (Phoenix LiveView v0.19)
+        run: BLEND=phoenix_live_view_v0_19 mix test
+
+      - name: Run Tests (Phoenix LiveView v0.20)
+        run: BLEND=phoenix_live_view_v0_20 mix test
+
       - name: Run Tests
-        run: mix test
+        run: mix test --warnings-as-errors
 
       - name: Publish package
         if: github.event_name == 'release'
