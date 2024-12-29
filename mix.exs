@@ -1,3 +1,7 @@
+if File.exists?("blend/premix.exs") do
+  Code.compile_file("blend/premix.exs")
+end
+
 defmodule Flagpack.MixProject do
   use Mix.Project
 
@@ -32,6 +36,7 @@ defmodule Flagpack.MixProject do
       source_url: @source_url,
       docs: docs()
     ]
+    |> Keyword.merge(maybe_lockfile_option())
   end
 
   def application do
@@ -43,7 +48,8 @@ defmodule Flagpack.MixProject do
   defp deps do
     [
       {:phoenix_live_view, ">= 0.18.0"},
-      {:ex_doc, "~> 0.36.0", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.36.0", only: :dev, runtime: false},
+      {:blend, "~> 0.4.1", only: :dev}
     ]
   end
 
@@ -53,5 +59,13 @@ defmodule Flagpack.MixProject do
       source_ref: "main",
       source_url_pattern: "#{@source_url}/blob/main/%{path}#L%{line}"
     ]
+  end
+
+  defp maybe_lockfile_option do
+    case System.get_env("MIX_LOCKFILE") do
+      nil -> []
+      "" -> []
+      lockfile -> [lockfile: lockfile]
+    end
   end
 end
