@@ -1,13 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:best-practices",
-    ":disableRateLimiting",
-    ":reviewer(Flo0807)"
-  ],
-  "labels": [
-    "dependencies",
-    "{{categories}}"
+    "github>Flo0807/renovate-config//base"
   ],
   "packageRules": [
     {
@@ -20,7 +14,6 @@
       "matchManagers": [
         "github-actions"
       ],
-      "automerge": true,
       "labels": [
         "ignore-for-release"
       ]
