@@ -1,7 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>Flo0807/renovate-config//base"
+    "github>Flo0807/renovate-config//base",
+    ":reviewer(Flo0807)"
   ],
   "packageRules": [
     {
