@@ -50,6 +50,9 @@ jobs:
       - name: Install mix dependencies for blend
         run: mix blend.get
 
+      - name: Build docs
+        run: mix docs --warnings-as-errors
+
       - name: Run Tests (Phoenix LiveView v0.18)
         run: BLEND=phoenix_live_view_v0_18 mix test
 
