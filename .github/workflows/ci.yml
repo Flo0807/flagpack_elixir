@@ -47,6 +47,9 @@ jobs:
       - name: Check unused deps
         run: mix deps.unlock --check-unused
 
+      - name: Build docs
+        run: mix docs --warnings-as-errors
+
       - name: Install mix dependencies for blend
         run: mix blend.get
 
