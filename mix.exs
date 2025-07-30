@@ -49,7 +49,8 @@ defmodule Flagpack.MixProject do
     [
       {:phoenix_live_view, ">= 0.18.0"},
       {:ex_doc, "~> 0.38.0", only: :dev, runtime: false},
-      {:blend, "~> 0.5.0", only: :dev}
+      {:blend, "~> 0.5.0", only: :dev},
+      {:lazy_html, "~> 0.1.3", only: :test}
     ]
   end
 
