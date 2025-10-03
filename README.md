@@ -26,14 +26,16 @@ Each component accepts an optional class attribute in order to be able to add ex
 
 ```eex
 <Flagpack.usa />
-<Flagpack.usa class="w-5 h-5" />
+<Flagpack.usa id="my-flag" />
+<Flagpack.usa class="size-5" />
 ```
 
 You may use the `Flagpack.flag/1` function and pass a flag name. This can be useful when you want to generate the flag name dynamically.
 
 ```eex
-<Flagpack.flag name={:usa}/>
-<Flagpack.flag name={:usa} class="w-5 h-5" />
+<Flagpack.flag name={:usa} />
+<Flagpack.flag name={:usa} id="my-flag" />
+<Flagpack.flag name={:usa} class="size-5" />
 ```
 
 For additional information and list of all flags see [the docs](https://hexdocs.pm/flagpack/Flagpack.html).
