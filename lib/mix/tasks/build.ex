@@ -4,6 +4,8 @@ defmodule Mix.Tasks.Build do
   @shortdoc false
   use Mix.Task
 
+  alias Flagpack.Helpers
+
   @target_file Path.join("lib", "flagpack.ex")
 
   def run(_) do
@@ -13,11 +15,17 @@ defmodule Mix.Tasks.Build do
       svg_path
       |> Path.join("*.svg")
       |> Path.wildcard()
-      |> Enum.map(&%{func: function_name(&1), alpha: file_root_name(&1), svg: File.read!(&1)})
+      |> Enum.map(&%{func: function_name(&1), alpha: file_root_name(&1), svg: get_svg(&1)})
 
     Mix.Generator.copy_template("assets/flagpack.eex", @target_file, flags: flags, force: true)
 
     Mix.Task.run("format")
+  end
+
+  defp get_svg(file_path) do
+    file_path
+    |> File.read!()
+    |> Helpers.templatize_ids()
   end
 
   defp file_root_name(file) do

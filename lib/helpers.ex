@@ -510,6 +510,9 @@ defmodule Flagpack.Helpers do
     %{country_name: "Bouvet Island", alpha2: "BV", alpha3: "BVT", numeric: "074"}
   ]
 
+  @doc """
+  Finds a country by its alpha2 or alpha3 code.
+  """
   def country_name_by_alpha(alpha) do
     alpha = String.upcase(alpha)
 
@@ -519,4 +522,25 @@ defmodule Flagpack.Helpers do
 
   defp get_alpha2(country), do: Map.get(country, :alpha2, "")
   defp get_alpha3(country), do: Map.get(country, :alpha3, "")
+
+  @doc """
+  Finds all `id` attributes in an SVG and adds an `@id` suffix to ensure that multiple instances
+  of the same flag can be rendered on a page without ID conflicts. It also updates all references
+  to those IDs (in `mask`, `fill`, and `filter` attributes).
+  """
+  def templatize_ids(svg_string) do
+    ids =
+      ~r/id="([^"]+)"/
+      |> Regex.scan(svg_string)
+      |> Enum.map(fn [_, id] -> id end)
+      |> Enum.uniq()
+
+    Enum.reduce(ids, svg_string, fn original_id, acc ->
+      acc
+      |> String.replace("id=\"#{original_id}\"", "id={\"#{original_id}_\#{@id}\"}")
+      |> String.replace("mask=\"url(##{original_id})\"", "mask={\"url(##{original_id}_\#{@id})\"}")
+      |> String.replace("fill=\"url(##{original_id})\"", "fill={\"url(##{original_id}_\#{@id})\"}")
+      |> String.replace("filter=\"url(##{original_id})\"", "filter={\"url(##{original_id}_\#{@id})\"}")
+    end)
+  end
 end
