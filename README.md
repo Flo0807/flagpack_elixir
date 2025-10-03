@@ -15,7 +15,7 @@ The package can be installed by adding `flagpack` to your list of dependencies i
 ```elixir
 def deps do
   [
-    {:flagpack, "~> 0.5.0"}
+    {:flagpack, "~> 0.6.0"}
   ]
 end
 ```
