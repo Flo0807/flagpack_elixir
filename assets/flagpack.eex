@@ -5,25 +5,37 @@ defmodule Flagpack do
   Each component accepts an optional class attribute in order to be able to add extra classes to the component.
 
   ## Usage
+
       <Flagpack.usa />
-      <Flagpack.usa class="w-5 h-5" />
+      <Flagpack.usa id="my-flag" />
+      <Flagpack.usa class="size-5" />
 
   You may use the `Flagpack.flag/1` function and pass a flag name.
 
       <Flagpack.flag name={:usa} />
-      <Flagpack.flag name={:usa} class="w-5 h-5" />
+      <Flagpack.flag name={:usa} id="my-flag" />
+      <Flagpack.flag name={:usa} class="size-5" />
   """
   use Phoenix.Component
 
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
-  attr :name, :atom, required: true, doc: "the name of the flag to be rendered"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
+  attr :name, :atom, required: true, doc: "The name of the flag to be rendered."
 
   @doc """
   Renders a flag by the given name.
 
   ## Examples
+
       <Flagpack.flag name={:usa} />
-      <Flagpack.flag name={:usa} class="w-5 h-5" />
+      <Flagpack.flag name={:usa} id="my-flag" />
+      <Flagpack.flag name={:usa} class="size-5" />
   """
   def flag(assigns) do
     apply(Flagpack, assigns.name, [assigns])
@@ -34,17 +46,35 @@ defmodule Flagpack do
   Renders the <%= Flagpack.Helpers.country_name_by_alpha(alpha) %> flag.
 
   ## Examples
+
       <Flagpack.<%= func %> />
-      <Flagpack.<%= func %> class="w-5 h-5" />
+      <Flagpack.<%= func %> id="my-flag" />
+      <Flagpack.<%= func %> class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def <%= func %>(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <%= svg %>
     </div>
     """
   end
   <% end %>
+
+  @doc false
+  def unique_id do
+    :crypto.strong_rand_bytes(16)
+    |> Base.url_encode64()
+    |> binary_part(0, 16)
+  end
 end

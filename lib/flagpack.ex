@@ -5,25 +5,37 @@ defmodule Flagpack do
   Each component accepts an optional class attribute in order to be able to add extra classes to the component.
 
   ## Usage
+
       <Flagpack.usa />
-      <Flagpack.usa class="w-5 h-5" />
+      <Flagpack.usa id="my-flag" />
+      <Flagpack.usa class="size-5" />
 
   You may use the `Flagpack.flag/1` function and pass a flag name.
 
       <Flagpack.flag name={:usa} />
-      <Flagpack.flag name={:usa} class="w-5 h-5" />
+      <Flagpack.flag name={:usa} id="my-flag" />
+      <Flagpack.flag name={:usa} class="size-5" />
   """
   use Phoenix.Component
 
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
-  attr :name, :atom, required: true, doc: "the name of the flag to be rendered"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
+  attr :name, :atom, required: true, doc: "The name of the flag to be rendered."
 
   @doc """
   Renders a flag by the given name.
 
   ## Examples
+
       <Flagpack.flag name={:usa} />
-      <Flagpack.flag name={:usa} class="w-5 h-5" />
+      <Flagpack.flag name={:usa} id="my-flag" />
+      <Flagpack.flag name={:usa} class="size-5" />
   """
   def flag(assigns) do
     apply(Flagpack, assigns.name, [assigns])
@@ -33,24 +45,35 @@ defmodule Flagpack do
   Renders the Aruba flag.
 
   ## Examples
+
       <Flagpack.abw />
-      <Flagpack.abw class="w-5 h-5" />
+      <Flagpack.abw id="my-flag" />
+      <Flagpack.abw class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def abw(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ABW_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ABW_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ABW_svg__a)">
+        <g mask={"url(#ABW_svg__a_#{@id})"}>
           <path fill="#5BA3DA" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ABW_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ABW_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#ABW_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#ABW_svg__b_#{@id})"}>
             <path
               fill="red"
               stroke="#F7FCFF"
@@ -68,19 +91,30 @@ defmodule Flagpack do
   Renders the Afghanistan flag.
 
   ## Examples
+
       <Flagpack.afg />
-      <Flagpack.afg class="w-5 h-5" />
+      <Flagpack.afg id="my-flag" />
+      <Flagpack.afg class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def afg(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="AFG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"AFG_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#AFG_svg__a)">
+        <g mask={"url(#AFG_svg__a_#{@id})"}>
           <path fill="#67BD38" fill-rule="evenodd" d="M22 0h10v24H22V0z" clip-rule="evenodd" /><path
             fill="#D51700"
             fill-rule="evenodd"
@@ -117,29 +151,40 @@ defmodule Flagpack do
   Renders the Angola flag.
 
   ## Examples
+
       <Flagpack.ago />
-      <Flagpack.ago class="w-5 h-5" />
+      <Flagpack.ago id="my-flag" />
+      <Flagpack.ago class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ago(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="AGO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"AGO_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#AGO_svg__a)">
+        <g mask={"url(#AGO_svg__a_#{@id})"}>
           <path fill="#1D1D1D" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="AGO_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"AGO_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#AGO_svg__b)">
+          <g mask={"url(#AGO_svg__b_#{@id})"}>
             <path fill="#F50100" fill-rule="evenodd" d="M0 0v12h32V0H0z" clip-rule="evenodd" /><path
               fill="#FFEA42"
               d="M9.933 5.897l.427-1.405c3.2.977 5.13 2.689 5.672 5.132.36 1.62.196 3.069-.386 4.358-.415.92-.942 1.605-1.7 2.378-1.263 1.288-3.34 2.11-5.217 1.76a10.498 10.498 0 01-3.61-1.375l.766-1.252a9.039 9.039 0 003.111 1.184c1.355.252 2.961-.384 3.906-1.347.647-.66 1.08-1.222 1.41-1.953.453-1.005.58-2.13.29-3.434-.414-1.864-1.932-3.211-4.669-4.046z"
             />
-            <g fill-rule="evenodd" clip-rule="evenodd" filter="url(#AGO_svg__c)">
+            <g fill-rule="evenodd" clip-rule="evenodd" filter={"url(#AGO_svg__c_#{@id})"}>
               <path
                 fill="#FCFF01"
                 d="M9.846 9.464l-.95.658.336-1.102-.922-.695L9.466 8.3l.38-1.087.38 1.087 1.156.024-.921.695.335 1.102-.95-.658z"
@@ -148,7 +193,7 @@ defmodule Flagpack do
                 d="M9.846 9.464l-.95.658.336-1.102-.922-.695L9.466 8.3l.38-1.087.38 1.087 1.156.024-.921.695.335 1.102-.95-.658z"
               />
             </g>
-            <g fill-rule="evenodd" clip-rule="evenodd" filter="url(#AGO_svg__d)">
+            <g fill-rule="evenodd" clip-rule="evenodd" filter={"url(#AGO_svg__d_#{@id})"}>
               <path
                 fill="#FCFF01"
                 d="M7.614 9.86s-1.684 2.468-.358 3.37c1.326.903 8.337 4.707 8.337 4.707s1.449-.008 1.655.3c.206.309.635.671.816.671.18 0 .647-.327.647-.327s.364-.297 0-.643c-.364-.347-2.287-1.532-2.287-1.532s-7.508-4.792-8.147-5.266c-.638-.475-.663-1.28-.663-1.28z"
@@ -167,7 +212,7 @@ defmodule Flagpack do
         </g>
         <defs>
           <filter
-            id="AGO_svg__c"
+            id={"AGO_svg__c_#{@id}"}
             width="3.073"
             height="2.907"
             x="8.31"
@@ -184,7 +229,7 @@ defmodule Flagpack do
             /><feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
           </filter>
           <filter
-            id="AGO_svg__d"
+            id={"AGO_svg__d_#{@id}"}
             width="12.126"
             height="9.048"
             x="6.747"
@@ -210,24 +255,35 @@ defmodule Flagpack do
   Renders the Anguilla flag.
 
   ## Examples
+
       <Flagpack.aia />
-      <Flagpack.aia class="w-5 h-5" />
+      <Flagpack.aia id="my-flag" />
+      <Flagpack.aia class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def aia(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="AIA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"AIA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#AIA_svg__a)">
+        <g mask={"url(#AIA_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="AIA_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"AIA_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#AIA_svg__b)">
+          <g mask={"url(#AIA_svg__b_#{@id})"}>
             <path
               fill="#FBE625"
               fill-rule="evenodd"
@@ -239,7 +295,7 @@ defmodule Flagpack do
               d="M21.163 12.205s.04 4.404.326 5.764c.284 1.36 2.157 4.958 3.888 4.958 1.731 0 3.572-3.266 4.01-4.957.44-1.692.414-5.765.414-5.765s-1.009.522-2.175.522c-1.167 0-2.249-.696-2.249-.696s-1.136.696-2.16.696c-1.024 0-2.053-.522-2.053-.522z"
               clip-rule="evenodd"
             />
-            <mask id="AIA_svg__c" width="9" height="11" x="21" y="12" maskUnits="userSpaceOnUse">
+            <mask id={"AIA_svg__c_#{@id}"} width="9" height="11" x="21" y="12" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 fill-rule="evenodd"
@@ -247,17 +303,17 @@ defmodule Flagpack do
                 clip-rule="evenodd"
               />
             </mask>
-            <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#AIA_svg__c)">
+            <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#AIA_svg__c_#{@id})"}>
               <path
                 fill="#FF9800"
                 d="M24.64 15.488c0 .288-.411 1.125-.65 1.34-.176.158-.121-.21-.081-.482.014-.096.026-.18.026-.224v-.02c0-.056 0-.087-.005-.117a.718.718 0 00-.055-.144l-.045-.103c-.381-.814-.111-1.204.009-1.377a.582.582 0 00.041-.065.426.426 0 01.09-.106c.096-.093.217-.21.172-.47-.064-.366.322-.834.322-.834s-.094.908.35.686c.288-.145.811.063 1.276.247.25.1.484.192.655.22.346.056.535-.09.653-.18.048-.037.085-.065.114-.065.102 0 .222.02.222.095 0 .074-.456.292-.685.36-.172.05.005.191.153.31.049.038.094.074.123.104.119.12.227.779-.046.364-.274-.414-.856-.69-1.351-.731-.495-.04-1.12.335-1.194.731-.075.397.585.324.585.324s-.048.062-.26.137c-.214.075-.42 0-.42 0zm-.498-.03a.107.107 0 01-.109.104.107.107 0 01-.108-.105c0-.058.048-.105.108-.105s.109.047.109.105zm2.44 1.943c-.303-.104-1.235-.058-1.486.082 0 0-.034-.216-.203-.366s-.247-.162-.247-.162.384.542.001.669c-.383.126-1.014-.237-1.219-.69-.204-.452-.244-1.096-.015-1.536.23-.44-.293-.026-.341.136-.012.04-.022.097-.032.158-.031.187-.069.41-.197.284-.17-.167-.581-.46-.646-.424-.065.036-.025.15.025.24.014.026.056.044.112.068.136.06.354.154.474.484.058.163.09.412.125.68.064.495.136 1.053.402 1.235.41.28-.43.64-.43.64s.597.11.885-.123c.207-.167.367-.117.495-.078.05.015.095.029.136.027.02 0 .045.002.077.005.21.02.681.068 1.208-.66l.069-.09c.05-.065.072-.094.1-.117a.543.543 0 01.1-.062l.017-.01a2.25 2.25 0 01.208-.085c.258-.097.606-.228.382-.305zm-1.253.48a.107.107 0 01.144.045.107.107 0 01-.039.146.107.107 0 01-.144-.045.107.107 0 01.039-.145zm.513-3.007c.077.311.624 1.067.878 1.202 0 0-.163.146-.197.37-.033.223-.001.295-.001.295s.245-.618.56-.365c.315.252.354.98.086 1.397-.268.418-.786.802-1.28.85-.494.046.138.26.3.212.04-.012.093-.035.15-.06.174-.075.381-.165.345.011-.047.234-.07.738-.004.773.066.035.14-.062.188-.151.014-.027.006-.072-.004-.132-.024-.146-.064-.381.148-.66.105-.139.296-.301.501-.476.382-.324.81-.688.818-1.01.012-.496.77.013.77.013s-.232-.561-.585-.676c-.252-.083-.298-.244-.335-.372a.428.428 0 00-.05-.13.443.443 0 01-.039-.067c-.096-.187-.314-.608-1.211-.653l-.113-.01a.72.72 0 01-.153-.019.609.609 0 01-.106-.05l-.017-.01a1.69 1.69 0 01-.186-.128c-.22-.163-.52-.384-.463-.154zm1.12.83a.107.107 0 01-.042-.146.107.107 0 01.144-.046c.05.027.07.092.041.145a.107.107 0 01-.143.046z"
               /><path fill="#36C6FF" d="M21.426 19.752h7.279v3.457h-7.28v-3.457z" />
             </g>
             <path fill="#2B409A" d="M0 0h18v14H0z" />
-            <mask id="AIA_svg__d" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"AIA_svg__d_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#AIA_svg__d)">
+            <g mask={"url(#AIA_svg__d_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -268,7 +324,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="AIA_svg__e" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"AIA_svg__e_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -278,7 +334,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#AIA_svg__e)"
+                mask={"url(#AIA_svg__e_#{@id})"}
               />
             </g>
           </g>
@@ -292,24 +348,35 @@ defmodule Flagpack do
   Renders the Åland Islands flag.
 
   ## Examples
+
       <Flagpack.ala />
-      <Flagpack.ala class="w-5 h-5" />
+      <Flagpack.ala id="my-flag" />
+      <Flagpack.ala class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ala(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ALA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ALA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ALA_svg__a)">
+        <g mask={"url(#ALA_svg__a_#{@id})"}>
           <path fill="#0061C1" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ALA_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ALA_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#ALA_svg__b)">
+          <g mask={"url(#ALA_svg__b_#{@id})"}>
             <path fill="#D21034" stroke="#FFCE00" stroke-width="2" d="M10-1H9V9H-1v6H9v10h6V15h18V9H15V-1h-5z" />
           </g>
         </g>
@@ -322,19 +389,30 @@ defmodule Flagpack do
   Renders the Albania flag.
 
   ## Examples
+
       <Flagpack.alb />
-      <Flagpack.alb class="w-5 h-5" />
+      <Flagpack.alb id="my-flag" />
+      <Flagpack.alb class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def alb(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ALB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ALB_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#ALB_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#ALB_svg__a_#{@id})"}>
           <path fill="#F50100" d="M0 0h32v24H0V0z" /><path
             fill="#1A1A1A"
             d="M16.5 6.224c.068-.014.238-.108.603-.587.223-.293.212-.646.204-.952-.012-.401-.021-.722.5-.722.426 0 .743-.123 1.007-.225.305-.119.542-.21.801-.059.417.244.909.278.908.283h-.04c-.201 0-.922.411-.365.411.273 0 .565-.196.79-.349.237-.16.402-.271.402-.061 0 0 .16.463-.224.499 0 0-1.728.168-1.39.244 0 0 .307.127.517.135 0 0 .092.32-.468.409 0 0-1.583.294-1.656.802-.018.128-.063.296-.111.476-.145.536-.318 1.179.111 1.179.573 0 .945-.392.945-.833 0-.44.077-1.184.581-1.22 0 0 1.239-.419 1.392-.39.058.01.055.049.051.092-.006.071-.012.157.252.157.426 0 1.658-1.022 1.852-1.428.194-.406.486 0 .486 0s.187 1.136-.79 1.552c-.976.415-1.548.415-1.548.415s-.608.448-.224.448c.085 0 .192.008.313.017.423.03 1.018.074 1.46-.162.121-.065.227-.124.319-.175.333-.185.47-.26.47-.128v.003c0 .177 0 1.116-.65 1.116H21.31c-.224 0-.755.32.127.536.883.216 1.167.126 1.56 0s.65-.197.65 0-.538.936-1.002.936c-.27 0-.56-.14-.799-.257-.169-.083-.313-.153-.409-.153-.231 0-.47.41-.351.41.039 0 .107.063.2.147.19.176.487.448.839.448.287 0 .51-.058.711-.111.164-.043.312-.082.467-.082.2 0 .283-.024.319.007.026.023.026.075.026.186 0 .265-.689.557-1.003.557-.142 0-.494-.157-.835-.309-.41-.182-.803-.358-.803-.248 0 .201.83 1.284 1.34 1.284h.956c.345 0 .208.438.208.438s-.334.296-.749.296c-.31 0-.617-.235-.857-.42a3.046 3.046 0 00-.216-.156c-.252-.158-.603-.28-.603 0s.793 1.399 1.435 1.399c.256 0 .487-.042.673-.075.278-.05.454-.08.454.075 0 .258-.299.832-.65.705l-.008-.002c-.36-.13-1.457-.526-1.68-.946-.224-.423-.634-.242-.468 0 .165.243 1.037 1.496 1.679 1.613.17.03.339.051.493.07.425.052.734.09.634.294-.137.277-.705.664-1.003.542-.297-.122-1.314-1.057-1.559-1.446-.244-.39-.872-1.136-.872-.83 0 .065-.012.154-.025.256-.049.374-.119.91.294 1 .524.114.8.619.524.619s-1.262-.237-1.262-.863c0-.625-.447-.976-.447-.8v.072c-.006.22-.017.67.201.971.245.34-.102.617-.2.479-.098-.139-.519-.78-.519-.904 0-.125-.148-.416-.323-.416-.174 0-.209.304.117.956.327.652 1.131 1.173 1.385 1.173.255 0 0 .585 0 .585l1.73.448s.659-.34.659-.448c0-.109.344-.373.65-.373.305 0 .329.373.164.373-.081 0-.197.07-.313.14-.12.072-.24.145-.328.145-.173 0-.702.37-.702.37h1.178s-.188-.207.306-.207.697.207.697.207-.557.327-.697.327a.936.936 0 00-.136.016 2.24 2.24 0 01-.323.034c-.038-.028-.06-.022-.073 0a2.147 2.147 0 01-.423-.05c-.529-.114.414.237.414.237s-.02-.136.01-.187h.072a.78.78 0 01.153.187c.306.463.352.607 0 .607s-.65-.107-.65-.357-.658-.487-.658-.487l-.848.487s.159.272-.1.357c-.258.086-.623-.04-.623-.126 0-.085.086-.481.306-.481s.886-.363.886-.363l-1.614-.482s-.453.482-.602.482c-.076 0-.226-.308-.39-.644-.155-.32-.323-.667-.452-.797a1.967 1.967 0 01-.222-.294c-.158-.238-.303-.457-.516-.304-.306.22-.427.898 0 1.468.428.571 1.168 1.022 1.374 1.022.206 0 .611.02.611.162 0 .142-.18.725-.61.478-.086-.049-.173-.1-.257-.15-.342-.2-.648-.38-.7-.328-.066.065.203.799.58.974a.9.9 0 00.439.067c.153-.005.252-.01.252.164 0 .308-.266.65-.746.325a3.095 3.095 0 01-.523-.481c-.173-.187-.285-.309-.333-.188-.087.216-.05 1.06.33 1.06.088 0 .17-.004.243-.006.245-.009.4-.014.4.1 0 .149-.088.783-.485.53s-.688-.568-.758-.792c-.072-.223-.496 0-.362.313.134.314.459.947.545.947.087 0-1.007 1.911-1.007 1.911l-.007-2.353-.007 2.353s-1.094-1.911-1.007-1.911c.086 0 .411-.633.545-.947.134-.313-.29-.536-.361-.313-.072.224-.362.539-.76.792-.396.253-.484-.381-.484-.53 0-.114.155-.109.4-.1.074.002.155.005.243.005.38 0 .417-.843.33-1.059-.048-.12-.16 0-.333.188a3.095 3.095 0 01-.523.481c-.48.326-.746-.017-.746-.325 0-.173.099-.17.252-.164a.9.9 0 00.44-.067c.376-.175.645-.91.58-.974-.053-.052-.36.128-.7.329l-.257.15c-.431.246-.611-.337-.611-.479 0-.142.405-.162.61-.162.207 0 .947-.45 1.375-1.022.428-.57.306-1.248 0-1.468-.213-.153-.358.066-.516.304-.069.104-.14.213-.222.294-.129.13-.297.476-.453.797-.163.336-.313.644-.39.644-.148 0-.6-.482-.6-.482l-1.615.482s.667.363.886.363c.22 0 .306.396.306.482 0 .085-.365.21-.623.125-.259-.085-.1-.357-.1-.357l-.848-.487s-.659.237-.659.487-.297.357-.65.357c-.351 0-.305-.144 0-.607a.78.78 0 01.154-.187h.073c.03.051.009.187.009.187s.943-.351.414-.237a2.147 2.147 0 01-.423.05c-.013-.022-.035-.028-.073 0a2.23 2.23 0 01-.323-.034.92.92 0 00-.136-.016c-.14 0-.697-.327-.697-.327s.203-.207.697-.207c.494 0 .306.207.306.207h1.178s-.529-.37-.702-.37c-.087 0-.208-.073-.328-.145-.116-.07-.232-.14-.313-.14-.165 0-.14-.373.165-.373.305 0 .65.264.65.373 0 .108.658.448.658.448l1.73-.448s-.255-.585 0-.585c.254 0 1.058-.521 1.385-1.173.326-.652.291-.956.117-.956-.175 0-.323.291-.323.416 0 .124-.42.765-.519.904-.098.138-.446-.139-.2-.479.218-.3.207-.75.202-.97l-.002-.074c0-.175-.446.176-.446.802 0 .625-.986.862-1.262.862s0-.505.524-.62c.413-.09.343-.625.294-.999a2.264 2.264 0 01-.024-.256c0-.306-.629.44-.873.83-.245.39-1.262 1.324-1.56 1.446-.297.122-.865-.265-1.001-.542-.101-.204.208-.242.633-.294a9.56 9.56 0 00.493-.07c.642-.117 1.514-1.37 1.68-1.613.165-.242-.245-.423-.47 0-.222.42-1.319.816-1.679.946l-.007.002c-.352.127-.65-.447-.65-.705 0-.155.175-.124.453-.075.186.033.417.075.673.075.642 0 1.435-1.12 1.435-1.4 0-.28-.351-.157-.603 0-.063.04-.136.096-.216.158-.24.184-.546.42-.857.42-.415 0-.749-.297-.749-.297s-.136-.438.208-.438h.955c.511 0 1.34-1.083 1.34-1.284 0-.11-.393.066-.802.248-.341.152-.693.309-.835.309-.315 0-1.002-.292-1.002-.557 0-.111 0-.163.025-.186.036-.03.12-.007.32-.007.154 0 .302.04.466.082.2.053.424.111.711.111.352 0 .648-.272.84-.448.092-.084.16-.147.199-.147.12 0-.12-.41-.351-.41-.096 0-.24.07-.41.153-.238.116-.527.257-.798.257-.464 0-1.002-.739-1.002-.936 0-.197.257-.126.65 0s.677.216 1.56 0c.882-.216.351-.536.127-.536h-1.687c-.65 0-.65-.94-.65-1.116v-.003c0-.133.136-.057.47.128.09.051.197.11.318.175.442.236 1.037.192 1.46.162.12-.01.228-.017.313-.017.385 0-.224-.448-.224-.448s-.572 0-1.549-.415c-.976-.416-.788-1.552-.788-1.552s.29-.406.485 0c.194.406 1.426 1.428 1.852 1.428.264 0 .258-.086.252-.157-.004-.043-.007-.081.05-.092.154-.029 1.393.39 1.393.39.504.036.582.78.582 1.22 0 .441.371.833.944.833.428 0 .256-.643.111-1.18-.048-.18-.093-.347-.111-.475-.073-.508-1.656-.802-1.656-.802-.56-.089-.469-.41-.469-.41.211-.007.519-.134.519-.134.337-.076-1.391-.244-1.391-.244-.383-.036-.224-.5-.224-.5 0-.21.165-.097.401.062.227.153.518.35.79.35.558 0-.163-.411-.364-.411l-.04-.001c0-.005.491-.039.908-.283.259-.151.496-.06.8.059.265.102.582.225 1.008.225.521 0 .512.32.5.722-.008.306-.019.659.204.952.365.48.535.573.603.587z"
@@ -349,19 +427,30 @@ defmodule Flagpack do
   Renders the Andorra flag.
 
   ## Examples
+
       <Flagpack.ad />
-      <Flagpack.ad class="w-5 h-5" />
+      <Flagpack.ad id="my-flag" />
+      <Flagpack.ad class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ad(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="AND_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"AND_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#AND_svg__a)">
+        <g mask={"url(#AND_svg__a_#{@id})"}>
           <path fill="#FFD018" fill-rule="evenodd" d="M8 0h16v24H8V0z" clip-rule="evenodd" /><path
             fill="#2E42A5"
             fill-rule="evenodd"
@@ -381,7 +470,7 @@ defmodule Flagpack do
             d="M12.478 7.233h7.541v7.03s-.002.62-.658.891c-.656.272-1.427.175-1.427.175s-.738-.16-1.128 0a3.42 3.42 0 01-.51.168v.018l-.047-.008a.81.81 0 01-.048.008v-.018a3.42 3.42 0 01-.51-.168c-.39-.16-1.128 0-1.128 0s-.771.097-1.427-.175a1.022 1.022 0 01-.658-.892v-7.03z"
             clip-rule="evenodd"
           />
-          <mask id="AND_svg__b" width="9" height="9" x="12" y="7" maskUnits="userSpaceOnUse">
+          <mask id={"AND_svg__b_#{@id}"} width="9" height="9" x="12" y="7" maskUnits="userSpaceOnUse">
             <path
               fill="#fff"
               fill-rule="evenodd"
@@ -389,7 +478,7 @@ defmodule Flagpack do
               clip-rule="evenodd"
             />
           </mask>
-          <g mask="url(#AND_svg__b)">
+          <g mask={"url(#AND_svg__b_#{@id})"}>
             <path fill="#D00F3A" d="M12.373 7.144h3.656v3.9h-3.656z" /><path
               fill="#FEDF00"
               fill-rule="evenodd"
@@ -427,19 +516,30 @@ defmodule Flagpack do
   Renders the United Arab Emirates flag.
 
   ## Examples
+
       <Flagpack.are />
-      <Flagpack.are class="w-5 h-5" />
+      <Flagpack.are id="my-flag" />
+      <Flagpack.are class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def are(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ARE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ARE_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ARE_svg__a)">
+        <g mask={"url(#ARE_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#5EAA22"
             fill-rule="evenodd"
@@ -459,24 +559,35 @@ defmodule Flagpack do
   Renders the Argentina flag.
 
   ## Examples
+
       <Flagpack.arg />
-      <Flagpack.arg class="w-5 h-5" />
+      <Flagpack.arg id="my-flag" />
+      <Flagpack.arg class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def arg(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ARG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ARG_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ARG_svg__a)">
+        <g mask={"url(#ARG_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ARG_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ARG_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill="#58A5FF" fill-rule="evenodd" clip-rule="evenodd" mask="url(#ARG_svg__b)">
+          <g fill="#58A5FF" fill-rule="evenodd" clip-rule="evenodd" mask={"url(#ARG_svg__b_#{@id})"}>
             <path d="M0 0v7h32V0H0zm0 17v7h32v-7H0z" />
           </g>
         </g>
@@ -524,24 +635,35 @@ defmodule Flagpack do
   Renders the Armenia flag.
 
   ## Examples
+
       <Flagpack.arm />
-      <Flagpack.arm class="w-5 h-5" />
+      <Flagpack.arm id="my-flag" />
+      <Flagpack.arm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def arm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ARM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ARM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ARM_svg__a)">
+        <g mask={"url(#ARM_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ARM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ARM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#ARM_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#ARM_svg__b_#{@id})"}>
             <path fill="#E31D1C" d="M0 0v8h32V0H0z" /><path fill="#FECA00" d="M0 16v8h32v-8H0z" />
           </g>
         </g>
@@ -554,19 +676,30 @@ defmodule Flagpack do
   Renders the American Samoa flag.
 
   ## Examples
+
       <Flagpack.asm />
-      <Flagpack.asm class="w-5 h-5" />
+      <Flagpack.asm id="my-flag" />
+      <Flagpack.asm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def asm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ASM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ASM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ASM_svg__a)">
+        <g mask={"url(#ASM_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#3547A0"
             stroke="#E31D1C"
@@ -613,24 +746,35 @@ defmodule Flagpack do
   Renders the Antarctica flag.
 
   ## Examples
+
       <Flagpack.ata />
-      <Flagpack.ata class="w-5 h-5" />
+      <Flagpack.ata id="my-flag" />
+      <Flagpack.ata class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ata(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ATA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ATA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ATA_svg__a)">
+        <g mask={"url(#ATA_svg__a_#{@id})"}>
           <path fill="#5196ED" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ATA_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ATA_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#ATA_svg__b)">
+          <g mask={"url(#ATA_svg__b_#{@id})"}>
             <path
               fill="#F5F8FB"
               fill-rule="evenodd"
@@ -648,34 +792,45 @@ defmodule Flagpack do
   Renders the French Southern Territories flag.
 
   ## Examples
+
       <Flagpack.atf />
-      <Flagpack.atf class="w-5 h-5" />
+      <Flagpack.atf id="my-flag" />
+      <Flagpack.atf class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def atf(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ATF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ATF_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ATF_svg__a)">
+        <g mask={"url(#ATF_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ATF_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ATF_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#ATF_svg__b)">
+          <g mask={"url(#ATF_svg__b_#{@id})"}>
             <path
               fill="#F7FCFF"
               fill-rule="evenodd"
               d="M18.789 6.2h8.048l-.784 1.504h-2.442v.808h1.872l-.762 1.4h-1.11v2.797L25.44 9.83l2.364 4.095h-.966l-.337-.449h-2.14l-1.506 2.781v.154l-.041-.077-.042.077v-.154l-1.504-2.78h-2.14l-.338.448h-.966l2.364-4.095 1.828 2.88V7.703h-2.442L18.789 6.2zm6.697 5.31l-.526.807h.995l-.47-.808zm-5.346 0l.526.807h-.995l.47-.808zm-3.826-.897l.83-.612.832.612-.293-1.026.806-.648-1.012-.022-.332-1.014-.333 1.014-1.012.022.807.648-.293 1.026zm12.141-.612l-.83.612.293-1.026-.807-.648 1.012-.022.332-1.014.333 1.014 1.012.022-.807.648.293 1.026-.83-.612zm-3.375 7.802l.83-.612.831.612-.293-1.026.807-.648-1.012-.022-.332-1.013-.333 1.013-1.012.022.807.648-.294 1.026zm-5.39-.612l-.831.612.293-1.026-.807-.648 1.012-.022.333-1.013.332 1.013 1.012.022-.806.648.293 1.026-.831-.612zm2.279 3.009l.831-.613.831.613-.293-1.027.807-.648-1.012-.022-.333-1.013-.332 1.013-1.013.022.807.648-.293 1.027z"
               clip-rule="evenodd"
             /><path fill="#2E42A5" stroke="#fff" d="M-.5-.5h13v11h-13z" />
-            <mask id="ATF_svg__c" width="14" height="12" x="-1" y="-1" maskUnits="userSpaceOnUse">
+            <mask id={"ATF_svg__c_#{@id}"} width="14" height="12" x="-1" y="-1" maskUnits="userSpaceOnUse">
               <path fill="#fff" stroke="#fff" d="M-.5-.5h13v11h-13z" />
             </mask>
-            <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#ATF_svg__c)">
+            <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#ATF_svg__c_#{@id})"}>
               <path fill="#F50100" d="M8 0h4v10H8V0z" /><path fill="#2E42A5" d="M0 0h4v10H0V0z" /><path
                 fill="#F7FCFF"
                 d="M4 0h4v10H4V0z"
@@ -692,19 +847,30 @@ defmodule Flagpack do
   Renders the Antigua and Barbuda flag.
 
   ## Examples
+
       <Flagpack.atg />
-      <Flagpack.atg class="w-5 h-5" />
+      <Flagpack.atg id="my-flag" />
+      <Flagpack.atg class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def atg(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ATG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ATG_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ATG_svg__a)">
+        <g mask={"url(#ATG_svg__a_#{@id})"}>
           <path fill="#1B1B1B" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#F9D313"
             fill-rule="evenodd"
@@ -726,29 +892,40 @@ defmodule Flagpack do
   Renders the Australia flag.
 
   ## Examples
+
       <Flagpack.aus />
-      <Flagpack.aus class="w-5 h-5" />
+      <Flagpack.aus id="my-flag" />
+      <Flagpack.aus class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def aus(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="AUS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"AUS_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#AUS_svg__a)">
+        <g mask={"url(#AUS_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="AUS_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"AUS_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#AUS_svg__b)">
+          <g mask={"url(#AUS_svg__b_#{@id})"}>
             <path fill="#2B409A" d="M0 0h18v14H0z" />
-            <mask id="AUS_svg__c" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"AUS_svg__c_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#AUS_svg__c)">
+            <g mask={"url(#AUS_svg__c_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -759,7 +936,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="AUS_svg__d" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"AUS_svg__d_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -769,7 +946,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#AUS_svg__d)"
+                mask={"url(#AUS_svg__d_#{@id})"}
               />
             </g>
           </g>
@@ -787,24 +964,35 @@ defmodule Flagpack do
   Renders the Austria flag.
 
   ## Examples
+
       <Flagpack.aut />
-      <Flagpack.aut class="w-5 h-5" />
+      <Flagpack.aut id="my-flag" />
+      <Flagpack.aut class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def aut(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="AUT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"AUT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#AUT_svg__a)">
+        <g mask={"url(#AUT_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="AUT_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"AUT_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill="#C51918" fill-rule="evenodd" clip-rule="evenodd" mask="url(#AUT_svg__b)">
+          <g fill="#C51918" fill-rule="evenodd" clip-rule="evenodd" mask={"url(#AUT_svg__b_#{@id})"}>
             <path d="M0 0v8h32V0H0zm0 16v8h32v-8H0z" />
           </g>
         </g>
@@ -817,24 +1005,35 @@ defmodule Flagpack do
   Renders the Azerbaijan flag.
 
   ## Examples
+
       <Flagpack.aze />
-      <Flagpack.aze class="w-5 h-5" />
+      <Flagpack.aze id="my-flag" />
+      <Flagpack.aze class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def aze(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="AZE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"AZE_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#AZE_svg__a)">
+        <g mask={"url(#AZE_svg__a_#{@id})"}>
           <path fill="#AF0100" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="AZE_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"AZE_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#AZE_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#AZE_svg__b_#{@id})"}>
             <path fill="#3CA5D9" d="M0 0v8h32V0H0z" /><path fill="#73BE4A" d="M0 16v8h32v-8H0z" /><path
               fill="#F7FCFF"
               d="M17.14 15.024c-1.347-.31-2.53-1.47-2.516-3.024.013-1.455.87-2.632 2.35-2.967 1.482-.334 3.018.301 3.018.301-.408-.907-1.83-1.544-2.995-1.541-2.17.006-4.486 1.663-4.509 4.193-.023 2.623 2.473 4.114 4.67 4.108 1.761-.005 2.598-1.138 2.772-1.62 0 0-1.443.86-2.79.55zm.878-1.603l1.175-.818 1.176.818-.415-1.371 1.142-.865-1.432-.03-.47-1.352-.47 1.352-1.433.03 1.142.865-.415 1.37z"
@@ -850,21 +1049,32 @@ defmodule Flagpack do
   Renders the Burundi flag.
 
   ## Examples
+
       <Flagpack.bdi />
-      <Flagpack.bdi class="w-5 h-5" />
+      <Flagpack.bdi id="my-flag" />
+      <Flagpack.bdi class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bdi(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BDI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BDI_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BDI_svg__a)">
+        <g mask={"url(#BDI_svg__a_#{@id})"}>
           <rect width="32" height="24" fill="#5EAA22" rx="2" />
-          <mask id="BDI_svg__b" width="48" height="30" x="-8" y="-3" fill="#000" maskUnits="userSpaceOnUse">
+          <mask id={"BDI_svg__b_#{@id}"} width="48" height="30" x="-8" y="-3" fill="#000" maskUnits="userSpaceOnUse">
             <path fill="#fff" d="M-8-3h48v30H-8z" /><path
               fill-rule="evenodd"
               d="M16 12L32 0H0l16 12zm0 0L0 24h32L16 12z"
@@ -874,7 +1084,7 @@ defmodule Flagpack do
           <path fill="#DD2C2B" fill-rule="evenodd" d="M16 12L32 0H0l16 12zm0 0L0 24h32L16 12z" clip-rule="evenodd" /><path
             fill="#fff"
             d="M32 0l1.5 2 6-4.5H32V0zM0 0v-2.5h-7.5l6 4.5L0 0zm0 24l-1.5-2-6 4.5H0V24zm32 0v2.5h7.5l-6-4.5-1.5 2zM30.5-2l-16 12 3 4 16-12-3-4zM0 2.5h32v-5H0v5zM17.5 10L1.5-2l-3 4 16 12 3-4zm-3 0l-16 12 3 4 16-12-3-4zM0 26.5h32v-5H0v5zM33.5 22l-16-12-3 4 16 12 3-4z"
-            mask="url(#BDI_svg__b)"
+            mask={"url(#BDI_svg__b_#{@id})"}
           /><path fill="#fff" fill-rule="evenodd" d="M16 18a6 6 0 100-12 6 6 0 000 12z" clip-rule="evenodd" /><path
             fill="#DD2C2B"
             fill-rule="evenodd"
@@ -893,19 +1103,30 @@ defmodule Flagpack do
   Renders the Belgium flag.
 
   ## Examples
+
       <Flagpack.bel />
-      <Flagpack.bel class="w-5 h-5" />
+      <Flagpack.bel id="my-flag" />
+      <Flagpack.bel class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bel(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BEL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BEL_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#BEL_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#BEL_svg__a_#{@id})"}>
           <path fill="#FECA00" d="M10 0h11v24H10V0z" /><path fill="#E31D1C" d="M21 0h11v24H21V0z" /><path
             fill="#1D1D1D"
             d="M0 0h11v24H0V0z"
@@ -920,19 +1141,30 @@ defmodule Flagpack do
   Renders the Benin flag.
 
   ## Examples
+
       <Flagpack.ben />
-      <Flagpack.ben class="w-5 h-5" />
+      <Flagpack.ben id="my-flag" />
+      <Flagpack.ben class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ben(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BEN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BEN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BEN_svg__a)">
+        <g mask={"url(#BEN_svg__a_#{@id})"}>
           <path fill="#DD2C2B" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#FECA00"
             fill-rule="evenodd"
@@ -949,24 +1181,35 @@ defmodule Flagpack do
   Renders the Burkina Faso flag.
 
   ## Examples
+
       <Flagpack.bfa />
-      <Flagpack.bfa class="w-5 h-5" />
+      <Flagpack.bfa id="my-flag" />
+      <Flagpack.bfa class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bfa(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BFA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BFA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BFA_svg__a)">
+        <g mask={"url(#BFA_svg__a_#{@id})"}>
           <path fill="#5EAA22" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="BFA_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"BFA_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#BFA_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#BFA_svg__b_#{@id})"}>
             <path fill="#C51918" d="M0 0v12h32V0H0z" /><path
               fill="#FECA00"
               d="M16.035 15.77l-4.703 3.56 1.505-5.797-4.41-3.53h5.257l2.35-5.145 2.352 5.146h5.257l-4.457 3.534 1.551 5.792-4.702-3.56z"
@@ -982,19 +1225,30 @@ defmodule Flagpack do
   Renders the Bangladesh flag.
 
   ## Examples
+
       <Flagpack.bgd />
-      <Flagpack.bgd class="w-5 h-5" />
+      <Flagpack.bgd id="my-flag" />
+      <Flagpack.bgd class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bgd(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BGD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BGD_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BGD_svg__a)">
+        <g mask={"url(#BGD_svg__a_#{@id})"}>
           <path fill="#38A17E" d="M0 0h32v24H0z" /><path
             fill="#F72E45"
             fill-rule="evenodd"
@@ -1011,24 +1265,35 @@ defmodule Flagpack do
   Renders the Bulgaria flag.
 
   ## Examples
+
       <Flagpack.bgr />
-      <Flagpack.bgr class="w-5 h-5" />
+      <Flagpack.bgr id="my-flag" />
+      <Flagpack.bgr class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bgr(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BGR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BGR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BGR_svg__a)">
+        <g mask={"url(#BGR_svg__a_#{@id})"}>
           <path fill="#5EAA22" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="BGR_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"BGR_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#BGR_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#BGR_svg__b_#{@id})"}>
             <path fill="#F7FCFF" d="M0 0v8h32V0H0z" /><path fill="#E22C18" d="M0 16v8h32v-8H0z" />
           </g>
         </g>
@@ -1041,19 +1306,30 @@ defmodule Flagpack do
   Renders the Bahrain flag.
 
   ## Examples
+
       <Flagpack.bhr />
-      <Flagpack.bhr class="w-5 h-5" />
+      <Flagpack.bhr id="my-flag" />
+      <Flagpack.bhr class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bhr(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BHR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BHR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BHR_svg__a)">
+        <g mask={"url(#BHR_svg__a_#{@id})"}>
           <path fill="#E31D1C" d="M0 0h32v24H0z" /><path
             fill="#F7FCFF"
             fill-rule="evenodd"
@@ -1070,19 +1346,30 @@ defmodule Flagpack do
   Renders the Bahamas flag.
 
   ## Examples
+
       <Flagpack.bhs />
-      <Flagpack.bhs class="w-5 h-5" />
+      <Flagpack.bhs id="my-flag" />
+      <Flagpack.bhs class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bhs(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BHS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BHS_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#BHS_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#BHS_svg__a_#{@id})"}>
           <path fill="#FECA00" d="M0 0h32v24H0V0z" /><path fill="#3CB1CF" d="M0 0v8h32V0H0zm0 16v8h32v-8H0z" /><path
             fill="#272727"
             d="M0 0l16 12L0 24V0z"
@@ -1097,19 +1384,30 @@ defmodule Flagpack do
   Renders the Bosnia and Herzegovina flag.
 
   ## Examples
+
       <Flagpack.bih />
-      <Flagpack.bih class="w-5 h-5" />
+      <Flagpack.bih id="my-flag" />
+      <Flagpack.bih class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bih(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BIH_svg__a" width="34" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BIH_svg__a_#{@id}"} width="34" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h34v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#BIH_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#BIH_svg__a_#{@id})"}>
           <path fill="#2E42A5" d="M0 0h32v24H0V0z" /><path fill="#FECA00" d="M9 0h20v24L9 0z" /><path
             fill="#F7FCFF"
             d="M6.108 2.794l-1.176.618.225-1.31-.951-.926L5.52.985l.588-1.191.588 1.19 1.314.192-.95.927.224 1.309-1.176-.618zm3.487 4.28l-1.176.618.225-1.31-.951-.926 1.314-.191.588-1.191.587 1.19 1.315.192-.951.927.224 1.309-1.175-.618zm3.268 4.164l-1.175.618.224-1.309-.95-.927 1.314-.19.587-1.192.588 1.191 1.314.191-.95.927.224 1.31-1.176-.619zm3.202 3.992l-1.175.617.224-1.309-.95-.927 1.313-.19.588-1.192.588 1.191 1.314.191-.95.927.224 1.31-1.176-.619zm3.449 4.107l-1.175.618.224-1.31-.95-.926 1.314-.191.587-1.191.588 1.19 1.314.192-.95.927.224 1.309-1.176-.618zm3.813 3.974l-1.176.618.225-1.309-.951-.927 1.314-.191.588-1.191.588 1.191 1.314.191-.951.927.225 1.31-1.176-.619z"
@@ -1124,19 +1422,30 @@ defmodule Flagpack do
   Renders the Saint Barthélemy flag.
 
   ## Examples
+
       <Flagpack.blm />
-      <Flagpack.blm class="w-5 h-5" />
+      <Flagpack.blm id="my-flag" />
+      <Flagpack.blm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def blm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BLM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BLM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#BLM_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#BLM_svg__a_#{@id})"}>
           <path fill="#F50100" d="M22 0h10v24H22V0z" /><path fill="#2E42A5" d="M0 0h12v24H0V0z" /><path
             fill="#F7FCFF"
             d="M10 0h12v24H10V0z"
@@ -1151,19 +1460,30 @@ defmodule Flagpack do
   Renders the Belarus flag.
 
   ## Examples
+
       <Flagpack.blr />
-      <Flagpack.blr class="w-5 h-5" />
+      <Flagpack.blr id="my-flag" />
+      <Flagpack.blr class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def blr(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BLR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BLR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BLR_svg__a)">
+        <g mask={"url(#BLR_svg__a_#{@id})"}>
           <path fill="#73BE4A" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#AF0100"
             fill-rule="evenodd"
@@ -1221,24 +1541,35 @@ defmodule Flagpack do
   Renders the Belize flag.
 
   ## Examples
+
       <Flagpack.blz />
-      <Flagpack.blz class="w-5 h-5" />
+      <Flagpack.blz id="my-flag" />
+      <Flagpack.blz class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def blz(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BLZ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BLZ_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BLZ_svg__a)">
+        <g mask={"url(#BLZ_svg__a_#{@id})"}>
           <path fill="#0168B4" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="BLZ_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"BLZ_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#BLZ_svg__b)">
+          <g mask={"url(#BLZ_svg__b_#{@id})"}>
             <path fill="#E93C43" fill-rule="evenodd" d="M0 0v3h32V0H0zm0 21v3h32v-3H0z" clip-rule="evenodd" /><path
               fill="#F7FCFF"
               d="M16 18a6 6 0 110-12 6 6 0 010 12z"
@@ -1263,7 +1594,7 @@ defmodule Flagpack do
               stroke-width=".5"
               d="M16.1 15.65l.07.24h.001l.003-.001.006-.002.02-.006.072-.025a3.89 3.89 0 00.992-.537c.544-.41 1.112-1.091 1.112-2.127v-2.453 0-.004 0-.005 0-.006 0-.002 0-.002 0-.002 0-.002 0-.002 0-.002 0-.002 0-.002 0-.001 0-.001 0-.001 0-.001 0-.001 0-.001 0-.001 0-.001h-.25.25v-.25h-4.552v.25h.25-.25v2.492c0 1.01.57 1.69 1.11 2.105a4.092 4.092 0 001.06.581l.02.007.007.002h.002v.001l.077-.238zm0 0l.07.24-.073.022-.073-.024.076-.238z"
             />
-            <mask id="BLZ_svg__c" width="6" height="7" x="13" y="10" maskUnits="userSpaceOnUse">
+            <mask id={"BLZ_svg__c_#{@id}"} width="6" height="7" x="13" y="10" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 stroke="#fff"
@@ -1271,7 +1602,7 @@ defmodule Flagpack do
                 d="M16.1 15.65l.07.24h.001l.003-.001.006-.002.02-.006.072-.025a3.89 3.89 0 00.992-.537c.544-.41 1.112-1.091 1.112-2.127v-2.453 0-.004 0-.005 0-.006 0-.002 0-.002 0-.002 0-.002 0-.002 0-.002 0-.002 0-.002 0-.001 0-.001 0-.001 0-.001 0-.001 0-.001 0-.001 0-.001h-.25.25v-.25h-4.552v.25h.25-.25v2.492c0 1.01.57 1.69 1.11 2.105a4.092 4.092 0 001.06.581l.02.007.007.002h.002v.001l.077-.238zm0 0l.07.24-.073.022-.073-.024.076-.238z"
               />
             </mask>
-            <g mask="url(#BLZ_svg__c)">
+            <g mask={"url(#BLZ_svg__c_#{@id})"}>
               <path
                 fill="#84CEFF"
                 fill-rule="evenodd"
@@ -1397,31 +1728,42 @@ defmodule Flagpack do
   Renders the Bermuda flag.
 
   ## Examples
+
       <Flagpack.bmu />
-      <Flagpack.bmu class="w-5 h-5" />
+      <Flagpack.bmu id="my-flag" />
+      <Flagpack.bmu class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bmu(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BMU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BMU_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BMU_svg__a)">
+        <g mask={"url(#BMU_svg__a_#{@id})"}>
           <path fill="#AF0100" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="BMU_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"BMU_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#BMU_svg__b)">
+          <g mask={"url(#BMU_svg__b_#{@id})"}>
             <path
               fill="#fff"
               fill-rule="evenodd"
               d="M21.03 11.043h8.889v8.99s-.276 1.237-1.988 2.054c-1.71.818-2.457.818-2.457.818s-2.725-.67-3.289-1.297c-.563-.627-1.155-.86-1.155-1.956v-8.61z"
               clip-rule="evenodd"
             />
-            <mask id="BMU_svg__c" width="9" height="12" x="21" y="11" maskUnits="userSpaceOnUse">
+            <mask id={"BMU_svg__c_#{@id}"} width="9" height="12" x="21" y="11" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 fill-rule="evenodd"
@@ -1429,7 +1771,7 @@ defmodule Flagpack do
                 clip-rule="evenodd"
               />
             </mask>
-            <g mask="url(#BMU_svg__c)">
+            <g mask={"url(#BMU_svg__c_#{@id})"}>
               <path
                 fill="#CF142B"
                 fill-rule="evenodd"
@@ -1446,7 +1788,7 @@ defmodule Flagpack do
                 d="M28.18 14.94s.043.11 0 .22v-.22zm-2.694-.177c.074.01.14.029.196.044.132.035.211.057.211-.055 0-.082.217.024.515.17.388.19.916.447 1.286.447.322 0 .445-.104.486-.21v.425c0 .076.017.166.033.251.029.155.054.293-.033.293-.134 0-.734.422-.734.909 0 .486.734.886.734.886s-.486 1.712-.912 1.974c-.258.158-.411.028-.492-.04-.052-.045-.074-.063-.074.04 0 .261-.369.63-.809.776-.284.094-.2.166-.106.248.051.045.106.092.106.148 0 .126-.347-.05-.486-.126-.14.076-.486.252-.486.126 0-.056.055-.103.106-.148.095-.082.178-.154-.106-.248-.44-.146-.81-.515-.81-.776 0-.103-.02-.085-.073-.04-.08.068-.234.198-.492.04-.426-.262-.912-1.974-.912-1.974s.734-.4.734-.886c0-.487-.6-.91-.734-.91-.087 0-.062-.137-.033-.292.016-.085.033-.175.033-.25v-.426c.041.106.164.21.486.21.37 0 .898-.258 1.286-.447.298-.146.515-.252.515-.17 0 .112.079.09.21.055.057-.015.123-.033.197-.044.007-.007.015-.011.022-.011.02 0 .038 0 .057.002a.814.814 0 01.057-.002c.008 0 .015.004.022.01zm-2.852.177s-.043.11 0 .22v-.22z"
                 clip-rule="evenodd"
               />
-              <mask id="BMU_svg__d" width="7" height="8" x="22" y="14" maskUnits="userSpaceOnUse">
+              <mask id={"BMU_svg__d_#{@id}"} width="7" height="8" x="22" y="14" maskUnits="userSpaceOnUse">
                 <path
                   fill="#fff"
                   fill-rule="evenodd"
@@ -1454,7 +1796,7 @@ defmodule Flagpack do
                   clip-rule="evenodd"
                 />
               </mask>
-              <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#BMU_svg__d)">
+              <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#BMU_svg__d_#{@id})"}>
                 <path
                   fill="#fff"
                   d="M22.465 16.893s2.187-.233 3.47-.233c1.285 0 .594.079 1.088.134.493.056.989.099.989.099v4.393h-5.547v-4.393z"
@@ -1479,10 +1821,10 @@ defmodule Flagpack do
               />
             </g>
             <path fill="#2B409A" d="M0 0h18v14H0z" />
-            <mask id="BMU_svg__e" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"BMU_svg__e_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#BMU_svg__e)">
+            <g mask={"url(#BMU_svg__e_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -1493,7 +1835,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="BMU_svg__f" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"BMU_svg__f_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -1503,7 +1845,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#BMU_svg__f)"
+                mask={"url(#BMU_svg__f_#{@id})"}
               />
             </g>
           </g>
@@ -1517,24 +1859,35 @@ defmodule Flagpack do
   Renders the Bolivia flag.
 
   ## Examples
+
       <Flagpack.bol />
-      <Flagpack.bol class="w-5 h-5" />
+      <Flagpack.bol id="my-flag" />
+      <Flagpack.bol class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bol(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BOL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BOL_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BOL_svg__a)">
+        <g mask={"url(#BOL_svg__a_#{@id})"}>
           <path fill="#FECA00" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="BOL_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"BOL_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#BOL_svg__b)">
+          <g mask={"url(#BOL_svg__b_#{@id})"}>
             <path fill="#DB501C" fill-rule="evenodd" d="M0 0v8h32V0H0z" clip-rule="evenodd" /><path
               fill="#5EAA22"
               fill-rule="evenodd"
@@ -1653,7 +2006,7 @@ defmodule Flagpack do
               d="M15.974 14.91c1.024 0 1.854-.935 1.854-2.09 0-1.153-.83-2.089-1.854-2.089s-1.854.936-1.854 2.09.83 2.09 1.854 2.09z"
               clip-rule="evenodd"
             />
-            <mask id="BOL_svg__c" width="4" height="5" x="14" y="10" maskUnits="userSpaceOnUse">
+            <mask id={"BOL_svg__c_#{@id}"} width="4" height="5" x="14" y="10" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 fill-rule="evenodd"
@@ -1661,7 +2014,7 @@ defmodule Flagpack do
                 clip-rule="evenodd"
               />
             </mask>
-            <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#BOL_svg__c)">
+            <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#BOL_svg__c_#{@id})"}>
               <path
                 fill="#D52C1E"
                 d="M15.974 12.448l-.24.496.006-.548-.44.346.252-.491-.552.128.447-.337-.554-.117.554-.116-.447-.337.552.128-.252-.492.44.347-.006-.548.24.496.24-.496-.005.548.44-.347-.252.492.552-.128-.448.337.555.116-.555.117.448.337-.552-.128.252.491-.44-.346.006.548-.24-.496z"
@@ -1710,26 +2063,37 @@ defmodule Flagpack do
   Renders the Bonaire flag.
 
   ## Examples
+
       <Flagpack.bq_bo />
-      <Flagpack.bq_bo class="w-5 h-5" />
+      <Flagpack.bq_bo id="my-flag" />
+      <Flagpack.bq_bo class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bq_bo(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BQ-BO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BQ-BO_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BQ-BO_svg__a)">
+        <g mask={"url(#BQ-BO_svg__a_#{@id})"}>
           <path fill="#fff" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#FEDA00"
             fill-rule="evenodd"
             d="M0 10.933V0h16L0 10.933z"
             clip-rule="evenodd"
           /><path fill="#00268D" fill-rule="evenodd" d="M0 24h32.009V0L0 24z" clip-rule="evenodd" />
-          <mask id="BQ-BO_svg__b" fill="#fff">
+          <mask id={"BQ-BO_svg__b_#{@id}"} fill="#fff">
             <path
               fill-rule="evenodd"
               d="M9.353 5l.527 1.131a4.4 4.4 0 013.872 4.258l.955.478-1.043.521a4.404 4.404 0 01-3.742 3.476L9.353 16l-.568-1.136a4.404 4.404 0 01-3.742-3.476L4 10.867l.955-.478A4.4 4.4 0 018.79 6.136L9.353 5z"
@@ -1744,7 +2108,7 @@ defmodule Flagpack do
           /><path
             fill="#000"
             d="M9.88 6.131l-.718.335.186.4.438.052.094-.787zM9.353 5l.718-.334-.696-1.495-.731 1.477.71.352zm4.399 5.39l-.792.019.012.476.426.213.354-.709zm.955.477l.354.708 1.417-.708-1.417-.709-.354.709zm-1.043.521l-.354-.708-.345.172-.077.377.776.16zm-3.742 3.476l-.102-.786-.418.054-.189.377.709.355zM9.353 16l-.708.354.708 1.417.709-1.417L9.353 16zm-.568-1.136l.709-.355-.19-.377-.418-.054-.1.786zm-3.742-3.476l.776-.159-.077-.377-.345-.172-.354.708zM4 10.867l-.354-.709-1.417.709 1.417.708.354-.708zm.955-.478l.354.709.426-.213.011-.476-.791-.02zM8.79 6.136l.1.785.421-.053.188-.38-.71-.352zm1.807-.34l-.527-1.13-1.436.668.527 1.132 1.436-.67zm3.946 4.574a5.193 5.193 0 00-4.57-5.025l-.188 1.573a3.609 3.609 0 013.174 3.49l1.584-.038zm.517-.212l-.955-.477-.708 1.417.954.477.709-1.417zm-1.043 1.939l1.043-.522-.709-1.417-1.043.522.709 1.417zm-3.995 3.552a5.196 5.196 0 004.417-4.102l-1.552-.318a3.612 3.612 0 01-3.068 2.85l.203 1.57zm-.81-1.14l-.568 1.137 1.417.708.568-1.136-1.417-.709zm.849 1.137l-.568-1.137-1.417.709.568 1.136 1.417-.708zm-5.795-4.099a5.196 5.196 0 004.417 4.102l.202-1.57a3.612 3.612 0 01-3.067-2.85l-1.552.318zm-.621.028l1.043.522.708-1.417-1.043-.522-.708 1.417zM4.6 9.681l-.955.477.708 1.417.955-.477L4.6 9.68zM8.69 5.35a5.193 5.193 0 00-4.528 5.02l1.583.039A3.609 3.609 0 018.891 6.92l-.2-1.571zm-.047-.702L8.08 5.784l1.42.703.562-1.135-1.42-.704z"
-            mask="url(#BQ-BO_svg__b)"
+            mask={"url(#BQ-BO_svg__b_#{@id})"}
           /><path
             fill="#F00A17"
             fill-rule="evenodd"
@@ -1761,19 +2125,30 @@ defmodule Flagpack do
   Renders the Saba flag.
 
   ## Examples
+
       <Flagpack.bq_sa />
-      <Flagpack.bq_sa class="w-5 h-5" />
+      <Flagpack.bq_sa id="my-flag" />
+      <Flagpack.bq_sa class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bq_sa(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BQ-SA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BQ-SA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#BQ-SA_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#BQ-SA_svg__a_#{@id})"}>
           <path fill="#fff" d="M0 0h32v24H0V0z" /><path fill="#F00000" d="M0 11.664V0h16L0 11.664zm32 0V0H16l16 11.664z" /><path
             fill="#00268D"
             d="M0 11.664V24h16L0 11.664zm32 0v12.672L16 24l16-12.336z"
@@ -1791,19 +2166,30 @@ defmodule Flagpack do
   Renders the Sint Eustatius flag.
 
   ## Examples
+
       <Flagpack.bq_se />
-      <Flagpack.bq_se class="w-5 h-5" />
+      <Flagpack.bq_se id="my-flag" />
+      <Flagpack.bq_se class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bq_se(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BQ-SE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BQ-SE_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BQ-SE_svg__a)">
+        <g mask={"url(#BQ-SE_svg__a_#{@id})"}>
           <path fill="#00268D" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#00268D"
             stroke="#E31D1C"
@@ -1815,7 +2201,7 @@ defmodule Flagpack do
             stroke-width="2"
             d="M16.447 6.106L16 5.882l-.447.224-10 5-1.79.894 1.79.894 10 5 .447.224.447-.224 10-5 1.79-.894-1.79-.894-10-5z"
           />
-          <mask id="BQ-SE_svg__b" width="30" height="16" x="1" y="4" maskUnits="userSpaceOnUse">
+          <mask id={"BQ-SE_svg__b_#{@id}"} width="30" height="16" x="1" y="4" maskUnits="userSpaceOnUse">
             <path
               fill="#fff"
               stroke="#fff"
@@ -1823,7 +2209,7 @@ defmodule Flagpack do
               d="M16.447 6.106L16 5.882l-.447.224-10 5-1.79.894 1.79.894 10 5 .447.224.447-.224 10-5 1.79-.894-1.79-.894-10-5z"
             />
           </mask>
-          <g mask="url(#BQ-SE_svg__b)">
+          <g mask={"url(#BQ-SE_svg__b_#{@id})"}>
             <path
               fill="#059334"
               d="M11.609 16H25l-1.416-1.276s-2.831-2.524-3.013-2.64c-.183-.115-.484-.165-.826.203-.343.367-.54-.202-.824-.202-.285 0-.406 0-.82.471l-1.904 2.168h-2.19s-.369-.279-.58-.18c-.21.1-1.396-1.099-1.818-1.188-.423-.09-.7.325-.7.655s-.2-.303-.603-.117c-.405.185-.274.65-.274.65S11.34 16 11.609 16z"
@@ -1844,35 +2230,46 @@ defmodule Flagpack do
   Renders the Brazil flag.
 
   ## Examples
+
       <Flagpack.bra />
-      <Flagpack.bra class="w-5 h-5" />
+      <Flagpack.bra id="my-flag" />
+      <Flagpack.bra class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bra(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BRA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BRA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BRA_svg__a)">
+        <g mask={"url(#BRA_svg__a_#{@id})"}>
           <path fill="#093" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="BRA_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"BRA_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#BRA_svg__b)">
-            <g fill-rule="evenodd" clip-rule="evenodd" filter="url(#BRA_svg__c)">
+          <g mask={"url(#BRA_svg__b_#{@id})"}>
+            <g fill-rule="evenodd" clip-rule="evenodd" filter={"url(#BRA_svg__c_#{@id})"}>
               <path fill="#FFD221" d="M15.927 3.704l12.202 8.504L15.76 20.17 3.809 12.043l12.118-8.339z" /><path
-                fill="url(#BRA_svg__d)"
+                fill={"url(#BRA_svg__d_#{@id})"}
                 d="M15.927 3.704l12.202 8.504L15.76 20.17 3.809 12.043l12.118-8.339z"
               />
             </g>
             <path fill="#2E42A5" fill-rule="evenodd" d="M16 17.2a5 5 0 100-10 5 5 0 000 10z" clip-rule="evenodd" />
-            <mask id="BRA_svg__e" width="10" height="11" x="11" y="7" maskUnits="userSpaceOnUse">
+            <mask id={"BRA_svg__e_#{@id}"} width="10" height="11" x="11" y="7" maskUnits="userSpaceOnUse">
               <path fill="#fff" fill-rule="evenodd" d="M16 17.2a5 5 0 100-10 5 5 0 000 10z" clip-rule="evenodd" />
             </mask>
-            <g mask="url(#BRA_svg__e)">
+            <g mask={"url(#BRA_svg__e_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 fill-rule="evenodd"
@@ -1889,11 +2286,11 @@ defmodule Flagpack do
           </g>
         </g>
         <defs>
-          <linearGradient id="BRA_svg__d" x1="32" x2="32" y1="24" y2="0" gradientUnits="userSpaceOnUse">
+          <linearGradient id={"BRA_svg__d_#{@id}"} x1="32" x2="32" y1="24" y2="0" gradientUnits="userSpaceOnUse">
             <stop stop-color="#FFC600" /><stop offset="1" stop-color="#FFDE42" />
           </linearGradient>
           <filter
-            id="BRA_svg__c"
+            id={"BRA_svg__c_#{@id}"}
             width="24.32"
             height="16.467"
             x="3.809"
@@ -1919,19 +2316,30 @@ defmodule Flagpack do
   Renders the Barbados flag.
 
   ## Examples
+
       <Flagpack.brb />
-      <Flagpack.brb class="w-5 h-5" />
+      <Flagpack.brb id="my-flag" />
+      <Flagpack.brb class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def brb(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BRB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BRB_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#BRB_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#BRB_svg__a_#{@id})"}>
           <path fill="#2E42A5" d="M22 0h10v24H22V0z" /><path fill="#FECA00" d="M10 0h12v24H10V0z" /><path
             fill="#2E42A5"
             d="M0 0h10v24H0V0z"
@@ -1949,24 +2357,35 @@ defmodule Flagpack do
   Renders the Brunei flag.
 
   ## Examples
+
       <Flagpack.brn />
-      <Flagpack.brn class="w-5 h-5" />
+      <Flagpack.brn id="my-flag" />
+      <Flagpack.brn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def brn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BRN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BRN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BRN_svg__a)">
+        <g mask={"url(#BRN_svg__a_#{@id})"}>
           <path fill="#FFD221" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="BRN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"BRN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#BRN_svg__b)">
+          <g mask={"url(#BRN_svg__b_#{@id})"}>
             <path fill="#313131" d="M-3.067 10.615l2.008-4.579 34.827 15.272-2.008 4.58-34.827-15.273z" /><path
               fill="#FAF9F9"
               d="M-3.017 5.57L-1.01.99l36.559 16.023-2.008 4.58L-3.017 5.569z"
@@ -2002,19 +2421,30 @@ defmodule Flagpack do
   Renders the Bhutan flag.
 
   ## Examples
+
       <Flagpack.btn />
-      <Flagpack.btn class="w-5 h-5" />
+      <Flagpack.btn id="my-flag" />
+      <Flagpack.btn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def btn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BTN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BTN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BTN_svg__a)">
+        <g mask={"url(#BTN_svg__a_#{@id})"}>
           <path fill="#FF6230" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#FECA00"
             fill-rule="evenodd"
@@ -2087,24 +2517,35 @@ defmodule Flagpack do
   Renders the Bouvet Island flag.
 
   ## Examples
+
       <Flagpack.bvt />
-      <Flagpack.bvt class="w-5 h-5" />
+      <Flagpack.bvt id="my-flag" />
+      <Flagpack.bvt class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bvt(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BVT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BVT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BVT_svg__a)">
+        <g mask={"url(#BVT_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="BVT_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"BVT_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#BVT_svg__b)">
+          <g mask={"url(#BVT_svg__b_#{@id})"}>
             <path fill="#2E42A5" stroke="#F7FCFF" stroke-width="2" d="M10-1H9V9H-1v6H9v10h6V15h18V9H15V-1h-5z" />
           </g>
         </g>
@@ -2117,24 +2558,35 @@ defmodule Flagpack do
   Renders the Botswana flag.
 
   ## Examples
+
       <Flagpack.bwa />
-      <Flagpack.bwa class="w-5 h-5" />
+      <Flagpack.bwa id="my-flag" />
+      <Flagpack.bwa class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def bwa(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="BWA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"BWA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#BWA_svg__a)">
+        <g mask={"url(#BWA_svg__a_#{@id})"}>
           <path fill="#42ADDF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="BWA_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"BWA_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#BWA_svg__b)">
+          <g mask={"url(#BWA_svg__b_#{@id})"}>
             <path fill="#58A5FF" fill-rule="evenodd" d="M0 0v8h32V0H0z" clip-rule="evenodd" /><path
               fill="#272727"
               stroke="#F7FCFF"
@@ -2152,19 +2604,30 @@ defmodule Flagpack do
   Renders the Central African Republic flag.
 
   ## Examples
+
       <Flagpack.caf />
-      <Flagpack.caf class="w-5 h-5" />
+      <Flagpack.caf id="my-flag" />
+      <Flagpack.caf class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def caf(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CAF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CAF_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#CAF_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#CAF_svg__a_#{@id})"}>
           <path fill="#3D58DB" d="M0 0h32v6H0V0z" /><path fill="#F7FCFF" d="M0 6h32v6H0V6z" /><path
             fill="#73BE4A"
             d="M0 12h32v6H0v-6z"
@@ -2182,19 +2645,30 @@ defmodule Flagpack do
   Renders the Canada flag.
 
   ## Examples
+
       <Flagpack.can />
-      <Flagpack.can class="w-5 h-5" />
+      <Flagpack.can id="my-flag" />
+      <Flagpack.can class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def can(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CAN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CAN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#CAN_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#CAN_svg__a_#{@id})"}>
           <path fill="#F7FCFF" d="M8 0h16v24H8V0z" /><path
             fill="#E31D1C"
             d="M15.976 7L16 19h-.6l.368-2.97c-2.69.484-3.924.604-3.701.36.222-.244.397-.59.525-1.038L9 12.955c.378-.004.72-.098 1.028-.281.307-.183.153-.816-.461-1.9l1.813.264.687-.746 1.368 1.432h.615l-.615-3.28 1.103.615L15.976 7zm0 0l1.486 2.06 1.103-.617-.615 3.281h.615l1.368-1.432.686.746 1.814-.264c-.614 1.084-.768 1.717-.46 1.9.307.183.65.277 1.027.281l-3.593 2.397c.129.448.304.794.526 1.038.223.244-1.011.124-3.701-.36l.367 2.97H16l-.024-12zM24 0h8v24h-8V0zM0 0h8v24H0V0z"
@@ -2209,14 +2683,25 @@ defmodule Flagpack do
   Renders the Cocos Islands flag.
 
   ## Examples
+
       <Flagpack.cck />
-      <Flagpack.cck class="w-5 h-5" />
+      <Flagpack.cck id="my-flag" />
+      <Flagpack.cck class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cck(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#CCK_svg__CC_-_Cocos_(Keeling)">
           <path fill="#5EAA22" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
@@ -2243,24 +2728,35 @@ defmodule Flagpack do
   Renders the Switzerland flag.
 
   ## Examples
+
       <Flagpack.che />
-      <Flagpack.che class="w-5 h-5" />
+      <Flagpack.che id="my-flag" />
+      <Flagpack.che class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def che(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CHE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CHE_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#CHE_svg__a)">
+        <g mask={"url(#CHE_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="CHE_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"CHE_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#CHE_svg__b)">
+          <g mask={"url(#CHE_svg__b_#{@id})"}>
             <path fill="#F1F9FF" fill-rule="evenodd" d="M18 6h-4v4h-4v4h4v4h4v-4h4v-4h-4V6z" clip-rule="evenodd" />
           </g>
         </g>
@@ -2273,19 +2769,30 @@ defmodule Flagpack do
   Renders the Chile flag.
 
   ## Examples
+
       <Flagpack.chl />
-      <Flagpack.chl class="w-5 h-5" />
+      <Flagpack.chl id="my-flag" />
+      <Flagpack.chl class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def chl(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CHL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CHL_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#CHL_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#CHL_svg__a_#{@id})"}>
           <path fill="#3D58DB" d="M0 0h14v14H0V0z" /><path fill="#F7FCFF" d="M14-2h18v16H14V-2z" /><path
             fill="#E31D1C"
             d="M0 14h32v10H0V14z"
@@ -2303,19 +2810,30 @@ defmodule Flagpack do
   Renders the China flag.
 
   ## Examples
+
       <Flagpack.chn />
-      <Flagpack.chn class="w-5 h-5" />
+      <Flagpack.chn id="my-flag" />
+      <Flagpack.chn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def chn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CHN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CHN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#CHN_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#CHN_svg__a_#{@id})"}>
           <path fill="#E31D1C" d="M0 0h32v24H0V0z" /><path
             fill="#FECA00"
             d="M15.016 4.548l-1.01.61.23-1.19-.841-.89 1.139-.049.482-1.11.482 1.11h1.137l-.84.94.253 1.19-1.032-.61zM7.018 9.607l-2.881 1.551.657-3.026-2.4-2.265 3.25-.123 1.374-2.826 1.374 2.826h3.243L9.24 8.132l.72 3.026-2.943-1.55zm9.998-1.059l-1.01.61.23-1.19-.841-.89 1.139-.049.482-1.11.482 1.11h1.137l-.84.94.253 1.19-1.032-.61zm-1 4l-1.01.61.23-1.19-.841-.89 1.139-.049.482-1.11.482 1.11h1.137l-.84.94.253 1.19-1.032-.61zm-3 3l-1.01.61.23-1.19-.841-.89 1.139-.049.482-1.11.482 1.11h1.137l-.84.94.253 1.19-1.032-.61z"
@@ -2330,14 +2848,25 @@ defmodule Flagpack do
   Renders the Côte d'Ivoire flag.
 
   ## Examples
+
       <Flagpack.civ />
-      <Flagpack.civ class="w-5 h-5" />
+      <Flagpack.civ id="my-flag" />
+      <Flagpack.civ class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def civ(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#CIV_svg__CI_-_Côte_d'Ivoire_(Ivory_Coast)">
           <path fill="#67BD38" d="M22 0h10v24H22V0z" /><path fill="#E47E00" d="M0 0h10v24H0V0z" /><path
@@ -2354,19 +2883,30 @@ defmodule Flagpack do
   Renders the Cameroon flag.
 
   ## Examples
+
       <Flagpack.cmr />
-      <Flagpack.cmr class="w-5 h-5" />
+      <Flagpack.cmr id="my-flag" />
+      <Flagpack.cmr class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cmr(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CMR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CMR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#CMR_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#CMR_svg__a_#{@id})"}>
           <path fill="#E11C1B" d="M10 0h12v24H10V0z" /><path
             fill="#FECA00"
             d="M16.075 14.49l-3.485 2.418 1.114-4.14-2.56-2.646 3.466-.143 1.465-4.095 1.466 4.095h3.46l-2.554 2.788 1.279 3.897-3.65-2.174z"
@@ -2381,24 +2921,35 @@ defmodule Flagpack do
   Renders the Democratis Republic of Congo flag.
 
   ## Examples
+
       <Flagpack.cod />
-      <Flagpack.cod class="w-5 h-5" />
+      <Flagpack.cod id="my-flag" />
+      <Flagpack.cod class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cod(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="COD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"COD_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#COD_svg__a)">
+        <g mask={"url(#COD_svg__a_#{@id})"}>
           <path fill="#3195F9" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="COD_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"COD_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#COD_svg__b)">
+          <g mask={"url(#COD_svg__b_#{@id})"}>
             <path
               fill="#E31D1C"
               stroke="#FECA00"
@@ -2421,19 +2972,30 @@ defmodule Flagpack do
   Renders the Congo flag.
 
   ## Examples
+
       <Flagpack.cog />
-      <Flagpack.cog class="w-5 h-5" />
+      <Flagpack.cog id="my-flag" />
+      <Flagpack.cog class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cog(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="COG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"COG_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#COG_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#COG_svg__a_#{@id})"}>
           <path fill="#FA1111" d="M32 0v24H0L32 0z" /><path fill="#07A907" d="M0 24V0h32L0 24z" /><path
             fill="#FBCD17"
             d="M29.492-5.8L-1 23.576l6.052 3.012L34.64-.212 29.49-5.8z"
@@ -2448,29 +3010,40 @@ defmodule Flagpack do
   Renders the Cook Island flag.
 
   ## Examples
+
       <Flagpack.cok />
-      <Flagpack.cok class="w-5 h-5" />
+      <Flagpack.cok id="my-flag" />
+      <Flagpack.cok class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cok(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="COK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"COK_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#COK_svg__a)">
+        <g mask={"url(#COK_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="COK_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"COK_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#COK_svg__b)">
+          <g mask={"url(#COK_svg__b_#{@id})"}>
             <path fill="#2B409A" d="M0 0h18v14H0z" />
-            <mask id="COK_svg__c" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"COK_svg__c_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#COK_svg__c)">
+            <g mask={"url(#COK_svg__c_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -2481,7 +3054,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="COK_svg__d" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"COK_svg__d_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -2491,7 +3064,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#COK_svg__d)"
+                mask={"url(#COK_svg__d_#{@id})"}
               />
             </g>
             <path
@@ -2511,24 +3084,35 @@ defmodule Flagpack do
   Renders the Colombia flag.
 
   ## Examples
+
       <Flagpack.col />
-      <Flagpack.col class="w-5 h-5" />
+      <Flagpack.col id="my-flag" />
+      <Flagpack.col class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def col(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="COL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"COL_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#COL_svg__a)">
+        <g mask={"url(#COL_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="COL_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"COL_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#COL_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#COL_svg__b_#{@id})"}>
             <path fill="#FECA00" d="M0 0v12h32V0H0z" /><path fill="#E31D1C" d="M0 18v6h32v-6H0z" />
           </g>
         </g>
@@ -2541,24 +3125,35 @@ defmodule Flagpack do
   Renders the Comoros flag.
 
   ## Examples
+
       <Flagpack.com />
-      <Flagpack.com class="w-5 h-5" />
+      <Flagpack.com id="my-flag" />
+      <Flagpack.com class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def com(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="COM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"COM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#COM_svg__a)">
+        <g mask={"url(#COM_svg__a_#{@id})"}>
           <path fill="#5196ED" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="COM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"COM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#COM_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#COM_svg__b_#{@id})"}>
             <path fill="#AF0100" d="M0 12v6h32v-6H0z" /><path fill="#F7FCFF" d="M0 6v6h32V6H0z" /><path
               fill="#FECA00"
               d="M0 0v6h32V0H0z"
@@ -2577,26 +3172,37 @@ defmodule Flagpack do
   Renders the Cape Verde flag.
 
   ## Examples
+
       <Flagpack.cpv />
-      <Flagpack.cpv class="w-5 h-5" />
+      <Flagpack.cpv id="my-flag" />
+      <Flagpack.cpv class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cpv(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CPV_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CPV_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#CPV_svg__a)">
+        <g mask={"url(#CPV_svg__a_#{@id})"}>
           <path fill="#4141DB" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="CPV_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"CPV_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#CPV_svg__b)">
+          <g mask={"url(#CPV_svg__b_#{@id})"}>
             <path fill="#F90000" stroke="#F7FCFF" stroke-width="2" d="M0 13h-1v4h34v-4H0z" />
-            <g filter="url(#CPV_svg__c)">
+            <g filter={"url(#CPV_svg__c_#{@id})"}>
               <path
                 fill="#FFDE00"
                 fill-rule="evenodd"
@@ -2608,7 +3214,7 @@ defmodule Flagpack do
         </g>
         <defs>
           <filter
-            id="CPV_svg__c"
+            id={"CPV_svg__c_#{@id}"}
             width="20.974"
             height="22.219"
             x="-.004"
@@ -2634,24 +3240,37 @@ defmodule Flagpack do
   Renders the Costa Rica flag.
 
   ## Examples
+
       <Flagpack.cri />
-      <Flagpack.cri class="w-5 h-5" />
+      <Flagpack.cri id="my-flag" />
+      <Flagpack.cri class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cri(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CRI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CRI_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#CRI_svg__a)">
+        <g mask={"url(#CRI_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="CRI_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"CRI_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#CRI_svg__b)"><path fill="#E31D1C" stroke="#F7FCFF" stroke-width="4" d="M0 8h-2v8h36V8H0z" /></g>
+          <g mask={"url(#CRI_svg__b_#{@id})"}>
+            <path fill="#E31D1C" stroke="#F7FCFF" stroke-width="4" d="M0 8h-2v8h36V8H0z" />
+          </g>
         </g>
       </svg>
     </div>
@@ -2662,29 +3281,42 @@ defmodule Flagpack do
   Renders the Cuba flag.
 
   ## Examples
+
       <Flagpack.cub />
-      <Flagpack.cub class="w-5 h-5" />
+      <Flagpack.cub id="my-flag" />
+      <Flagpack.cub class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cub(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CUB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CUB_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#CUB_svg__a)">
+        <g mask={"url(#CUB_svg__a_#{@id})"}>
           <path fill="#3D58DB" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="CUB_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"CUB_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#CUB_svg__b)"><path fill="#3D58DB" stroke="#F7FCFF" stroke-width="4" d="M0 8h-2v8h36V8H0z" /></g>
+          <g mask={"url(#CUB_svg__b_#{@id})"}>
+            <path fill="#3D58DB" stroke="#F7FCFF" stroke-width="4" d="M0 8h-2v8h36V8H0z" />
+          </g>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24l18-12L0 0z" clip-rule="evenodd" />
-          <mask id="CUB_svg__c" width="18" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"CUB_svg__c_#{@id}"} width="18" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24l18-12L0 0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#CUB_svg__c)">
+          <g mask={"url(#CUB_svg__c_#{@id})"}>
             <path
               fill="#F7FCFF"
               fill-rule="evenodd"
@@ -2702,24 +3334,35 @@ defmodule Flagpack do
   Renders the Curaçao flag.
 
   ## Examples
+
       <Flagpack.cuw />
-      <Flagpack.cuw class="w-5 h-5" />
+      <Flagpack.cuw id="my-flag" />
+      <Flagpack.cuw class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cuw(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CUW_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CUW_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#CUW_svg__a)">
+        <g mask={"url(#CUW_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="CUW_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"CUW_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#CUW_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#CUW_svg__b_#{@id})"}>
             <path
               fill="#F7FCFF"
               d="M4.254 6.15L2.266 7.198l.96-1.868L2 3.963l1.523-.056L4.254 2l.558 1.907 1.783.056-1.284 1.368.815 1.868-1.872-1.05zm7.098 4.926l-2.454 1.029.963-2.577L7.726 7.8h2.558l1.068-2.787.816 2.787h2.56l-1.82 1.73.905 2.576-2.46-1.029z"
@@ -2735,25 +3378,36 @@ defmodule Flagpack do
   Renders the Cayman Islands flag.
 
   ## Examples
+
       <Flagpack.cym />
-      <Flagpack.cym class="w-5 h-5" />
+      <Flagpack.cym id="my-flag" />
+      <Flagpack.cym class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cym(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-        <mask id="CYM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CYM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
         </mask>
-        <g mask="url(#CYM_svg__a)">
+        <g mask={"url(#CYM_svg__a_#{@id})"}>
           <path fill="#2B409A" d="M0 0h18v14H0z" />
-          <mask id="CYM_svg__b" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"CYM_svg__b_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" d="M0 0h18v14H0z" />
           </mask>
-          <g mask="url(#CYM_svg__b)">
+          <g mask={"url(#CYM_svg__b_#{@id})"}>
             <path
               fill="#F7FCFF"
               d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -2764,7 +3418,7 @@ defmodule Flagpack do
               fill="#F50100"
               d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
             />
-            <mask id="CYM_svg__c" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+            <mask id={"CYM_svg__c_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                 fill-rule="evenodd"
                 d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -2774,7 +3428,7 @@ defmodule Flagpack do
             <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
               fill="#F7FCFF"
               d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-              mask="url(#CYM_svg__c)"
+              mask={"url(#CYM_svg__c_#{@id})"}
             />
           </g>
           <path
@@ -2789,7 +3443,7 @@ defmodule Flagpack do
             stroke-width=".1"
             d="M21.058 14.722V11.05h7.802v3.672c0 2.352-.91 3.91-1.835 4.88a6.284 6.284 0 01-1.292 1.04c-.18.108-.334.186-.447.237a1.877 1.877 0 01-.186.07 4.953 4.953 0 01-.675-.309 6.754 6.754 0 01-1.39-1.04c-.997-.97-1.977-2.527-1.977-4.878z"
           />
-          <mask id="CYM_svg__d" width="8" height="10" x="21" y="11" maskUnits="userSpaceOnUse">
+          <mask id={"CYM_svg__d_#{@id}"} width="8" height="10" x="21" y="11" maskUnits="userSpaceOnUse">
             <path
               fill="#fff"
               d="M21.058 14.722V11.05h7.802v3.672c0 2.352-.91 3.91-1.835 4.88a6.284 6.284 0 01-1.292 1.04c-.18.108-.334.186-.447.237a1.877 1.877 0 01-.186.07 4.953 4.953 0 01-.675-.309 6.754 6.754 0 01-1.39-1.04c-.997-.97-1.977-2.527-1.977-4.878z"
@@ -2799,7 +3453,7 @@ defmodule Flagpack do
               d="M21.058 14.722V11.05h7.802v3.672c0 2.352-.91 3.91-1.835 4.88a6.284 6.284 0 01-1.292 1.04c-.18.108-.334.186-.447.237a1.877 1.877 0 01-.186.07 4.953 4.953 0 01-.675-.309 6.754 6.754 0 01-1.39-1.04c-.997-.97-1.977-2.527-1.977-4.878z"
             />
           </mask>
-          <g mask="url(#CYM_svg__d)">
+          <g mask={"url(#CYM_svg__d_#{@id})"}>
             <path fill="#F50100" d="M20.5 10.5h9v3.4h-9z" /><path
               fill="#F50100"
               d="M24.512 14.6c.288 0 .864-.313 1.008-.386.528-.313.912-.024 1.224.12.336.145.96.314 1.344 0 .384-.313.6-.289.864-.289.048-.361.048-.723.048-1.133v-.29c-.336-.072-.504.025-.864.338-.36.314-.768.241-1.296.049-.504-.217-1.008-.603-1.512 0-.144.168-.48.41-.816.41-.36 0-.672-.242-.816-.41-.528-.603-1.008-.217-1.512 0-.528.192-.96.265-1.32-.049-.336-.313-.504-.41-.864-.337v.29c0 .409.024.77.072 1.132.264 0 .456-.024.84.29.384.313 1.032.144 1.344 0 .336-.145.72-.434 1.248-.12.144.072.696.385 1.008.385z"
@@ -2841,24 +3495,35 @@ defmodule Flagpack do
   Renders the Cyprus flag.
 
   ## Examples
+
       <Flagpack.cyp />
-      <Flagpack.cyp class="w-5 h-5" />
+      <Flagpack.cyp id="my-flag" />
+      <Flagpack.cyp class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cyp(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CYP_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CYP_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#CYP_svg__a)">
+        <g mask={"url(#CYP_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="CYP_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"CYP_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#CYP_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#CYP_svg__b_#{@id})"}>
             <path
               fill="#006B49"
               d="M7.6 14.32c-.428-.297-.236-.95-.236-.95s.636.362.858.53c.223.167.384.858.384.858s-.578-.14-1.006-.437zm1.144.934c-.022-.188.031-.357.031-.357s.537.287.725.42c.188.133.323.682.323.682s-.488-.111-.85-.348a.506.506 0 01-.218-.33 1.821 1.821 0 01-.667.077c-.365-.035-.628-.547-.628-.547s.497-.002.694.025c.153.02.461.27.59.378zm1.691.976s.039.537.428.647c.389.11.843.063.843.063s-.303-.474-.51-.54a9.582 9.582 0 00-.76-.17zm2.306 1.439c-.402-.04-.533-.563-.533-.563s.565.004.78.034c.214.03.595.444.595.444s-.44.125-.842.085zm.714-.968s-.054.627.35.837c.404.21.907.254.907.254s-.245-.61-.458-.732c-.212-.12-.799-.359-.799-.359zm.283 1.601c-.446.091-.798-.43-.798-.43s.605-.185.847-.224c.24-.04.816.28.816.28s-.419.283-.865.374zm-3.227-1.125s.212.495.615.473c.404-.023.818-.216.818-.216s-.441-.349-.657-.345c-.217.004-.776.088-.776.088zm1.172-.568c-.361-.182-.296-.717-.296-.717s.525.207.715.312c.19.105.397.628.397.628s-.455-.04-.816-.223zM9.65 14.653s0 .66.272.919c.272.258.598.348.598.348s-.193-.67-.336-.816c-.144-.147-.534-.451-.534-.451zm-.996 1.46s.405.528.823.5c.418-.026.785-.235.785-.235s-.595-.37-.822-.364c-.227.006-.786.099-.786.099zm.097-.12c-.222.02-.43-.257-.43-.257s.298-.058.42-.064c.12-.006.43.184.43.184s-.197.116-.42.137zm.185-2.139s-.236.253-.178.469c.06.215.208.39.208.39s.133-.34.106-.457a4.685 4.685 0 00-.136-.402zm1.96 2.23c-.138-.052-.106-.218-.106-.218s.2.057.273.087c.072.03.146.189.146.189s-.176-.007-.314-.059zm-.715.64s-.032.166.106.218c.137.052.313.058.313.058s-.074-.159-.146-.189-.273-.087-.273-.087zm2.642.218c-.138-.052-.106-.218-.106-.218s.201.058.273.087c.072.03.146.19.146.19s-.176-.007-.313-.059zm-.613.832s-.032.166.106.218c.137.051.313.058.313.058s-.074-.159-.146-.189a3.966 3.966 0 00-.273-.087zm2.72 1.138l-.445-.371c.278-.16.564-.288.808-.384a.801.801 0 00-.177-.098v-.122s.166.043.416.131c.25-.088.416-.13.416-.13v.12a.8.8 0 00-.178.099c.245.096.53.223.809.384l-.446.371s-.306-.319-.601-.57c-.295.251-.601.57-.601.57zm8.77-5.542s.192.653-.236.95c-.428.298-1.006.438-1.006.438s.16-.691.383-.859c.223-.167.858-.529.858-.529zm-1.38 1.884c.021-.188-.032-.357-.032-.357s-.536.287-.724.42c-.188.133-.324.682-.324.682s.488-.111.85-.348a.506.506 0 00.219-.33c.108.033.383.104.667.077.364-.035.628-.547.628-.547s-.498-.002-.695.025c-.153.02-.46.27-.59.378zm-1.692.976s-.038.537-.427.647c-.39.11-.844.063-.844.063s.304-.474.51-.54c.206-.067.761-.17.761-.17zm-2.306 1.439c.402-.04.534-.563.534-.563s-.565.004-.78.034c-.214.03-.595.444-.595.444s.44.125.841.085zm-.714-.968s.055.627-.35.837c-.403.21-.907.254-.907.254s.246-.61.458-.732c.212-.12.8-.359.8-.359zm-.282 1.601c.446.091.798-.43.798-.43s-.606-.185-.847-.224c-.241-.04-.816.28-.816.28s.418.283.865.374zm3.226-1.125s-.211.495-.615.473c-.403-.023-.818-.216-.818-.216s.442-.349.658-.345c.216.004.775.088.775.088zm-1.171-.568c.36-.182.296-.717.296-.717s-.526.207-.715.312c-.19.105-.397.628-.397.628s.455-.04.816-.223zm2.033-1.956s-.001.66-.273.919c-.271.258-.597.348-.597.348s.192-.67.336-.816c.143-.147.534-.451.534-.451zm.996 1.46s-.406.528-.824.5c-.418-.026-.784-.235-.784-.235s.594-.37.821-.364c.227.006.787.099.787.099zm-.098-.12c.222.02.43-.257.43-.257s-.298-.058-.419-.064c-.12-.006-.43.184-.43.184s.197.116.42.137zm-.185-2.139s.237.253.178.469c-.059.215-.208.39-.208.39s-.133-.34-.106-.457c.027-.118.136-.402.136-.402zm-1.959 2.23c.138-.052.106-.218.106-.218s-.201.057-.273.087c-.072.03-.146.189-.146.189s.176-.007.313-.059zm.715.64s.032.166-.106.218c-.138.052-.313.058-.313.058s.073-.159.145-.189.274-.087.274-.087zm-2.642.218c.137-.052.105-.218.105-.218s-.2.058-.273.087c-.072.03-.146.19-.146.19s.176-.007.314-.059zm.613.832s.032.166-.106.218c-.138.051-.313.058-.313.058s.073-.159.145-.189c.073-.03.274-.087.274-.087z"
@@ -2877,24 +3542,35 @@ defmodule Flagpack do
   Renders the Czech Republic flag.
 
   ## Examples
+
       <Flagpack.cze />
-      <Flagpack.cze class="w-5 h-5" />
+      <Flagpack.cze id="my-flag" />
+      <Flagpack.cze class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def cze(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="CZE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"CZE_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#CZE_svg__a)">
+        <g mask={"url(#CZE_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="CZE_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"CZE_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#CZE_svg__b)">
+          <g mask={"url(#CZE_svg__b_#{@id})"}>
             <path fill="#F7FCFF" fill-rule="evenodd" d="M0-2v14h32V-2H0z" clip-rule="evenodd" />
           </g>
           <path fill="#3D58DB" fill-rule="evenodd" d="M0 0v24l18-12L0 0z" clip-rule="evenodd" />
@@ -2908,19 +3584,30 @@ defmodule Flagpack do
   Renders the Germany flag.
 
   ## Examples
+
       <Flagpack.deu />
-      <Flagpack.deu class="w-5 h-5" />
+      <Flagpack.deu id="my-flag" />
+      <Flagpack.deu class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def deu(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="DEU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"DEU_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#DEU_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#DEU_svg__a_#{@id})"}>
           <path fill="#FFD018" d="M0 16h32v8H0v-8z" /><path fill="#E31D1C" d="M0 8h32v8H0V8z" /><path
             fill="#272727"
             d="M0 0h32v8H0V0z"
@@ -2935,29 +3622,42 @@ defmodule Flagpack do
   Renders the Djibouti flag.
 
   ## Examples
+
       <Flagpack.dji />
-      <Flagpack.dji class="w-5 h-5" />
+      <Flagpack.dji id="my-flag" />
+      <Flagpack.dji class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def dji(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="DJI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"DJI_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#DJI_svg__a)">
+        <g mask={"url(#DJI_svg__a_#{@id})"}>
           <path fill="#73BE4A" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="DJI_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"DJI_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#DJI_svg__b)"><path fill="#69F" fill-rule="evenodd" d="M0-2v14h32V-2H0z" clip-rule="evenodd" /></g>
+          <g mask={"url(#DJI_svg__b_#{@id})"}>
+            <path fill="#69F" fill-rule="evenodd" d="M0-2v14h32V-2H0z" clip-rule="evenodd" />
+          </g>
           <path fill="#fff" fill-rule="evenodd" d="M0 0v24l18-12L0 0z" clip-rule="evenodd" />
-          <mask id="DJI_svg__c" width="18" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"DJI_svg__c_#{@id}"} width="18" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24l18-12L0 0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#DJI_svg__c)">
+          <g mask={"url(#DJI_svg__c_#{@id})"}>
             <path
               fill="#E31D1C"
               fill-rule="evenodd"
@@ -2975,24 +3675,35 @@ defmodule Flagpack do
   Renders the Dominica flag.
 
   ## Examples
+
       <Flagpack.dma />
-      <Flagpack.dma class="w-5 h-5" />
+      <Flagpack.dma id="my-flag" />
+      <Flagpack.dma class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def dma(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="DMA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"DMA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#DMA_svg__a)">
+        <g mask={"url(#DMA_svg__a_#{@id})"}>
           <path fill="#279E19" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="DMA_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"DMA_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#DMA_svg__b)">
+          <g mask={"url(#DMA_svg__b_#{@id})"}>
             <path fill="#F7FCFF" fill-rule="evenodd" d="M17 0h2v13h13v2H19v9h-2v-9H0v-2h17V0z" clip-rule="evenodd" /><path
               fill="#272727"
               fill-rule="evenodd"
@@ -3029,7 +3740,7 @@ defmodule Flagpack do
               d="M15.127 7.6s-.427.274-.427 1.029c0 .755 1.012-.234 1.012-.234l-.585-.795z"
               clip-rule="evenodd"
             />
-            <mask id="DMA_svg__c" fill="#fff">
+            <mask id={"DMA_svg__c_#{@id}"} fill="#fff">
               <path
                 fill-rule="evenodd"
                 d="M15.218 7.314l.882-.629.882.629-.326-1.033.87-.645-1.082-.01L16.1 4.6l-.344 1.027-1.083.01.87.644-.325 1.033zm2.923.376l1.083.01.344 1.027.344-1.027 1.082-.01-.87-.644.326-1.033-.882.629-.882-.629.326 1.033-.87.644zm3.014 2.668l-.87-.645 1.082-.01.344-1.026.344 1.027 1.083.01-.87.644.325 1.032-.882-.628-.881.628.325-1.032zm-.326 2.252l.326 1.032-.87.645 1.082.01.344 1.026.344-1.027 1.083-.01-.87-.644.325-1.032-.882.628-.881-.628zm-1.605 3.69l.344-1.027.344 1.027 1.082.01-.87.644.326 1.033-.882-.629-.882.629.326-1.033-.87-.644 1.082-.01zm-2.242.386l-.882.629-.882-.629.326 1.033-.87.644 1.082.01.344 1.027.344-1.027 1.082-.01-.87-.644.326-1.033zm-4.006-.386l1.083.01-.87.644.325 1.033-.882-.629-.882.629.326-1.033-.87-.644 1.082-.01.344-1.027.344 1.027zm-1.06-2.013l-.87-.645.324-1.032-.881.628-.882-.628.325 1.032-.87.645 1.083.01.344 1.026.344-1.027 1.082-.01zm-.87-3.93l.324 1.033-.881-.628-.882.628.325-1.032-.87-.645 1.083-.01.344-1.026.344 1.027 1.082.01-.87.644zm1.586-1.63l.344-1.027 1.083-.01-.87-.644.325-1.033-.882.629-.882-.629.326 1.033-.87.644 1.082.01.344 1.027z"
@@ -3044,7 +3755,7 @@ defmodule Flagpack do
             /><path
               fill="#FECA00"
               d="M16.1 6.685l.058-.081-.058-.042-.058.042.058.081zm-.882.629l-.095-.03-.09.284.243-.173-.058-.081zm1.764 0l-.058.081.243.173-.09-.285-.095.03zm-.326-1.033l-.06-.08-.056.042.02.068.096-.03zm.87-.645l.06.08.24-.177-.299-.003v.1zm-1.082-.01l-.095.032.023.068h.07l.002-.1zM16.1 4.6l.095-.032-.095-.283-.095.283.095.032zm-.344 1.027l.001.1h.071l.023-.069-.095-.031zm-1.083.01v-.1l-.3.002.24.178.06-.08zm.87.644l.096.03.021-.068-.057-.043-.06.08zm3.681 1.42l.095-.033-.023-.067h-.071l-.001.1zm-1.083-.01l-.06-.081-.24.178.3.002v-.1zm1.427 1.036l-.095.032.095.283.095-.283-.095-.032zm.344-1.027l-.001-.1h-.072l-.022.068.095.032zm1.082-.01l.001.1.299-.002-.24-.178-.06.08zm-.87-.644l-.095-.03-.022.068.058.042.06-.08zm.326-1.033l.095.03.09-.284-.244.173.059.081zm-.882.629l-.058.081.058.042.058-.042-.058-.081zm-.882-.629l.058-.081-.243-.173.09.284.095-.03zm.326 1.033l.059.08.057-.042-.021-.068-.095.03zm1.273 2.667l-.001-.1-.299.003.24.178.06-.08zm.87.645l.095.03.022-.068-.058-.043-.06.08zm.212-.654l.001.1.072-.001.022-.068-.095-.031zm.344-1.027l.095-.032-.095-.283-.095.283.095.032zm.344 1.027l-.095.031.023.068h.071l.001-.1zm1.083.01l.06.08.24-.178-.3-.003v.1zm-.87.644l-.06-.08-.057.042.021.068.095-.03zm.325 1.032l-.058.082.243.173-.09-.285-.095.03zm-.882-.628l.058-.082-.058-.041-.058.041.058.082zm-.881.628l-.096-.03-.09.285.244-.173-.059-.082zm.325 2.252l.06.08.057-.042-.022-.068-.095.03zm-.326-1.032l.058-.082-.243-.173.09.285.095-.03zm-.544 1.677l-.06-.08-.24.177.299.003v-.1zm1.082.01l.095-.032-.023-.068h-.07l-.002.1zm.344 1.026l-.095.032.095.283.095-.283-.095-.032zm.344-1.027v-.1l-.072.001-.023.068.095.031zm1.083-.01v.1l.3-.002-.24-.178-.06.08zm-.87-.644l-.096-.03-.021.068.057.043.06-.08zm.325-1.032l.095.03.09-.285-.243.173.058.082zm-.882.628l-.058.082.058.041.058-.041-.058-.082zm-2.143 2.035l.095-.032-.095-.283-.095.283.095.032zm-.344 1.027v.1h.072l.023-.068-.095-.032zm.688 0l-.095.032.023.067h.07l.002-.1zm1.082.01l.06.08.24-.178-.299-.002v.1zm-.87.644l-.06-.08-.057.042.022.068.095-.03zm.326 1.033l-.058.081.243.173-.09-.284-.095.03zm-.882-.629l.058-.081-.058-.042-.058.042.058.081zm-.882.629l-.095-.03-.09.284.243-.173-.058-.081zm.326-1.033l.095.03.021-.068-.057-.042-.06.08zm-.87-.644l-.002-.1-.298.002.24.178.06-.08zM16.1 17.315l-.058.081.058.042.058-.042-.058-.081zm.882-.629l.095.03.09-.284-.243.173.058.081zm-1.764 0l.058-.081-.243-.173.09.285.095-.03zm.326 1.033l.06.08.056-.042-.021-.068-.095.03zm-.87.644l-.06-.08-.24.178.298.003.001-.1zm1.082.01l.095-.032-.023-.067h-.071v.1zM16.1 19.4l-.095.032.095.283.095-.283-.095-.032zm.344-1.027l-.001-.1h-.071l-.023.069.095.031zm1.082-.01l.001.1.299-.002-.24-.178-.06.08zm-.87-.644l-.095-.03-.021.068.057.043.06-.08zm-2.597-1.41l.06.081.24-.178-.3-.002v.1zm-1.083-.01l-.095.033.023.067h.071v-.1zm.212.655l-.06-.08-.056.042.021.068.095-.03zm.326 1.033l-.058.081.243.173-.09-.284-.095.03zm-.882-.629l.058-.081-.058-.042-.058.042.058.081zm-.882.629l-.095-.03-.09.284.243-.173-.058-.081zm.326-1.033l.095.03.021-.068-.057-.042-.06.08zm-.87-.644l-.002-.1-.298.002.24.178.06-.08zm1.082-.01l.001.1h.071l.023-.068-.095-.032zm.344-1.027l.095-.032-.095-.283-.095.283.095.032zm-1.587-1.63l-.095-.03-.022.067.058.043.06-.08zm.87.644l.001.1.299-.003-.24-.178-.06.08zm-.545-1.677l.096.03.09-.285-.244.173.058.082zm-.881.628l-.058.082.058.041.058-.041-.058-.082zm-.882-.628l.058-.082-.243-.173.09.285.095-.03zm.325 1.032l.06.08.057-.042-.021-.068-.096.03zm-.87.645l-.06-.08-.24.177.3.003v-.1zm1.083.01l.095-.032-.023-.068h-.071l-.001.1zm.344 1.026l-.095.032.095.283.095-.283-.095-.032zm.344-1.027l-.001-.1-.072.001-.022.068.095.031zm.537-2.906l-.058.082.244.173-.09-.285-.096.03zm-.325-1.032l-.06-.08-.057.042.022.068.095-.03zm-.556.404l.058-.082-.058-.041-.058.041.058.082zm-.882.628l-.095-.03-.09.285.243-.173-.058-.082zm.325-1.032l.096.03.021-.068-.057-.043-.06.08zm-.87-.645v-.1l-.3.003.24.178.06-.08zm1.083-.01v.1h.072l.023-.068-.095-.031zm.344-1.026l.095-.032-.095-.283-.095.283.095.032zm.344 1.027l-.095.031.022.068h.072v-.1zm1.082.01l.06.08.24-.178-.299-.003v.1zm1.06-2.014v-.1h-.071l-.023.068.095.032zm-.343 1.027l-.095.032.095.283.095-.283-.095-.032zm1.427-1.037v.1l.3-.002-.24-.178-.06.08zm-.87-.644l-.096-.03-.021.068.057.042.06-.08zm.325-1.033l.095.03.09-.284-.243.173.058.081zm-.882.629l-.058.081.058.042.058-.042-.058-.081zm-.882-.629l.058-.081-.243-.173.09.284.095-.03zm.326 1.033l.06.08.056-.042-.021-.068-.095.03zm-.87.644l-.06-.08-.24.178.298.002.001-.1zm1.082.01l.095-.032-.023-.067h-.07l-.002.1zm3.754-1.096l-.882.628.116.163.882-.629-.116-.162zm.998.628l-.882-.628-.116.162.882.629.116-.163zm-.48-.921l.326 1.033.191-.06-.325-1.033-.191.06zm.907-.755l-.87.644.119.161.87-.644-.119-.16zm-1.024.17l1.083.01.001-.2-1.082-.01-.002.2zm-.438-1.094l.344 1.026.19-.063-.344-1.027-.19.064zm-.154 1.026l.344-1.026-.19-.064-.344 1.027.19.063zm-1.177.078l1.083-.01-.002-.2-1.083.01.002.2zm.93.464l-.871-.644-.12.16.871.645.12-.16zm-.29 1.144l.325-1.033-.19-.06-.326 1.032.19.06zm3.91.256l-1.082-.01-.002.2 1.083.01.002-.2zm.439 1.095l-.344-1.027-.19.064.344 1.027.19-.064zm.154-1.027l-.344 1.027.19.064.344-1.027-.19-.064zm1.177-.078l-1.083.01.002.2 1.082-.01-.001-.2zm-.93-.464l.871.645.119-.161-.87-.644-.12.16zm.29-1.143l-.325 1.033.19.06.326-1.033-.19-.06zm-.728.74l.882-.628-.116-.163-.882.628.116.163zm-.998-.628l.882.628.116-.163-.882-.628-.116.163zm.479.921l-.325-1.033-.191.06.325 1.033.19-.06zm-.906.755l.87-.645-.119-.16-.87.644.119.16zm2.024 2.023l.87.644.12-.16-.87-.645-.12.16zm1.141-.19l-1.082.01.002.2 1.082-.01-.002-.2zm.25-.959l-.343 1.027.19.063.343-1.026-.19-.064zm.534 1.027l-.344-1.027-.19.064.344 1.026.19-.063zm.989-.059l-1.083-.01-.002.2 1.083.01.002-.2zm-.812.825l.87-.644-.119-.161-.87.644.119.16zm.361.922l-.325-1.032-.19.06.325 1.032.19-.06zm-1.035-.517l.882.629.116-.163-.882-.629-.116.163zm-.765.629l.881-.629-.116-.163-.882.629.116.163zm.171-1.144l-.325 1.032.19.06.326-1.032-.19-.06zm.191 3.284l-.325-1.032-.19.06.324 1.032.191-.06zm-.906.755l.87-.644-.119-.16-.87.643.12.161zm1.024-.17l-1.082-.01-.002.2 1.082.01.002-.2zm.438 1.094l-.344-1.026-.19.063.344 1.027.19-.064zm.154-1.026l-.344 1.026.19.064.344-1.027-.19-.063zm1.177-.078l-1.083.01.002.2 1.083-.01-.002-.2zm-.929-.464l.87.644.12-.16-.871-.645-.119.16zm.29-1.143l-.326 1.032.19.06.326-1.032-.19-.06zm-.729.74l.882-.629-.116-.163-.882.629.116.163zm-.998-.629l.882.629.116-.163-.881-.629-.117.163zm-1.298 2.55l-.344 1.027.19.064.344-1.027-.19-.064zm.534 1.027l-.344-1.027-.19.064.344 1.027.19-.064zm.988-.058l-1.082-.01-.002.2 1.083.01.001-.2zm-.811.824l.87-.644-.119-.16-.87.644.119.16zm.36.923l-.324-1.033-.191.06.325 1.033.19-.06zm-1.034-.517l.881.628.117-.163-.882-.628-.116.163zm-.766.628l.882-.628-.116-.163-.882.628.116.163zm.172-1.144l-.325 1.033.19.06.326-1.033-.19-.06zm-.834-.534l.87.644.119-.16-.87-.645-.12.161zm1.141-.19l-1.083.01.002.2 1.083-.01-.002-.2zm-3.065 1.196l.882-.628-.116-.163-.882.629.116.162zm-.998-.628l.882.628.116-.162-.882-.629-.116.163zm.479.921l-.325-1.033-.191.06.325 1.033.191-.06zm-.906.755l.87-.644-.119-.161-.87.644.119.16zm1.024-.17l-1.083-.01-.002.2 1.083.01.002-.2zm.438 1.094l-.344-1.026-.19.063.344 1.027.19-.064zm.154-1.026l-.344 1.026.19.064.344-1.027-.19-.064zm1.177-.078l-1.083.01.002.2 1.082-.01-.001-.2zm-.93-.464l.871.644.119-.16-.87-.645-.12.16zm.29-1.144l-.325 1.033.19.06.326-1.032-.19-.06zm-2.826-.446l-1.083-.01-.002.2 1.083.01.002-.2zm-.812.824l.87-.644-.119-.16-.87.644.119.16zm.361.923l-.325-1.033-.191.06.325 1.033.191-.06zm-1.035-.517l.882.628.116-.163-.882-.628-.116.163zm-.766.628l.882-.628-.116-.163-.882.628.116.163zm.172-1.144l-.325 1.033.19.06.326-1.033-.19-.06zm-.834-.534l.87.644.12-.16-.871-.645-.12.161zm1.141-.19l-1.083.01.002.2 1.083-.01-.002-.2zm.25-.959l-.344 1.027.19.064.344-1.027-.19-.064zm.534 1.027l-.344-1.027-.19.064.344 1.027.19-.064zm-2.085-2.545l.87.644.119-.16-.87-.645-.12.16zm.289-1.143l-.325 1.032.19.06.326-1.032-.191-.06zm-.728.74l.881-.629-.116-.163-.881.629.116.163zm-.998-.629l.882.629.116-.163-.882-.629-.116.163zm.479.921l-.326-1.032-.19.06.325 1.032.19-.06zm-.906.755l.87-.644-.12-.16-.87.643.12.161zm1.024-.17l-1.083-.01-.002.2 1.083.01.002-.2zm.438 1.094l-.344-1.026-.19.063.344 1.027.19-.064zm.154-1.026l-.344 1.026.19.064.343-1.027-.19-.063zm1.176-.078l-1.082.01.002.2 1.082-.01-.002-.2zm-.448-2.827l-.325-1.032-.191.06.325 1.032.19-.06zm-1.035-.517l.881.629.116-.163-.881-.629-.116.163zm-.766.629l.882-.629-.116-.163-.882.629.116.163zm.172-1.144l-.325 1.032.19.06.326-1.032-.191-.06zm-.834-.534l.87.644.119-.16-.87-.645-.12.16zm1.141-.19l-1.083.01.002.2 1.083-.01-.002-.2zm.25-.959l-.344 1.027.19.063.344-1.026-.19-.064zm.533 1.027l-.343-1.027-.19.064.344 1.026.19-.063zm.99-.059l-1.083-.01-.002.2 1.082.01.002-.2zm-.812.825l.87-.644-.12-.161-.87.644.12.16zm1.776-2.77l-.344 1.027.19.064.344-1.027-.19-.064zm1.177-.078l-1.083.01.002.2 1.082-.01-.001-.2zm-.93-.464l.871.645.12-.161-.871-.644-.12.16zm.29-1.143l-.325 1.033.19.06.326-1.033-.19-.06zm-.728.74l.882-.628-.116-.163-.882.628.116.163zm-.998-.628l.882.628.116-.163-.882-.628-.116.163zm.479.921l-.325-1.033-.191.06.325 1.033.191-.06zm-.906.755l.87-.645-.119-.16-.87.644.119.16zm1.024-.17l-1.083-.01-.002.2 1.083.01.002-.2zm.438 1.094l-.344-1.027-.19.064.344 1.027.19-.064z"
-              mask="url(#DMA_svg__c)"
+              mask={"url(#DMA_svg__c_#{@id})"}
             />
           </g>
         </g>
@@ -3057,24 +3768,35 @@ defmodule Flagpack do
   Renders the Denmark flag.
 
   ## Examples
+
       <Flagpack.dnk />
-      <Flagpack.dnk class="w-5 h-5" />
+      <Flagpack.dnk id="my-flag" />
+      <Flagpack.dnk class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def dnk(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="DNK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"DNK_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#DNK_svg__a)">
+        <g mask={"url(#DNK_svg__a_#{@id})"}>
           <path fill="#C51918" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="DNK_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"DNK_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#DNK_svg__b)">
+          <g mask={"url(#DNK_svg__b_#{@id})"}>
             <path fill="#F7FCFF" fill-rule="evenodd" d="M10 0h4v10h18v4H14v10h-4V14H0v-4h10V0z" clip-rule="evenodd" />
           </g>
         </g>
@@ -3087,24 +3809,35 @@ defmodule Flagpack do
   Renders the Dominican Republic flag.
 
   ## Examples
+
       <Flagpack.dom />
-      <Flagpack.dom class="w-5 h-5" />
+      <Flagpack.dom id="my-flag" />
+      <Flagpack.dom class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def dom(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="DOM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"DOM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#DOM_svg__a)">
+        <g mask={"url(#DOM_svg__a_#{@id})"}>
           <path fill="#C51918" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="DOM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"DOM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#DOM_svg__b)">
+          <g mask={"url(#DOM_svg__b_#{@id})"}>
             <path fill="#4257BF" d="M0 0h14v10H0zm18 14h14v10H18z" /><path
               fill="#F7FCFF"
               fill-rule="evenodd"
@@ -3183,24 +3916,35 @@ defmodule Flagpack do
   Renders the Ecuador flag.
 
   ## Examples
+
       <Flagpack.ecu />
-      <Flagpack.ecu class="w-5 h-5" />
+      <Flagpack.ecu id="my-flag" />
+      <Flagpack.ecu class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ecu(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ECU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ECU_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ECU_svg__a)">
+        <g mask={"url(#ECU_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ECU_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ECU_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#ECU_svg__b)">
+          <g mask={"url(#ECU_svg__b_#{@id})"}>
             <path fill="#FECA00" fill-rule="evenodd" d="M0 0v12h32V0H0z" clip-rule="evenodd" /><path
               fill="#E31D1C"
               fill-rule="evenodd"
@@ -3270,7 +4014,7 @@ defmodule Flagpack do
               stroke-width=".5"
               d="M15.948 17.287c.898 0 1.675-.578 2.215-1.435.541-.86.868-2.033.868-3.315 0-1.283-.327-2.455-.868-3.315-.54-.857-1.317-1.435-2.215-1.435-.9 0-1.676.578-2.215 1.435-.542.86-.869 2.032-.869 3.315 0 1.282.327 2.455.869 3.315.54.857 1.316 1.435 2.215 1.435z"
             />
-            <mask id="ECU_svg__c" width="8" height="11" x="12" y="7" maskUnits="userSpaceOnUse">
+            <mask id={"ECU_svg__c_#{@id}"} width="8" height="11" x="12" y="7" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 stroke="#fff"
@@ -3278,7 +4022,7 @@ defmodule Flagpack do
                 d="M15.948 17.287c.898 0 1.675-.578 2.215-1.435.541-.86.868-2.033.868-3.315 0-1.283-.327-2.455-.868-3.315-.54-.857-1.317-1.435-2.215-1.435-.9 0-1.676.578-2.215 1.435-.542.86-.869 2.032-.869 3.315 0 1.282.327 2.455.869 3.315.54.857 1.316 1.435 2.215 1.435z"
               />
             </mask>
-            <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#ECU_svg__c)">
+            <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#ECU_svg__c_#{@id})"}>
               <path
                 fill="#6FAE21"
                 d="M12.88 12.61h1.612s1.108.245.554.439c-.554.193-.554.257-.554.532v1.5c0 .215.394.676-.437.676-.83 0-1.547-3.416-1.547-3.416l.371.269zm6.3.186s-1.499.295-2.525.197c-1.026-.099-1.476-.197-1.476-.197s.715.371.97.683c.253.312.774.85 1.304.85s1.344.504 1.344.504l.382-2.037z"
@@ -3298,24 +4042,35 @@ defmodule Flagpack do
   Renders the Egypt flag.
 
   ## Examples
+
       <Flagpack.egy />
-      <Flagpack.egy class="w-5 h-5" />
+      <Flagpack.egy id="my-flag" />
+      <Flagpack.egy class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def egy(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="EGY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"EGY_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#EGY_svg__a)">
+        <g mask={"url(#EGY_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="EGY_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"EGY_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#EGY_svg__b)">
+          <g mask={"url(#EGY_svg__b_#{@id})"}>
             <path fill="#BF2714" fill-rule="evenodd" d="M0 0v8h32V0H0z" clip-rule="evenodd" /><path
               fill="#272727"
               fill-rule="evenodd"
@@ -3348,19 +4103,30 @@ defmodule Flagpack do
   Renders the Eritrea flag.
 
   ## Examples
+
       <Flagpack.eri />
-      <Flagpack.eri class="w-5 h-5" />
+      <Flagpack.eri id="my-flag" />
+      <Flagpack.eri class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def eri(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 33 24">
-        <mask id="ERI_svg__a" width="34" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ERI_svg__a_#{@id}"} width="34" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h34v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#ERI_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#ERI_svg__a_#{@id})"}>
           <path fill="#43B764" d="M0 0v12h32V0H0z" /><path fill="#B4D7F4" d="M0 12v12h32V12H0z" /><path
             fill="#BE0027"
             d="M0 0l33 12L0 24V0z"
@@ -3378,19 +4144,30 @@ defmodule Flagpack do
   Renders the Western Sahara flag.
 
   ## Examples
+
       <Flagpack.esh />
-      <Flagpack.esh class="w-5 h-5" />
+      <Flagpack.esh id="my-flag" />
+      <Flagpack.esh class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def esh(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ESH_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ESH_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#ESH_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#ESH_svg__a_#{@id})"}>
           <path fill="#F7FCFF" d="M0 0h32v24H0V0z" /><path fill="#272727" d="M0 0v8h32V0H0z" /><path
             fill="#5EAA22"
             d="M0 16v8h32v-8H0z"
@@ -3408,24 +4185,35 @@ defmodule Flagpack do
   Renders the Spain flag.
 
   ## Examples
+
       <Flagpack.esp />
-      <Flagpack.esp class="w-5 h-5" />
+      <Flagpack.esp id="my-flag" />
+      <Flagpack.esp class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def esp(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ESP_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ESP_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ESP_svg__a)">
+        <g mask={"url(#ESP_svg__a_#{@id})"}>
           <path fill="#FFB400" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ESP_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ESP_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#ESP_svg__b)">
+          <g mask={"url(#ESP_svg__b_#{@id})"}>
             <path fill="#C51918" fill-rule="evenodd" d="M0 0v6h32V0H0zm0 18v6h32v-6H0z" clip-rule="evenodd" /><path
               fill="#F1F9FF"
               d="M5.008 10.272h1.12v5.824h-1.12z"
@@ -3445,7 +4233,7 @@ defmodule Flagpack do
               d="M4.56 16.992h2.016v.896s-.252-.112-.504-.112-.504.112-.504.112-.252-.112-.504-.112-.504.112-.504.112v-.896z"
               clip-rule="evenodd"
             />
-            <mask id="ESP_svg__c" width="3" height="2" x="4" y="16" maskUnits="userSpaceOnUse">
+            <mask id={"ESP_svg__c_#{@id}"} width="3" height="2" x="4" y="16" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 fill-rule="evenodd"
@@ -3453,7 +4241,7 @@ defmodule Flagpack do
                 clip-rule="evenodd"
               />
             </mask>
-            <g fill="#fff" mask="url(#ESP_svg__c)">
+            <g fill="#fff" mask={"url(#ESP_svg__c_#{@id})"}>
               <path d="M4.542 17.712l-.044-.107a1.33 1.33 0 01.546-.122c.118 0 .18.017.284.063a.49.49 0 00.24.054.49.49 0 00.24-.054.593.593 0 01.285-.063c.182 0 .364.04.546.122l-.044.107a1.227 1.227 0 00-.502-.112.49.49 0 00-.24.054.593.593 0 01-.285.063.593.593 0 01-.284-.063.49.49 0 00-.24-.054c-.167 0-.334.037-.502.112zm0-.336l-.044-.107a1.33 1.33 0 01.546-.122c.118 0 .18.017.284.063a.49.49 0 00.24.054.49.49 0 00.24-.054.593.593 0 01.285-.063c.182 0 .364.04.546.122l-.044.107a1.227 1.227 0 00-.502-.112.49.49 0 00-.24.054.593.593 0 01-.285.063.593.593 0 01-.284-.063.49.49 0 00-.24-.054c-.167 0-.334.037-.502.112z" />
             </g>
             <path fill="#F1F9FF" d="M15.984 10.272h1.12v5.824h-1.12z" /><path
@@ -3472,7 +4260,7 @@ defmodule Flagpack do
               d="M15.536 16.992h2.016v.896s-.252-.112-.504-.112-.504.112-.504.112-.252-.112-.504-.112-.504.112-.504.112v-.896z"
               clip-rule="evenodd"
             />
-            <mask id="ESP_svg__d" width="3" height="2" x="15" y="16" maskUnits="userSpaceOnUse">
+            <mask id={"ESP_svg__d_#{@id}"} width="3" height="2" x="15" y="16" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 fill-rule="evenodd"
@@ -3480,7 +4268,7 @@ defmodule Flagpack do
                 clip-rule="evenodd"
               />
             </mask>
-            <g fill="#fff" mask="url(#ESP_svg__d)">
+            <g fill="#fff" mask={"url(#ESP_svg__d_#{@id})"}>
               <path d="M15.518 17.712l-.044-.107a1.33 1.33 0 01.546-.122c.118 0 .18.017.284.063a.49.49 0 00.24.054.49.49 0 00.24-.054.593.593 0 01.285-.063c.182 0 .364.04.546.122l-.044.107a1.227 1.227 0 00-.502-.112.49.49 0 00-.24.054.593.593 0 01-.285.063.593.593 0 01-.284-.063.49.49 0 00-.24-.054c-.167 0-.334.037-.502.112zm0-.336l-.044-.107a1.33 1.33 0 01.546-.122c.118 0 .18.017.284.063a.49.49 0 00.24.054.49.49 0 00.24-.054.593.593 0 01.285-.063c.182 0 .364.04.546.122l-.044.107a1.227 1.227 0 00-.502-.112.49.49 0 00-.24.054.593.593 0 01-.285.063.593.593 0 01-.284-.063.49.49 0 00-.24-.054c-.167 0-.334.037-.502.112z" />
             </g>
             <path
@@ -3542,7 +4330,7 @@ defmodule Flagpack do
               clip-rule="evenodd"
               opacity=".3"
             />
-            <mask id="ESP_svg__e" width="8" height="9" x="7" y="9" maskUnits="userSpaceOnUse">
+            <mask id={"ESP_svg__e_#{@id}"} width="8" height="9" x="7" y="9" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 fill-rule="evenodd"
@@ -3550,7 +4338,7 @@ defmodule Flagpack do
                 clip-rule="evenodd"
               />
             </mask>
-            <g mask="url(#ESP_svg__e)">
+            <g mask={"url(#ESP_svg__e_#{@id})"}>
               <path fill="#FFC034" d="M7.472 13.296h3.696v4.368H7.472z" /><path
                 fill="#AD1619"
                 d="M7.92 13.52h.448v4.144H7.92zm1.568 0h.448v4.144h-.448zm-.784 0h.448v4.144h-.448zm1.568 0h.448v4.144h-.448zm-2.8-4.368h3.696v4.256H7.472z"
@@ -3597,24 +4385,35 @@ defmodule Flagpack do
   Renders the Estonia flag.
 
   ## Examples
+
       <Flagpack.est />
-      <Flagpack.est class="w-5 h-5" />
+      <Flagpack.est id="my-flag" />
+      <Flagpack.est class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def est(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="EST_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"EST_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#EST_svg__a)">
+        <g mask={"url(#EST_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="EST_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"EST_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#EST_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#EST_svg__b_#{@id})"}>
             <path fill="#40A8FF" d="M0 0v8h32V0H0z" /><path fill="#272727" d="M0 8v8h32V8H0z" />
           </g>
         </g>
@@ -3627,24 +4426,35 @@ defmodule Flagpack do
   Renders the Ethiopia flag.
 
   ## Examples
+
       <Flagpack.eth />
-      <Flagpack.eth class="w-5 h-5" />
+      <Flagpack.eth id="my-flag" />
+      <Flagpack.eth class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def eth(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ETH_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ETH_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ETH_svg__a)">
+        <g mask={"url(#ETH_svg__a_#{@id})"}>
           <path fill="#FECA00" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ETH_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ETH_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#ETH_svg__b)">
+          <g mask={"url(#ETH_svg__b_#{@id})"}>
             <path fill="#5EAA22" fill-rule="evenodd" d="M0 0v8h32V0H0z" clip-rule="evenodd" /><path
               fill="#E31D1C"
               fill-rule="evenodd"
@@ -3670,24 +4480,35 @@ defmodule Flagpack do
   Renders the Finland flag.
 
   ## Examples
+
       <Flagpack.fin />
-      <Flagpack.fin class="w-5 h-5" />
+      <Flagpack.fin id="my-flag" />
+      <Flagpack.fin class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def fin(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="FIN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"FIN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#FIN_svg__a)">
+        <g mask={"url(#FIN_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="FIN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"FIN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#FIN_svg__b)">
+          <g mask={"url(#FIN_svg__b_#{@id})"}>
             <path
               fill="#2E42A5"
               stroke="#2E42A5"
@@ -3705,31 +4526,42 @@ defmodule Flagpack do
   Renders the Fiji flag.
 
   ## Examples
+
       <Flagpack.fji />
-      <Flagpack.fji class="w-5 h-5" />
+      <Flagpack.fji id="my-flag" />
+      <Flagpack.fji class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def fji(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="FJI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"FJI_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#FJI_svg__a)">
+        <g mask={"url(#FJI_svg__a_#{@id})"}>
           <path fill="#67BFE5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="FJI_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"FJI_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#FJI_svg__b)">
+          <g mask={"url(#FJI_svg__b_#{@id})"}>
             <path
               fill="#F7FCFF"
               fill-rule="evenodd"
               d="M20 10h9.655v8.333S28.845 22 24.828 22C20.81 22 20 18.333 20 18.333V10z"
               clip-rule="evenodd"
             />
-            <mask id="FJI_svg__c" width="10" height="12" x="20" y="10" maskUnits="userSpaceOnUse">
+            <mask id={"FJI_svg__c_#{@id}"} width="10" height="12" x="20" y="10" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 fill-rule="evenodd"
@@ -3737,7 +4569,7 @@ defmodule Flagpack do
                 clip-rule="evenodd"
               />
             </mask>
-            <g mask="url(#FJI_svg__c)">
+            <g mask={"url(#FJI_svg__c_#{@id})"}>
               <path fill="#C3352C" d="M20 10h9.655v3H20z" /><path fill="#C3352C" d="M24.138 12.667h1.379V22h-1.379z" /><path
                 fill="#C3352C"
                 d="M20 16.333h9.655v1.333H20z"
@@ -3781,10 +4613,10 @@ defmodule Flagpack do
               />
             </g>
             <path fill="#2B409A" d="M0 0h18v14H0z" />
-            <mask id="FJI_svg__d" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"FJI_svg__d_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#FJI_svg__d)">
+            <g mask={"url(#FJI_svg__d_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -3795,7 +4627,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="FJI_svg__e" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"FJI_svg__e_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -3805,7 +4637,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#FJI_svg__e)"
+                mask={"url(#FJI_svg__e_#{@id})"}
               />
             </g>
           </g>
@@ -3819,31 +4651,42 @@ defmodule Flagpack do
   Renders the Falkland Islands flag.
 
   ## Examples
+
       <Flagpack.flk />
-      <Flagpack.flk class="w-5 h-5" />
+      <Flagpack.flk id="my-flag" />
+      <Flagpack.flk class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def flk(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="FLK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"FLK_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#FLK_svg__a)">
+        <g mask={"url(#FLK_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="FLK_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"FLK_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#FLK_svg__b)">
+          <g mask={"url(#FLK_svg__b_#{@id})"}>
             <path
               fill="#6DC2FF"
               stroke="#F7FCFF"
               stroke-width=".5"
               d="M25.95 19.714c-1.028 0-1.744-.243-2.254-.666-.512-.425-.847-1.06-1.062-1.904-.215-.846-.303-1.88-.336-3.083a88.606 88.606 0 01-.014-2.745l.004-1.033h7.416c.132 2.407.18 4.753-.292 6.513-.242.904-.615 1.63-1.164 2.13-.544.495-1.282.788-2.298.788z"
             />
-            <mask id="FLK_svg__c" width="9" height="10" x="22" y="10" maskUnits="userSpaceOnUse">
+            <mask id={"FLK_svg__c_#{@id}"} width="9" height="10" x="22" y="10" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 stroke="#fff"
@@ -3851,7 +4694,7 @@ defmodule Flagpack do
                 d="M25.95 19.714c-1.028 0-1.744-.243-2.254-.666-.512-.425-.847-1.06-1.062-1.904-.215-.846-.303-1.88-.336-3.083a88.606 88.606 0 01-.014-2.745l.004-1.033h7.416c.132 2.407.18 4.753-.292 6.513-.242.904-.615 1.63-1.164 2.13-.544.495-1.282.788-2.298.788z"
               />
             </mask>
-            <g mask="url(#FLK_svg__c)">
+            <g mask={"url(#FLK_svg__c_#{@id})"}>
               <path
                 fill="#E1E5E8"
                 fill-rule="evenodd"
@@ -3878,10 +4721,10 @@ defmodule Flagpack do
               fill="#2B409A"
               d="M0 0h18v14H0z"
             />
-            <mask id="FLK_svg__d" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"FLK_svg__d_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#FLK_svg__d)">
+            <g mask={"url(#FLK_svg__d_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -3892,7 +4735,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="FLK_svg__e" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"FLK_svg__e_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -3902,7 +4745,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#FLK_svg__e)"
+                mask={"url(#FLK_svg__e_#{@id})"}
               />
             </g>
           </g>
@@ -3916,19 +4759,30 @@ defmodule Flagpack do
   Renders the France flag.
 
   ## Examples
+
       <Flagpack.fra />
-      <Flagpack.fra class="w-5 h-5" />
+      <Flagpack.fra id="my-flag" />
+      <Flagpack.fra class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def fra(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="FRA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"FRA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#FRA_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#FRA_svg__a_#{@id})"}>
           <path fill="#F50100" d="M22 0h10v24H22V0z" /><path fill="#2E42A5" d="M0 0h12v24H0V0z" /><path
             fill="#F7FCFF"
             d="M10 0h12v24H10V0z"
@@ -3943,24 +4797,35 @@ defmodule Flagpack do
   Renders the Faroe Island flag.
 
   ## Examples
+
       <Flagpack.fro />
-      <Flagpack.fro class="w-5 h-5" />
+      <Flagpack.fro id="my-flag" />
+      <Flagpack.fro class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def fro(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="FRO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"FRO_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#FRO_svg__a)">
+        <g mask={"url(#FRO_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="FRO_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"FRO_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#FRO_svg__b)">
+          <g mask={"url(#FRO_svg__b_#{@id})"}>
             <path fill="#F50100" stroke="#2E42A5" stroke-width="2" d="M10-1H9V9H-1v6H9v10h6V15h18V9H15V-1h-5z" />
           </g>
         </g>
@@ -3973,24 +4838,35 @@ defmodule Flagpack do
   Renders the Micronesia (Federated States of) flag.
 
   ## Examples
+
       <Flagpack.fsm />
-      <Flagpack.fsm class="w-5 h-5" />
+      <Flagpack.fsm id="my-flag" />
+      <Flagpack.fsm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def fsm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="FSM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"FSM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#FSM_svg__a)">
+        <g mask={"url(#FSM_svg__a_#{@id})"}>
           <path fill="#63B3E1" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="FSM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"FSM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill="#F7FCFF" fill-rule="evenodd" clip-rule="evenodd" mask="url(#FSM_svg__b)">
+          <g fill="#F7FCFF" fill-rule="evenodd" clip-rule="evenodd" mask={"url(#FSM_svg__b_#{@id})"}>
             <path d="M16 7.3l-1.763.927.336-1.963-1.426-1.391 1.971-.287L16 2.8l.882 1.786 1.971.287-1.426 1.39.336 1.964L16 7.3zm0 12l-1.763.927.336-1.963-1.426-1.391 1.971-.287L16 14.8l.882 1.787 1.971.286-1.426 1.39.336 1.964L16 19.3zm-6.2-5.8l-1.763.927.336-1.963-1.426-1.391 1.971-.287L9.8 9l.882 1.787 1.971.286-1.426 1.39.336 1.964L9.8 13.5zm12.2 0l-1.763.927.336-1.963-1.426-1.391 1.971-.287L22 9l.882 1.787 1.971.286-1.426 1.39.336 1.964L22 13.5z" />
           </g>
         </g>
@@ -4003,19 +4879,30 @@ defmodule Flagpack do
   Renders the Gabon flag.
 
   ## Examples
+
       <Flagpack.gab />
-      <Flagpack.gab class="w-5 h-5" />
+      <Flagpack.gab id="my-flag" />
+      <Flagpack.gab class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gab(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GAB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GAB_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#GAB_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#GAB_svg__a_#{@id})"}>
           <path fill="#40A8FF" d="M0 16h32v8H0v-8z" /><path fill="#FECA00" d="M0 8h32v8H0V8z" /><path
             fill="#73BE4A"
             d="M0 0h32v8H0V0z"
@@ -4030,19 +4917,30 @@ defmodule Flagpack do
   Renders the England flag.
 
   ## Examples
+
       <Flagpack.gb_eng />
-      <Flagpack.gb_eng class="w-5 h-5" />
+      <Flagpack.gb_eng id="my-flag" />
+      <Flagpack.gb_eng class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gb_eng(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GB-ENG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GB-ENG_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#GB-ENG_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#GB-ENG_svg__a_#{@id})"}>
           <path fill="#F7FCFF" d="M0 0v24h32V0H0z" /><path fill="#F50302" d="M18 0h-4v10H0v4h14v10h4V14h14v-4H18V0z" />
         </g>
       </svg>
@@ -4054,28 +4952,39 @@ defmodule Flagpack do
   Renders the Northern Ireland flag.
 
   ## Examples
+
       <Flagpack.gb_nir />
-      <Flagpack.gb_nir class="w-5 h-5" />
+      <Flagpack.gb_nir id="my-flag" />
+      <Flagpack.gb_nir class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gb_nir(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GB-NIR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GB-NIR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GB-NIR_svg__a)">
+        <g mask={"url(#GB-NIR_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="GB-NIR_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"GB-NIR_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#GB-NIR_svg__b)">
-            <mask id="GB-NIR_svg__c" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <g mask={"url(#GB-NIR_svg__b_#{@id})"}>
+            <mask id={"GB-NIR_svg__c_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h32v24H0z" />
             </mask>
-            <g mask="url(#GB-NIR_svg__c)">
+            <g mask={"url(#GB-NIR_svg__c_#{@id})"}>
               <path
                 fill="#fff"
                 d="M-3.563 22.285l7.041 2.979L32.16 3.238l3.714-4.426-7.53-.995-11.698 9.491-9.416 6.396-10.793 8.581z"
@@ -4086,7 +4995,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M35.323 23.783l-3.588 1.728-14.286-11.86-4.236-1.324-17.445-13.5H.806l17.434 13.18 4.631 1.588 12.452 10.188z"
               />
-              <mask id="GB-NIR_svg__d" fill="#fff">
+              <mask id={"GB-NIR_svg__d_#{@id}"} fill="#fff">
                 <path
                   fill-rule="evenodd"
                   d="M19.778-2h-7.556V8H-1.973v8h14.195v10h7.556V16h14.25V8h-14.25V-2z"
@@ -4101,7 +5010,7 @@ defmodule Flagpack do
               /><path
                 fill="#fff"
                 d="M12.222-2v-2h-2v2h2zm7.556 0h2v-2h-2v2zM12.222 8v2h2V8h-2zM-1.973 8V6h-2v2h2zm0 8h-2v2h2v-2zm14.195 0h2v-2h-2v2zm0 10h-2v2h2v-2zm7.556 0v2h2v-2h-2zm0-10v-2h-2v2h2zm14.25 0v2h2v-2h-2zm0-8h2V6h-2v2zm-14.25 0h-2v2h2V8zm-7.556-8h7.556v-4h-7.556v4zm2 8V-2h-4V8h4zm-16.195 2h14.195V6H-1.973v4zm2 6V8h-4v8h4zm12.195-2H-1.973v4h14.195v-4zm2 12V16h-4v10h4zm5.556-2h-7.556v4h7.556v-4zm-2-8v10h4V16h-4zm16.25-2h-14.25v4h14.25v-4zm-2-6v8h4V8h-4zm-12.25 2h14.25V6h-14.25v4zm-2-12V8h4V-2h-4z"
-                mask="url(#GB-NIR_svg__d)"
+                mask={"url(#GB-NIR_svg__d_#{@id})"}
               />
             </g>
           </g>
@@ -4115,24 +5024,35 @@ defmodule Flagpack do
   Renders the Scotland flag.
 
   ## Examples
+
       <Flagpack.gb_sct />
-      <Flagpack.gb_sct class="w-5 h-5" />
+      <Flagpack.gb_sct id="my-flag" />
+      <Flagpack.gb_sct class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gb_sct(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GB-SCT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GB-SCT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GB-SCT_svg__a)">
+        <g mask={"url(#GB-SCT_svg__a_#{@id})"}>
           <path fill="#0067C3" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="GB-SCT_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"GB-SCT_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill="#fff" mask="url(#GB-SCT_svg__b)">
+          <g fill="#fff" mask={"url(#GB-SCT_svg__b_#{@id})"}>
             <path d="M1.2 25.6l32-24-2.4-3.2-32 24 2.4 3.2z" /><path d="M-1.2 1.6l32 24 2.4-3.2-32-24-2.4 3.2z" />
           </g>
         </g>
@@ -4145,28 +5065,39 @@ defmodule Flagpack do
   Renders the United Kingdom flag.
 
   ## Examples
+
       <Flagpack.gb_ukm />
-      <Flagpack.gb_ukm class="w-5 h-5" />
+      <Flagpack.gb_ukm id="my-flag" />
+      <Flagpack.gb_ukm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gb_ukm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GB-UKM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GB-UKM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GB-UKM_svg__a)">
+        <g mask={"url(#GB-UKM_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="GB-UKM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"GB-UKM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#GB-UKM_svg__b)">
-            <mask id="GB-UKM_svg__c" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <g mask={"url(#GB-UKM_svg__b_#{@id})"}>
+            <mask id={"GB-UKM_svg__c_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h32v24H0z" />
             </mask>
-            <g mask="url(#GB-UKM_svg__c)">
+            <g mask={"url(#GB-UKM_svg__c_#{@id})"}>
               <path
                 fill="#fff"
                 d="M-3.563 22.285l7.042 2.979 28.68-22.026 3.715-4.426-7.53-.995-11.698 9.491-9.416 6.396-10.793 8.581z"
@@ -4177,7 +5108,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M35.323 23.783l-3.588 1.728-14.286-11.86-4.236-1.324-17.445-13.5H.806l17.434 13.18 4.631 1.588 12.452 10.188z"
               />
-              <mask id="GB-UKM_svg__d" fill="#fff">
+              <mask id={"GB-UKM_svg__d_#{@id}"} fill="#fff">
                 <path
                   fill-rule="evenodd"
                   d="M19.778-2h-7.556V8H-1.972v8h14.194v10h7.556V16h14.25V8h-14.25V-2z"
@@ -4192,7 +5123,7 @@ defmodule Flagpack do
               /><path
                 fill="#fff"
                 d="M12.222-2v-2h-2v2h2zm7.556 0h2v-2h-2v2zM12.222 8v2h2V8h-2zM-1.972 8V6h-2v2h2zm0 8h-2v2h2v-2zm14.194 0h2v-2h-2v2zm0 10h-2v2h2v-2zm7.556 0v2h2v-2h-2zm0-10v-2h-2v2h2zm14.25 0v2h2v-2h-2zm0-8h2V6h-2v2zm-14.25 0h-2v2h2V8zm-7.556-8h7.556v-4h-7.556v4zm2 8V-2h-4V8h4zm-16.194 2h14.194V6H-1.972v4zm2 6V8h-4v8h4zm12.194-2H-1.972v4h14.194v-4zm2 12V16h-4v10h4zm5.556-2h-7.556v4h7.556v-4zm-2-8v10h4V16h-4zm16.25-2h-14.25v4h14.25v-4zm-2-6v8h4V8h-4zm-12.25 2h14.25V6h-14.25v4zm-2-12V8h4V-2h-4z"
-                mask="url(#GB-UKM_svg__d)"
+                mask={"url(#GB-UKM_svg__d_#{@id})"}
               />
             </g>
           </g>
@@ -4206,26 +5137,37 @@ defmodule Flagpack do
   Renders the Wales flag.
 
   ## Examples
+
       <Flagpack.gb_wls />
-      <Flagpack.gb_wls class="w-5 h-5" />
+      <Flagpack.gb_wls id="my-flag" />
+      <Flagpack.gb_wls class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gb_wls(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GB-WLS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GB-WLS_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GB-WLS_svg__a)">
+        <g mask={"url(#GB-WLS_svg__a_#{@id})"}>
           <path fill="#5DAA22" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="GB-WLS_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"GB-WLS_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#GB-WLS_svg__b)">
+          <g mask={"url(#GB-WLS_svg__b_#{@id})"}>
             <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v12h32V0H0z" clip-rule="evenodd" />
-            <mask id="GB-WLS_svg__c" width="28" height="20" x="2" y="2" fill="#000" maskUnits="userSpaceOnUse">
+            <mask id={"GB-WLS_svg__c_#{@id}"} width="28" height="20" x="2" y="2" fill="#000" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M2 2h28v20H2z" /><path
                 fill-rule="evenodd"
                 d="M14.692 8.907c-.018-.57-.036-1.118.668-1.772C17.192 5.506 19.056 4.228 21.14 3c-.422.752-.724 2.15.384 2.239.355.005 4.25-1.742 4.25-1.742-1.355 1.054-2.913 2.524-1.103 3.16-1.66.552-3.037 2.342-1.83 3.783-.862-.261-1.993.331-2.197 1 .213-.002.587.03 1.046.071 1.659.146 4.417.39 4.556-.565-.894.466-2.443.276-2.49-1.06.012-1.145 1.626-1.79 3-.931.072-.154.141-.309.21-.463l.213-.47-.18.025c-.433.06-.84.117-1.298.003 1.058-1.07 2.054-2.124 2.955-3.31-.198 1.48 0 3.624.344 4.325a2.126 2.126 0 01-1.114-1.03l-.244.809-.244.81c.788 1.706-.056 4.236-.501 5.572-.139.415-.239.715-.239.838-.362.145-.627-.08-.891-.307-.133-.112-.265-.226-.41-.292.228.63.066 1.629-.075 2.501-.053.328-.103.638-.129.904-.037.385.123.656.2.787a.58.58 0 01.037.067c.215.09.714.334.749.367 0 0 .453.022.578.7-.302-.392-.714-.268-.714-.268l-.076.054-.08.058-.364-.233c-.402-.285-.811-.27-1.248-.068a.63.63 0 01-.667.023c-.223-.258-.682-.076-.774-.04a.144.144 0 01-.016.007c-.01 0-.572.4-.572.4s-.136-.034-.146-.034c-.023 0-.373-.004-.832.31.123-.678.583-.666.583-.666-.029-.094.005-.115.039-.136.017-.01.034-.02.043-.04.101-.12.277-.146.453-.172.088-.013.176-.026.255-.05-.188-.067-.542-.163-.793-.138a.481.481 0 00-.233.082c-.078.049-.133.083-.326-.01a1.044 1.044 0 00.02-.067c-.296-.028-.528-.04-.697.255-.015-.434.284-.558.527-.657l.098-.042c.113-.187.608-.18.593-.166a3.007 3.007 0 00-.227-.278.892.892 0 01-.075-.089c0-.01-.384-.259-.655.023.052-.589.923-.597 1.009-.51l.255.266.255.265a121.15 121.15 0 01.478.323c.264.124.945.024 1.288-.367.202-.229.206-.657.208-.874 0-.037 0-.068.002-.09.016-.3 0-.64-.015-.926-.016-.326-.028-.582.015-.627-.23-.087-.353-.297-.406-.389-.017-.027-.027-.044-.031-.044-.125.027-1.12.243-2.101-.044-.777-.228-1.56-.683-2.034-.958-.24-.14-.4-.233-.442-.229a1.133 1.133 0 01-.325.394c-.054.045-.12.1-.206.183-.296.328-.191.882.04 1.143l1.094.443c.832.051 1.03.56 1.02 1.054-.273-.087-.753-.27-1.017-.37l-.107-.04c-.671 1.154-1.626 1.964-2.987 2.339.15.075.451.144.696.2.178.041.327.075.366.1.405.09.69.227.687.633-.271-.322-.535-.314-.75-.156-.287.129-.493-.016-.7-.16a1.251 1.251 0 00-.319-.184c-.288-.221-.57-.128-.822.01-.235-.164-.5-.122-.768-.079a5.608 5.608 0 01-.168.025c-.406.043-.87.153-1.072.399-.103.087-.159.006-.184-.03-.007-.01-.012-.017-.014-.014-.468-.161-.675.276-.675.276-.111-.506.129-.615.383-.687l-.52-.321a.222.222 0 00-.01-.038c-.01-.031-.014-.042.063-.062-.204-.14-.41-.033-.635.188.02-.462.556-.751.781-.598a.537.537 0 01.675.044c.246.198.618.224.864.144a.816.816 0 00-.634-.51c-.269-.07-.58-.17-.489-.344-.165-.251-.402-.173-.666.033.094-.572 1.04-.605 1.186-.42.153.043.22.133.285.224.033.045.066.09.11.13.255.279.652.423.978.477.599-.072 1.204-.575 1.587-.894.145-.12.258-.214.327-.249 0 0-.398-.037-.426-.31-.127-.001-.255-.188-.418-.426-.242-.352-.562-.818-1.07-.962-.89-.252-2.965.536-3.27.652a.92.92 0 01-.038.014c-.053.502-.429.966-.429.966a4.216 4.216 0 00-.214-.46c-.149-.288-.289-.56-.273-.875a8.998 8.998 0 01-.986 1.154c-.148.152-.297.304-.46.49-.39.428-.59.932-.728 1.487.291.178 1.103.334 1.103.334.355.007.617.216.613.61-.316-.35-.634-.133-.634-.133-.26.23-.59.126-.906 0-.274-.312-.672-.49-1.008-.222-.195.169-.338.133-.505.09-.18-.044-.386-.096-.713.098-.447.434-1.07.474-1.238.21 0 0-.28-.01-.77.166.125-.809.614-.531.614-.531l-.011-.134-.01-.121-.177-.067c-.316-.148-.707-.112-.884.044.12-.53.583-.533.926-.477.045-.053.075-.149.103-.237.01-.034.021-.066.032-.095l-.025-.026c-.18-.194-.34-.365-.568-.163.098-.999 1.245-.257 1.588-.036l.056.036c.74.265 2.664-2.757 2.758-2.968-.548-.026-1.163.035-1.592.194-.122.397-.339.605-.593.85l-.129.126c.007-1.141-.5-1.717-1.227-2.543l-.122-.14c-.909-.634-1.31-1.913-1.384-2.33-.139.39-.242.507-.272.543-.006.006-.01.01-.01.012-.201.234-.82.73-.737.41-.279-.07-.036-.318.103-.41.036-.007.095-.113.161-.233.094-.17.203-.367.287-.356l.177-1.74c-.107-.047-.155-.216-.219-.44a3.985 3.985 0 00-.157-.474C3.512 9.043 3.152 8.543 3 8.5c.482-.09.668.105.797.24.054.058.098.104.15.115.11.07.202.325.303.605.082.23.17.474.28.649-.186-.636-.092-1.065.092-1.62.001-.3-.117-.591-.395-.765.518-.013.763.492.827.623a.232.232 0 00.016.03c.222.309.13.56.057.762-.05.134-.09.246-.026.338a.62.62 0 00.102-.12c.064-.087.129-.176.242-.158.142-.166.25-.346.24-.72.358.218.27.538.155.853.021.47-.04.599-.333.765-.292.186-.347.34-.313.566.356.405.428 1.653.428 1.653a.677.677 0 01.467.71c.338-.031.646.246.698.499.2-.2.48-.013.676.2.068-.11.215-.164.375-.1 0-.196.102-.318.27-.477-.404-.334.02-2.783.313-2.85-.095-.663.973-2.788 1.237-2.829 0-.011-.177-.444-.177-.444s-.847.136-.998.965c-.104-.173-.208-.432-.208-.432s-.737.964-.748.942c-.292-.19-.16-.654-.16-.654-.142-.165-.172-.36-.202-.555a2.014 2.014 0 00-.059-.288c-.397-.019-.695-.037-.993-.055a60.835 60.835 0 00-.99-.056s.27.532.27.521c-.282.006-1.658-1.25-1.924-2.318.695.582 1.436.743 2.223.913l.033.008-.315.165-.319.168c2.193.2 4.463-.233 4.453-.244-.246-.546-1.05-.544-1.05-.544l-.035.335-.554.163s-.447.011-.452 0c-.102-.554-.594-.564-.594-.564-.384-.053-.712-.013-1.04.028-.164.02-.328.04-.499.049.638-.853 1.478-.917 2.32-.98.153-.013.306-.024.458-.04.072-.449.441-.58.874-.644l2.038.11c.261-.367 1.072-.52 1.072-.52.284-.152.73-.176 1.155-.176-.066.504-.695 1.056-.93 1.219-.24.386-.219.426-.128.598.01.017.019.036.029.056l.24.443c.404.133.698.316.79.6-.438-.056-.757.03-.75.232.006.1.16.164.3.221.068.028.133.055.176.083.252.251.335.473.347.784-.108-.006-.226-.067-.345-.128-.237-.123-.474-.245-.623.072-.107.233.011.548.291.654.514.15.561.9.55.9l-.015-.008c-.118-.055-.837-.39-.785.296-.003.052-.035.09-.073.134-.069.08-.155.183-.126.43.057.482.133.982.167 1.089l.967-.21.99-.213c.285-.277.413-.736.385-1.23.007-.148.002-.293-.002-.436zm11.478 1.147c-.299-.338-.605-.453-.86-.45-.373.006-.638.267-.613.464.084.653 1.33.427 1.473-.014z"
@@ -4240,7 +5182,7 @@ defmodule Flagpack do
             /><path
               fill="#000"
               d="M15.36 7.135l-.167-.187-.004.004.17.183zm-.668 1.772l-.25.008.25-.008zM21.14 3l.218.122.454-.808-.799.47.127.216zm.384 2.239l-.02.249h.016l.004-.25zm4.25-1.742l.153.197-.256-.425.103.228zm-1.103 3.16l.079.238.694-.23-.69-.243-.083.236zm-1.83 3.783l-.073.24.802.243-.538-.643-.192.16zm-2.197 1l-.239-.074-.099.326.34-.003-.002-.25zm1.046.071l-.022.25.022-.25zm4.556-.565l.247.036.07-.483-.432.226.115.221zm-2.49-1.06l-.25-.002v.011l.25-.009zm3-.931l-.131.212.24.15.12-.258-.228-.104zm.21-.463l-.227-.103.228.103zm.213-.47l.228.104.188-.41-.448.058.032.248zm-.18.025l.035.247-.035-.247zM25.7 8.05l-.177-.176-.309.312.426.107.06-.243zm2.955-3.31l.248.032.126-.938-.573.754.2.151zM29 9.064l-.09.234.595.227-.28-.571-.225.11zm-1.114-1.03l.227-.106-.277-.594-.19.627.24.072zm-.488 1.619l-.24-.073-.027.091.04.087.227-.105zm-.501 5.572l.237.079-.237-.08zm-.239.838l.093.232.157-.063v-.169h-.25zm-.891-.307l.162-.19-.162.19zm-.41-.292l.105-.227-.542-.25.202.562.235-.085zm-.075 2.501l-.247-.04.247.04zm-.129.904l.25.024-.25-.024zm.2.787l.215-.127-.215.127zm.037.067l-.234.09.038.1.1.042.096-.232zm.749.367l-.173.18.067.065.094.005.012-.25zm.578.7l-.198.152.444-.198-.246.045zm-.714-.268l-.072-.24-.04.012-.033.024.145.204zm-.076.054l.146.203-.146-.203zm-.08.058l-.134.21.142.091.137-.098-.145-.203zm-.364-.233l-.144.204.01.007.134-.21zm-1.248-.068l-.105-.226-.016.007-.014.009.135.21zm-.667.023l-.19.163.032.036.042.022.116-.221zm-.774-.04l-.092-.232.092.233zm-.588.407l-.06.242.112.028.093-.067-.145-.203zm-.146-.034l-.002.25h.002v-.25zm0 0l-.003.25.002-.25zm-.832.31l-.246-.045-.107.589.494-.338-.141-.206zm.583-.666l-.007.25.346.01-.1-.332-.24.072zm.039-.136l.131.213-.131-.213zm.043-.04l-.19-.162-.022.026-.014.03.226.106zm.453-.172l-.036-.247.036.247zm.255-.05l.075.238.71-.223-.7-.25-.085.235zm-.793-.138l-.024-.25.024.25zm-.233.082l.132.213-.132-.213zm-.326-.01l-.239-.075-.064.205.194.094.109-.225zm.009-.03l.24.071-.24-.07zm.01-.037l.24.075.092-.295-.308-.029-.023.249zm-.696.255l-.25.009.03.877.437-.762-.217-.124zm.527-.657l-.095-.232.095.232zm.098-.042l.102.228.071-.032.04-.066-.213-.13zm.593-.166l-.212.133.157.25.22-.196-.165-.187zm-.227-.278l-.188.165.188-.165zm-.73-.066l-.25-.022-.063.706.493-.51-.18-.174zm1.009-.51l.18-.173-.003-.004-.177.177zm.51.531l-.18.173.018.02.022.015.14-.208zm.235.159l.14-.207-.14.207zm.243.164l-.14.208.017.01.017.008.106-.226zm1.288-.367l-.187-.165.187.165zm.208-.874l.25.003-.25-.003zm.002-.09l-.25-.013.25.013zm-.015-.926l-.25.012.25-.012zm.015-.627l.18.173.264-.273-.356-.134-.088.234zm-.406-.389l-.216.126.216-.126zm-.031-.044v-.25h-.027l-.027.005.054.245zm-2.101-.044l.07-.24-.07.24zm-2.034-.958l.125-.216-.125.216zm-.442-.229l-.025-.249-.129.013-.064.112.218.124zm-.325.394l.16.192-.16-.192zm-.206.183l-.173-.181-.006.006-.007.008.186.167zm.04 1.143l-.186.166.039.043.054.022.094-.232zm1.094.443l-.094.232.037.015.041.003.016-.25zm1.02 1.054l-.077.238.318.102.008-.334-.25-.006zm-1.017-.37l.088-.234-.088.234zm-.107-.04l.089-.235-.198-.075-.107.184.216.125zm-2.987 2.339l-.066-.241-.627.173.581.291.112-.223zm.696.2l-.056.244.056-.244zm.366.1l-.134.211.037.024.042.01.055-.245zm.687.633l-.192.16.436.518.006-.676-.25-.002zm-.75-.156l.103.228.024-.01.022-.017-.148-.2zm-.7-.16l-.143.204.144-.205zm-.319-.184l-.152.198.033.026.04.013.08-.237zm-.822.01l-.143.206.127.089.136-.075-.12-.22zm-.768-.079l-.04-.247.04.247zm-.168.025l.026.249h.005l-.031-.249zm-1.072.399l.161.191.018-.015.014-.017-.193-.16zm-.184-.03l-.205.143.205-.143zm-.014-.014l-.082.236.153.053.111-.118-.182-.171zm-.675.276l-.245.054.157.715.313-.661-.225-.108zm.383-.687l.068.241.548-.154-.484-.3-.132.213zm-.52-.321l-.246.042.02.111.095.06.132-.213zm-.01-.038l.237-.081-.236.081zm.063-.062l.062.243.537-.136-.458-.313-.14.206zm-.635.188l-.25-.012-.029.633.453-.443-.174-.178zm.781-.598l-.14.207.15.102.145-.113-.155-.196zm.675.044l-.166.186.01.008.156-.194zm.864.144l.077.238.241-.078-.081-.24-.237.08zm-.634-.51l-.063.242.023.006.023.002.017-.25zm-.489-.344l.222.115.067-.13-.08-.122-.209.137zm-.666.033l-.247-.04-.105.631.505-.394-.153-.197zm1.186-.42l-.196.155.05.062.077.023.069-.24zm.285.224l.202-.147-.202.147zm.11.13l.184-.169-.008-.009-.01-.008-.166.186zm.978.477l-.04.246.035.006.035-.004-.03-.248zm1.587-.894l-.16-.192.16.192zm.327-.249l.111.224.787-.39-.875-.083-.023.25zm-.426-.31l.249-.026-.023-.223-.225-.002-.001.25zm-.418-.426l-.206.142.206-.142zm-1.07-.962l.068-.24-.068.24zm-3.27.652l.088.233-.088-.233zm-.038.014v-.25h-.226l-.023.224.249.026zm-.429.966l-.234.087.153.41.276-.34-.195-.157zm-.214-.46l-.222.115.222-.115zm-.273-.875l.25.012.04-.843-.493.684.203.147zm-.986 1.154l.179.175-.179-.175zm-.46.49l.185.169.003-.004-.188-.165zm-.728 1.487l-.242-.06-.044.178.156.096.13-.214zm1.103.334l-.047.245.02.004h.022l.005-.25zm.613.61l-.185.168.43.473.005-.64-.25-.002zm-.634-.133l-.14-.207-.014.009-.012.01.166.188zm-.906 0l-.188.165.04.044.055.023.093-.232zm-1.008-.222l-.156-.196-.008.007.164.189zm-.505.09l.061-.241-.06.242zm-.713.098l-.128-.214-.025.015-.02.02.173.18zm-1.238.21l.21-.135-.07-.11-.13-.005-.01.25zm-.77.166l-.247-.038-.065.416.396-.142-.084-.236zm.614-.531l-.124.217.411.233-.038-.47-.25.02zm-.011-.134l-.25.021.25-.02zm-.01-.121l.249-.02-.013-.159-.148-.055-.088.234zm-.177-.067l-.107.227.01.004.009.003.088-.234zm-.884.044l-.244-.055-.172.756.582-.513-.166-.188zm.926-.477l-.04.247.14.023.091-.108-.19-.162zm.103-.237l-.238-.075.238.075zm.032-.095l.234.087.054-.145-.106-.113-.182.171zm-.025-.026l.183-.17-.183.17zm-.568-.163l-.25-.024-.061.633.476-.421-.165-.188zm1.588-.036l.135-.21-.135.21zm.056.036l-.132.212.023.015.025.009.084-.236zm2.758-2.968l.229.102.149-.334-.366-.017-.012.25zm-1.592.194l-.087-.234-.116.043-.036.118.239.073zm-.593.85l-.173-.18.173.18zm-.129.126l-.25-.002-.003.605.43-.426-.177-.177zM5.88 14.663l-.187.165.187-.165zm-.122-.14l.188-.165-.02-.023-.025-.017-.143.205zm-1.384-2.33l.247-.043-.164-.933-.318.892.235.084zm-.272.543l-.189-.165.189.165zm-.01.012l.19.163.06-.07v-.093h-.25zm-.737.41l.242.063.063-.244-.244-.06-.061.242zm.103-.41l-.05-.245-.048.01-.04.027.138.208zm.161-.233l.219.121-.219-.121zm.287-.356l-.034.248.256.035.026-.257-.248-.026zm.177-1.74l.248.025.019-.18-.166-.074-.101.229zm-.219-.44l-.24.068.24-.069zm-.157-.474l.23-.097-.23.097zM3 8.5l-.045-.246-.024.486L3 8.5zm.797.24l.18-.172-.18.173zm.15.115l.135-.21-.04-.026-.044-.009-.05.245zm.303.605l-.236.085.236-.085zm.28.649l-.213.133.452-.203-.24.07zm.092-1.62l.238.08.012-.039v-.04h-.25zm-.395-.765l-.006-.25-.832.021.706.441.132-.212zm.827.623l.225-.109-.225.11zm.016.03l.203-.145-.01-.013-.01-.012-.183.17zm.057.762l-.235-.085.235.085zm-.026.338l-.205.142.153.22.21-.168-.158-.194zm.102-.12l.202.148-.202-.147zm.242-.158l-.038.247.137.021.09-.105-.189-.163zm.24-.72l.13-.214-.394-.239.013.46.25-.007zm.155.853l-.235-.086-.017.047.002.05.25-.011zm-.333.765l-.123-.217-.01.006.133.211zm-.313.566l-.247.038.011.072.049.055.187-.165zm.428 1.653l-.25.014.01.171.163.053.077-.238zm.467.71l-.25-.018-.021.296.295-.028-.024-.25zm.698.499l-.245.05.093.455.329-.328-.177-.177zm.676.2l-.185.17.223.243.174-.281-.212-.131zm.375-.1l-.092.232.342.136v-.369h-.25zm.27-.477l.172.18.205-.193-.218-.18-.159.193zm.313-2.85l.056.243.224-.05-.033-.229-.247.036zm1.237-2.829l.038.247.212-.032v-.215h-.25zm-.177-.444l.232-.094-.075-.184-.196.031.04.247zm-.998.965l-.214.13.342.563.118-.648-.246-.045zm-.208-.432l.232-.093-.163-.408-.268.35.199.151zm-.748.942l.226-.107-.03-.064-.06-.039-.136.21zm-.16-.654l.24.069.037-.13-.088-.101-.19.162zm-.202-.555l-.247.038.247-.038zm-.059-.288l.239-.074-.052-.168-.175-.008-.012.25zm-.993-.055l.016-.25-.016.25zm-.99-.056l.01-.25-.428-.02.194.384.223-.114zm.27.521h.25v-.255l-.255.005.005.25zM3.469 5.094l.16-.192-.589-.493.186.745.243-.06zm2.223.913l-.053.245.053-.245zm.033.008l.116.221.61-.32-.673-.146-.053.245zm-.315.165l-.116-.221.116.221zm-.319.168l-.116-.221-.75.393.843.077.023-.249zm4.453-.244l-.228.102.017.038.029.031.182-.171zm-1.05-.544l-.002-.25h-.225l-.023.225.25.025zm-.035.335l.07.24.161-.048.017-.167-.248-.025zm-.554.163l.006.25h.033l.032-.01-.07-.24zm-.452 0l-.246.046.005.031.014.03.227-.107zm-.594-.564l-.034.247.015.002h.014l.005-.25zm-1.04.028l.03.248-.03-.248zm-.499.049l-.2-.15-.319.426.532-.026-.013-.25zm2.32-.98l-.019-.25.02.25zm.458-.04l.027.248.19-.02.03-.189-.247-.04zm.874-.644l.013-.25H8.96l-.025.003.037.247zm2.038.11v.25h.13l.074-.104-.204-.145zm1.072-.52l.046.246.038-.008.034-.017-.118-.221zm1.155-.176l.248.033.037-.283h-.285v.25zm-.93 1.219l-.143-.206-.043.03-.027.044.212.132zm-.128.598l.221-.116-.22.116zm.029.056l-.223.113.003.005.22-.118zm.24.443l-.22.119.046.088.095.03.078-.237zm.79.6l-.032.247.39.05-.12-.374-.239.077zm-.75.232l-.25.009v.005l.25-.014zm.3.221l-.094.232.095-.232zm.176.083l.177-.177-.018-.018-.021-.014-.138.21zm.347.784l-.014.25.274.015-.01-.275-.25.01zm-.345-.128l-.114.222.114-.222zm-.623.072l-.227-.106v.002l.226.104zm.291.654l-.088.234.009.003.009.003.07-.24zm.535.892l-.106.227.106-.227zm-.785.296l.25.014V9.34l-.001-.016-.25.019zm-.073.134l.19.162-.19-.162zm-.126.43l.248-.029-.248.03zm.167 1.089l-.237.077.07.215.22-.048-.053-.244zm.967-.21l.053.245-.053-.244zm.99-.213l.053.245.07-.016.051-.05-.174-.179zm.385-1.23l-.25-.012v.026l.25-.014zm10.616.262l.004.25-.004-.25zm.86.449l.238.077.044-.136-.095-.107-.187.166zm-1.473.014l-.248.032.248-.032zm-9.508-3.116c-.38.354-.579.693-.674 1.033-.094.333-.082.65-.073.93l.5-.016c-.01-.29-.015-.531.054-.779.067-.24.21-.502.534-.802l-.34-.366zm5.825-4.167c-2.094 1.234-3.972 2.52-5.82 4.163l.331.374c1.818-1.615 3.669-2.884 5.742-4.107l-.253-.43zm.53 2.204c-.22-.017-.338-.095-.41-.185-.076-.098-.121-.246-.125-.442-.01-.396.153-.889.35-1.24l-.437-.244c-.225.4-.425.983-.413 1.496.006.258.066.524.231.737.171.22.43.35.764.377l.04-.499zm4.23-1.492l-.103-.228-.002.001-.009.004-.032.014a72.797 72.797 0 01-.57.253c-.37.164-.866.382-1.374.6-.509.217-1.026.434-1.438.595-.205.081-.382.147-.517.193a3.319 3.319 0 01-.162.05c-.047.012-.054.01-.039.01l-.008.5c.06 0 .125-.014.173-.027a3.03 3.03 0 00.195-.06c.147-.049.332-.118.541-.2.419-.165.942-.384 1.452-.602a136.975 136.975 0 001.984-.87l.008-.004h.002l.001-.001-.102-.228zm-1.02 2.925c-.422-.148-.579-.322-.63-.463-.05-.142-.023-.337.129-.6.304-.531.993-1.135 1.674-1.665L25.62 3.3c-.673.523-1.44 1.182-1.8 1.81-.182.315-.29.673-.166 1.018.124.347.45.596.934.765l.166-.471zm-1.722 3.858c-.523-.626-.493-1.317-.135-1.94.367-.637 1.073-1.186 1.853-1.445l-.158-.475c-.88.293-1.693.914-2.128 1.67-.443.77-.498 1.695.184 2.51l.384-.32zm-2.148 1.232c.073-.24.337-.512.72-.695.376-.18.809-.245 1.164-.138l.145-.478c-.507-.154-1.07-.053-1.525.165-.449.214-.852.573-.983 1l.479.146zm.828-.25c-.452-.04-.842-.075-1.07-.073l.005.5c.196-.001.555.03 1.02.071l.045-.498zm4.287-.352c-.015.1-.1.214-.375.313-.268.096-.648.149-1.097.169-.895.039-1.982-.056-2.815-.13l-.044.498c.825.073 1.947.172 2.88.131.466-.02.905-.076 1.245-.198.333-.12.645-.332.7-.71L26 10.91zm-2.493-1.015c.014.385.137.702.341.946.203.243.474.4.763.49.57.176 1.249.099 1.751-.163l-.23-.443a1.914 1.914 0 01-1.373.128 1.094 1.094 0 01-.527-.332 1.025 1.025 0 01-.225-.644l-.5.018zm3.383-1.152c-.748-.468-1.573-.533-2.224-.31-.648.22-1.151.744-1.159 1.45l.5.006c.005-.44.315-.81.82-.983.503-.172 1.172-.13 1.799.26l.264-.423zm-.15-.354l-.21.462.455.208.21-.465-.455-.205zm.213-.47c-.072.156-.143.313-.213.47l.456.205c.07-.156.14-.312.212-.468l-.455-.208zm.081.375l.18-.024-.066-.496-.183.025.07.495zm-1.392-.001c.51.127.964.061 1.393.001l-.07-.495c-.438.061-.798.11-1.202.008l-.121.486zm2.816-3.705c-.891 1.174-1.877 2.218-2.933 3.286l.355.352c1.06-1.072 2.065-2.135 2.976-3.336l-.398-.302zm.767 4.367c-.071-.146-.143-.386-.206-.702a9.983 9.983 0 01-.145-1.08c-.066-.796-.065-1.683.03-2.4l-.495-.067c-.102.763-.102 1.688-.033 2.51.035.41.087.8.153 1.134.065.33.147.62.248.825l.448-.22zM27.66 8.14c.261.56.78.978 1.252 1.159l.178-.467a1.877 1.877 0 01-.976-.903l-.454.21zm.222.776l.244-.81-.478-.144-.245.81.48.144zm-.244.81l.244-.81-.479-.144-.244.81.479.144zm-.503 5.579c.222-.666.55-1.65.722-2.685.171-1.03.194-2.15-.232-3.071l-.453.21c.362.784.357 1.782.192 2.779-.164.99-.48 1.94-.703 2.609l.474.158zm-.226.76l.002-.02a2.567 2.567 0 01.055-.22c.041-.136.1-.31.17-.52l-.475-.158c-.069.206-.13.39-.174.537a1.52 1.52 0 00-.078.38h.5zm-1.304-.117c.126.107.286.245.468.33.197.09.425.12.68.018l-.187-.464a.33.33 0 01-.284-.01c-.108-.048-.213-.136-.352-.255l-.325.38zm-.351-.256c.107.05.213.137.351.256l.325-.38c-.126-.108-.285-.246-.467-.33l-.21.454zm.276 2.314c.07-.433.148-.913.178-1.364.03-.447.017-.896-.114-1.262l-.47.17c.095.265.115.63.086 1.058-.029.424-.103.88-.174 1.319l.494.08zm-.127.888c.025-.256.073-.558.127-.888l-.494-.08c-.052.326-.104.644-.13.92l.497.048zm.166.636a1.003 1.003 0 01-.166-.636l-.498-.048c-.045.47.152.8.234.938l.43-.254zm.056.106a.752.752 0 00-.056-.106l-.43.254.02.033.002.004v-.001c-.002-.001-.003-.003-.004-.007l.468-.177zm.688.275a.327.327 0 00-.081-.058 8.214 8.214 0 00-.289-.149 9.134 9.134 0 00-.457-.21l-.19.462a8.74 8.74 0 01.685.33l.008.005h.002v.001l-.003-.003a.194.194 0 01-.021-.017l.346-.361zm.65.834c-.072-.397-.25-.632-.438-.763a.82.82 0 00-.356-.14h-.016l-.013.25-.013.249h-.006c-.001 0 0 0 0 0l.023.005a.33.33 0 01.095.046c.07.049.181.163.233.443l.492-.09zm-.959-.222l.072.24h-.004.004a.448.448 0 01.14-.005c.086.01.2.05.304.185l.396-.306a.944.944 0 00-.97-.357l-.009.002h-.003l-.001.001.071.24zm.07.257l.075-.053-.29-.408-.077.055.292.406zm-.081.058l.081-.058-.292-.406-.079.057.29.407zm-.643-.225l.364.232.269-.421-.364-.232-.27.42zm-1.01-.052c.195-.09.368-.13.525-.126.154.005.31.055.475.171l.289-.408a1.35 1.35 0 00-.748-.262 1.655 1.655 0 00-.75.172l.21.453zm-.887.017a.88.88 0 00.918-.033l-.27-.421c-.138.088-.271.087-.416.012l-.232.442zm-.566-.028c.045-.018.156-.061.275-.075.126-.015.188.011.218.045l.378-.326c-.194-.225-.472-.237-.654-.216-.19.022-.353.088-.401.107l.184.465zm-.108.024c.034 0 .061-.008.063-.008l.017-.005a.368.368 0 00.029-.011l-.185-.465-.006.003h-.002.002a.326.326 0 01.02-.007l.018-.003a.242.242 0 01.044-.004v.5zm-.572.15l.145.203h.002a.076.076 0 01.004-.004l.018-.013.064-.045a116.597 116.597 0 01.45-.316l.013-.009-.006.004-.016.008a.235.235 0 01-.025.01c-.006.001-.036.012-.077.012v-.5a.24.24 0 00-.14.043 34.508 34.508 0 00-.488.341l-.065.045-.018.012-.005.004h-.001v.001l.145.204zm-.146.216a.245.245 0 01-.035-.002h-.003a.463.463 0 01.057.012l.047.011.015.004.004.001h.001l.06-.242.06-.243h-.002l-.005-.002-.016-.003a6.755 6.755 0 00-.126-.03l-.015-.002s-.02-.004-.042-.004v.5zm-.003 0h.001l.004-.5-.005.5zm-.688.266c.204-.139.38-.205.501-.236a.96.96 0 01.176-.03h.01l.006-.5c-.058 0-.463.004-.975.354l.282.412zm.442-.872l.006-.25h-.017l-.03.002a.779.779 0 00-.339.115c-.197.124-.378.355-.45.754l.492.09c.05-.28.16-.38.224-.42a.278.278 0 01.112-.04h-.005l.006-.25zm-.092-.349c-.008.005-.093.05-.139.149a.379.379 0 00-.008.272l.478-.144c-.007-.023.012.02-.016.082a.182.182 0 01-.046.061c-.01.009-.018.013-.007.006l-.262-.426zm-.052.067a.18.18 0 01.056-.07l-.004.003.262.426c.008-.005.093-.05.138-.147l-.452-.212zm.643-.313a1.84 1.84 0 00-.293.06.66.66 0 00-.315.197l.382.323c.009-.01.029-.027.082-.043a1.37 1.37 0 01.217-.042l-.073-.495zm.216-.042a1.478 1.478 0 01-.216.042l.073.495c.083-.013.192-.028.293-.06l-.15-.477zm-.693.35c.088-.01.211.003.345.03.13.027.255.064.339.094l.168-.47a3.083 3.083 0 00-.407-.114 1.731 1.731 0 00-.494-.038l.049.497zm-.126.046a.247.247 0 01.126-.046l-.049-.498a.728.728 0 00-.341.119l.264.425zm-.567.001a.67.67 0 00.33.084c.12-.008.203-.064.237-.085l-.264-.425c-.044.027-.027.012-.003.01.01 0 .01.002-.004-.002a.482.482 0 01-.078-.031l-.218.45zm-.122-.324l-.008.025.477.149.01-.033-.48-.141zm.012-.042a2.35 2.35 0 00-.012.042l.48.141a3.6 3.6 0 01.01-.034l-.478-.149zm-.24.454c.054-.095.102-.119.146-.13.067-.018.154-.015.31 0l.046-.498c-.14-.013-.316-.03-.482.014a.725.725 0 00-.455.366l.434.248zm.214-1.013c-.114.047-.294.118-.437.253a.81.81 0 00-.245.645l.5-.018c-.005-.148.04-.217.089-.264.063-.06.154-.1.283-.153l-.19-.463zm.09-.038a3.033 3.033 0 01-.09.038l.19.463.105-.045-.205-.456zm.862.249a.25.25 0 00-.001-.376.238.238 0 00-.101-.054.258.258 0 00-.057-.01 1.588 1.588 0 00-.292.014 1.084 1.084 0 00-.26.067.536.536 0 00-.262.209l.427.259c-.012.02-.018.012.024-.005a.643.643 0 01.144-.036 1.101 1.101 0 01.166-.011.19.19 0 01-.054-.016.246.246 0 01-.15-.23c0-.1.058-.162.084-.185l.332.374zm-.581-.3c.081.093.172.197.203.246l.424-.265a2.94 2.94 0 00-.252-.311l-.375.33zm-.137-.254c0 .062.024.107.025.11a.253.253 0 00.033.052l.023.028.056.064.375-.33-.05-.058a.291.291 0 01-.009-.01l.003.003a.24.24 0 01.044.141h-.5zm-.225.196c.055-.057.119-.066.196-.05a.437.437 0 01.124.05c.002 0-.001-.002-.007-.007a.252.252 0 01-.087-.189h.5c0-.076-.036-.128-.041-.137a.263.263 0 00-.056-.06.743.743 0 00-.105-.066.94.94 0 00-.222-.08.69.69 0 00-.663.192l.36.347zm1.006-.86a.324.324 0 00-.107-.07.49.49 0 00-.084-.025.904.904 0 00-.167-.018 1.425 1.425 0 00-.403.05c-.277.077-.634.28-.674.728l.498.044c.012-.14.116-.236.31-.29a.926.926 0 01.257-.032.398.398 0 01.074.007c.007.002.006.002 0 0-.004-.002-.03-.012-.058-.04l.354-.354zm.258.27l-.254-.266-.362.346.255.266.361-.347zm.255.265l-.255-.266-.36.347.254.265.361-.346zm.195.125l-.236-.16-.279.416.235.158.28-.414zm.243.164l-.243-.164-.28.414.244.165.279-.415zm.96-.325c-.127.145-.33.248-.543.298a1.181 1.181 0 01-.288.034.44.44 0 01-.162-.026l-.213.452a.9.9 0 00.366.074c.129.002.27-.013.412-.047.279-.066.588-.208.804-.455l-.375-.33zm.146-.711a2.5 2.5 0 01-.026.395c-.024.147-.065.255-.12.316l.376.33c.147-.167.209-.387.238-.566.03-.184.031-.363.032-.47l-.5-.005zm.002-.101l-.002.1.5.006c0-.04 0-.064.002-.08l-.5-.026zm-.014-.901c.014.289.03.616.014.9l.5.027c.017-.315-.001-.668-.015-.952l-.5.025zm.084-.813a.315.315 0 00-.072.125.52.52 0 00-.019.087c-.006.051-.008.11-.009.17 0 .117.008.27.016.431l.499-.025c-.008-.165-.015-.303-.015-.406a.97.97 0 01.005-.104c.001-.01.002-.01 0-.002-.001.003-.011.036-.045.071l-.36-.347zm-.442-.089c.051.088.212.375.534.497l.176-.468c-.138-.052-.223-.185-.279-.281l-.431.252zm.185.08a.246.246 0 01-.198-.1l.003.004.01.016.431-.252-.027-.045a.317.317 0 00-.077-.08.254.254 0 00-.142-.043v.5zm-2.172-.054c1.047.306 2.095.076 2.225.048l-.107-.489c-.12.027-1.06.23-1.977-.04l-.14.48zm-2.089-.982c.47.273 1.28.745 2.09.982l.14-.48c-.743-.218-1.5-.656-1.979-.934l-.25.432zm-.292-.196c-.04.004-.068-.005-.069-.005-.005-.001-.006-.002.001.001a.983.983 0 01.073.036c.07.038.166.093.287.164l.251-.432a10.56 10.56 0 00-.303-.173 1.398 1.398 0 00-.115-.056.536.536 0 00-.062-.022.312.312 0 00-.112-.01l.049.497zm-.188.337c.061-.051.124-.104.187-.177.064-.073.123-.16.194-.285l-.435-.248a1.26 1.26 0 01-.136.205 1.064 1.064 0 01-.131.121l.32.384zm-.195.172c.081-.077.142-.128.195-.172l-.321-.384c-.055.046-.126.105-.219.194l.345.362zm.056.795a.726.726 0 01-.157-.4.531.531 0 01.114-.409l-.371-.334c-.207.23-.263.525-.24.785.021.258.123.514.28.69l.374-.332zm1 .379l-1.093-.444-.188.463 1.093.444.188-.463zm1.175 1.29c.007-.277-.044-.593-.246-.852-.207-.266-.54-.428-1.008-.456l-.03.499c.364.022.547.14.644.265.103.132.145.317.14.533l.5.012zm-1.355-.142c.26.1.749.285 1.029.375l.152-.476a25.094 25.094 0 01-1.003-.366l-.178.467zm-.106-.04l.106.04.178-.467-.107-.04-.177.467zm-2.832 2.347c1.43-.394 2.435-1.249 3.136-2.455l-.432-.251c-.642 1.104-1.545 1.868-2.837 2.224l.133.482zm.684-.284a10.307 10.307 0 01-.373-.09 1.61 1.61 0 01-.265-.09l-.225.446c.1.05.234.092.36.126.13.035.27.067.392.095l.111-.487zm.444.132a.475.475 0 00-.104-.047 1.57 1.57 0 00-.097-.028 8.96 8.96 0 00-.243-.057l-.111.487a8.958 8.958 0 01.295.073c.02.007.012.006-.007-.006l.267-.422zm.804.846c.002-.274-.099-.485-.286-.633-.168-.133-.39-.2-.596-.246l-.11.488c.198.044.322.092.396.15.056.045.097.104.096.237l.5.004zm-.85.043c.069-.051.123-.062.168-.056.047.007.13.04.24.172l.383-.322c-.16-.191-.345-.314-.551-.345a.723.723 0 00-.538.15l.297.401zm-.993-.157c.097.068.23.163.383.215a.747.747 0 00.563-.03l-.204-.457a.25.25 0 01-.199.013 1.09 1.09 0 01-.255-.15l-.288.409zm-.256-.151c.073.025.147.074.256.15l.288-.408c-.097-.068-.23-.164-.384-.216l-.16.474zm-.622-.007a.814.814 0 01.301-.11.334.334 0 01.249.078l.305-.396a.832.832 0 00-.6-.18c-.19.017-.36.095-.495.17l.24.438zm-.849-.052c.288-.046.446-.06.586.038l.286-.41c-.33-.231-.7-.162-.95-.122l.078.494zm-.176.026a5.65 5.65 0 00.176-.026l-.079-.494a5.328 5.328 0 01-.16.024l.063.496zm-.91.31c.057-.07.17-.14.345-.197.17-.056.367-.092.56-.112l-.052-.497c-.214.022-.45.063-.665.134-.21.07-.428.178-.574.354l.386.318zm-.582-.046c.006.01.062.099.164.145.06.028.13.04.207.024a.407.407 0 00.18-.09l-.323-.383c-.004.003.01-.01.042-.017a.167.167 0 01.102.012.128.128 0 01.042.03c.003.002.004.004-.003-.006l-.411.285zm.373.014a.248.248 0 01-.29.053c-.046-.023-.072-.054-.074-.056-.01-.011-.017-.022-.01-.011l.412-.285-.008-.011a.309.309 0 00-.02-.024.253.253 0 00-.374-.008l.364.342zm-.857.105l.225.108v.002l.002-.005a.396.396 0 01.092-.109c.055-.045.135-.084.274-.036l.164-.472a.758.758 0 00-.752.12.896.896 0 00-.225.273l-.004.007-.001.003v.001h-.001l.226.108zm.316-.927c-.127.035-.325.097-.458.267-.143.182-.166.425-.103.714l.489-.107c-.048-.218-.006-.283.007-.299.023-.03.072-.058.2-.094l-.135-.481zm-.584.131l.52.322.263-.425-.52-.322-.263.425zm-.115-.168c.004.01.002.005 0-.002l.493-.084c-.006-.037-.017-.067-.02-.077l-.473.163zm.238-.386a.596.596 0 00-.078.025.298.298 0 00-.12.087.27.27 0 00-.047.253l.007.021.473-.163c-.006-.017.003.005.006.032a.229.229 0 01-.05.17c-.036.046-.077.061-.079.062-.006.003-.005.002.01-.002l-.122-.485zm-.4.608a.727.727 0 01.234-.171.097.097 0 01.043-.007c.008 0 .021.004.043.019l.282-.413a.576.576 0 00-.533-.071 1.188 1.188 0 00-.418.286l.35.357zm.748-.983a.544.544 0 00-.393-.076.889.889 0 00-.355.144.937.937 0 00-.424.725l.5.023a.438.438 0 01.203-.334.394.394 0 01.152-.064c.043-.007.048.004.035-.005l.282-.413zm.7.064a.786.786 0 00-.996-.054l.31.393c.07-.055.23-.077.354.034l.333-.373zm.621.094c-.182.058-.463.033-.63-.102l-.313.39c.324.26.788.287 1.097.187l-.154-.476zm-.574-.023a.501.501 0 01.22.096c.091.065.162.15.194.245l.474-.16a1.014 1.014 0 00-.377-.492.981.981 0 00-.478-.188l-.033.499zm-.694-.709a.364.364 0 00.007.36c.054.092.14.15.203.185.132.073.306.122.438.156l.126-.484a1.536 1.536 0 01-.32-.109c-.036-.02-.029-.024-.016-.002a.138.138 0 01.006.124l-.444-.23zm-.29.345c.124-.097.204-.131.246-.137a.054.054 0 01.014 0 .01.01 0 01.004 0c.001.002.016.01.04.045l.417-.275a.609.609 0 00-.234-.216.523.523 0 00-.302-.05c-.183.023-.354.13-.493.24l.307.393zm1.228-.773a.456.456 0 00-.195-.136.865.865 0 00-.204-.05 1.423 1.423 0 00-.462.024c-.301.064-.695.257-.768.697l.493.082c.022-.131.148-.24.38-.29a.924.924 0 01.295-.016c.041.005.07.013.085.019.02.008.005.007-.016-.02l.392-.31zm.291.233c-.069-.095-.177-.25-.418-.318l-.138.48c.04.012.06.026.077.041.021.02.04.043.075.091l.404-.294zm.075.09a.566.566 0 01-.075-.09l-.404.294c.03.042.078.11.145.169l.334-.372zm.852.417c-.299-.05-.632-.178-.835-.399l-.368.338c.308.337.768.496 1.121.554l.082-.493zm1.386-.839a6.86 6.86 0 01-.687.52c-.261.167-.525.288-.77.318l.06.496c.354-.043.692-.209.979-.392.289-.184.547-.4.738-.557l-.32-.385zm.376-.28c-.06.029-.122.075-.178.118a8.479 8.479 0 00-.198.162l.32.385c.073-.062.134-.112.186-.152a.742.742 0 01.093-.066l-.223-.448zm-.564-.062c.029.275.244.407.375.463a1.001 1.001 0 00.267.07h.006l.002.001h.001l.024-.249.024-.249h.001-.007a.482.482 0 01-.123-.034.202.202 0 01-.064-.039c-.008-.007-.008-.01-.008-.014l-.498.051zm-.375-.31c.078.115.161.236.242.327.07.079.2.206.38.207l.003-.5c.032 0 .047.012.04.008a.296.296 0 01-.05-.048 3.057 3.057 0 01-.203-.276l-.412.283zm-.932-.862c.406.115.679.494.932.863l.412-.283c-.231-.337-.599-.889-1.208-1.061l-.136.48zm-3.114.645c.152-.058.737-.28 1.392-.457.328-.088.668-.163.977-.201.314-.04.571-.036.745.013l.136-.481c-.271-.077-.608-.07-.942-.029-.34.042-.705.124-1.046.216-.68.183-1.285.413-1.44.471l.178.468zm-.126.03c.026 0 .046-.005.05-.005a.196.196 0 00.015-.004l.012-.003a.462.462 0 00.01-.003l.01-.005.03-.01-.178-.468-.027.01a.041.041 0 01-.003.002v-.001l.005-.001a.184.184 0 01.01-.004l.016-.003a.317.317 0 01.05-.005v.5zm-.429.716l.195.157.002-.002a.348.348 0 01.004-.006l.015-.019c.012-.016.029-.038.048-.067.04-.056.094-.137.149-.235.108-.192.233-.468.264-.768l-.497-.052c-.021.203-.11.41-.203.575a2.325 2.325 0 01-.169.257l-.002.002.194.158zm-.436-.345c.077.148.147.285.202.432l.469-.175a4.364 4.364 0 00-.227-.487l-.444.23zM11 16.514c-.02.395.158.726.301 1.003l.444-.23c-.154-.3-.257-.51-.246-.748l-.5-.025zm-.557 1.342c.294-.301.596-.61 1.01-1.183l-.406-.293a8.746 8.746 0 01-.962 1.126l.358.35zm-.45.48c.157-.18.301-.328.45-.48l-.358-.35c-.148.152-.301.309-.47.5l.377.33zm-.674 1.382c.132-.535.319-.993.67-1.378l-.37-.337c-.43.471-.643 1.02-.785 1.595l.485.12zm.86.274l.047-.246h-.002l-.006-.002-.025-.005a8.275 8.275 0 01-.394-.09c-.245-.062-.484-.138-.592-.204l-.261.427c.183.111.495.202.729.262a8.857 8.857 0 00.42.096l.027.005.007.002h.003l.047-.245zm.863.612a.834.834 0 00-.251-.635.901.901 0 00-.607-.227l-.01.5a.406.406 0 01.275.092c.051.048.095.127.093.265l.5.005zm-.884-.135l.14.206-.001.002h-.002l-.001.001.017-.008a.227.227 0 01.067-.017c.043-.003.124 0 .23.117l.37-.337c-.212-.233-.448-.295-.643-.278a.723.723 0 00-.306.099l-.007.005-.002.001-.002.001.14.208zm-.999.232c.158.063.35.134.546.15a.8.8 0 00.619-.195l-.332-.375c-.068.06-.143.08-.245.072a1.485 1.485 0 01-.402-.117l-.186.465zm-.76-.259a.32.32 0 01.304-.061.8.8 0 01.361.253l.376-.33a1.3 1.3 0 00-.6-.404.814.814 0 00-.752.151l.311.391zm-.72.138c.075.02.193.052.323.04a.7.7 0 00.406-.185l-.328-.377c-.065.056-.101.063-.12.064a.516.516 0 01-.16-.026l-.122.484zm-.525.07a.64.64 0 01.296-.104.749.749 0 01.228.034l.122-.484c-.088-.023-.218-.057-.374-.05a1.128 1.128 0 00-.528.175l.256.43zm-1.577.13c.164.256.492.305.759.27.287-.039.603-.182.864-.435l-.348-.36a1.075 1.075 0 01-.583.3c-.198.026-.266-.037-.27-.045l-.422.27zm-.475.267a2.73 2.73 0 01.52-.138c.058-.008.101-.012.127-.013h.03l.009-.25.009-.25h-.075a1.86 1.86 0 00-.173.019 3.222 3.222 0 00-.617.161l.17.47zm.53-.767l.123-.218-.002-.001-.004-.002-.01-.005a.589.589 0 00-.118-.046.62.62 0 00-.305-.01c-.282.065-.475.323-.545.775l.494.077c.027-.179.071-.271.104-.317.029-.04.05-.045.059-.047a.124.124 0 01.058.004.18.18 0 01.024.008l.003.002h-.001l-.002-.002h-.001l.123-.218zm-.26-.113l.01.133.5-.04-.012-.135-.498.042zm-.01-.122l.01.122.498-.042-.01-.12-.498.04zm-.016.147l.177.067.176-.468-.177-.067-.176.468zm-.63-.002a.424.424 0 01.24-.074.776.776 0 01.371.069l.213-.453a1.278 1.278 0 00-.616-.115c-.192.012-.395.07-.54.198l.332.375zm.8-.912c-.181-.03-.434-.051-.668.03-.257.088-.462.291-.542.639l.488.11c.042-.182.127-.246.217-.277.113-.039.263-.035.425-.008l.08-.493zm-.175-.065a1.686 1.686 0 01-.039.114c-.013.033-.02.041-.017.037l.382.323a.636.636 0 00.1-.175c.02-.052.037-.107.05-.149l-.476-.15zm.035-.107c-.013.036-.025.075-.035.107l.477.15c.01-.035.02-.061.027-.083l-.469-.174zm.027.231l.025.027.365-.342-.024-.025-.366.34zm-.22-.145c.034-.03.048-.03.041-.03-.01.003-.015-.001-.008.002a.3.3 0 01.069.052c.035.032.071.07.118.121l.366-.34c-.078-.084-.199-.22-.345-.287a.48.48 0 00-.293-.039.589.589 0 00-.279.146l.331.375zm1.558-.434c-.164-.106-.57-.372-.959-.472-.192-.05-.431-.072-.64.04-.227.12-.344.355-.373.654l.497.049c.02-.2.083-.248.11-.262.045-.024.132-.035.282.003.295.077.634.293.812.408l.271-.42zm.054.035l-.054-.035-.271.42.06.038.265-.424zm2.397-2.858l-.027.047a13.748 13.748 0 01-.32.506c-.202.305-.471.689-.759 1.057-.29.37-.59.715-.858.948a1.576 1.576 0 01-.345.242c-.097.045-.134.035-.136.034l-.169.47c.182.066.367.019.517-.051.154-.072.31-.186.461-.318.304-.265.628-.639.924-1.017a17.922 17.922 0 001.038-1.487c.06-.097.11-.183.13-.228l-.456-.204zm-1.277.53c.387-.144.964-.204 1.493-.179l.024-.5c-.567-.027-1.219.035-1.691.21l.174.469zm-.506.795c.254-.245.515-.492.658-.956l-.478-.147c-.101.33-.274.499-.527.743l.347.36zm-.127.123l.127-.123-.347-.36-.132.128.352.355zm-1.59-2.555c.728.828 1.17 1.34 1.164 2.376l.5.003c.007-1.245-.564-1.885-1.289-2.71l-.375.331zm-.124-.14l.124.14.375-.33-.122-.14-.377.33zm-1.441-2.452c.04.233.167.68.4 1.151.234.471.584.99 1.086 1.341l.287-.41c-.407-.284-.711-.721-.924-1.152a4.176 4.176 0 01-.356-1.016l-.493.086zm.163.663c.053-.061.17-.208.319-.622l-.471-.168c-.13.364-.219.454-.226.463l.378.327zm.052-.151a.248.248 0 01-.031.12l-.019.028c-.004.005-.008.01-.002.003l-.378-.327-.016.02a.268.268 0 00-.023.033c-.006.012-.031.058-.031.123h.5zm-1.23.348a.36.36 0 00.024.27.296.296 0 00.296.144.536.536 0 00.176-.055c.049-.024.099-.055.147-.087.187-.124.409-.321.526-.457l-.379-.326a2.535 2.535 0 01-.425.367.824.824 0 01-.09.054c-.027.013-.027.01-.008.007a.204.204 0 01.192.105c.042.074.017.132.025.103l-.484-.125zm.207-.556a.924.924 0 00-.291.305.385.385 0 00-.026.328c.058.141.188.202.291.228l.122-.485c-.036-.009.02-.005.05.067.027.066-.003.11.005.095a.554.554 0 01.125-.122l-.276-.416zm.08-.146c-.034.063-.06.11-.083.144l-.013.02c0-.001.007-.009.02-.018a.215.215 0 01.084-.037l.1.49c.095-.02.152-.084.167-.1a.654.654 0 00.062-.083c.033-.052.07-.117.1-.174l-.436-.242zm.54-.482a.336.336 0 00-.261.083.697.697 0 00-.116.129c-.06.083-.118.189-.162.27l.437.242c.049-.088.092-.166.132-.221.02-.028.03-.037.03-.037-.001 0-.011.01-.03.017a.188.188 0 01-.098.012l.067-.495zm-.106-1.518l-.177 1.74.497.05.177-1.74-.497-.05zm-.21-.347c.03.106.063.223.104.318.04.09.11.22.253.283l.203-.458c.036.016.03.037.002-.025a2.211 2.211 0 01-.081-.255l-.481.137zm-.147-.445c.064.153.107.302.147.445l.481-.137c-.04-.14-.09-.317-.167-.502l-.461.194zM2.93 8.74c-.024-.006-.03-.015-.016-.004a.485.485 0 01.052.048c.047.049.104.12.166.207.124.175.254.4.343.612l.46-.194a3.896 3.896 0 00-.395-.707 2.32 2.32 0 00-.214-.265.97.97 0 00-.11-.1.459.459 0 00-.148-.077l-.138.48zm1.047-.172c-.064-.067-.173-.184-.346-.26-.177-.079-.397-.106-.677-.054l.09.492c.202-.037.316-.011.385.019.072.032.12.08.186.148l.362-.345zm.02.042c.03.006.043.02.034.012a1.937 1.937 0 01-.054-.054l-.362.345c.024.026.06.063.098.095.04.033.1.075.182.092l.102-.49zm.487.766c-.05-.137-.1-.282-.155-.401a1.241 1.241 0 00-.096-.175.539.539 0 00-.152-.156l-.27.422c-.013-.009-.01-.011.008.013a.757.757 0 01.055.104c.044.096.088.219.14.362l.47-.17zm.256.6c-.092-.146-.171-.363-.256-.6l-.47.169c.078.22.175.494.302.697l.424-.266zM4.385 8.41c-.191.576-.301 1.061-.096 1.768l.48-.14c-.164-.566-.087-.938.09-1.47l-.474-.158zm-.29-.475c.188.118.278.318.277.553l.5.001c.001-.365-.144-.748-.512-.978l-.265.424zm1.184.302c-.033-.068-.124-.257-.287-.429a1.012 1.012 0 00-.77-.335l.012.5a.514.514 0 01.396.18c.105.11.168.24.199.303l.45-.219zm-.026-.03a.243.243 0 01.03.04l.004.006a1.153 1.153 0 01-.008-.016l-.45.219.013.025.01.019c0 .002.014.025.035.048l.366-.342zm.109 1.017c.035-.097.09-.246.097-.418a.91.91 0 00-.186-.575l-.406.292c.08.11.095.195.092.266a.868.868 0 01-.067.264l.47.17zm-.056.109c.006.008.01.019.012.028v-.002a.34.34 0 01.014-.05c.007-.024.017-.05.03-.085l-.47-.171c-.022.06-.055.147-.068.233a.452.452 0 00.072.332l.41-.285zm-.305-.123a.457.457 0 01-.057.071l.314.39c.069-.056.12-.13.147-.167l-.404-.294zm.482-.26a.42.42 0 00-.334.093c-.07.056-.12.13-.148.167l.404.294a1.129 1.129 0 01.058-.072s-.007.005-.02.01a.084.084 0 01-.036.003l.076-.494zm-.049-.465a.862.862 0 01-.045.341.703.703 0 01-.134.21l.38.325a1.19 1.19 0 00.22-.355c.058-.15.085-.323.08-.535l-.5.014zm.64.932c.057-.154.127-.358.115-.563-.013-.233-.129-.44-.375-.59l-.26.427c.113.069.133.13.136.192.005.088-.026.201-.085.362l.47.172zm-.443.896c.16-.09.307-.198.389-.384.075-.171.08-.374.07-.61l-.5.023c.011.235-.004.332-.028.385-.016.037-.047.077-.178.152l.247.434zm-.19.311c-.012-.085-.003-.12.01-.147.016-.032.06-.088.19-.17l-.268-.422c-.162.103-.292.218-.367.365a.717.717 0 00-.059.45l.495-.076zm.18 1.69l.25-.014v-.004a2.371 2.371 0 00-.004-.055 6.632 6.632 0 00-.08-.643 4.26 4.26 0 00-.138-.585 1.496 1.496 0 00-.267-.516l-.375.33c.055.063.113.178.166.342.052.158.092.339.122.514a6.602 6.602 0 01.077.634v.012l.25-.014zm.718.73c.026-.35-.145-.808-.64-.967l-.154.476c.22.07.309.271.295.454l.499.037zm.693.43a.887.887 0 00-.334-.504.902.902 0 00-.632-.193l.047.498a.404.404 0 01.28.091c.09.07.138.153.15.208l.489-.1zm.615.082a1.25 1.25 0 00-.427-.318.603.603 0 00-.302-.045.524.524 0 00-.308.154l.354.354a.054.054 0 01.013-.011l.004-.001c.003 0 .02-.001.051.012a.77.77 0 01.246.192l.369-.337zm.283-.165c-.258-.102-.54-.024-.68.202l.425.263c.001-.002.004-.005.012-.008.007-.002.026-.005.059.008l.184-.465zm.006-.426c-.17.162-.349.35-.348.66l.5-.002c0-.082.027-.139.192-.295l-.344-.363zm.43-2.912a.36.36 0 00-.19.118.703.703 0 00-.09.138c-.05.093-.094.213-.133.341-.08.26-.15.596-.197.937-.048.34-.074.696-.06.994.006.149.023.292.056.415.03.115.086.251.197.343l.318-.385c.01.008-.01-.005-.032-.088a1.502 1.502 0 01-.04-.307c-.011-.258.011-.58.056-.903a5.89 5.89 0 01.18-.86 1.574 1.574 0 01.114-.285l.007-.01s0 .002-.003.004a.17.17 0 01-.072.036l-.112-.488zM9.62 7.221a.379.379 0 00-.177.084.838.838 0 00-.107.106 2.529 2.529 0 00-.207.29 7.877 7.877 0 00-.45.843 7.961 7.961 0 00-.38.963c-.092.294-.158.599-.126.825l.495-.07c-.015-.106.017-.315.108-.607.087-.28.215-.598.356-.9.14-.303.29-.583.42-.788.064-.102.12-.18.163-.23a.364.364 0 01.041-.043c.012-.01-.01.014-.06.021l-.076-.494zm-.139-.197l-.231.095v.001l.002.004.005.013a76.497 76.497 0 01.162.403v.001a.191.191 0 01-.005-.019s-.006-.024-.006-.054h.5c0-.03-.006-.054-.006-.056a.27.27 0 00-.017-.054 20.697 20.697 0 00-.164-.41l-.006-.013-.002-.004V6.93l-.232.094zm-.752 1.01a.886.886 0 01.438-.624 1.21 1.21 0 01.355-.139H9.52l-.04-.247-.04-.246h-.002a.477.477 0 00-.05.01 1.71 1.71 0 00-.478.193 1.386 1.386 0 00-.674.963l.492.09zm-.454-.477a169.253 169.253 0 00-.232.093v.001l.001.003.004.01a3.604 3.604 0 00.064.147c.04.09.097.208.157.307l.428-.259a2.547 2.547 0 01-.174-.356 3.285 3.285 0 01-.015-.037v-.001l-.233.092zm-.974 1.049a.25.25 0 00.288.136c.046-.012.077-.034.083-.038a.337.337 0 00.04-.033 4.164 4.164 0 00.13-.152 71.94 71.94 0 00.63-.809h.001v-.001l-.198-.152-.199-.152-.002.003-.006.008a40.375 40.375 0 01-.36.467 24.374 24.374 0 01-.334.418c-.01.01-.013.014-.011.013a.156.156 0 01.025-.021c.005-.003.035-.025.08-.036a.249.249 0 01.285.135l-.452.214zm.066-.76a36.46 36.46 0 00-.241-.069v.002l-.001.002a.64.64 0 00-.021.099 1.21 1.21 0 00-.017.228c.005.17.055.44.304.601l.272-.42c-.043-.027-.073-.086-.076-.194a.71.71 0 01.02-.182l-.24-.068zm-.449-.518c.029.186.064.453.259.68l.38-.325c-.089-.103-.113-.227-.145-.43l-.494.075zm-.05-.253c.022.074.034.153.05.253l.494-.076a2.206 2.206 0 00-.067-.324l-.478.147zm-.77.121c.298.018.597.037.997.056l.023-.5a60.582 60.582 0 01-.99-.055l-.03.5zm-.987-.055c.394.019.69.037.987.055l.03-.499c-.296-.018-.595-.037-.994-.055l-.023.5zm.032.271a.25.25 0 01.39-.207c.025.017.041.036.045.04a.244.244 0 01.026.034c0 .002 0 0-.004-.006a24.481 24.481 0 01-.244-.472l-.008-.017-.002-.004v-.001l-.224.112-.223.114.001.001.002.005.01.017a85.657 85.657 0 00.263.51c.002.001.008.012.017.024l.014.017c.005.005.02.023.047.04a.25.25 0 00.39-.207h-.5zM3.226 5.154c.148.596.593 1.215 1.015 1.672a5.2 5.2 0 00.617.574c.092.072.181.133.261.177a.58.58 0 00.279.085l-.01-.5c.037 0 .036.012-.027-.023a1.618 1.618 0 01-.198-.134 4.73 4.73 0 01-.555-.519c-.403-.436-.78-.98-.897-1.453l-.485.121zm2.519.609c-.791-.171-1.473-.323-2.116-.86l-.32.383c.748.627 1.547.796 2.33.966l.106-.489zm.033.007l-.033-.007-.106.489.033.007.106-.489zm-.251.631l.314-.165-.232-.443-.315.166.233.442zm-.32.169l.32-.169-.233-.442-.319.168.232.443zm4.155-.295a.438.438 0 01-.067-.141.44.44 0 01.026-.144.226.226 0 01.079-.09c.025-.018.048-.027.05-.028a.219.219 0 01.02-.007l-.006.002a9.228 9.228 0 01-.343.061c-.24.038-.587.087-1.002.128-.832.084-1.93.141-3.005.043l-.046.498c1.119.102 2.252.043 3.1-.043a18.462 18.462 0 001.324-.183 2.764 2.764 0 00.114-.024l.03-.01c.002-.002.026-.01.051-.029a.262.262 0 00.08-.09.44.44 0 00.025-.144.438.438 0 00-.066-.142l-.364.343zm-.869-.715v.25h.004a.791.791 0 01.1.007c.068.007.161.022.26.05.204.06.38.165.459.34L9.772 6c-.167-.371-.516-.538-.776-.614a2.002 2.002 0 00-.498-.077h-.005v.25zm.214.36l.035-.334-.498-.051-.034.334.497.051zm-.73.378l.553-.164-.142-.48-.554.165.142.48zm-.75-.133a.251.251 0 00.196.143 1.477 1.477 0 00.1.005 7.302 7.302 0 00.369-.004h.018l-.006-.25-.006-.25H7.88a24.248 24.248 0 01-.352.004l-.04-.001h.006l.031.008a.244.244 0 01.154.132l-.453.213zm-.368-.671l-.005.25H6.85h.005l.032.005a.42.42 0 01.113.04c.075.04.17.12.206.315l.491-.09c-.066-.36-.267-.563-.463-.667a.92.92 0 00-.365-.103h-.005l-.006.25zm-1.01.276c.33-.04.628-.076.976-.029l.068-.495c-.42-.058-.779-.012-1.105.028l.061.496zm-.516.05c.181-.009.354-.03.516-.05l-.061-.496c-.165.02-.32.04-.48.047l.025.5zM7.62 4.34c-.834.064-1.788.128-2.5 1.081l.4.3c.562-.753 1.288-.817 2.138-.882l-.038-.498zm.45-.038c-.147.016-.296.027-.45.039l.038.498c.152-.011.31-.023.466-.04l-.054-.497zm.864-.642c-.224.033-.467.088-.667.213a.885.885 0 00-.417.638l.494.08a.387.387 0 01.187-.294c.11-.068.268-.111.476-.142l-.073-.495zm2.075.108L10 3.713l-.698-.038-.23-.012-.064-.004a6.113 6.113 0 00-.022-.001l-.014.25-.014.25h.002a.766.766 0 01.02 0l.065.004.23.012.699.038 1.036.056v-.5zm1.072-.271a87.767 87.767 0 00-.046-.246h-.001l-.003.001-.009.002a2.295 2.295 0 00-.133.03 3.583 3.583 0 00-.33.1 2.393 2.393 0 00-.399.182 1.132 1.132 0 00-.354.307l.407.29a.646.646 0 01.2-.166c.095-.056.206-.103.314-.142a3.088 3.088 0 01.394-.111l.006-.001-.046-.246zm1.155-.426a5.44 5.44 0 00-.662.033c-.212.027-.43.076-.61.172l.235.442a1.3 1.3 0 01.438-.118c.184-.023.39-.029.6-.029v-.5zm-.789 1.675a3.47 3.47 0 00.575-.522c.203-.23.419-.542.462-.87l-.496-.065c-.023.174-.154.391-.341.604a2.982 2.982 0 01-.484.441l.284.412zm-.048.276a.6.6 0 01-.035-.073v.011c.001-.004.006-.025.032-.077.024-.05.063-.117.122-.212l-.425-.263c-.114.184-.199.333-.222.47-.029.175.046.3.086.377l.442-.233zm.03.059l-.03-.06-.442.234c.01.017.018.034.027.052l.446-.226zm.237.438l-.239-.444-.44.237.24.444.44-.237zm.808.64c-.131-.407-.536-.623-.95-.76l-.156.476c.396.13.58.28.63.438l.476-.153zm-.737.301a.082.082 0 01-.02.057c-.004.003.006-.009.05-.021a1.15 1.15 0 01.438-.012l.063-.495a1.615 1.615 0 00-.645.027c-.17.051-.395.186-.386.462l.5-.018zm.146 0a2.856 2.856 0 01-.097-.042.582.582 0 01-.066-.034c-.017-.01-.017-.013-.01-.006a.15.15 0 01.027.077l-.5.028c.011.182.15.283.217.325.079.049.174.087.239.114l.19-.463zm.217.104c-.068-.045-.159-.08-.217-.105l-.19.463a.986.986 0 01.133.06l.274-.418zm.46.983a1.39 1.39 0 00-.104-.502 1.423 1.423 0 00-.316-.449l-.353.354a.926.926 0 01.21.29c.038.09.058.192.063.327l.5-.02zm-.71.104c.103.053.273.146.445.156l.03-.5c-.044-.002-.11-.031-.245-.1l-.23.444zm-.282-.043c.024-.052.041-.063.04-.061-.006.003-.011.002-.002.002a.3.3 0 01.088.026c.046.019.095.044.156.076l.23-.445c-.102-.052-.273-.146-.445-.156a.49.49 0 00-.305.08.63.63 0 00-.215.265l.453.213zm.153.313c-.149-.056-.197-.219-.152-.315l-.455-.209c-.17.37.02.837.43.992l.177-.468zm.463 1.383a.25.25 0 00.235-.164c.01-.025.012-.047.013-.053a.302.302 0 00.002-.08 1.713 1.713 0 00-.094-.43c-.085-.235-.266-.554-.637-.662l-.14.48c.142.042.242.173.307.351a1.217 1.217 0 01.065.292v.004l.002-.024a.25.25 0 01.247-.213v.5zm-.122-.03l.015.007.012.005a.278.278 0 00.038.012c.006.001.028.006.057.006v-.5a.251.251 0 01.098.02h-.002l-.006-.003-.212.453zm-.43.05c-.01-.135.022-.159.015-.15-.007.006-.002-.009.058-.007.128.003.292.076.357.107l.212-.453c-.053-.025-.308-.147-.556-.154a.564.564 0 00-.431.159c-.132.136-.17.328-.154.536l.499-.038zm-.132.315c.026-.03.124-.132.132-.282l-.499-.028a.095.095 0 01.013-.046l-.005.007a.571.571 0 01-.01.01l-.012.015.381.324zm-.068.24a.314.314 0 01.01-.157.296.296 0 01.058-.083l-.38-.324c-.035.04-.099.113-.142.222a.804.804 0 00-.042.4l.496-.059zm.157 1.04l-.002-.01a21.276 21.276 0 01-.154-1.03l-.497.058c.029.243.062.491.093.693a4 4 0 00.085.443l.475-.155zm.676-.377l-.966.21.105.488.967-.209-.106-.489zm.99-.213l-.99.213.106.49.99-.214-.106-.49zm.188-.972c.026.452-.095.828-.31 1.037l.35.358c.354-.345.49-.887.46-1.424l-.5.03zm-.002-.442c.005.145.009.28.002.416l.5.023c.007-.159.002-.313-.002-.455l-.5.016zm10.872.94c.17-.003.41.071.669.364l.374-.331c-.338-.382-.71-.538-1.05-.533l.007.5zm-.369.181c.003.022-.008-.016.068-.079a.496.496 0 01.3-.103l-.006-.5a.985.985 0 00-.612.218c-.143.118-.274.31-.246.528l.496-.063zm.987-.06c-.006.02-.043.076-.158.137a1.052 1.052 0 01-.385.109.666.666 0 01-.337-.043c-.066-.032-.098-.074-.107-.143l-.496.064a.667.667 0 00.384.528c.185.09.402.11.6.092.2-.018.405-.075.575-.165.162-.086.334-.223.4-.424l-.476-.155z"
-              mask="url(#GB-WLS_svg__c)"
+              mask={"url(#GB-WLS_svg__c_#{@id})"}
             /><path
               fill="#D21034"
               stroke="#000"
@@ -4258,28 +5200,39 @@ defmodule Flagpack do
   Renders the United Kingdom flag.
 
   ## Examples
+
       <Flagpack.gbr />
-      <Flagpack.gbr class="w-5 h-5" />
+      <Flagpack.gbr id="my-flag" />
+      <Flagpack.gbr class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gbr(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GBR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GBR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GBR_svg__a)">
+        <g mask={"url(#GBR_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="GBR_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"GBR_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#GBR_svg__b)">
-            <mask id="GBR_svg__c" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <g mask={"url(#GBR_svg__b_#{@id})"}>
+            <mask id={"GBR_svg__c_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h32v24H0z" />
             </mask>
-            <g mask="url(#GBR_svg__c)">
+            <g mask={"url(#GBR_svg__c_#{@id})"}>
               <path
                 fill="#fff"
                 d="M-3.563 22.285l7.042 2.979 28.68-22.026 3.715-4.426-7.53-.995-11.698 9.491-9.416 6.396-10.793 8.581z"
@@ -4290,7 +5243,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M35.323 23.783l-3.588 1.728-14.286-11.86-4.236-1.324-17.445-13.5H.806l17.434 13.18 4.631 1.588 12.452 10.188z"
               />
-              <mask id="GBR_svg__d" fill="#fff">
+              <mask id={"GBR_svg__d_#{@id}"} fill="#fff">
                 <path
                   fill-rule="evenodd"
                   d="M19.778-2h-7.556V8H-1.972v8h14.194v10h7.556V16h14.25V8h-14.25V-2z"
@@ -4305,7 +5258,7 @@ defmodule Flagpack do
               /><path
                 fill="#fff"
                 d="M12.222-2v-2h-2v2h2zm7.556 0h2v-2h-2v2zM12.222 8v2h2V8h-2zM-1.972 8V6h-2v2h2zm0 8h-2v2h2v-2zm14.194 0h2v-2h-2v2zm0 10h-2v2h2v-2zm7.556 0v2h2v-2h-2zm0-10v-2h-2v2h2zm14.25 0v2h2v-2h-2zm0-8h2V6h-2v2zm-14.25 0h-2v2h2V8zm-7.556-8h7.556v-4h-7.556v4zm2 8V-2h-4V8h4zm-16.194 2h14.194V6H-1.972v4zm2 6V8h-4v8h4zm12.194-2H-1.972v4h14.194v-4zm2 12V16h-4v10h4zm5.556-2h-7.556v4h7.556v-4zm-2-8v10h4V16h-4zm16.25-2h-14.25v4h14.25v-4zm-2-6v8h4V8h-4zm-12.25 2h14.25V6h-14.25v4zm-2-12V8h4V-2h-4z"
-                mask="url(#GBR_svg__d)"
+                mask={"url(#GBR_svg__d_#{@id})"}
               />
             </g>
           </g>
@@ -4319,24 +5272,35 @@ defmodule Flagpack do
   Renders the Georgia flag.
 
   ## Examples
+
       <Flagpack.geo />
-      <Flagpack.geo class="w-5 h-5" />
+      <Flagpack.geo id="my-flag" />
+      <Flagpack.geo class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def geo(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GEO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GEO_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GEO_svg__a)">
+        <g mask={"url(#GEO_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="GEO_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"GEO_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill="#E31D1C" fill-rule="evenodd" clip-rule="evenodd" mask="url(#GEO_svg__b)">
+          <g fill="#E31D1C" fill-rule="evenodd" clip-rule="evenodd" mask={"url(#GEO_svg__b_#{@id})"}>
             <path d="M14 0h4v10h14v4H18v10h-4V14H0v-4h14V0z" /><path d="M9.999 17.222L12.2 17v2s-2.201-.138-2.201-.098c0 .04.201 2.098.201 2.098h-2l.16-2H6.2v-2l2.16.222L8.2 15h2l-.201 2.222zm0-12L12.2 5v2s-2.201-.138-2.201-.098c0 .04.201 2.098.201 2.098h-2l.16-2H6.2V5l2.16.222L8.2 3h2l-.201 2.222zm14 0L26.2 5v2s-2.201-.138-2.201-.098c0 .04.201 2.098.201 2.098h-2l.16-2H20.2V5l2.16.222L22.2 3h2l-.201 2.222zm0 12L26.2 17v2s-2.201-.138-2.201-.098c0 .04.201 2.098.201 2.098h-2l.16-2H20.2v-2l2.16.222L22.2 15h2l-.201 2.222z" />
           </g>
         </g>
@@ -4349,24 +5313,35 @@ defmodule Flagpack do
   Renders the Guernsey flag.
 
   ## Examples
+
       <Flagpack.ggy />
-      <Flagpack.ggy class="w-5 h-5" />
+      <Flagpack.ggy id="my-flag" />
+      <Flagpack.ggy class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ggy(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GGY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GGY_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GGY_svg__a)">
+        <g mask={"url(#GGY_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="GGY_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"GGY_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#GGY_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#GGY_svg__b_#{@id})"}>
             <path fill="#E31D1C" d="M12 0h8v8h12v8H20v8h-8v-8H0V8h12V0z" /><path
               fill="#FECA00"
               d="M13.005 3.046L14 4.8V10H6.865v-.057l-1.759-.998v5.96L6.771 14H14v5.051l-.995 1.754h5.96l-.956-1.759H18V14h7.2l1.665.906v-5.96l-1.759.997V10H18V4.805h.009l.957-1.759h-5.96z"
@@ -4382,19 +5357,30 @@ defmodule Flagpack do
   Renders the Ghana flag.
 
   ## Examples
+
       <Flagpack.gha />
-      <Flagpack.gha class="w-5 h-5" />
+      <Flagpack.gha id="my-flag" />
+      <Flagpack.gha class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gha(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GHA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GHA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#GHA_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#GHA_svg__a_#{@id})"}>
           <path fill="#5EAA22" d="M0 16h32v8H0v-8z" /><path fill="#FECA00" d="M0 8h32v8H0V8z" /><path
             fill="#E11C1B"
             d="M0 0h32v8H0V0z"
@@ -4412,19 +5398,30 @@ defmodule Flagpack do
   Renders the Gibraltar flag.
 
   ## Examples
+
       <Flagpack.gib />
-      <Flagpack.gib class="w-5 h-5" />
+      <Flagpack.gib id="my-flag" />
+      <Flagpack.gib class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gib(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GIB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GIB_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GIB_svg__a)">
+        <g mask={"url(#GIB_svg__a_#{@id})"}>
           <path fill="#F7FCFF" d="M0 0h32v24H0z" /><path
             fill="#C51918"
             fill-rule="evenodd"
@@ -4472,19 +5469,30 @@ defmodule Flagpack do
   Renders the Guinea flag.
 
   ## Examples
+
       <Flagpack.gin />
-      <Flagpack.gin class="w-5 h-5" />
+      <Flagpack.gin id="my-flag" />
+      <Flagpack.gin class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gin(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GIN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GIN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#GIN_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#GIN_svg__a_#{@id})"}>
           <path fill="#FBCD17" d="M10 0h12v24H10V0z" /><path fill="#0B9E7A" d="M22 0h10v24H22V0z" /><path
             fill="#E11C1B"
             d="M0 0h10v24H0V0z"
@@ -4499,14 +5507,25 @@ defmodule Flagpack do
   Renders the Guadeloupe flag.
 
   ## Examples
+
       <Flagpack.glp />
-      <Flagpack.glp class="w-5 h-5" />
+      <Flagpack.glp id="my-flag" />
+      <Flagpack.glp class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def glp(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#002488" d="M0 0v7h32V0H0z" /><path fill="#DA121A" d="M0 7v17h32V7H0z" /><path
           fill="#FCDD09"
@@ -4560,19 +5579,30 @@ defmodule Flagpack do
   Renders the Gambia flag.
 
   ## Examples
+
       <Flagpack.gmb />
-      <Flagpack.gmb class="w-5 h-5" />
+      <Flagpack.gmb id="my-flag" />
+      <Flagpack.gmb class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gmb(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GMB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GMB_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GMB_svg__a)">
+        <g mask={"url(#GMB_svg__a_#{@id})"}>
           <path fill="#5EAA22" fill-rule="evenodd" d="M0 16h32v8H0v-8z" clip-rule="evenodd" /><path
             fill="#E31D1C"
             fill-rule="evenodd"
@@ -4589,19 +5619,30 @@ defmodule Flagpack do
   Renders the Guinea-Bissau flag.
 
   ## Examples
+
       <Flagpack.gnb />
-      <Flagpack.gnb class="w-5 h-5" />
+      <Flagpack.gnb id="my-flag" />
+      <Flagpack.gnb class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gnb(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GNB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GNB_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#GNB_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#GNB_svg__a_#{@id})"}>
           <path fill="#FBCD17" d="M16 0h16v12H16V0z" /><path fill="#0B9E7A" d="M16 12h16v12H16V12z" /><path
             fill="#E11C1B"
             d="M0 0h16v24H0V0z"
@@ -4619,24 +5660,35 @@ defmodule Flagpack do
   Renders the Equatorial Guinea flag.
 
   ## Examples
+
       <Flagpack.gnq />
-      <Flagpack.gnq class="w-5 h-5" />
+      <Flagpack.gnq id="my-flag" />
+      <Flagpack.gnq class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gnq(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GNQ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GNQ_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GNQ_svg__a)">
+        <g mask={"url(#GNQ_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="GNQ_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"GNQ_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#GNQ_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#GNQ_svg__b_#{@id})"}>
             <path fill="#009D00" d="M0 0v8h32V0H0z" /><path fill="#fff" d="M0 8v8h32V8H0z" /><path
               fill="#F80000"
               d="M0 16v8h32v-8H0z"
@@ -4668,19 +5720,30 @@ defmodule Flagpack do
   Renders the Greece flag.
 
   ## Examples
+
       <Flagpack.grc />
-      <Flagpack.grc class="w-5 h-5" />
+      <Flagpack.grc id="my-flag" />
+      <Flagpack.grc class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def grc(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GRC_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GRC_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GRC_svg__a)">
+        <g mask={"url(#GRC_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#4564F9"
             fill-rule="evenodd"
@@ -4707,29 +5770,40 @@ defmodule Flagpack do
   Renders the Grenada flag.
 
   ## Examples
+
       <Flagpack.grd />
-      <Flagpack.grd class="w-5 h-5" />
+      <Flagpack.grd id="my-flag" />
+      <Flagpack.grd class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def grd(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GRD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GRD_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GRD_svg__a)">
+        <g mask={"url(#GRD_svg__a_#{@id})"}>
           <path fill="#C51918" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#FECA00"
             fill-rule="evenodd"
             d="M6 6h20v12H6V6z"
             clip-rule="evenodd"
           />
-          <mask id="GRD_svg__b" width="20" height="12" x="6" y="6" maskUnits="userSpaceOnUse">
+          <mask id={"GRD_svg__b_#{@id}"} width="20" height="12" x="6" y="6" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M6 6h20v12H6V6z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#GRD_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#GRD_svg__b_#{@id})"}>
             <path fill="#23875F" d="M6 6l10 6-10 6V6zm20 0l-10 6 10 6V6z" /><path
               fill="#C51918"
               d="M16 16a4 4 0 100-8 4 4 0 000 8z"
@@ -4764,31 +5838,42 @@ defmodule Flagpack do
   Renders the Greenland flag.
 
   ## Examples
+
       <Flagpack.grl />
-      <Flagpack.grl class="w-5 h-5" />
+      <Flagpack.grl id="my-flag" />
+      <Flagpack.grl class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def grl(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GRL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GRL_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GRL_svg__a)">
+        <g mask={"url(#GRL_svg__a_#{@id})"}>
           <path fill="#C51918" fill-rule="evenodd" d="M0 12h32v12H0V12z" clip-rule="evenodd" />
-          <mask id="GRL_svg__b" width="32" height="12" x="0" y="12" maskUnits="userSpaceOnUse">
+          <mask id={"GRL_svg__b_#{@id}"} width="32" height="12" x="0" y="12" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 12h32v12H0V12z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#GRL_svg__b)">
+          <g mask={"url(#GRL_svg__b_#{@id})"}>
             <path fill="#F7FCFF" fill-rule="evenodd" d="M12 20a8 8 0 100-16 8 8 0 000 16z" clip-rule="evenodd" />
           </g>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v12H0V0z" clip-rule="evenodd" />
-          <mask id="GRL_svg__c" width="32" height="12" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"GRL_svg__c_#{@id}"} width="32" height="12" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0h32v12H0V0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#GRL_svg__c)">
+          <g mask={"url(#GRL_svg__c_#{@id})"}>
             <path fill="#C51918" fill-rule="evenodd" d="M12 20a8 8 0 100-16 8 8 0 000 16z" clip-rule="evenodd" />
           </g>
         </g>
@@ -4801,19 +5886,30 @@ defmodule Flagpack do
   Renders the Guatemala flag.
 
   ## Examples
+
       <Flagpack.gtm />
-      <Flagpack.gtm class="w-5 h-5" />
+      <Flagpack.gtm id="my-flag" />
+      <Flagpack.gtm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gtm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GTM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GTM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GTM_svg__a)">
+        <g mask={"url(#GTM_svg__a_#{@id})"}>
           <path fill="#58A5FF" fill-rule="evenodd" d="M22 0h10v24H22V0zM0 0h12v24H0V0z" clip-rule="evenodd" /><path
             fill="#fff"
             fill-rule="evenodd"
@@ -4870,19 +5966,30 @@ defmodule Flagpack do
   Renders the French Guiana flag.
 
   ## Examples
+
       <Flagpack.guf />
-      <Flagpack.guf class="w-5 h-5" />
+      <Flagpack.guf id="my-flag" />
+      <Flagpack.guf class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def guf(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GUF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GUF_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GUF_svg__a)">
+        <g mask={"url(#GUF_svg__a_#{@id})"}>
           <rect width="32" height="24" fill="#5EAA22" rx="2" /><path
             fill="#FECA00"
             fill-rule="evenodd"
@@ -4904,33 +6011,44 @@ defmodule Flagpack do
   Renders the Guam flag.
 
   ## Examples
+
       <Flagpack.gum />
-      <Flagpack.gum class="w-5 h-5" />
+      <Flagpack.gum id="my-flag" />
+      <Flagpack.gum class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def gum(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GUM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GUM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GUM_svg__a)">
+        <g mask={"url(#GUM_svg__a_#{@id})"}>
           <path fill="#C51918" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#4564F9"
             fill-rule="evenodd"
             d="M4 4h24v16H4V4z"
             clip-rule="evenodd"
           /><path stroke="#CBDAFF" stroke-opacity=".1" stroke-width="2" d="M5 5h22v14H5V5z" />
-          <mask id="GUM_svg__b" width="24" height="16" x="4" y="4" maskUnits="userSpaceOnUse">
+          <mask id={"GUM_svg__b_#{@id}"} width="24" height="16" x="4" y="4" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M4 4h24v16H4V4z" clip-rule="evenodd" /><path
               stroke="#fff"
               stroke-width="2"
               d="M5 5h22v14H5V5z"
             />
           </mask>
-          <g mask="url(#GUM_svg__b)">
+          <g mask={"url(#GUM_svg__b_#{@id})"}>
             <path
               stroke="#C1C9F1"
               stroke-opacity=".118"
@@ -4949,7 +6067,7 @@ defmodule Flagpack do
               stroke-width="2.9"
               d="M16.4 6.037l.687-1.277-.703-.378-.695.391.711 1.264zm0 0l.688-1.277h0l.003.002.005.003.016.009a4.562 4.562 0 01.207.12 11.7 11.7 0 012.098 1.633c1.124 1.107 2.433 2.89 2.433 5.24 0 2.328-1.286 4.205-2.382 5.399a13.435 13.435 0 01-2.06 1.819 8.178 8.178 0 01-.2.137l-.015.01-.006.003-.002.002h0l-.785-1.22m0-11.88a206.334 206.334 0 00-.712-1.263h0l-.003.001-.005.003-.016.01a4.974 4.974 0 00-.204.123 12.27 12.27 0 00-2.084 1.66c-1.11 1.107-2.426 2.89-2.426 5.197 0 2.281 1.293 4.16 2.376 5.354a14.076 14.076 0 002.2 1.955l.046.031.014.01.005.003.002.002h.001l.806-1.205m0 0l.784 1.22-.8.513-.789-.527.805-1.206z"
             />
-            <mask id="GUM_svg__c" width="9" height="12" x="12" y="6" maskUnits="userSpaceOnUse">
+            <mask id={"GUM_svg__c_#{@id}"} width="9" height="12" x="12" y="6" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 d="M17.332 15.205c-.32.348-.64.646-.92.883a11.05 11.05 0 01-.938-.914c-.917-1.011-1.624-2.208-1.624-3.406 0-1.174.684-2.256 1.574-3.144a9.27 9.27 0 01.989-.852c.289.21.63.487.97.82.876.864 1.567 1.945 1.567 3.176 0 1.254-.714 2.451-1.618 3.437zm-1.623-7.893h.002-.002z"
@@ -4959,7 +6077,7 @@ defmodule Flagpack do
                 d="M17.332 15.205c-.32.348-.64.646-.92.883a11.05 11.05 0 01-.938-.914c-.917-1.011-1.624-2.208-1.624-3.406 0-1.174.684-2.256 1.574-3.144a9.27 9.27 0 01.989-.852c.289.21.63.487.97.82.876.864 1.567 1.945 1.567 3.176 0 1.254-.714 2.451-1.618 3.437zm-1.623-7.893h.002-.002z"
               />
             </mask>
-            <g mask="url(#GUM_svg__c)">
+            <g mask={"url(#GUM_svg__c_#{@id})"}>
               <path fill="#91CBCB" d="M12.933 14H20.4v1.5h-7.467z" /><path
                 fill="#FDF9A1"
                 fill-rule="evenodd"
@@ -4991,19 +6109,30 @@ defmodule Flagpack do
   Renders the Guyana flag.
 
   ## Examples
+
       <Flagpack.guy />
-      <Flagpack.guy class="w-5 h-5" />
+      <Flagpack.guy id="my-flag" />
+      <Flagpack.guy class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def guy(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="GUY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"GUY_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#GUY_svg__a)">
+        <g mask={"url(#GUY_svg__a_#{@id})"}>
           <path fill="#5EAA22" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#FECA00"
             stroke="#F7FCFF"
@@ -5020,24 +6149,35 @@ defmodule Flagpack do
   Renders the Hong Kong flag.
 
   ## Examples
+
       <Flagpack.hkg />
-      <Flagpack.hkg class="w-5 h-5" />
+      <Flagpack.hkg id="my-flag" />
+      <Flagpack.hkg class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def hkg(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="HKG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"HKG_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#HKG_svg__a)">
+        <g mask={"url(#HKG_svg__a_#{@id})"}>
           <path fill="#EA1A1A" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="HKG_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"HKG_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#HKG_svg__b)">
+          <g mask={"url(#HKG_svg__b_#{@id})"}>
             <path
               fill="#fff"
               fill-rule="evenodd"
@@ -5069,29 +6209,40 @@ defmodule Flagpack do
   Renders the Heard Island and McDonald Islands flag.
 
   ## Examples
+
       <Flagpack.hmd />
-      <Flagpack.hmd class="w-5 h-5" />
+      <Flagpack.hmd id="my-flag" />
+      <Flagpack.hmd class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def hmd(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="HMD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"HMD_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#HMD_svg__a)">
+        <g mask={"url(#HMD_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="HMD_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"HMD_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#HMD_svg__b)">
+          <g mask={"url(#HMD_svg__b_#{@id})"}>
             <path fill="#2B409A" d="M0 0h18v14H0z" />
-            <mask id="HMD_svg__c" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"HMD_svg__c_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#HMD_svg__c)">
+            <g mask={"url(#HMD_svg__c_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -5102,7 +6253,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="HMD_svg__d" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"HMD_svg__d_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -5112,7 +6263,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#HMD_svg__d)"
+                mask={"url(#HMD_svg__d_#{@id})"}
               />
             </g>
           </g>
@@ -5130,24 +6281,35 @@ defmodule Flagpack do
   Renders the Honduras flag.
 
   ## Examples
+
       <Flagpack.hnd />
-      <Flagpack.hnd class="w-5 h-5" />
+      <Flagpack.hnd id="my-flag" />
+      <Flagpack.hnd class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def hnd(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="HND_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"HND_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#HND_svg__a)">
+        <g mask={"url(#HND_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="HND_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"HND_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill="#4564F9" fill-rule="evenodd" clip-rule="evenodd" mask="url(#HND_svg__b)">
+          <g fill="#4564F9" fill-rule="evenodd" clip-rule="evenodd" mask={"url(#HND_svg__b_#{@id})"}>
             <path d="M0 0v8h32V0H0zm0 16v8h32v-8H0zm16.402-3.33l-.866.448.165-.947-.701-.74h.969l.433-.931.433.93h.97l-.702.74.166.948-.867-.447zm-6.084-2.167l-.866.447.165-.947-.701-.74h.969l.433-.931.433.93h.97l-.702.74.166.948-.867-.447zm0 4.2l-.866.447.165-.947-.701-.74h.969l.433-.931.433.93h.97l-.702.74.166.948-.867-.447zm12-4.2l-.866.447.165-.947-.701-.74h.969l.433-.931.433.93h.97l-.702.74.166.948-.867-.447zm0 4.2l-.866.447.165-.947-.701-.74h.969l.433-.931.433.93h.97l-.702.74.166.948-.867-.447z" />
           </g>
         </g>
@@ -5160,14 +6322,25 @@ defmodule Flagpack do
   Renders the Croatia flag.
 
   ## Examples
+
       <Flagpack.hrv />
-      <Flagpack.hrv class="w-5 h-5" />
+      <Flagpack.hrv id="my-flag" />
+      <Flagpack.hrv class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def hrv(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#HRV_svg__HR_-_Croatia_(Hrvatska)">
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
@@ -5276,32 +6449,43 @@ defmodule Flagpack do
   Renders the Haiti flag.
 
   ## Examples
+
       <Flagpack.hti />
-      <Flagpack.hti class="w-5 h-5" />
+      <Flagpack.hti id="my-flag" />
+      <Flagpack.hti class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def hti(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="HTI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"HTI_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#HTI_svg__a)">
+        <g mask={"url(#HTI_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="HTI_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"HTI_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#HTI_svg__b)">
+          <g mask={"url(#HTI_svg__b_#{@id})"}>
             <path fill="#E31D1C" fill-rule="evenodd" d="M0 12v12h32V12H0z" clip-rule="evenodd" /><path
               fill="#fff"
               d="M10 8h12v8H10z"
             />
-            <mask id="HTI_svg__c" width="12" height="8" x="10" y="8" maskUnits="userSpaceOnUse">
+            <mask id={"HTI_svg__c_#{@id}"} width="12" height="8" x="10" y="8" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M10 8h12v8H10z" />
             </mask>
-            <g mask="url(#HTI_svg__c)">
+            <g mask={"url(#HTI_svg__c_#{@id})"}>
               <path
                 fill="#279E19"
                 fill-rule="evenodd"
@@ -5383,24 +6567,35 @@ defmodule Flagpack do
   Renders the Hungary flag.
 
   ## Examples
+
       <Flagpack.hun />
-      <Flagpack.hun class="w-5 h-5" />
+      <Flagpack.hun id="my-flag" />
+      <Flagpack.hun class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def hun(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="HUN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"HUN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#HUN_svg__a)">
+        <g mask={"url(#HUN_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="HUN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"HUN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#HUN_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#HUN_svg__b_#{@id})"}>
             <path fill="#F14423" d="M0 0v8h32V0H0z" /><path fill="#5EAA22" d="M0 16v8h32v-8H0z" />
           </g>
         </g>
@@ -5413,24 +6608,37 @@ defmodule Flagpack do
   Renders the Indonesia flag.
 
   ## Examples
+
       <Flagpack.idn />
-      <Flagpack.idn class="w-5 h-5" />
+      <Flagpack.idn id="my-flag" />
+      <Flagpack.idn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def idn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="IDN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"IDN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#IDN_svg__a)">
+        <g mask={"url(#IDN_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="IDN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"IDN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#IDN_svg__b)"><path fill="#E31D1C" fill-rule="evenodd" d="M0 0v12h32V0H0z" clip-rule="evenodd" /></g>
+          <g mask={"url(#IDN_svg__b_#{@id})"}>
+            <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v12h32V0H0z" clip-rule="evenodd" />
+          </g>
         </g>
       </svg>
     </div>
@@ -5441,24 +6649,35 @@ defmodule Flagpack do
   Renders the Isle of Man flag.
 
   ## Examples
+
       <Flagpack.imn />
-      <Flagpack.imn class="w-5 h-5" />
+      <Flagpack.imn id="my-flag" />
+      <Flagpack.imn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def imn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="IMN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"IMN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#IMN_svg__a)">
+        <g mask={"url(#IMN_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="IMN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"IMN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#IMN_svg__b)">
+          <g mask={"url(#IMN_svg__b_#{@id})"}>
             <path
               fill="#F7FCFF"
               fill-rule="evenodd"
@@ -5507,24 +6726,35 @@ defmodule Flagpack do
   Renders the India flag.
 
   ## Examples
+
       <Flagpack.ind />
-      <Flagpack.ind class="w-5 h-5" />
+      <Flagpack.ind id="my-flag" />
+      <Flagpack.ind class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ind(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="IND_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"IND_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#IND_svg__a)">
+        <g mask={"url(#IND_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="IND_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"IND_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#IND_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#IND_svg__b_#{@id})"}>
             <path fill="#FF8C1A" d="M0 0v8h32V0H0z" /><path fill="#5EAA22" d="M0 16v8h32v-8H0z" /><path
               fill="#3D58DB"
               d="M12 12a4 4 0 108 0 4 4 0 00-8 0zm7 0a3 3 0 11-6 0 3 3 0 016 0z"
@@ -5543,34 +6773,45 @@ defmodule Flagpack do
   Renders the British Indian Ocean Territory flag.
 
   ## Examples
+
       <Flagpack.iot />
-      <Flagpack.iot class="w-5 h-5" />
+      <Flagpack.iot id="my-flag" />
+      <Flagpack.iot class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def iot(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="IOT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"IOT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#IOT_svg__a)">
+        <g mask={"url(#IOT_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="IOT_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"IOT_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#IOT_svg__b)">
+          <g mask={"url(#IOT_svg__b_#{@id})"}>
             <path
               fill="#2E42A5"
               fill-rule="evenodd"
               d="M-1.506 3.291L-.019 4.71C1.21 3.548 2.368 3 3.47 3c.532 0 .759.128 1.372.709C5.815 4.629 6.47 5 7.701 5c1.23 0 1.886-.372 2.86-1.291.613-.58.84-.709 1.371-.709.532 0 .759.128 1.372.709.974.92 1.629 1.291 2.86 1.291 1.23 0 1.886-.372 2.86-1.291.613-.58.84-.709 1.371-.709.532 0 .759.128 1.372.709.974.92 1.629 1.291 2.86 1.291 1.23 0 1.886-.372 2.859-1.291.614-.58.84-.709 1.372-.709 1.101 0 2.26.548 3.488 1.709l1.487-1.418C32.24 1.786 30.578 1 28.858 1c-1.23 0-1.886.371-2.86 1.291-.613.58-.84.709-1.371.709-.532 0-.759-.128-1.372-.709C22.28 1.371 21.626 1 20.395 1c-1.23 0-1.886.371-2.86 1.291-.613.58-.84.709-1.371.709-.532 0-.759-.128-1.372-.709C13.818 1.371 13.163 1 11.932 1c-1.23 0-1.886.371-2.859 1.291-.614.58-.84.709-1.372.709-.532 0-.759-.128-1.372-.709C5.355 1.371 4.7 1 3.469 1c-1.72 0-3.382.786-4.975 2.291zM-.019 8.71l-1.487-1.42C.087 5.786 1.75 5 3.47 5c1.231 0 1.886.372 2.86 1.291.613.58.84.709 1.372.709.532 0 .758-.128 1.372-.709.973-.92 1.628-1.291 2.86-1.291 1.23 0 1.885.372 2.859 1.291.613.58.84.709 1.372.709.532 0 .758-.128 1.372-.709C18.51 5.371 19.165 5 20.397 5c1.23 0 1.885.372 2.859 1.291.613.58.84.709 1.372.709.532 0 .758-.128 1.372-.709C26.973 5.371 27.628 5 28.86 5c1.719 0 3.381.786 4.974 2.291L32.346 8.71C31.118 7.548 29.96 7 28.858 7c-.532 0-.758.128-1.372.709-.973.92-1.628 1.291-2.86 1.291-1.23 0-1.885-.371-2.859-1.291-.613-.58-.84-.709-1.372-.709-.532 0-.758.128-1.372.709C18.05 8.629 17.395 9 16.163 9c-1.23 0-1.885-.371-2.859-1.291-.613-.58-.84-.709-1.372-.709-.532 0-.758.128-1.372.709C9.587 8.629 8.932 9 7.7 9c-1.23 0-1.885-.371-2.859-1.291C4.228 7.129 4.001 7 3.47 7c-1.1 0-2.26.548-3.488 1.709zm0 4l-1.487-1.418C.087 9.787 1.75 9 3.47 9c1.231 0 1.886.371 2.86 1.291.613.58.84.709 1.372.709.532 0 .758-.129 1.372-.709.973-.92 1.628-1.291 2.86-1.291 1.23 0 1.885.371 2.859 1.291.613.58.84.709 1.372.709.532 0 .758-.129 1.372-.709C18.51 9.371 19.165 9 20.397 9c1.23 0 1.885.371 2.859 1.291.613.58.84.709 1.372.709.532 0 .758-.129 1.372-.709C26.973 9.371 27.628 9 28.86 9c1.719 0 3.381.786 4.974 2.291l-1.487 1.418C31.118 11.548 29.96 11 28.858 11c-.532 0-.758.129-1.372.709-.973.92-1.628 1.291-2.86 1.291-1.23 0-1.885-.371-2.859-1.291-.613-.58-.84-.709-1.372-.709-.532 0-.758.129-1.372.709-.973.92-1.628 1.291-2.86 1.291-1.23 0-1.885-.371-2.859-1.291-.613-.58-.84-.709-1.372-.709-.532 0-.758.129-1.372.709C9.587 12.629 8.932 13 7.7 13c-1.23 0-1.885-.371-2.859-1.291-.613-.58-.84-.709-1.372-.709-1.1 0-2.26.548-3.488 1.709zm0 4l-1.487-1.418C.087 13.787 1.75 13 3.47 13c1.231 0 1.886.371 2.86 1.291.613.58.84.709 1.372.709.532 0 .758-.129 1.372-.709.973-.92 1.628-1.291 2.86-1.291 1.23 0 1.885.371 2.859 1.291.613.58.84.709 1.372.709.532 0 .758-.129 1.372-.709.973-.92 1.628-1.291 2.86-1.291 1.23 0 1.885.371 2.859 1.291.613.58.84.709 1.372.709.532 0 .758-.129 1.372-.709.973-.92 1.628-1.291 2.86-1.291 1.719 0 3.381.786 4.974 2.291l-1.487 1.418C31.118 15.548 29.96 15 28.858 15c-.532 0-.758.129-1.372.709-.973.92-1.628 1.291-2.86 1.291-1.23 0-1.885-.372-2.859-1.291-.613-.58-.84-.709-1.372-.709-.532 0-.758.129-1.372.709-.973.92-1.628 1.291-2.86 1.291-1.23 0-1.885-.372-2.859-1.291-.613-.58-.84-.709-1.372-.709-.532 0-.758.129-1.372.709C9.587 16.629 8.932 17 7.7 17c-1.23 0-1.885-.372-2.859-1.291-.613-.58-.84-.709-1.372-.709-1.1 0-2.26.548-3.488 1.709zm0 4l-1.487-1.418C.087 17.787 1.75 17 3.47 17c1.231 0 1.886.372 2.86 1.291.613.58.84.709 1.372.709.532 0 .758-.128 1.372-.709.973-.92 1.628-1.291 2.86-1.291 1.23 0 1.885.372 2.859 1.291.613.58.84.709 1.372.709.532 0 .758-.128 1.372-.709.973-.92 1.628-1.291 2.86-1.291 1.23 0 1.885.372 2.859 1.291.613.58.84.709 1.372.709.532 0 .758-.128 1.372-.709.973-.92 1.628-1.291 2.86-1.291 1.719 0 3.381.786 4.974 2.291l-1.487 1.418C31.118 19.547 29.96 19 28.858 19c-.532 0-.758.128-1.372.709-.973.92-1.628 1.291-2.86 1.291-1.23 0-1.885-.372-2.859-1.291-.613-.58-.84-.709-1.372-.709-.532 0-.758.128-1.372.709-.973.92-1.628 1.291-2.86 1.291-1.23 0-1.885-.372-2.859-1.291-.613-.58-.84-.709-1.372-.709-.532 0-.758.128-1.372.709C9.587 20.629 8.932 21 7.7 21c-1.23 0-1.885-.372-2.859-1.291-.613-.58-.84-.709-1.372-.709-1.1 0-2.26.548-3.488 1.709zm0 4l-1.487-1.418C.087 21.787 1.75 21 3.47 21c1.231 0 1.886.372 2.86 1.291.613.58.84.709 1.372.709.532 0 .758-.128 1.372-.709.973-.92 1.628-1.291 2.86-1.291 1.23 0 1.885.372 2.859 1.291.613.58.84.709 1.372.709.532 0 .758-.128 1.372-.709.973-.92 1.628-1.291 2.86-1.291 1.23 0 1.885.372 2.859 1.291.613.58.84.709 1.372.709.532 0 .758-.128 1.372-.709.973-.92 1.628-1.291 2.86-1.291 1.719 0 3.381.786 4.974 2.291l-1.487 1.418C31.118 23.547 29.96 23 28.858 23c-.532 0-.758.128-1.372.709-.973.92-1.628 1.291-2.86 1.291-1.23 0-1.885-.372-2.859-1.291-.613-.58-.84-.709-1.372-.709-.532 0-.758.128-1.372.709-.973.92-1.628 1.291-2.86 1.291-1.23 0-1.885-.372-2.859-1.291-.613-.58-.84-.709-1.372-.709-.532 0-.758.128-1.372.709C9.587 24.629 8.932 25 7.7 25c-1.23 0-1.885-.372-2.859-1.291-.613-.58-.84-.709-1.372-.709-1.1 0-2.26.548-3.488 1.709z"
               clip-rule="evenodd"
             />
-            <mask id="IOT_svg__c" width="14" height="10" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"IOT_svg__c_#{@id}"} width="14" height="10" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h14v10H0z" />
             </mask>
-            <g mask="url(#IOT_svg__c)">
+            <g mask={"url(#IOT_svg__c_#{@id})"}>
               <path fill="#2E42A5" d="M0 0h14v12H0z" /><path
                 fill="#fff"
                 d="M-2.158 11.333l3.656 1.544 14.893-11.42 1.928-2.295-3.91-.516-6.074 4.921-4.889 3.316-5.604 4.45z"
@@ -5581,7 +6822,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M18.033 12.11l-1.863.896-7.418-6.15-2.2-.687-9.057-7H.111l9.052 6.834 2.405.824 6.465 5.283z"
               />
-              <mask id="IOT_svg__d" width="16" height="12" x="-.985" y="-1" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"IOT_svg__d_#{@id}"} width="16" height="12" x="-.985" y="-1" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-.985-1h16v12h-16z" /><path
                   fill-rule="evenodd"
                   d="M8 0H6v4H.015v2H6v4h2V6h6.015V4H8V0z"
@@ -5591,11 +6832,11 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M8 0H6v4H.015v2H6v4h2V6h6.015V4H8V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M6 0v-1H5v1h1zm2 0h1v-1H8v1zM6 4v1h1V4H6zM.015 4V3h-1v1h1zm0 2h-1v1h1V6zM6 6h1V5H6v1zm0 4H5v1h1v-1zm2 0v1h1v-1H8zm0-4V5H7v1h1zm6.015 0v1h1V6h-1zm0-2h1V3h-1v1zM8 4H7v1h1V4zM6 1h2v-2H6v2zm1 3V0H5v4h2zM.015 5H6V3H.015v2zm1 1V4h-2v2h2zM6 5H.015v2H6V5zm1 5V6H5v4h2zm1-1H6v2h2V9zM7 6v4h2V6H7zm7.015-1H8v2h6.015V5zm-1-1v2h2V4h-2zM8 5h6.015V3H8v2zM7 0v4h2V0H7z"
-                mask="url(#IOT_svg__d)"
+                mask={"url(#IOT_svg__d_#{@id})"}
               />
             </g>
             <rect width="1" height="12.621" x="20.4" y="9.379" fill="#D86D00" rx=".5" />
-            <mask id="IOT_svg__e" width="12" height="12" x="14.512" y=".058" fill="#000" maskUnits="userSpaceOnUse">
+            <mask id={"IOT_svg__e_#{@id}"} width="12" height="12" x="14.512" y=".058" fill="#000" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M14.512.058h12v12h-12z" /><path
                 fill-rule="evenodd"
                 d="M20.404 2.058c.828 1.134 1.167 2.475 1.197 3.839.934-1.266 2.492-2.3 3.22-2.742-.668.468-1.015 1.16-1.406 1.94-.192.383-.394.787-.65 1.195a14.605 14.605 0 013.173-.719c-1.06.301-2.04.916-2.99 1.513-.347.218-.69.433-1.032.63 3.072 1.157 3.544 2.83 3.544 2.83-.376-.332-1.189-.688-2.723-1.36a364.55 364.55 0 01-.963-.422c.229.843.507 1.503.772 2.133l.08.188s-2.127-.574-2.53-2.222a11.17 11.17 0 01-3.086 1.719s1.44-1.562 2.497-2.6c-1.388-.156-3.995-.284-3.995-.284l.186-.044c1.048-.25 2.67-.636 4.155-.616a9.497 9.497 0 01-2.874-2.507c.253.224.96.505 1.924.888.406.161.859.341 1.343.543.092-1.684.158-3.902.158-3.902zM16.88 4.389c.01.044.044.09.1.14-.066-.09-.1-.14-.1-.14zm8.34-1.465a2.84 2.84 0 00-.398.231c.247-.15.398-.231.398-.231zm-4.53 4.092a.498.498 0 01.314-.03c.01-.03.02-.06.032-.089l-.331.023-.014.096z"
@@ -5610,7 +6851,7 @@ defmodule Flagpack do
             /><path
               fill="#fff"
               d="M21.601 5.897l-.35.008.023 1.024.609-.824-.282-.208zm-1.197-3.84l.283-.206-.602-.825-.03 1.021.35.01zm3.011 3.039l-.313-.157.313.157zm-.65 1.194l-.296-.186-.538.857.953-.342-.119-.33zm3.173-.719l.095.337-.128-.685.033.348zm-2.99 1.513l-.186-.297-.007.005-.007.005.2.287zm0 0l.188.295.006-.004.007-.005-.2-.286zm0 0l.188.295-.188-.295zm0 0l.186.296h.002l-.188-.296zm0 0l-.186-.297.186.297zm-1.032.63l-.175-.303-.642.37.694.26.123-.327zm3.544 2.83l-.231.263.892.787-.324-1.145-.337.095zm-2.723-1.36l.14-.32-.14.32zm0 0l-.14.321.14-.32zm-.963-.422l.141-.32-.671-.297.192.708.338-.091zm.772 2.133l.323-.135-.323.136zm.08.188l-.092.338.691.187-.277-.66-.323.135zm-2.53-2.222l.34-.083-.131-.534-.428.344.219.273zM17.01 10.58l-.257-.237.375.567-.118-.33zm2.497-2.6l.245.25.525-.515-.731-.082-.04.348zm-3.995-.284l-.08-.34.063.69.018-.35zm.186-.044l.08.34-.08-.34zm4.155-.616l-.005.35.176-.655-.171.305zm-.95-1.62l.129-.325-.13.326zm1.343.544l-.135.323.457.19.027-.494-.35-.02zm-3.367-1.571l.292-.193-.633.27.341-.077zm8.34-1.465l.167.308-.317-.624.15.316zm-4.53 4.092l-.346-.051-.094.63.583-.259-.142-.32zm.314-.03l-.077.341.303.069.104-.294-.33-.116zm.032-.089l.327.126.198-.513-.549.038.024.35zm-.331.023l-.024-.35-.28.02-.042.278.346.052zm1.247-1.031c-.032-1.416-.384-2.831-1.264-4.038l-.566.413c.775 1.062 1.101 2.328 1.13 3.64l.7-.015zm2.689-3.033c-.733.445-2.343 1.508-3.32 2.833l.563.416c.89-1.207 2.396-2.211 3.12-2.65l-.363-.599zm-.912 2.396c.398-.794.71-1.402 1.294-1.81l-.401-.574c-.753.527-1.136 1.306-1.519 2.07l.626.314zm-.666 1.224c.266-.425.475-.843.666-1.224l-.626-.313a13.71 13.71 0 01-.633 1.165l.593.372zm2.876-.905l-.033-.348h-.006l-.015.002a6.62 6.62 0 00-.264.031 15.1 15.1 0 00-.734.116 14.36 14.36 0 00-2.239.588l.237.66a13.661 13.661 0 012.127-.56 14.404 14.404 0 01.944-.139h.012l.003-.001-.032-.349zm-2.804 1.81c.96-.603 1.896-1.188 2.9-1.473l-.192-.673c-1.117.317-2.138.96-3.08 1.552l.372.593zm.015-.01l-.401-.574.401.573zm-.013.008l-.375-.59.375.59zm0 0l-.375-.59.375.59zm-.002.002l-.372-.594.372.594zm-1.043.637c.349-.201.697-.42 1.043-.638l-.372-.592c-.348.218-.685.43-1.02.623l.349.607zm3.37 2.526l.336-.095v-.002l-.001-.003-.003-.008a1.097 1.097 0 00-.033-.094 2.41 2.41 0 00-.112-.24 3.916 3.916 0 00-.547-.772c-.543-.608-1.478-1.347-3.062-1.943l-.246.655c1.487.56 2.325 1.237 2.786 1.754.231.26.37.481.45.632a1.733 1.733 0 01.095.212l.336-.096zm-2.864-1.039c.77.337 1.349.59 1.783.802.44.213.7.368.849.5l.463-.525c-.227-.2-.563-.39-1.006-.605-.45-.218-1.044-.478-1.808-.813l-.281.641zm0 0l.28-.641-.28.641zm-.964-.423l.963.423.281-.641-.962-.423-.282.64zm1.236 1.678c-.266-.63-.535-1.271-.757-2.09l-.676.183c.236.869.522 1.548.788 2.178l.645-.271zm.079.188l-.08-.188-.644.271.078.188.646-.271zm-3.192-2.003c.234.956.96 1.575 1.576 1.945a5.437 5.437 0 001.192.528l.006.002h.003v.001l.092-.338.091-.338h-.002l-.014-.004a4.059 4.059 0 01-.287-.1 4.742 4.742 0 01-.721-.35c-.548-.33-1.087-.821-1.256-1.513l-.68.167zm-2.628 1.965a11.517 11.517 0 003.187-1.776l-.439-.546a10.82 10.82 0 01-2.983 1.662l.235.66zm2.134-3.18a67.778 67.778 0 00-1.654 1.699c-.247.26-.46.489-.612.652l-.179.192-.047.052-.013.013-.003.004h-.001l.257.238.258.237v-.001c.002 0 .002-.002.004-.003l.012-.013.047-.052a95.663 95.663 0 01.785-.838 67.07 67.07 0 011.636-1.68l-.49-.5zm-3.75-.034l-.017.35h.008l.021.001a68.06 68.06 0 01.398.021c.266.014.634.035 1.045.061.825.052 1.816.122 2.5.2l.079-.696a57.32 57.32 0 00-2.535-.203 130.96 130.96 0 00-1.451-.082l-.023-.001h-.007l-.018.35zm.105-.384l-.186.044.162.68.186-.043-.162-.681zm4.24-.626c-1.536-.02-3.2.378-4.24.626l.162.68c1.055-.25 2.634-.625 4.07-.606l.009-.7zm-3.16-1.949a9.847 9.847 0 002.985 2.605l.342-.611a9.15 9.15 0 01-2.764-2.41l-.563.416zm2.335.354a36.043 36.043 0 01-1.216-.498c-.334-.148-.525-.255-.606-.327l-.463.525c.173.153.462.298.785.442.337.15.762.318 1.241.509l.259-.65zm1.348.546a86.123 86.123 0 00-1.348-.546l-.259.65c.407.163.858.341 1.338.542l.27-.646zm.024-3.58l-.35-.01v.026l-.003.072-.008.274-.033.945a150.69 150.69 0 01-.114 2.577l.7.038a153.356 153.356 0 00.146-3.537l.01-.275.001-.073v-.02l.001-.004v-.002l-.35-.01zm-3.866 2.41a.63.63 0 00.209.324l.463-.525-.014-.013a.164.164 0 01.024.058l-.682.156zm.722-.147a4.217 4.217 0 01-.088-.123l-.001-.001-.292.193-.292.193.001.002.002.002.006.009a2.69 2.69 0 00.102.142l.562-.417zm7.809-1.712a3.09 3.09 0 00-.448.26l.4.574c.106-.074.222-.141.35-.202l-.302-.632zm-.066.847a12.209 12.209 0 01.359-.21l.019-.01.004-.003-.166-.308-.166-.308-.002.001-.006.003a4.123 4.123 0 00-.106.06c-.07.04-.173.1-.3.176l.364.599zm-4.11 3.169a.848.848 0 00-.345.072l.284.64a.148.148 0 01.06-.012v-.7zm.186.02a.851.851 0 00-.187-.02v.7a.15.15 0 01.034.003l.153-.683zm.254.458a3.19 3.19 0 01.029-.079l-.653-.252a3.526 3.526 0 00-.037.099l.66.232zm-.322-.554l-.331.023.048.698.331-.023-.048-.698zm-.653.32l-.015.097.693.103.014-.096-.692-.104z"
-              mask="url(#IOT_svg__e)"
+              mask={"url(#IOT_svg__e_#{@id})"}
             /><path
               fill="#F50100"
               fill-rule="evenodd"
@@ -5642,19 +6883,30 @@ defmodule Flagpack do
   Renders the Ireland flag.
 
   ## Examples
+
       <Flagpack.irl />
-      <Flagpack.irl class="w-5 h-5" />
+      <Flagpack.irl id="my-flag" />
+      <Flagpack.irl class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def irl(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="IRL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"IRL_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#IRL_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#IRL_svg__a_#{@id})"}>
           <path fill="#FF8C1A" d="M22 0h10v24H22V0z" /><path fill="#5EAA22" d="M0 0h12v24H0V0z" /><path
             fill="#F7FCFF"
             d="M10 0h12v24H10V0z"
@@ -5669,24 +6921,35 @@ defmodule Flagpack do
   Renders the Iran flag.
 
   ## Examples
+
       <Flagpack.irn />
-      <Flagpack.irn class="w-5 h-5" />
+      <Flagpack.irn id="my-flag" />
+      <Flagpack.irn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def irn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="IRN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"IRN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#IRN_svg__a)">
+        <g mask={"url(#IRN_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="IRN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"IRN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#IRN_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#IRN_svg__b_#{@id})"}>
             <path fill="#5EAA22" d="M0 0v8h32V0H0z" /><path fill="#E31D1C" d="M0 16v8h32v-8H0z" /><path
               fill="#F7FCFF"
               d="M4.6 16.392v.634H2.27v-.634H4.6zM.567 17.984H.359v-.253h.454v.887h.58v.007h.561v-1.842h-.358v1.208H1.54v-1.304h-.358v1.297h-.01v-1.297H.813v.41H0v1.521h.566v-.634zm1.5.355h.36v-.628h.4v.914H3.95v-1.547h-.577v.634h.218v.279h-.408v-.914H2.067v1.262zm2.292-.355h.207v.634H4v-1.521h.814v-.41h.359v1.297h.01v-1.297h.358v1.304h.055v-1.208h.36v1.842h-.562v-.007h-.58v-.887h-.455v.253zM8.6 16.392v.634H6.27v-.634H8.6zM6.066 18.34h.359v-.629h.4v.914H7.95v-1.547h-.577v.634h.219v.279h-.408v-.914H6.066v1.262zm2.364-.356h.207v.634H8.07v-1.521h.814v-.41h.36v1.297h.008v-1.297h.36v1.304h.055v-1.208h.358v1.842h-.561v-.007h-.58v-.887H8.43v.253zm4.242-1.592v.634H10.34v-.634h2.33zm-2.535 1.948h.36v-.629h.4v.914h1.125v-1.547h-.578v.634h.219v.279h-.408v-.914h-1.118v1.262zm2.292-.356h.207v.634h-.566v-1.521h.814v-.41h.359v1.297h.01v-1.297h.358v1.304h.055v-1.208h.36v1.842h-.562v-.007h-.58v-.887h-.455v.253zm4.242-1.592v.634h-2.33v-.634h2.33zm-2.534 1.948h.359v-.629h.4v.914h1.125v-1.547h-.577v.634h.219v.279h-.408v-.914h-1.118v1.262zm2.292-.356h.207v.634h-.566v-1.521h.814v-.41h.359v1.297h.009v-1.297h.359v1.304h.055v-1.208h.359v1.842h-.562v-.007h-.58v-.887h-.454v.253zm4.242-1.592v.634h-2.33v-.634h2.33zm-2.534 1.948h.359v-.629h.4v.914h1.125v-1.547h-.577v.634h.218v.279h-.408v-.914h-1.117v1.262zm2.363-.356h.207v.634h-.566v-1.521h.814v-.41h.359v1.297h.01v-1.297h.358v1.304h.055v-1.208h.359v1.842h-.561v-.007h-.58v-.887H20.5v.253zm4.242-1.592v.634h-2.33v-.634h2.33zm-2.534 1.948h.359v-.629h.4v.914h1.125v-1.547h-.577v.634h.219v.279h-.408v-.914h-1.118v1.262zm2.364-.356h.207v.634h-.567v-1.521h.814v-.41h.359v1.297h.01v-1.297h.358v1.304h.055v-1.208h.36v1.842h-.562v-.007h-.58v-.887h-.454v.253zm4.242-1.592v.634h-2.331v-.634h2.33zm-2.535 1.948h.36v-.629h.4v.914h1.124v-1.547h-.577v.634h.219v.279h-.408v-.914h-1.118v1.262zm2.364-.356h.207v.634h-.566v-1.521h.813v-.41h.36v1.297h.008v-1.297h.36v1.304h.055v-1.208h.358v1.842h-.561v-.007h-.58v-.887h-.454v.253zm4.242-1.592v.634h-2.331v-.634h2.33zM30.35 18.34h.358v-.629h.4v.914h1.126v-1.547h-.577v.634h.218v.279h-.408v-.914H30.35v1.262zm2.291-.356h.207v.634h-.565v-1.521h.814v-.41h.359v1.297h.01v-1.297h.358v1.304h.055v-1.208h.36v1.842h-.562v-.007h-.58v-.887h-.455v.253zm4.242-1.592v.634h-2.33v-.634h2.33zM34.35 18.34h.359v-.629h.4v.914h1.125v-1.547h-.577v.634h.219v.279h-.408v-.914H34.35v1.262zm2.506-.356h.207v.634h-.566v-1.521h.814v-.41h.359v1.297h.01v-1.297h.358v1.304h.055v-1.208h.36v1.842h-.562v-.007h-.58v-.887h-.455v.253zm4.242-1.592v.634h-2.33v-.634h2.33zm-2.534 1.948h.36v-.629h.4v.914h1.125v-1.547h-.578v.634h.219v.279h-.408v-.914h-1.118v1.262zM.485 5.392v.634h-2.331v-.634h2.33zM-3.55 6.984h-.207v-.253h.454v.887h.58v.007h.561V5.783h-.358v1.208h-.056V5.687h-.359v1.297h-.009V5.687h-.359v.41h-.813v1.521h.566v-.634zm1.5.355h.36v-.628h.4v.914h1.125V6.078h-.578v.634h.219v.279h-.408v-.914H-2.05V7.34zm2.292-.355H.45v.634h-.567V6.097h.814v-.41h.359v1.297h.01V5.687h.358v1.304h.055V5.783h.359v1.842h-.561v-.007h-.58v-.887H.242v.253zm4.242-1.592v.634h-2.33v-.634h2.33zM1.95 7.339h.359v-.628h.4v.914h1.125V6.078h-.577v.634h.219v.279h-.408v-.914H1.95V7.34zm2.364-.355h.207v.634h-.567V6.097h.814v-.41h.359v1.297h.01V5.687h.358v1.304h.055V5.783h.36v1.842h-.562v-.007h-.58v-.887h-.454v.253zm4.242-1.592v.634H6.225v-.634h2.33zM6.02 7.339h.36v-.628h.4v.914h1.125V6.078h-.578v.634h.219v.279h-.408v-.914H6.02V7.34zm2.292-.355h.207v.634h-.565V6.097h.814v-.41h.359v1.297h.01V5.687h.358v1.304h.055V5.783h.359v1.842h-.561v-.007h-.58v-.887h-.455v.253zm4.242-1.592v.634h-2.33v-.634h2.33zM10.02 7.339h.359v-.628h.4v.914h1.125V6.078h-.577v.634h.219v.279h-.408v-.914H10.02V7.34zm2.292-.355h.207v.634h-.565V6.097h.814v-.41h.358v1.297h.01V5.687h.359v1.304h.055V5.783h.359v1.842h-.562v-.007h-.58v-.887h-.454v.253zm4.242-1.592v.634h-2.33v-.634h2.33zM14.02 7.339h.359v-.628h.4v.914h1.125V6.078h-.577v.634h.218v.279h-.408v-.914H14.02V7.34zm2.363-.355h.207v.634h-.565V6.097h.814v-.41h.359v1.297h.01V5.687h.358v1.304h.055V5.783h.359v1.842h-.561v-.007h-.58v-.887h-.455v.253zm4.242-1.592v.634h-2.33v-.634h2.33zm-2.534 1.947h.359v-.628h.4v.914h1.125V6.078H19.4v.634h.218v.279h-.408v-.914h-1.117V7.34zm2.364-.355h.206v.634h-.565V6.097h.814v-.41h.359v1.297h.01V5.687h.358v1.304h.055V5.783h.36v1.842h-.562v-.007h-.58v-.887h-.454v.253zm4.241-1.592v.634h-2.33v-.634h2.33zm-2.534 1.947h.359v-.628h.4v.914h1.125V6.078h-.577v.634h.219v.279h-.408v-.914h-1.118V7.34zm2.364-.355h.207v.634h-.567V6.097h.814v-.41h.36v1.297h.008V5.687h.36v1.304h.055V5.783h.358v1.842h-.561v-.007h-.58v-.887h-.454v.253zm4.242-1.592v.634h-2.331v-.634h2.33zm-2.534 1.947h.358v-.628h.4v.914h1.126V6.078h-.578v.634h.219v.279h-.408v-.914h-1.117V7.34zm2.291-.355h.207v.634h-.565V6.097h.814v-.41h.359v1.297h.01V5.687h.358v1.304h.055V5.783h.36v1.842h-.562v-.007h-.58v-.887h-.455v.253zm4.242-1.592v.634h-2.33v-.634h2.33zm-2.534 1.947h.359v-.628h.4v.914h1.125V6.078h-.577v.634h.219v.279h-.408v-.914h-1.118V7.34zm2.506-.355h.207v.634h-.565V6.097h.814v-.41h.359v1.297h.01V5.687h.358v1.304h.055V5.783h.36v1.842h-.562v-.007h-.58v-.887h-.455v.253zm4.242-1.592v.634h-2.33v-.634h2.33zm-2.534 1.947h.359v-.628h.4v.914h1.125V6.078h-.577v.634h.219v.279h-.408v-.914h-1.118V7.34z"
@@ -5705,24 +6968,35 @@ defmodule Flagpack do
   Renders the Iraq flag.
 
   ## Examples
+
       <Flagpack.irq />
-      <Flagpack.irq class="w-5 h-5" />
+      <Flagpack.irq id="my-flag" />
+      <Flagpack.irq class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def irq(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="IRQ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"IRQ_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#IRQ_svg__a)">
+        <g mask={"url(#IRQ_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="IRQ_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"IRQ_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#IRQ_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#IRQ_svg__b_#{@id})"}>
             <path fill="#BF2714" d="M0 0v8h32V0H0z" /><path fill="#272727" d="M0 16v8h32v-8H0z" /><path
               fill="#009C4E"
               d="M5.337 12.811C6.247 14.117 5 15 5 15s1.09 0 1.507-.874h8.917V12.2s-.186-.925-.98-.925c-.795 0-.973.925-.973.925h-3.137l3.035-2.68-.59-.52-3.371 2.976v.63h4.785v-.37s.027-.216.25-.216c.224 0 .17.215.17.215v.793h-6.03v-1.084l-.653.291v.793s-.8-.217-1.305-.217c-.506 0-.536-.576-.536-.576l-.752.576zm12.11.074l.489 1.218H15.99V9.214l.82.263v3.408h.637zm9.064 0L27 14.103h-1.946V9.214l.82.263v3.408h.637zm-2.41-3.62l-.506.343v3.274h-.517v-2.626l-.85.49v2.136h-.572V11.4l-.647.416v.402s-1.244.086-1.244 1.845h4.331l.006-4.798zm-16.61 5.7c.157 0 .284-.111.284-.25 0-.137-.127-.25-.283-.25-.157 0-.283.113-.283.25 0 .139.126.25.283.25zm14.424-5.323c-.22.29-.888 0-.888 0l1.893-.22c-.196.382-1.006.22-1.006.22z"
@@ -5738,24 +7012,35 @@ defmodule Flagpack do
   Renders the Iceland flag.
 
   ## Examples
+
       <Flagpack.isl />
-      <Flagpack.isl class="w-5 h-5" />
+      <Flagpack.isl id="my-flag" />
+      <Flagpack.isl class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def isl(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ISL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ISL_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ISL_svg__a)">
+        <g mask={"url(#ISL_svg__a_#{@id})"}>
           <path fill="#0061C1" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ISL_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ISL_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#ISL_svg__b)">
+          <g mask={"url(#ISL_svg__b_#{@id})"}>
             <path fill="#D21034" stroke="#F1F9FF" stroke-width="2" d="M10-1H9V9H-1v6H9v10h6V15h18V9H15V-1h-5z" />
           </g>
         </g>
@@ -5768,24 +7053,35 @@ defmodule Flagpack do
   Renders the Israel flag.
 
   ## Examples
+
       <Flagpack.isr />
-      <Flagpack.isr class="w-5 h-5" />
+      <Flagpack.isr id="my-flag" />
+      <Flagpack.isr class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def isr(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ISR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ISR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ISR_svg__a)">
+        <g mask={"url(#ISR_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ISR_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ISR_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill="#3D58DB" fill-rule="evenodd" clip-rule="evenodd" mask="url(#ISR_svg__b)">
+          <g fill="#3D58DB" fill-rule="evenodd" clip-rule="evenodd" mask={"url(#ISR_svg__b_#{@id})"}>
             <path d="M0 3v3h32V3H0zm0 15v3h32v-3H0zm11.381-3.061h9.377L16.116 6.62l-4.736 8.32zm7.772-1.01h-6.132l3.086-5.47 3.046 5.47z" /><path d="M11.264 9.076h9.417l-4.545 8.085-4.872-8.085zm7.781.974h-5.994l3.058 5.481 2.936-5.481z" />
           </g>
         </g>
@@ -5798,19 +7094,30 @@ defmodule Flagpack do
   Renders the Italy flag.
 
   ## Examples
+
       <Flagpack.ita />
-      <Flagpack.ita class="w-5 h-5" />
+      <Flagpack.ita id="my-flag" />
+      <Flagpack.ita class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ita(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ITA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ITA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#ITA_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#ITA_svg__a_#{@id})"}>
           <path fill="#C51918" d="M22 0h10v24H22V0z" /><path fill="#5EAA22" d="M0 0h12v24H0V0z" /><path
             fill="#fff"
             d="M10 0h12v24H10V0z"
@@ -5825,19 +7132,30 @@ defmodule Flagpack do
   Renders the Jamaica flag.
 
   ## Examples
+
       <Flagpack.jam />
-      <Flagpack.jam class="w-5 h-5" />
+      <Flagpack.jam id="my-flag" />
+      <Flagpack.jam class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def jam(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="JAM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"JAM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#JAM_svg__a)">
+        <g mask={"url(#JAM_svg__a_#{@id})"}>
           <path fill="#093" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#272727"
             stroke="#FECA00"
@@ -5859,19 +7177,30 @@ defmodule Flagpack do
   Renders the Jersey flag.
 
   ## Examples
+
       <Flagpack.jey />
-      <Flagpack.jey class="w-5 h-5" />
+      <Flagpack.jey id="my-flag" />
+      <Flagpack.jey class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def jey(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="JEY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"JEY_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#JEY_svg__a)">
+        <g mask={"url(#JEY_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#F7FCFF"
             stroke="#E31D1C"
@@ -5903,31 +7232,42 @@ defmodule Flagpack do
   Renders the Jordan flag.
 
   ## Examples
+
       <Flagpack.jor />
-      <Flagpack.jor class="w-5 h-5" />
+      <Flagpack.jor id="my-flag" />
+      <Flagpack.jor class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def jor(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="JOR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"JOR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#JOR_svg__a)">
+        <g mask={"url(#JOR_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="JOR_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"JOR_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#JOR_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#JOR_svg__b_#{@id})"}>
             <path fill="#272727" d="M0 0v8h32V0H0z" /><path fill="#093" d="M0 16v8h32v-8H0z" />
           </g>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24l20-12L0 0z" clip-rule="evenodd" />
-          <mask id="JOR_svg__c" width="20" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"JOR_svg__c_#{@id}"} width="20" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24l20-12L0 0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#JOR_svg__c)">
+          <g mask={"url(#JOR_svg__c_#{@id})"}>
             <path
               fill="#F7FCFF"
               fill-rule="evenodd"
@@ -5945,24 +7285,35 @@ defmodule Flagpack do
   Renders the Japan flag.
 
   ## Examples
+
       <Flagpack.jpn />
-      <Flagpack.jpn class="w-5 h-5" />
+      <Flagpack.jpn id="my-flag" />
+      <Flagpack.jpn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def jpn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="JPN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"JPN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#JPN_svg__a)">
+        <g mask={"url(#JPN_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="JPN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"JPN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#JPN_svg__b)">
+          <g mask={"url(#JPN_svg__b_#{@id})"}>
             <path fill="#E31D1C" fill-rule="evenodd" d="M16 19.5a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" clip-rule="evenodd" />
           </g>
         </g>
@@ -5975,24 +7326,35 @@ defmodule Flagpack do
   Renders the Kazakhstan flag.
 
   ## Examples
+
       <Flagpack.kaz />
-      <Flagpack.kaz class="w-5 h-5" />
+      <Flagpack.kaz id="my-flag" />
+      <Flagpack.kaz class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def kaz(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="KAZ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"KAZ_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#KAZ_svg__a)">
+        <g mask={"url(#KAZ_svg__a_#{@id})"}>
           <path fill="#4EC7EE" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="KAZ_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"KAZ_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#KAZ_svg__b)">
+          <g mask={"url(#KAZ_svg__b_#{@id})"}>
             <path
               fill="#FFE402"
               d="M4.09 23.237c-.063.47.238.805.743 1.02.678.29 1.364.019 1.994-.68l-.817-.737c-.28.31-.482.43-.638.428.305-.218.697-.488 1.174-.808l.23-.332c.183-.79-.389-1.217-1.26-1.217-.515 0-.925.102-1.186.32-.428.36-.355.932.096 1.23.035.024.072.046.108.065-.252.213-.407.433-.444.711z"
@@ -6062,19 +7424,30 @@ defmodule Flagpack do
   Renders the Kenya flag.
 
   ## Examples
+
       <Flagpack.ken />
-      <Flagpack.ken class="w-5 h-5" />
+      <Flagpack.ken id="my-flag" />
+      <Flagpack.ken class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ken(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="KEN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"KEN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#KEN_svg__a)">
+        <g mask={"url(#KEN_svg__a_#{@id})"}>
           <path fill="#272727" fill-rule="evenodd" d="M0 0v8h32V0H0z" clip-rule="evenodd" /><path
             fill="#4E8B1D"
             fill-rule="evenodd"
@@ -6094,7 +7467,7 @@ defmodule Flagpack do
           d="M16 20c.997 0 5-3.582 5-8s-4.003-8-5-8c-.997 0-5 3.582-5 8s4.003 8 5 8z"
           clip-rule="evenodd"
         />
-        <mask id="KEN_svg__b" width="10" height="16" x="11" y="4" maskUnits="userSpaceOnUse">
+        <mask id={"KEN_svg__b_#{@id}"} width="10" height="16" x="11" y="4" maskUnits="userSpaceOnUse">
           <path
             fill="#fff"
             fill-rule="evenodd"
@@ -6102,7 +7475,7 @@ defmodule Flagpack do
             clip-rule="evenodd"
           />
         </mask>
-        <g mask="url(#KEN_svg__b)">
+        <g mask={"url(#KEN_svg__b_#{@id})"}>
           <path fill="#272727" d="M6.5 19a7 7 0 100-14 7 7 0 000 14zm19 0a7 7 0 100-14 7 7 0 000 14z" /><path
             fill="#F7FCFF"
             fill-rule="evenodd"
@@ -6119,24 +7492,35 @@ defmodule Flagpack do
   Renders the Kyrgyzstan flag.
 
   ## Examples
+
       <Flagpack.kgz />
-      <Flagpack.kgz class="w-5 h-5" />
+      <Flagpack.kgz id="my-flag" />
+      <Flagpack.kgz class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def kgz(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="KGZ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"KGZ_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#KGZ_svg__a)">
+        <g mask={"url(#KGZ_svg__a_#{@id})"}>
           <path fill="#C51918" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="KGZ_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"KGZ_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#KGZ_svg__b)">
+          <g mask={"url(#KGZ_svg__b_#{@id})"}>
             <path
               fill="#FFDC17"
               fill-rule="evenodd"
@@ -6154,19 +7538,30 @@ defmodule Flagpack do
   Renders the Cambodia flag.
 
   ## Examples
+
       <Flagpack.khm />
-      <Flagpack.khm class="w-5 h-5" />
+      <Flagpack.khm id="my-flag" />
+      <Flagpack.khm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def khm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="KHM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"KHM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#KHM_svg__a)">
+        <g mask={"url(#KHM_svg__a_#{@id})"}>
           <path fill="#032EA1" d="M0 0h32v24H0V0z" /><path fill="#E00025" d="M0 6h32v12H0V6z" /><path
             fill="#fff"
             stroke="#000"
@@ -6526,24 +7921,35 @@ defmodule Flagpack do
   Renders the Kiribati flag.
 
   ## Examples
+
       <Flagpack.kir />
-      <Flagpack.kir class="w-5 h-5" />
+      <Flagpack.kir id="my-flag" />
+      <Flagpack.kir class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def kir(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="KIR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"KIR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#KIR_svg__a)">
+        <g mask={"url(#KIR_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="KIR_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"KIR_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#KIR_svg__b)">
+          <g mask={"url(#KIR_svg__b_#{@id})"}>
             <path
               fill="#FFC84A"
               fill-rule="evenodd"
@@ -6555,7 +7961,7 @@ defmodule Flagpack do
               d="M-.792 13.92l2.615-1.061a1.562 1.562 0 011.188.005l3.63 1.511a1.56 1.56 0 001.276-.034l2.929-1.405c.42-.202.908-.205 1.331-.01l3.068 1.417a1.56 1.56 0 001.303.003l3.139-1.431a1.56 1.56 0 011.303.003l3.099 1.43c.406.188.874.192 1.284.012l3.386-1.491a1.562 1.562 0 011.158-.04l3.036 1.091v10.014H-.881l.089-10.014z"
               clip-rule="evenodd"
             />
-            <mask id="KIR_svg__c" width="34" height="12" x="-1" y="12" maskUnits="userSpaceOnUse">
+            <mask id={"KIR_svg__c_#{@id}"} width="34" height="12" x="-1" y="12" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 fill-rule="evenodd"
@@ -6563,7 +7969,7 @@ defmodule Flagpack do
                 clip-rule="evenodd"
               />
             </mask>
-            <g mask="url(#KIR_svg__c)">
+            <g mask={"url(#KIR_svg__c_#{@id})"}>
               <path
                 stroke="#015989"
                 stroke-width="2"
@@ -6592,19 +7998,30 @@ defmodule Flagpack do
   Renders the Saint Kitts and Nevis flag.
 
   ## Examples
+
       <Flagpack.kna />
-      <Flagpack.kna class="w-5 h-5" />
+      <Flagpack.kna id="my-flag" />
+      <Flagpack.kna class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def kna(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="KNA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"KNA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#KNA_svg__a)">
+        <g mask={"url(#KNA_svg__a_#{@id})"}>
           <path fill="#C51918" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" /><path
             fill="#5EAA22"
             fill-rule="evenodd"
@@ -6631,14 +8048,25 @@ defmodule Flagpack do
   Renders the Korea (the Republic of) flag.
 
   ## Examples
+
       <Flagpack.kor />
-      <Flagpack.kor class="w-5 h-5" />
+      <Flagpack.kor id="my-flag" />
+      <Flagpack.kor class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def kor(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#KOR_svg__KR_-_Korea_(South)">
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
@@ -6674,24 +8102,35 @@ defmodule Flagpack do
   Renders the Kuwait flag.
 
   ## Examples
+
       <Flagpack.kwt />
-      <Flagpack.kwt class="w-5 h-5" />
+      <Flagpack.kwt id="my-flag" />
+      <Flagpack.kwt class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def kwt(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="KWT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"KWT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#KWT_svg__a)">
+        <g mask={"url(#KWT_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="KWT_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"KWT_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#KWT_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#KWT_svg__b_#{@id})"}>
             <path fill="#093" d="M0 0v8h32V0H0z" /><path fill="#E31D1C" d="M0 16v8h32v-8H0z" />
           </g>
           <path fill="#272727" fill-rule="evenodd" d="M0 0v24l12-8V8L0 0z" clip-rule="evenodd" />
@@ -6705,19 +8144,30 @@ defmodule Flagpack do
   Renders the Lao People's Democratic Republic (the) flag.
 
   ## Examples
+
       <Flagpack.lao />
-      <Flagpack.lao class="w-5 h-5" />
+      <Flagpack.lao id="my-flag" />
+      <Flagpack.lao class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def lao(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="LAO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"LAO_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#LAO_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#LAO_svg__a_#{@id})"}>
           <path fill="#E31D1C" d="M0 16h32v8H0v-8z" /><path fill="#2E42A5" d="M0 8h32v8H0V8z" /><path
             fill="#E31D1C"
             d="M0 0h32v8H0V0z"
@@ -6732,19 +8182,30 @@ defmodule Flagpack do
   Renders the Lebanon flag.
 
   ## Examples
+
       <Flagpack.lbn />
-      <Flagpack.lbn class="w-5 h-5" />
+      <Flagpack.lbn id="my-flag" />
+      <Flagpack.lbn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def lbn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="LBN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"LBN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#LBN_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#LBN_svg__a_#{@id})"}>
           <path fill="#F50101" d="M32 0H0v6h32V0zm0 18H0v6h32v-6z" /><path fill="#F7FCFF" d="M0 6h32v12H0V6z" /><path
             fill="#52AB0B"
             d="M21.515 12.513c.074.868-3.126-.36-3.126-.012 0 .347 3.428.957 3.423 1.734-.006.777-4.066-.222-3.155.128.91.35 2.865 1.186 2.643 1.708-.475 1.113-3.627-.773-3.889-.4-.423.599 2.326 1.998 2.303 2.131-.045.257-1.877-.402-2.303.13-.344-.097-.503-.56-.61-.622l-.676-8.723s.607 8.213-.169 8.45c-.776.235-2.931.954-2.994.595-.023-.134 2.595-1.362 2.172-1.962-.311-.442-3.471 1.126-3.673.218-.898-.647 2.909-1.208 2.909-1.87 0-.662-3.483.784-3.066-.138.416-.922 3.205-1.252 3.257-1.38.095-.233-3.1.364-3.1 0 0-.687 1.912-.822 3.1-1.441.07-.707-2.88.695-3.1.129-.219-.566 3.771-2.033 3.673-2.147-.154-.18-3.37.634-2.84.206 1.03-.83 3.039-1.958 3.501-2.26 0 0 .056-.113.115-.074l.126-.08s0 .71-.01.155c-.01-.554 4.71 1.87 4.763 2.486.062.718-2.916-.542-2.846.164.605.376 2.327 1.101 3.039 1.42.323.146-2.378-.306-2.32-.084.145.565 2.775.635 2.853 1.54z"
@@ -6759,19 +8220,30 @@ defmodule Flagpack do
   Renders the Liberia flag.
 
   ## Examples
+
       <Flagpack.lbr />
-      <Flagpack.lbr class="w-5 h-5" />
+      <Flagpack.lbr id="my-flag" />
+      <Flagpack.lbr class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def lbr(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="LBR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"LBR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#LBR_svg__a)">
+        <g mask={"url(#LBR_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#E31D1C"
             d="M.027 5.5h32v3h-32z"
@@ -6794,19 +8266,30 @@ defmodule Flagpack do
   Renders the Libya flag.
 
   ## Examples
+
       <Flagpack.lby />
-      <Flagpack.lby class="w-5 h-5" />
+      <Flagpack.lby id="my-flag" />
+      <Flagpack.lby class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def lby(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="LBY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"LBY_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#LBY_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#LBY_svg__a_#{@id})"}>
           <path fill="#55BA07" d="M0 18h32v6H0v-6z" /><path fill="#1D1D1D" d="M0 6h32v12H0V6z" /><path
             fill="#E11C1B"
             d="M0 0h32v6H0V0z"
@@ -6824,19 +8307,30 @@ defmodule Flagpack do
   Renders the Saint Lucia flag.
 
   ## Examples
+
       <Flagpack.lca />
-      <Flagpack.lca class="w-5 h-5" />
+      <Flagpack.lca id="my-flag" />
+      <Flagpack.lca class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def lca(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="LCA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"LCA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#LCA_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#LCA_svg__a_#{@id})"}>
           <path fill="#7CCFF5" d="M0 0h32v24H0V0z" /><path fill="#F7FCFF" d="M16 4l8 16H8l8-16z" /><path
             fill="#272727"
             d="M16 8l7 12H9l7-12z"
@@ -6851,24 +8345,35 @@ defmodule Flagpack do
   Renders the Liechtenstein flag.
 
   ## Examples
+
       <Flagpack.lie />
-      <Flagpack.lie class="w-5 h-5" />
+      <Flagpack.lie id="my-flag" />
+      <Flagpack.lie class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def lie(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="LIE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"LIE_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#LIE_svg__a)">
+        <g mask={"url(#LIE_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="LIE_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"LIE_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#LIE_svg__b)">
+          <g mask={"url(#LIE_svg__b_#{@id})"}>
             <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v12h32V0H0z" clip-rule="evenodd" /><path
               fill="#000"
               fill-rule="evenodd"
@@ -6885,7 +8390,7 @@ defmodule Flagpack do
               stroke-width=".5"
               d="M3.886 6.906l.117.221-.117-.221h.001l.002-.001.005-.003.017-.009.064-.03a4.7 4.7 0 01.243-.103c.214-.084.532-.195.955-.305.846-.22 2.11-.437 3.802-.437 1.693 0 2.957.217 3.802.437.423.11.74.221.955.305a4.7 4.7 0 01.307.133l.018.009.005.003h.002l-.116.222.116-.221.195.103-.077.206-1.185 3.168-.083.22-9.028-3.697zm0 0l-.193.102.075.205L4.92 10.38l.08.221.226-.067-1.34-3.629zm8.803 3.628h0l-7.462.001h0l.004-.001.016-.005.061-.017c.055-.015.135-.037.238-.063.205-.052.5-.122.854-.192.71-.14 1.652-.28 2.594-.28s1.866.14 2.558.28a15.093 15.093 0 011.059.254l.06.018.014.004.003.001h.001zM8.874 4.265c.56 0 .922-.547.922-1.095 0-.549-.362-1.095-.922-1.095s-.922.546-.922 1.095c0 .548.362 1.095.922 1.095z"
             />
-            <mask id="LIE_svg__c" width="4" height="5" x="7.118" y="-1" fill="#000" maskUnits="userSpaceOnUse">
+            <mask id={"LIE_svg__c_#{@id}"} width="4" height="5" x="7.118" y="-1" fill="#000" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M7.118-1h4v5h-4z" /><path
                 fill-rule="evenodd"
                 d="M9.126 0h-.504l.065.923-.57-.078v.634l.578-.08-.073 1.454h.504l-.075-1.456.58.082V.845l-.57.082L9.127 0z"
@@ -6900,7 +8405,7 @@ defmodule Flagpack do
             /><path
               fill="#000"
               d="M8.622 0v-.5h-.537l.038.535L8.622 0zm.504 0l.499.035.037-.535h-.536V0zm-.44.923l-.067.495.61.083-.044-.613-.498.035zM8.119.845L8.185.35 7.618.273v.572h.5zm0 .634h-.5v.574l.568-.078-.068-.496zm.577-.08l.5.026.03-.603-.598.082.068.496zm-.073 1.454l-.5-.025-.026.525h.526v-.5zm.504 0v.5h.526l-.027-.526-.499.026zm-.075-1.456l.07-.495-.6-.085.031.606.5-.026zm.58.082l-.071.495.57.081V1.48h-.5zm0-.634h.5V.268L9.558.35l.071.495zm-.57.082L8.564.892l-.043.618.613-.088-.071-.495zM8.622.5h.505v-1h-.504v1zm.564.388l-.064-.923-.998.07.065.923.997-.07zM8.05 1.34l.57.077.134-.99L8.185.35l-.135.99zm.568.138V.845h-1v.634h1zm.01-.575l-.579.08.137.99.578-.079-.137-.99zm.493 1.974l.074-1.453-.999-.05-.074 1.453 1 .05zm.005-.525h-.504v1h.504v-1zm-.574-.93l.075 1.455.998-.05-.074-1.456-.999.05zM9.7.984L9.121.902l-.14.99.579.082.14-.99zM9.13.845v.634h1V.845h-1zm.003.577L9.7 1.34 9.56.35l-.568.082.142.99zM8.627-.035l-.064.927.998.07.064-.927-.998-.07z"
-              mask="url(#LIE_svg__c)"
+              mask={"url(#LIE_svg__c_#{@id})"}
             />
           </g>
         </g>
@@ -6913,19 +8418,30 @@ defmodule Flagpack do
   Renders the Sri Lanka flag.
 
   ## Examples
+
       <Flagpack.lka />
-      <Flagpack.lka class="w-5 h-5" />
+      <Flagpack.lka id="my-flag" />
+      <Flagpack.lka class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def lka(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="LKA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"LKA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#LKA_svg__a)">
+        <g mask={"url(#LKA_svg__a_#{@id})"}>
           <path fill="#FECA00" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#1F8A6E"
             d="M2 2h6v20H2z"
@@ -6948,19 +8464,30 @@ defmodule Flagpack do
   Renders the Lesotho flag.
 
   ## Examples
+
       <Flagpack.lso />
-      <Flagpack.lso class="w-5 h-5" />
+      <Flagpack.lso id="my-flag" />
+      <Flagpack.lso class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def lso(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="LSO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"LSO_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#LSO_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#LSO_svg__a_#{@id})"}>
           <path fill="#55BA07" d="M0 16h32v8H0v-8z" /><path fill="#F7FCFF" d="M0 8h32v8H0V8z" /><path
             fill="#3D58DB"
             d="M0 0h32v8H0V0z"
@@ -6978,24 +8505,35 @@ defmodule Flagpack do
   Renders the Lithuania flag.
 
   ## Examples
+
       <Flagpack.ltu />
-      <Flagpack.ltu class="w-5 h-5" />
+      <Flagpack.ltu id="my-flag" />
+      <Flagpack.ltu class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ltu(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="LTU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"LTU_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#LTU_svg__a)">
+        <g mask={"url(#LTU_svg__a_#{@id})"}>
           <path fill="#55BA07" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="LTU_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"LTU_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#LTU_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#LTU_svg__b_#{@id})"}>
             <path fill="#FECA00" d="M0 0v8h32V0H0z" /><path fill="#C51918" d="M0 16v8h32v-8H0z" />
           </g>
         </g>
@@ -7008,24 +8546,35 @@ defmodule Flagpack do
   Renders the Luxembourg flag.
 
   ## Examples
+
       <Flagpack.lux />
-      <Flagpack.lux class="w-5 h-5" />
+      <Flagpack.lux id="my-flag" />
+      <Flagpack.lux class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def lux(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="LUX_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"LUX_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#LUX_svg__a)">
+        <g mask={"url(#LUX_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="LUX_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"LUX_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#LUX_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#LUX_svg__b_#{@id})"}>
             <path fill="#F05234" d="M0 0v8h32V0H0z" /><path fill="#2EB7EC" d="M0 16v8h32v-8H0z" />
           </g>
         </g>
@@ -7038,19 +8587,30 @@ defmodule Flagpack do
   Renders the Latvia flag.
 
   ## Examples
+
       <Flagpack.lva />
-      <Flagpack.lva class="w-5 h-5" />
+      <Flagpack.lva id="my-flag" />
+      <Flagpack.lva class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def lva(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="LVA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"LVA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#LVA_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#LVA_svg__a_#{@id})"}>
           <path fill="#C51918" d="M0 14h32v10H0V14z" /><path fill="#F7FCFF" d="M0 8h32v6H0V8z" /><path
             fill="#C51918"
             d="M0 0h32v10H0V0z"
@@ -7065,34 +8625,45 @@ defmodule Flagpack do
   Renders the Macao flag.
 
   ## Examples
+
       <Flagpack.mac />
-      <Flagpack.mac class="w-5 h-5" />
+      <Flagpack.mac id="my-flag" />
+      <Flagpack.mac class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mac(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MAC_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MAC_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MAC_svg__a)">
+        <g mask={"url(#MAC_svg__a_#{@id})"}>
           <path fill="#1C9975" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="MAC_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"MAC_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#MAC_svg__b)">
+          <g mask={"url(#MAC_svg__b_#{@id})"}>
             <path
               fill="#FECA00"
               fill-rule="evenodd"
               d="M16.022 6.854l-1.634.986.373-1.925-1.361-1.44 1.842-.078.78-1.797.779 1.797h1.839l-1.357 1.518.408 1.925-1.67-.986zm-4.639.73l-1.01.61.23-1.19-.841-.89 1.139-.049.482-1.11.482 1.11h1.137l-.84.94.253 1.19-1.032-.61zm9.197 0l-1.01.61.231-1.19-.841-.89 1.139-.049.482-1.11.482 1.11H22.2l-.84.94.253 1.19-1.032-.61zM8.766 9.61l-.81.49.185-.955-.675-.715.914-.038.386-.892.387.892h.913l-.674.753.203.955-.829-.49zm14.794 0l-.81.49.185-.955-.675-.715.914-.038.387-.892.387.892h.912l-.674.753.203.955-.828-.49z"
               clip-rule="evenodd"
             />
-            <mask id="MAC_svg__c" width="16" height="16" x="8" y="6" maskUnits="userSpaceOnUse">
+            <mask id={"MAC_svg__c_#{@id}"} width="16" height="16" x="8" y="6" maskUnits="userSpaceOnUse">
               <path fill="#fff" fill-rule="evenodd" d="M16 22a8 8 0 100-16 8 8 0 000 16z" clip-rule="evenodd" />
             </mask>
-            <g fill="#F7FCFF" mask="url(#MAC_svg__c)">
+            <g fill="#F7FCFF" mask={"url(#MAC_svg__c_#{@id})"}>
               <path
                 fill-rule="evenodd"
                 d="M12.68 21.064h6.64v1.072h-6.64v-1.072zM9.957 19.46h12.766v.983H9.957v-.983z"
@@ -7116,19 +8687,30 @@ defmodule Flagpack do
   Renders the Saint Martin flag.
 
   ## Examples
+
       <Flagpack.maf />
-      <Flagpack.maf class="w-5 h-5" />
+      <Flagpack.maf id="my-flag" />
+      <Flagpack.maf class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def maf(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MAF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MAF_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#MAF_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#MAF_svg__a_#{@id})"}>
           <path fill="#F50100" d="M22 0h10v24H22V0z" /><path fill="#2E42A5" d="M0 0h12v24H0V0z" /><path
             fill="#F7FCFF"
             d="M10 0h12v24H10V0z"
@@ -7143,19 +8725,30 @@ defmodule Flagpack do
   Renders the Morocco flag.
 
   ## Examples
+
       <Flagpack.mar />
-      <Flagpack.mar class="w-5 h-5" />
+      <Flagpack.mar id="my-flag" />
+      <Flagpack.mar class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mar(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MAR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MAR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#MAR_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#MAR_svg__a_#{@id})"}>
           <path fill="#C51918" d="M0 0h32v22a2 2 0 01-2 2H2a2 2 0 01-2-2V0z" /><path fill="#E31D1C" d="M0 0h32v24H0V0z" /><path
             fill="#579D20"
             d="M22.482 19.626L16.166 2.701h-.274L9.795 19.626l6.332-3.805 6.355 3.805zM15.467 8.222l.677-2.638.702 2.714 2.019 5.656 1.185 2.739-2.559-1.803-1.366-.818-1.344.808-2.5 1.813 1.156-2.795 2.03-5.676z"
@@ -7173,24 +8766,35 @@ defmodule Flagpack do
   Renders the Monaco flag.
 
   ## Examples
+
       <Flagpack.mco  />
-      <Flagpack.mco  class="w-5 h-5" />
+      <Flagpack.mco  id="my-flag" />
+      <Flagpack.mco  class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mco(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MCO__svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MCO__svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MCO__svg__a)">
+        <g mask={"url(#MCO__svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="MCO__svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"MCO__svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#MCO__svg__b)">
+          <g mask={"url(#MCO__svg__b_#{@id})"}>
             <path fill="#C51918" fill-rule="evenodd" d="M0 0v12h32V0H0z" clip-rule="evenodd" />
           </g>
         </g>
@@ -7203,19 +8807,30 @@ defmodule Flagpack do
   Renders the Moldova (the Republic of) flag.
 
   ## Examples
+
       <Flagpack.mda />
-      <Flagpack.mda class="w-5 h-5" />
+      <Flagpack.mda id="my-flag" />
+      <Flagpack.mda class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mda(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MDA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MDA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MDA_svg__a)">
+        <g mask={"url(#MDA_svg__a_#{@id})"}>
           <path fill="#D9071E" fill-rule="evenodd" d="M22 0h10v24H22V0z" clip-rule="evenodd" /><path
             fill="#3D58DB"
             fill-rule="evenodd"
@@ -7238,7 +8853,7 @@ defmodule Flagpack do
             clip-rule="evenodd"
             opacity=".3"
           />
-          <mask id="MDA_svg__b" width="11" height="11" x="11" y="7" maskUnits="userSpaceOnUse">
+          <mask id={"MDA_svg__b_#{@id}"} width="11" height="11" x="11" y="7" maskUnits="userSpaceOnUse">
             <path
               fill="#fff"
               fill-rule="evenodd"
@@ -7246,7 +8861,7 @@ defmodule Flagpack do
               clip-rule="evenodd"
             />
           </mask>
-          <g mask="url(#MDA_svg__b)">
+          <g mask={"url(#MDA_svg__b_#{@id})"}>
             <path fill="#3D58DB" d="M11.04 12.833H21.6v5H11.04z" /><path fill="#FD1900" d="M11.04 7.833H21.6v5H11.04z" /><path
               fill="#FDFF00"
               fill-rule="evenodd"
@@ -7285,19 +8900,30 @@ defmodule Flagpack do
   Renders the Madagascar flag.
 
   ## Examples
+
       <Flagpack.mdg />
-      <Flagpack.mdg class="w-5 h-5" />
+      <Flagpack.mdg id="my-flag" />
+      <Flagpack.mdg class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mdg(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MDG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MDG_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#MDG_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#MDG_svg__a_#{@id})"}>
           <path fill="#78D843" d="M12 12h20v12H12V12z" /><path fill="#EA1A1A" d="M12 0h20v12H12V0z" /><path
             fill="#F7FCFF"
             d="M0 0h12v24H0V0z"
@@ -7312,19 +8938,30 @@ defmodule Flagpack do
   Renders the Maldives flag.
 
   ## Examples
+
       <Flagpack.mdv />
-      <Flagpack.mdv class="w-5 h-5" />
+      <Flagpack.mdv id="my-flag" />
+      <Flagpack.mdv class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mdv(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MDV_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MDV_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MDV_svg__a)">
+        <g mask={"url(#MDV_svg__a_#{@id})"}>
           <path fill="#C51918" fill-rule="evenodd" d="M0 0h32v22a2 2 0 01-2 2H2a2 2 0 01-2-2V0z" clip-rule="evenodd" /><path
             fill="#C51918"
             fill-rule="evenodd"
@@ -7336,14 +8973,14 @@ defmodule Flagpack do
             stroke-width="2"
             d="M7 7h18v10H7V7z"
           />
-          <mask id="MDV_svg__b" width="20" height="12" x="6" y="6" maskUnits="userSpaceOnUse">
+          <mask id={"MDV_svg__b_#{@id}"} width="20" height="12" x="6" y="6" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M6 6h20v12H6V6z" clip-rule="evenodd" /><path
               stroke="#fff"
               stroke-width="2"
               d="M7 7h18v10H7V7z"
             />
           </mask>
-          <g mask="url(#MDV_svg__b)">
+          <g mask={"url(#MDV_svg__b_#{@id})"}>
             <path
               fill="#F9FAFA"
               fill-rule="evenodd"
@@ -7361,19 +8998,30 @@ defmodule Flagpack do
   Renders the Mexico flag.
 
   ## Examples
+
       <Flagpack.mex />
-      <Flagpack.mex class="w-5 h-5" />
+      <Flagpack.mex id="my-flag" />
+      <Flagpack.mex class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mex(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MEX_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MEX_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MEX_svg__a)">
+        <g mask={"url(#MEX_svg__a_#{@id})"}>
           <path fill="#D9071E" fill-rule="evenodd" d="M22 0h10v24H22V0z" clip-rule="evenodd" /><path
             fill="#006923"
             fill-rule="evenodd"
@@ -7421,24 +9069,35 @@ defmodule Flagpack do
   Renders the Marshall Islands (the) flag.
 
   ## Examples
+
       <Flagpack.mhl />
-      <Flagpack.mhl class="w-5 h-5" />
+      <Flagpack.mhl id="my-flag" />
+      <Flagpack.mhl class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mhl(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MHL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MHL_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MHL_svg__a)">
+        <g mask={"url(#MHL_svg__a_#{@id})"}>
           <path fill="#3D58DB" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="MHL_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"MHL_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#MHL_svg__b)">
+          <g mask={"url(#MHL_svg__b_#{@id})"}>
             <path
               fill="#F7FCFF"
               fill-rule="evenodd"
@@ -7459,24 +9118,35 @@ defmodule Flagpack do
   Renders the North Macedonia flag.
 
   ## Examples
+
       <Flagpack.mkd />
-      <Flagpack.mkd class="w-5 h-5" />
+      <Flagpack.mkd id="my-flag" />
+      <Flagpack.mkd class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mkd(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MKD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MKD_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MKD_svg__a)">
+        <g mask={"url(#MKD_svg__a_#{@id})"}>
           <path fill="#F50100" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="MKD_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"MKD_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill="#FFD018" mask="url(#MKD_svg__b)">
+          <g fill="#FFD018" mask={"url(#MKD_svg__b_#{@id})"}>
             <path
               fill-rule="evenodd"
               d="M0-.042v4.084l14 5.951L3.255-.042H0zM16 12l3-12h-6l3 12zm0 0l-3 12h6l-3-12zM0 19.951v4.084h3.255L14 14 0 19.951zM32 4.066V-.018h-3.255L18 10.018l14-5.952zm0 19.994v-4.084l-14-5.952L28.745 24.06H32zM32 9l-12 3 12 3V9zm-20 3L0 9v6l12-3z"
@@ -7493,19 +9163,30 @@ defmodule Flagpack do
   Renders the Mali flag.
 
   ## Examples
+
       <Flagpack.mli />
-      <Flagpack.mli class="w-5 h-5" />
+      <Flagpack.mli id="my-flag" />
+      <Flagpack.mli class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mli(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MLI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MLI_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#MLI_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#MLI_svg__a_#{@id})"}>
           <path fill="#FBCD17" d="M10 0h12v24H10V0z" /><path fill="#E11C1B" d="M22 0h10v24H22V0z" /><path
             fill="#0B9E7A"
             d="M0 0h10v24H0V0z"
@@ -7520,21 +9201,32 @@ defmodule Flagpack do
   Renders the Malta flag.
 
   ## Examples
+
       <Flagpack.mlt />
-      <Flagpack.mlt class="w-5 h-5" />
+      <Flagpack.mlt id="my-flag" />
+      <Flagpack.mlt class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mlt(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#F7FCFF" d="M0 0h32v24H0z" />
-        <mask id="MLT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MLT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MLT_svg__a)">
-          <mask id="MLT_svg__b" fill="#fff">
+        <g mask={"url(#MLT_svg__a_#{@id})"}>
+          <mask id={"MLT_svg__b_#{@id}"} fill="#fff">
             <path
               fill-rule="evenodd"
               d="M10 4H6v2.993A1 1 0 005.232 8H2v4h3.33c.13.267.375.469.67.539V16h4v-3.449a1 1 0 00.733-.551H14V8h-3.169v-.034A1 1 0 0010 6.98V4z"
@@ -7549,7 +9241,7 @@ defmodule Flagpack do
           /><path
             fill="#FECA00"
             d="M6 4V3H5v1h1zm4 0h1V3h-1v1zM6 6.993l.23.973.77-.183v-.79H6zM5.232 8v1h1.035l-.035-1.034-1 .034zM2 8V7H1v1h1zm0 4H1v1h1v-1zm3.33 0l.901-.435L5.958 11h-.627v1zm.67.539h1v-.791l-.77-.182-.23.973zM6 16H5v1h1v-1zm4 0v1h1v-1h-1zm0-3.449l-.167-.986-.833.142v.844h1zm.733-.551v-1h-.628l-.273.565.9.435zM14 12v1h1v-1h-1zm0-4h1V7h-1v1zm-3.169 0l-1-.034L9.798 9h1.034V8zM10 6.98H9v.844l.833.142L10 6.98zM6 5h4V3H6v2zm1 1.993V4H5v2.993h2zm-.768.973H6.23L5.769 6.02a2 2 0 00-1.537 1.946h2zm0 0h-2v.068l2-.068zM2 9h3.232V7H2v2zm1 3V8H1v4h2zm2.33-1H2v2h3.33v-2zm.9.566l.001-.001-1.8.87a2 2 0 001.338 1.077l.462-1.946zM7 16v-3.461H5V16h2zm3-1H6v2h4v-2zm-1-2.449V16h2v-3.449H9zm1.167.986c.65-.11 1.19-.531 1.466-1.102l-1.8-.87.334 1.972zM14 11h-3.267v2H14v-2zm-1-3v4h2V8h-2zm-2.169 1H14V7h-3.169v2zm-1-1.034l2 .068v-.068h-2zm.002 0c-.003 0-.002-.002-.001 0 0-.002 0-.002 0 0h2a2 2 0 00-1.665-1.972l-.334 1.972zM9 4v2.98h2V4H9z"
-            mask="url(#MLT_svg__b)"
+            mask={"url(#MLT_svg__b_#{@id})"}
           /><path fill="#E31D1C" fill-rule="evenodd" d="M16 0h16v24H16V0z" clip-rule="evenodd" />
         </g>
       </svg>
@@ -7561,29 +9253,40 @@ defmodule Flagpack do
   Renders the Montenegro flag.
 
   ## Examples
+
       <Flagpack.mne />
-      <Flagpack.mne class="w-5 h-5" />
+      <Flagpack.mne id="my-flag" />
+      <Flagpack.mne class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mne(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MNE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MNE_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MNE_svg__a)">
+        <g mask={"url(#MNE_svg__a_#{@id})"}>
           <path fill="#E8AA00" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#C51918"
             fill-rule="evenodd"
             d="M4 4h24v16H4V4z"
             clip-rule="evenodd"
           />
-          <mask id="MNE_svg__b" width="24" height="16" x="4" y="4" maskUnits="userSpaceOnUse">
+          <mask id={"MNE_svg__b_#{@id}"} width="24" height="16" x="4" y="4" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M4 4h24v16H4V4z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#MNE_svg__b)">
+          <g mask={"url(#MNE_svg__b_#{@id})"}>
             <path
               fill="#1E5E91"
               fill-rule="evenodd"
@@ -7623,7 +9326,7 @@ defmodule Flagpack do
               d="M13.954 10.36s1.138-.215 1.754-.215c.553 0 1.754.215 1.754.215 0 1.36.382 2.192 0 3.121-.383.929-1.319.482-1.742 1.371-.54-.843-1.271-.379-1.766-1.58-.495-1.2.3-1.753 0-2.912z"
               clip-rule="evenodd"
             />
-            <mask id="MNE_svg__c" width="5" height="5" x="13" y="10" maskUnits="userSpaceOnUse">
+            <mask id={"MNE_svg__c_#{@id}"} width="5" height="5" x="13" y="10" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 fill-rule="evenodd"
@@ -7631,7 +9334,7 @@ defmodule Flagpack do
                 clip-rule="evenodd"
               />
             </mask>
-            <g mask="url(#MNE_svg__c)">
+            <g mask={"url(#MNE_svg__c_#{@id})"}>
               <path fill="#5EAA22" d="M13.954 13.197h3.508V14.9h-3.508z" /><path
                 fill="#F6C540"
                 fill-rule="evenodd"
@@ -7650,19 +9353,30 @@ defmodule Flagpack do
   Renders the Mongolia flag.
 
   ## Examples
+
       <Flagpack.mng />
-      <Flagpack.mng class="w-5 h-5" />
+      <Flagpack.mng id="my-flag" />
+      <Flagpack.mng class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mng(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MNG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MNG_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MNG_svg__a)">
+        <g mask={"url(#MNG_svg__a_#{@id})"}>
           <path fill="#4C67E8" fill-rule="evenodd" d="M10 0h12v24H10V0z" clip-rule="evenodd" /><path
             fill="#C51918"
             fill-rule="evenodd"
@@ -7692,19 +9406,30 @@ defmodule Flagpack do
   Renders the Northern Mariana Islands (the) flag.
 
   ## Examples
+
       <Flagpack.mnp />
-      <Flagpack.mnp class="w-5 h-5" />
+      <Flagpack.mnp id="my-flag" />
+      <Flagpack.mnp class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mnp(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MNP_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MNP_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MNP_svg__a)">
+        <g mask={"url(#MNP_svg__a_#{@id})"}>
           <path fill="#2993EC" fill-rule="evenodd" d="M0 0h34v24H0V0z" clip-rule="evenodd" /><path
             fill="#F1F9FF"
             fill-rule="evenodd"
@@ -7761,24 +9486,35 @@ defmodule Flagpack do
   Renders the Mozambique flag.
 
   ## Examples
+
       <Flagpack.moz />
-      <Flagpack.moz class="w-5 h-5" />
+      <Flagpack.moz id="my-flag" />
+      <Flagpack.moz class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def moz(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MOZ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MOZ_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MOZ_svg__a)">
+        <g mask={"url(#MOZ_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="MOZ_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"MOZ_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#MOZ_svg__b)">
+          <g mask={"url(#MOZ_svg__b_#{@id})"}>
             <path fill="#FECA00" fill-rule="evenodd" d="M0 0v8h32V0H0z" clip-rule="evenodd" /><path
               fill="#093"
               fill-rule="evenodd"
@@ -7787,10 +9523,10 @@ defmodule Flagpack do
             /><path fill="#272727" stroke="#fff" stroke-width="2" d="M0 7h-1v10h34V7H0z" />
           </g>
           <path fill="#F50100" fill-rule="evenodd" d="M0 0v24l18-12L0 0z" clip-rule="evenodd" />
-          <mask id="MOZ_svg__c" width="18" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"MOZ_svg__c_#{@id}"} width="18" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24l18-12L0 0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#MOZ_svg__c)">
+          <g mask={"url(#MOZ_svg__c_#{@id})"}>
             <path
               fill="#FECA00"
               fill-rule="evenodd"
@@ -7823,24 +9559,35 @@ defmodule Flagpack do
   Renders the Mauritania flag.
 
   ## Examples
+
       <Flagpack.mrt />
-      <Flagpack.mrt class="w-5 h-5" />
+      <Flagpack.mrt id="my-flag" />
+      <Flagpack.mrt class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mrt(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MRT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MRT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MRT_svg__a)">
+        <g mask={"url(#MRT_svg__a_#{@id})"}>
           <path fill="#1C7B4D" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="MRT_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"MRT_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#MRT_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#MRT_svg__b_#{@id})"}>
             <path fill="#E31D1C" d="M0 0v6h32V0H0zm0 18v6h32v-6H0z" /><path
               fill="#FECA00"
               d="M16.242 14.379c5.185.028 6.646-4.314 6.646-4.314-.294 3.715-2.349 6.234-6.646 6.234s-5.875-3.263-6.646-6.518c0 0 1.46 4.569 6.646 4.598z"
@@ -7859,31 +9606,42 @@ defmodule Flagpack do
   Renders the Montserrat flag.
 
   ## Examples
+
       <Flagpack.msr />
-      <Flagpack.msr class="w-5 h-5" />
+      <Flagpack.msr id="my-flag" />
+      <Flagpack.msr class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def msr(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MSR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MSR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MSR_svg__a)">
+        <g mask={"url(#MSR_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="MSR_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"MSR_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#MSR_svg__b)">
+          <g mask={"url(#MSR_svg__b_#{@id})"}>
             <path
               fill="#6DC2FF"
               stroke="#F7FCFF"
               stroke-width=".5"
               d="M25.929 21.714c-1.296 0-2.206-.295-2.857-.815-.65-.521-1.073-1.294-1.342-2.312-.27-1.021-.38-2.268-.42-3.713a102.444 102.444 0 01-.018-3.3l.005-1.291h9.375c.167 2.908.23 5.752-.363 7.885-.303 1.09-.773 1.973-1.468 2.583-.691.605-1.63.963-2.912.963z"
             />
-            <mask id="MSR_svg__c" width="11" height="12" x="21" y="10" maskUnits="userSpaceOnUse">
+            <mask id={"MSR_svg__c_#{@id}"} width="11" height="12" x="21" y="10" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 stroke="#fff"
@@ -7891,7 +9649,7 @@ defmodule Flagpack do
                 d="M25.929 21.714c-1.296 0-2.206-.295-2.857-.815-.65-.521-1.073-1.294-1.342-2.312-.27-1.021-.38-2.268-.42-3.713a102.444 102.444 0 01-.018-3.3l.005-1.291h9.375c.167 2.908.23 5.752-.363 7.885-.303 1.09-.773 1.973-1.468 2.583-.691.605-1.63.963-2.912.963z"
               />
             </mask>
-            <g mask="url(#MSR_svg__c)">
+            <g mask={"url(#MSR_svg__c_#{@id})"}>
               <path fill="#2EBED7" d="M20.933 10h10.07v7.978h-10.07z" /><path
                 fill="#A95601"
                 d="M20.8 17.913h10.6v4.086H20.8z"
@@ -7925,10 +9683,10 @@ defmodule Flagpack do
               />
             </g>
             <path fill="#2B409A" d="M0 0h18v14H0z" />
-            <mask id="MSR_svg__d" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"MSR_svg__d_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#MSR_svg__d)">
+            <g mask={"url(#MSR_svg__d_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -7939,7 +9697,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="MSR_svg__e" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"MSR_svg__e_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -7949,7 +9707,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#MSR_svg__e)"
+                mask={"url(#MSR_svg__e_#{@id})"}
               />
             </g>
           </g>
@@ -7963,14 +9721,25 @@ defmodule Flagpack do
   Renders the Martinique flag.
 
   ## Examples
+
       <Flagpack.mtq />
-      <Flagpack.mtq class="w-5 h-5" />
+      <Flagpack.mtq id="my-flag" />
+      <Flagpack.mtq class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mtq(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#21428E" d="M0 0h32v24H0z" /><path
           fill="#F7FCFF"
@@ -7992,24 +9761,35 @@ defmodule Flagpack do
   Renders the Mauritius flag.
 
   ## Examples
+
       <Flagpack.mus />
-      <Flagpack.mus class="w-5 h-5" />
+      <Flagpack.mus id="my-flag" />
+      <Flagpack.mus class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mus(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MUS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MUS_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MUS_svg__a)">
+        <g mask={"url(#MUS_svg__a_#{@id})"}>
           <path fill="#579D20" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="MUS_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"MUS_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#MUS_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#MUS_svg__b_#{@id})"}>
             <path fill="#FECA00" d="M0 12v6h32v-6H0z" /><path fill="#3D58DB" d="M0 6v6h32V6H0z" /><path
               fill="#E11C1B"
               d="M0 0v6h32V0H0z"
@@ -8025,24 +9805,35 @@ defmodule Flagpack do
   Renders the Malawi flag.
 
   ## Examples
+
       <Flagpack.mwi />
-      <Flagpack.mwi class="w-5 h-5" />
+      <Flagpack.mwi id="my-flag" />
+      <Flagpack.mwi class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mwi(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MWI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MWI_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MWI_svg__a)">
+        <g mask={"url(#MWI_svg__a_#{@id})"}>
           <path fill="#E11C1B" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="MWI_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"MWI_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#MWI_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#MWI_svg__b_#{@id})"}>
             <path fill="#272727" d="M0 0v10h32V0H0z" /><path fill="#5EAA22" d="M0 16v8h32v-8H0z" /><path
               fill="#E11C1B"
               d="M4.002 11.946v-.002l-.01.001h.01zm.628-3.82h.103l-.158-.023.055.024zm2.928 0c.052-.1.107-.2.164-.298l-2.29-1.515 2.7.878c.152-.211.313-.416.486-.614L6.633 4.688l2.529 1.32c.186-.177.38-.347.583-.51L8.14 3.281l2.266 1.734c.211-.14.43-.273.654-.397L9.904 2.137l1.914 2.102c.229-.102.462-.197.7-.282l-.65-2.665 1.482 2.404c.24-.063.482-.12.728-.167L13.97.774l.986 2.624c.243-.026.49-.045.739-.054L16.14.6l.447 2.744c.248.01.494.03.737.056l.987-2.626-.109 2.76c.246.047.488.103.726.167l1.485-2.409-.652 2.671c.237.086.469.18.696.282l1.92-2.108-1.16 2.49c.223.124.44.256.648.395l2.276-1.74-1.612 2.226c.2.162.393.33.577.506l2.542-1.326-1.995 1.9c.17.196.33.399.48.608l2.716-.883-2.304 1.525c.055.095.108.191.159.289H22.74c-1.354-1.877-3.83-3.134-6.658-3.134-2.829 0-5.304 1.257-6.658 3.134H7.558zm3.002 0c1.283-1.322 3.297-2.175 5.562-2.175s4.28.853 5.562 2.176H10.56zm16.989 0h.103l.055-.023-.158.024zm.733 3.818l.008.001h-.008v-.001z"
@@ -8058,19 +9849,30 @@ defmodule Flagpack do
   Renders the Malaysia flag.
 
   ## Examples
+
       <Flagpack.mys />
-      <Flagpack.mys class="w-5 h-5" />
+      <Flagpack.mys id="my-flag" />
+      <Flagpack.mys class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def mys(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="MYS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"MYS_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#MYS_svg__a)">
+        <g mask={"url(#MYS_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#E31D1C"
             d="M.027 5h32v2.9h-32zm0 5.2h32v2.9h-32zm.085 5h32v2.5h-32zm0 5h32v2.7h-32z"
@@ -8100,24 +9902,35 @@ defmodule Flagpack do
   Renders the Namibia flag.
 
   ## Examples
+
       <Flagpack.nam />
-      <Flagpack.nam class="w-5 h-5" />
+      <Flagpack.nam id="my-flag" />
+      <Flagpack.nam class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def nam(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="NAM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"NAM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#NAM_svg__a)">
+        <g mask={"url(#NAM_svg__a_#{@id})"}>
           <path fill="#093" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="NAM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"NAM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#NAM_svg__b)">
+          <g mask={"url(#NAM_svg__b_#{@id})"}>
             <path fill="#3195F9" fill-rule="evenodd" d="M0 0v24L32 0H0z" clip-rule="evenodd" /><path
               fill="#E31D1C"
               stroke="#F7FCFF"
@@ -8140,19 +9953,30 @@ defmodule Flagpack do
   Renders the New Caledonia flag.
 
   ## Examples
+
       <Flagpack.ncl />
-      <Flagpack.ncl class="w-5 h-5" />
+      <Flagpack.ncl id="my-flag" />
+      <Flagpack.ncl class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ncl(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="NCL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"NCL_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#NCL_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#NCL_svg__a_#{@id})"}>
           <path fill="#F50100" d="M22 0h10v24H22V0z" /><path fill="#2E42A5" d="M0 0h12v24H0V0z" /><path
             fill="#F7FCFF"
             d="M10 0h12v24H10V0z"
@@ -8167,24 +9991,35 @@ defmodule Flagpack do
   Renders the Niger flag.
 
   ## Examples
+
       <Flagpack.ner />
-      <Flagpack.ner class="w-5 h-5" />
+      <Flagpack.ner id="my-flag" />
+      <Flagpack.ner class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ner(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="NER_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"NER_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#NER_svg__a)">
+        <g mask={"url(#NER_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="NER_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"NER_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#NER_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#NER_svg__b_#{@id})"}>
             <path fill="#FC6500" d="M0 0v8h32V0H0z" /><path fill="#5EAA22" d="M0 16v8h32v-8H0z" /><path
               fill="#FC6500"
               d="M16 16a4 4 0 100-8 4 4 0 000 8z"
@@ -8200,19 +10035,30 @@ defmodule Flagpack do
   Renders the Norfolk Island flag.
 
   ## Examples
+
       <Flagpack.nfk />
-      <Flagpack.nfk class="w-5 h-5" />
+      <Flagpack.nfk id="my-flag" />
+      <Flagpack.nfk class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def nfk(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="NFK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"NFK_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#NFK_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#NFK_svg__a_#{@id})"}>
           <path fill="#409100" d="M22 0h10v24H22V0zM0 0h10v24H0V0z" /><path fill="#fff" d="M10 0h12v24H10V0z" /><path
             fill="#409100"
             d="M12.695 18.77c-1.555.254-2.046-.506-2.046-.506l.196-.16c.132-.109.575-.072 1.005-.036.21.018.418.035.585.035.242 0 .522-.036.813-.074a7.55 7.55 0 01.959-.085c.599 0-1.772-.784-2.28-.303-.506.48-1.927-.223-1.927-.624 0-.273.523-.174 1-.083.223.043.435.083.58.083.456 0-.456-.89-.93-.89-.475 0 .474-.206.93-.206.26 0 .5.067.708.125.157.044.295.082.407.082.261 0-1.309-.675-1.571-.675h1.31c.45 0 .56.064.663.124.094.054.182.105.51.105.694 0 .315-.379.315-.379s-2.342-.243-2.798-.579c-.308-.227.519-.147 1.3-.071.375.036.739.071.963.071.691 0-1.46-.494-1.807-.494h1.585c.347 0 .727.112 1.127.23.441.128.905.264 1.371.264.492 0-.468-.293-1.523-.615-.852-.26-1.766-.54-2.026-.698-.268-.164-.064-.1.308.015.433.134 1.093.34 1.5.34.756 0-1.008-.743-1.487-.743-.48 0-.94-.216-.507-.416.265-.122.956.063 1.558.223.379.101.722.193.902.193.218 0 .38.085.55.175.196.103.404.213.725.213.603 0-1.275-.804-2.055-.804-.78 0-.913-.378-.444-.378.47 0-1.05-.644-1.05-.644s-.22-.458.32-.458h.73c.25 0-.25-.793-.73-.793-.479 0-.06-.24.73-.24.482 0 .763.167 1.102.367.218.128.46.271.795.393.853.31.21-.52 0-.52s-2.366-.675-2.366-.675.22-.25 0-.588c-.165-.256.523-.126.942-.046.136.026.244.046.284.046.1 0 .384.07.734.158.236.058.502.124.76.18.64.141-2.176-1.033-2.5-1.033-.325 0 .693-.193 1.292-.193.294 0 .437.046.581.094.15.049.301.099.627.099.64 0-1.208-.687-1.807-.687-.6 0-.245-.59 0-.59.095 0 .336.031.631.07.462.06 1.056.139 1.424.139.28 0 .024-.079-.348-.193-.429-.132-1.011-.31-1.108-.47-.107-.178.11-.146.49-.09l.22.032c.258.135.474.222.505.12.01-.03.03-.052.055-.067.061.003.123.004.186.004.357 0 .192-.054-.152-.12l-.03-.009c-.522-.16-1.65-.5-1.228-.29.082.041.175.092.272.146a7.193 7.193 0 00-.604-.064c-.285 0-.571-.22 0-.22h1.14c-.355 0-.854 0-.854-.279 0-.189.395-.12.76-.058.17.03.335.058.448.058.354 0 .442 0 .248-.165-.184-.157-.82-.157-1.215-.156h-.06c-.387 0 .82-.202 1.275-.202.077 0 .11 0 .11-.002l-.058-.006c-.198-.02-.857-.084-1.327-.296-.421-.19-.052-.143.43-.08.29.037.62.08.845.08.603 0-.248-.406-.889-.406-.514 0-.269-.14.05-.322.077-.045.16-.092.237-.14.23-.146.4.102.5.248.067.1.102.151.102-.004a.559.559 0 00-.07-.297c.016.014.04.032.07.052.248.166 0-.434 0-.434s-.248-.166 0-.166-.08-.285-.248-.285c-.169 0 .442-.273.442-.273l.135-1.154s.333 1.258.333 1.427v.885c0 .21-.15.358-.25.456-.124.124-.171.17.25.17.757 0 .724.243.264.243-.461 0 .132.304.96.304.827 0-.695.358-1.224.358-.53 0 .53.165 1.223.165.469 0-.012.162-.455.312-.213.072-.418.14-.504.187-.138.074.201.072.56.052l-.518.156c-.173.053-.231.07-.23.078 0 .004.017.005.041.006.073.004.218.012.247.107.044.143.438-.078.811-.287l.176-.098.161-.014s.343.396.343.637c0 .141-.45.183-.932.227l-.048.005c.024-.032-.078-.016-.229.022a3.46 3.46 0 00-.646.11c-.155.05-.129.07-.003.075l-.034.01c-.119.037-.159.049-.158.056 0 .004.012.006.03.01.052.01.157.03.186.125.044.143.307-.038.556-.209l.024-.016.237-.016c.27-.018.532-.035.674-.035.447 0-.446.215-.788.215-.145 0 .038.033.317.083.378.068.93.167 1.086.26.186.11-.361.068-.849.032a9.143 9.143 0 00-.554-.033c-.388 0-.46.318-.195.318h.983c.372 0 .76.569.615.569-.044 0-.138.029-.268.07-.3.094-.797.249-1.33.249h1.326c.343 0 1.321 0 1.321.339 0 .21-.185.256-.428.317a1.972 1.972 0 00-.477.166c-.426.231 1.276.441 1.276.441s-.674.21-1.002.21c-.328 0 .153.31 1.002.31.657 0 .464.357.343.58a.459.459 0 00-.065.15c0 .06-.124.11-.304.184-.231.094-.554.226-.823.461-.31.27.066.19.491.101.232-.049.479-.1.636-.1.447 0 .637.018.491.234-.145.216-1.443.559-1.77.559h1.77c.491 0-.137.388-.77.388-.423 0-.66.16-.816.264-.077.052-.134.09-.185.09h1.28c.066 0 .137-.104.203-.2.058-.083.11-.16.15-.154.58.09.32.82 0 .82-.366 0-1.48.245-1.305.493.085.12.218.066.433-.022.229-.094.552-.226 1.01-.226.889 0 .086.248-.137.248s-1.167.18-1.481.336c-.21.104.52.069 1.247.034.361-.017.722-.034.965-.034.732 0-1.734.622-2.639.622-.905 0 .602.24.905.24.117 0 .342.03.62.067.448.06 1.03.139 1.513.139.783 0-.783.516-1.484.516h-.16c-.625-.003-1.094-.005-.792.373.168.21.728.153 1.312.093.555-.056 1.131-.115 1.416.05.511.298-1.752.272-2.728.261l-.328-.003c-.6 0 .6.223 1.634.223h.13c.923 0 1.142-.001 1.142.303 0 .267-2.01.198-2.85.169-.16-.006-.277-.01-.33-.01-.16 0-.254.098-.35.198-.103.108-.21.22-.409.22-.163 0-.24-.105-.31-.2-.093-.128-.175-.24-.44-.057-.46.32.461 3.536.461 3.536h-2.487v-3.03s-.81-.253-2.366 0zm2.858-14.754c-.003.001.006.016.04.044-.02-.03-.036-.044-.04-.044zm-.865 12.008c-.393-.148.603-.156 1.064-.156.148 0 .2 0 .204.013.002.007-.011.018-.032.035a.409.409 0 00-.172.332c0 .284-.374.102-.727-.07a4.253 4.253 0 00-.337-.154zm.814-1.158c-.46 0-1.457.007-1.064.155.1.038.218.095.338.154.353.172.726.355.726.07 0-.19.115-.284.173-.332.02-.017.034-.028.032-.035-.003-.012-.056-.012-.205-.012zm-.83-.67c-.322-.078.492-.082.868-.082.123 0 .166 0 .167.007 0 .004-.01.01-.026.018-.047.025-.141.075-.141.175 0 .149-.305.053-.593-.038a4.632 4.632 0 00-.276-.08zm.809-3.17c-.522-.16-1.65-.5-1.228-.29.107.054.231.123.358.194.373.209.768.43.811.287.03-.095.174-.103.247-.107.024-.002.04-.002.041-.006.002-.007-.057-.025-.23-.078zm-1.228-1.292c-.422-.21.706.13 1.228.29.172.053.23.07.23.078-.001.003-.018.004-.042.005-.073.004-.218.012-.247.108-.043.142-.438-.079-.811-.287a9.064 9.064 0 00-.358-.194zm1.228-.963c-.522-.16-1.65-.5-1.228-.29.107.053.231.123.358.194.373.208.768.43.811.287.03-.096.174-.104.247-.108.024-.001.04-.002.041-.006.002-.007-.057-.025-.23-.077zm1.128 6.846c.46 0 1.457.008 1.064.156a4.27 4.27 0 00-.337.154c-.353.172-.727.354-.727.07a.409.409 0 00-.173-.332c-.02-.017-.033-.028-.032-.035.004-.013.057-.013.205-.013zm1.064-.596c.393-.148-.603-.155-1.064-.155-.148 0-.201 0-.205.012-.001.007.012.018.032.035a.408.408 0 01.173.333c0 .284.374.101.726-.071a4.24 4.24 0 01.338-.154zm.616-1.733a.448.448 0 01-.01.003c-.107.025-.328.113-.578.211-.508.2-1.13.444-1.13.31 0-.1-.094-.15-.14-.174-.017-.009-.027-.015-.027-.018.002-.007.044-.007.168-.007.313 0 1.512-.278 1.717-.325zm-.43-3.053c.422-.21-.707.13-1.228.29-.173.053-.231.07-.23.078 0 .003.017.004.041.006.073.004.218.011.247.107.044.142.438-.078.811-.287.127-.071.252-.14.359-.194zm-1.228 1.292c.521-.16 1.65-.5 1.228-.29a9.353 9.353 0 00-.359.194c-.373.209-.767.43-.81.287-.03-.095-.175-.103-.248-.107-.024-.001-.04-.002-.04-.006-.002-.007.056-.025.229-.078zm1.228-2.294c.422-.21-.707.13-1.228.29-.173.052-.231.07-.23.077 0 .004.017.005.041.006.073.004.218.012.247.107.044.143.438-.078.811-.287.127-.07.252-.14.359-.193zm-1.571-.587c.36-.11 1.138-.343.854-.175-.072.042-.155.1-.24.157-.249.171-.512.352-.556.21-.03-.096-.134-.116-.186-.126-.018-.004-.03-.006-.03-.01-.001-.007.04-.02.158-.056zm.23 3.814c-.414 0 0-.326 0-.326h.212c.073 0 .138-.03.224-.07.164-.075.402-.185.913-.185.779 0-.937.581-1.35.581z"
@@ -8227,19 +10073,30 @@ defmodule Flagpack do
   Renders the Nigeria flag.
 
   ## Examples
+
       <Flagpack.nga />
-      <Flagpack.nga class="w-5 h-5" />
+      <Flagpack.nga id="my-flag" />
+      <Flagpack.nga class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def nga(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="NGA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"NGA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#NGA_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#NGA_svg__a_#{@id})"}>
           <path fill="#F7FCFF" d="M0 0h32v24H0V0z" /><path fill="#093" d="M21 0h11v24H21V0zM0 0h11v24H0V0z" />
         </g>
       </svg>
@@ -8251,34 +10108,45 @@ defmodule Flagpack do
   Renders the Nicaragua flag.
 
   ## Examples
+
       <Flagpack.nic />
-      <Flagpack.nic class="w-5 h-5" />
+      <Flagpack.nic id="my-flag" />
+      <Flagpack.nic class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def nic(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="NIC_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"NIC_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#NIC_svg__a)">
+        <g mask={"url(#NIC_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="NIC_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"NIC_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#NIC_svg__b)">
+          <g mask={"url(#NIC_svg__b_#{@id})"}>
             <path fill="#0080EC" fill-rule="evenodd" d="M0 0v8h32V0H0zm0 16v8h32v-8H0z" clip-rule="evenodd" /><path
               fill="#D0AB00"
               fill-rule="evenodd"
               d="M16 8c.189 0 .374.013.555.038l-.198 1.276a2.735 2.735 0 00-.872.026l-.093-1.294A4.03 4.03 0 0116 8zm1.152.168l-.348 1.244a2.71 2.71 0 011.904 2.677l1.287.11a4.002 4.002 0 00-2.843-4.03zm2.361 5.746a4 4 0 01-3.217 2.075v-1.296a2.704 2.704 0 001.83-1.014l1.387.235zm-6.936.156a4 4 0 003.194 1.924V14.7a2.706 2.706 0 01-1.935-1.07l-1.26.44zm-.573-1.899a4.002 4.002 0 012.548-3.901l.334 1.26a2.71 2.71 0 00-1.595 2.45l-1.287.191z"
               clip-rule="evenodd"
             /><path fill="#7CDFFF" fill-rule="evenodd" d="M15.975 8.95l-2.737 4.73h5.517l-2.78-4.73z" clip-rule="evenodd" />
-            <mask id="NIC_svg__c" width="6" height="6" x="13" y="8" maskUnits="userSpaceOnUse">
+            <mask id={"NIC_svg__c_#{@id}"} width="6" height="6" x="13" y="8" maskUnits="userSpaceOnUse">
               <path fill="#fff" fill-rule="evenodd" d="M15.975 8.95l-2.737 4.73h5.517l-2.78-4.73z" clip-rule="evenodd" />
             </mask>
-            <g mask="url(#NIC_svg__c)">
+            <g mask={"url(#NIC_svg__c_#{@id})"}>
               <path stroke="#E31D1C" d="M16 15.118a2.39 2.39 0 100-4.782 2.39 2.39 0 000 4.782z" /><path
                 stroke="#FFD018"
                 d="M16 15.118a2.39 2.39 0 100-4.782 2.39 2.39 0 000 4.782z"
@@ -8303,29 +10171,40 @@ defmodule Flagpack do
   Renders the Niue flag.
 
   ## Examples
+
       <Flagpack.niu />
-      <Flagpack.niu class="w-5 h-5" />
+      <Flagpack.niu id="my-flag" />
+      <Flagpack.niu class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def niu(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="NIU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"NIU_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#NIU_svg__a)">
+        <g mask={"url(#NIU_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="NIU_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"NIU_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#NIU_svg__b)">
+          <g mask={"url(#NIU_svg__b_#{@id})"}>
             <path fill="#FECA00" fill-rule="evenodd" d="M0 16v8h32v-8H0z" clip-rule="evenodd" />
-            <mask id="NIU_svg__c" width="32" height="16" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"NIU_svg__c_#{@id}"} width="32" height="16" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h32v16H0z" />
             </mask>
-            <g mask="url(#NIU_svg__c)">
+            <g mask={"url(#NIU_svg__c_#{@id})"}>
               <path
                 fill="#fff"
                 d="M-2.262 15.13l6.343 1.467L17.6 9.126l1.431-.837 12.844-6.716 3.043-2.12-6.96-.642-11.222 6.33-8.109 3.985-10.89 6.003z"
@@ -8367,24 +10246,35 @@ defmodule Flagpack do
   Renders the Netherlands flag.
 
   ## Examples
+
       <Flagpack.nld />
-      <Flagpack.nld class="w-5 h-5" />
+      <Flagpack.nld id="my-flag" />
+      <Flagpack.nld class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def nld(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="NLD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"NLD_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#NLD_svg__a)">
+        <g mask={"url(#NLD_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="NLD_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"NLD_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#NLD_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#NLD_svg__b_#{@id})"}>
             <path fill="#E31D1C" d="M0 0v8h32V0H0z" /><path fill="#3D58DB" d="M0 16v8h32v-8H0z" />
           </g>
         </g>
@@ -8397,24 +10287,35 @@ defmodule Flagpack do
   Renders the Norway flag.
 
   ## Examples
+
       <Flagpack.nor />
-      <Flagpack.nor class="w-5 h-5" />
+      <Flagpack.nor id="my-flag" />
+      <Flagpack.nor class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def nor(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="NOR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"NOR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#NOR_svg__a)">
+        <g mask={"url(#NOR_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="NOR_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"NOR_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#NOR_svg__b)">
+          <g mask={"url(#NOR_svg__b_#{@id})"}>
             <path fill="#2E42A5" stroke="#F7FCFF" stroke-width="2" d="M10-1H9V9H-1v6H9v10h6V15h18V9H15V-1h-5z" />
           </g>
         </g>
@@ -8427,24 +10328,35 @@ defmodule Flagpack do
   Renders the Nepal flag.
 
   ## Examples
+
       <Flagpack.npl />
-      <Flagpack.npl class="w-5 h-5" />
+      <Flagpack.npl id="my-flag" />
+      <Flagpack.npl class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def npl(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#fff" d="M0 0h32v24H0z" /><path
           fill="#C51918"
           stroke="#4857A1"
           d="M11.616 12.32l9.317 11.18H.5V.842L20.04 11.5h-9.109l.684.82z"
         />
-        <mask id="NPL_svg__a" width="22" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"NPL_svg__a_#{@id}"} width="22" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" stroke="#fff" d="M11.616 12.32l9.317 11.18H.5V.842L20.04 11.5h-9.109l.684.82z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#NPL_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#NPL_svg__a_#{@id})"}>
           <path
             fill="#F7FCFF"
             d="M5.83 20.01L4.604 21.6l-.056-2.006-1.926.566 1.134-1.657-1.891-.673 1.89-.674-1.133-1.657 1.926.566.056-2.006 1.226 1.59 1.225-1.59.056 2.007 1.926-.567-1.134 1.657 1.891.674-1.89.674 1.133 1.656-1.926-.566-.056 2.006-1.225-1.59zM5.8 8.139l-.64.83-.03-1.048-1.005.296.592-.865L3.73 7l.987-.352-.592-.865 1.006.296.03-1.048.64.83.639-.83.03 1.048 1.005-.296-.592.865.988.352-.988.352.592.865-1.006-.296-.03 1.048-.639-.83z"
@@ -8462,20 +10374,31 @@ defmodule Flagpack do
   Renders the Nauru flag.
 
   ## Examples
+
       <Flagpack.nru />
-      <Flagpack.nru class="w-5 h-5" />
+      <Flagpack.nru id="my-flag" />
+      <Flagpack.nru class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def nru(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-        <mask id="NRU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"NRU_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#NRU_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#NRU_svg__a_#{@id})"}>
           <path fill="#FECA00" d="M0 8v4h32V8H0z" /><path
             fill="#F7FCFF"
             d="M8.83 19.58l-1.545 2.005-.072-2.53-2.428.714 1.43-2.09-2.385-.85 2.384-.85-1.43-2.088 2.43.714.07-2.53L8.83 14.08l1.545-2.006.071 2.53 2.429-.713-1.43 2.089 2.385.85-2.385.85 1.43 2.089-2.429-.715-.071 2.53L8.83 19.58z"
@@ -8490,14 +10413,25 @@ defmodule Flagpack do
   Renders the New Zealand flag.
 
   ## Examples
+
       <Flagpack.nzl />
-      <Flagpack.nzl class="w-5 h-5" />
+      <Flagpack.nzl id="my-flag" />
+      <Flagpack.nzl class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def nzl(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#NZL_svg__NZ_-_New_Zealand_(Aotearoa)">
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
@@ -8544,24 +10478,35 @@ defmodule Flagpack do
   Renders the Oman flag.
 
   ## Examples
+
       <Flagpack.omn />
-      <Flagpack.omn class="w-5 h-5" />
+      <Flagpack.omn id="my-flag" />
+      <Flagpack.omn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def omn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="OMN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"OMN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#OMN_svg__a)">
+        <g mask={"url(#OMN_svg__a_#{@id})"}>
           <path fill="#F50101" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="OMN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"OMN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#OMN_svg__b)">
+          <g mask={"url(#OMN_svg__b_#{@id})"}>
             <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v8h32V0H0z" clip-rule="evenodd" /><path
               fill="#5EAA22"
               fill-rule="evenodd"
@@ -8584,19 +10529,30 @@ defmodule Flagpack do
   Renders the Pakistan flag.
 
   ## Examples
+
       <Flagpack.pak />
-      <Flagpack.pak class="w-5 h-5" />
+      <Flagpack.pak id="my-flag" />
+      <Flagpack.pak class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def pak(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PAK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PAK_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#PAK_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#PAK_svg__a_#{@id})"}>
           <path fill="#2F8D00" d="M8 0h24v24H8V0z" /><path fill="#F7FCFF" d="M0 0h8v24H0V0z" /><path
             fill="#F1F9FF"
             d="M22.43 15.306s-4.466 1.165-8.011-1.21c-3.545-2.375-1.763-7.848-1.763-7.848-1.849.269-4.752 7.015-.072 10.398 4.68 3.384 9.164.131 9.845-1.34zm-4.956-6.44l-2.372 1.16 2.502.446.338 2.445 1.417-2.083 2.788.189-2.184-1.63 1.163-2.176-2.174.996-1.616-1.519.138 2.172z"
@@ -8611,24 +10567,35 @@ defmodule Flagpack do
   Renders the Panama flag.
 
   ## Examples
+
       <Flagpack.pan />
-      <Flagpack.pan class="w-5 h-5" />
+      <Flagpack.pan id="my-flag" />
+      <Flagpack.pan class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def pan(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PAN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PAN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#PAN_svg__a)">
+        <g mask={"url(#PAN_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="PAN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"PAN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#PAN_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#PAN_svg__b_#{@id})"}>
             <path
               fill="#E31D1C"
               d="M16 0v12h16V0H16zm7.02 19.15l-2.302 1.424.894-2.391-1.957-1.811h2.374l.992-2.587.757 2.587h2.377l-1.713 1.81.839 2.392-2.26-1.424z"
@@ -8647,29 +10614,40 @@ defmodule Flagpack do
   Renders the Pitcairn flag.
 
   ## Examples
+
       <Flagpack.pcn />
-      <Flagpack.pcn class="w-5 h-5" />
+      <Flagpack.pcn id="my-flag" />
+      <Flagpack.pcn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def pcn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PCN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PCN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#PCN_svg__a)">
+        <g mask={"url(#PCN_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="PCN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"PCN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#PCN_svg__b)">
+          <g mask={"url(#PCN_svg__b_#{@id})"}>
             <path fill="#2B409A" d="M0 0h18v14H0z" />
-            <mask id="PCN_svg__c" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"PCN_svg__c_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#PCN_svg__c)">
+            <g mask={"url(#PCN_svg__c_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -8680,7 +10658,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="PCN_svg__d" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"PCN_svg__d_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -8690,7 +10668,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#PCN_svg__d)"
+                mask={"url(#PCN_svg__d_#{@id})"}
               />
             </g>
             <path
@@ -8733,7 +10711,7 @@ defmodule Flagpack do
               d="M22.187 15.195h5.184v3.167s-.422 2.589-2.68 3.864c0 0-2.187-1.293-2.504-3.864v-3.167z"
               clip-rule="evenodd"
             />
-            <mask id="PCN_svg__e" width="6" height="8" x="22" y="15" maskUnits="userSpaceOnUse">
+            <mask id={"PCN_svg__e_#{@id}"} width="6" height="8" x="22" y="15" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 fill-rule="evenodd"
@@ -8741,7 +10719,7 @@ defmodule Flagpack do
                 clip-rule="evenodd"
               />
             </mask>
-            <g mask="url(#PCN_svg__e)">
+            <g mask={"url(#PCN_svg__e_#{@id})"}>
               <path
                 fill="#58A5FF"
                 fill-rule="evenodd"
@@ -8776,19 +10754,30 @@ defmodule Flagpack do
   Renders the Peru flag.
 
   ## Examples
+
       <Flagpack.per />
-      <Flagpack.per class="w-5 h-5" />
+      <Flagpack.per id="my-flag" />
+      <Flagpack.per class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def per(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PER_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PER_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#PER_svg__a)">
+        <g mask={"url(#PER_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M8 0h17v24H8V0z" clip-rule="evenodd" /><path
             fill="#F50101"
             fill-rule="evenodd"
@@ -8818,7 +10807,7 @@ defmodule Flagpack do
             d="M15.685 16.855s-2.763-.547-2.914-1.604c-.151-1.057-.15-2.182-.15-2.182l-.256.687s-.013-.936.513-1.604-.657.443-.657.443.599-.945.848-1.035c.25-.09-1.002.592-1.002.592s.359-.792.637-1.016c.28-.225-.636.424-.636.424s.207-.785.454-.973c.248-.187-.81.973-.81.973s.559-1.795.873-1.963c.314-.167-.518.33-.518.33s.51-.769.966-1.15c.457-.382-.824.162-.668.162 0 0 .464-.523.73-.67.266-.148-1.027.508-1.027.508s.928-1.025 1.206-1.176c.279-.15-1.366.814-1.366.814s.096-.447.138-.766c.04-.32-.763.875-.653 1.948.109 1.074-.438-.82-.438-.82s-.22.41.315 1.488l-.58-.811s.08.736.265 1.133c.186.397-.526-.66-.526-.66s-.136.66 0 .66c0 0 .813 1.086.843 1.402.03.317-.913-1.13-1.039-1.13-.126 0-.196.465 0 .465s.567.665.567.665-.482-.348-.586-.369c-.103-.02.082.207.215.37 0 0-.377.307-.349.54.029.234 1.03.283 1.465 1.39 0 0-.901-.476-1.116-.476-.215 0 .346.497.526.662.18.164-.278-.165-.402 0-.124.164.687.866.84.866H10.8s.198.28.472.28c.273 0 1.25.438 1.25.58 0 .143-.824-.182-.977-.182-.152 0 1.076 1.16 1.73 1.205.652.044 1.065.22 1.346.22h.48l-1.33.677h.442c.578 0 1.019.16 1.246-.171.226-.332.226-.726.226-.726z"
             clip-rule="evenodd"
           />
-          <mask id="PER_svg__b" width="9" height="11" x="11.177" y="6.881" fill="#000" maskUnits="userSpaceOnUse">
+          <mask id={"PER_svg__b_#{@id}"} width="9" height="11" x="11.177" y="6.881" fill="#000" maskUnits="userSpaceOnUse">
             <path fill="#fff" d="M11.177 6.881h9v11h-9z" /><path
               fill-rule="evenodd"
               d="M16.087 8.905l.041-.023v.047c.193.106.677.355.993.355.4 0 .945-.402.945-.402l.911 1.286s-.614 1.287-.144 2.858c.47 1.572-.025 2.784-2.113 2.919 0 0-.412.078-.592.203v.115c0-.029-.015-.056-.041-.082-.026.026-.042.053-.042.082v-.116c-.18-.124-.592-.202-.592-.202-2.088-.135-2.582-1.347-2.113-2.919.47-1.572-.144-2.858-.144-2.858l.912-1.286s.544.402.945.402c.315 0 .8-.25.992-.355v-.047l.042.023z"
@@ -8833,10 +10822,10 @@ defmodule Flagpack do
           /><path
             fill="#E8AA00"
             d="M16.128 8.882h1v-1.76l-1.512.9.512.86zm-.041.023l-.493.87.493.28.493-.28-.493-.87zm.041.024h-1v.59l.517.285.483-.875zm1.938-.047l.816-.578-.59-.833-.82.606.594.805zm.911 1.286l.903.43.253-.529-.34-.479-.816.578zm-.144 2.858l-.958.287.958-.287zm-2.113 2.919l-.064-.998-.062.004-.06.011.186.983zm-.592.203l-.568-.823-.432.298v.525h1zm-.041.033l.7-.714-.7-.687-.7.687.7.714zm-.042-.034h1v-.524l-.431-.298-.569.823zm-.592-.202l.187-.983-.06-.011-.062-.004-.065.998zm-2.257-5.777l-.816-.578-.339.48.253.529.902-.43zm.912-1.286l.594-.805-.821-.606-.59.833.816.578zm1.937.047l.483.875.517-.285v-.59h-1zm0-.047l.512-.86-1.512-.9v1.76h1zm.083 0l-.512-.86h.001l-.003.002-.02.011.986 1.74.04-.023.013-.007.005-.003h.001a.01.01 0 01.001-.001l-.512-.86zm1 .047v-.047h-2v.047h2zm-1.483.875c.114.063.32.172.555.268.203.083.556.212.92.212v-2c.043 0 .047.006 0-.006a1.44 1.44 0 01-.163-.058 3.487 3.487 0 01-.346-.167l-.966 1.751zm1.476.48c.468 0 .894-.211 1.098-.321a4.15 4.15 0 00.425-.266l.01-.007.003-.002.002-.001c0-.001.001-.001-.593-.805a251.207 251.207 0 01-.594-.805l.002-.001a.025.025 0 01.001-.001.554.554 0 01-.05.034c-.04.026-.095.06-.157.094-.063.034-.119.06-.162.074-.05.018-.04.007.015.007v2zm.129-.825l.911 1.287 1.632-1.156-.911-1.286-1.632 1.155zm1.727.71c-.902-.431-.902-.431-.903-.43v.002l-.002.003a.286.286 0 00-.014.031l-.03.068a5.208 5.208 0 00-.283.985 5.33 5.33 0 00.13 2.485l1.916-.573a3.33 3.33 0 01.093-2.149c0-.001 0 0 0 0l-.002.003-.001.002v.002l-.904-.43zm-1.102 3.144c.198.66.119 1.014.015 1.178-.086.136-.355.4-1.234.456l.128 1.996c1.21-.078 2.232-.489 2.797-1.385.549-.868.482-1.907.21-2.818l-1.916.573zm-1.155 2.632l-.187-.983h-.002l-.002.001-.007.002c-.006 0-.013.002-.021.004a4.414 4.414 0 00-.279.067c-.125.036-.42.122-.662.289l1.137 1.645c-.048.033-.07.038-.038.025.024-.009.06-.02.102-.033a2.153 2.153 0 01.148-.035h-.002l-.187-.982zm.408.318v-.116h-2v.116h2zm-1.742.632a.887.887 0 01-.258-.632h2c0-.407-.219-.676-.341-.796l-1.4 1.428zm0-1.428c-.122.12-.34.389-.34.796h2c0 .35-.19.563-.259.632l-1.4-1.428zm1.66.796v-.116h-2v.116h2zm-1.592-.318l-.187.982h-.002.005a1.611 1.611 0 01.142.035c.043.012.079.024.102.033.033.013.01.008-.037-.025l1.137-1.645a2.288 2.288 0 00-.663-.289 4.234 4.234 0 00-.306-.073h-.004l-.188.982zm-3.072-3.205c-.272.91-.338 1.95.21 2.818.566.896 1.588 1.307 2.797 1.385l.129-1.996c-.88-.057-1.148-.32-1.235-.456-.103-.164-.182-.517.016-1.178l-1.917-.573zm.814-2.572l-.903.43v-.002l-.002-.002v-.002l-.001-.001.008.019a3.21 3.21 0 01.163.578c.074.405.1.954-.079 1.552l1.917.573a5.33 5.33 0 00-.183-3.538 1.285 1.285 0 00-.014-.03L14.1 9.74v-.002c-.001-.001-.001-.001-.904.43zm.095-1.864l-.91 1.286 1.631 1.156.912-1.287-1.633-1.155zm1.762-.02c.055 0 .064.01.014-.007a1.192 1.192 0 01-.162-.074 2.146 2.146 0 01-.204-.127l-.594.806-.593.804.002.002.004.002.009.007a2.118 2.118 0 00.12.083c.075.049.181.115.306.183.204.11.63.32 1.098.32v-2zm.51-.231a3.59 3.59 0 01-.346.167 1.44 1.44 0 01-.163.058c-.047.012-.043.006-.001.006v2c.364 0 .718-.13.92-.212a5.46 5.46 0 00.555-.268l-.966-1.751zm1.482.876v-.047h-2v.047h2zm-1-.047l-.512.858.001.001.002.001.004.003.013.007.04.023.987-1.74a1.442 1.442 0 01-.02-.011l-.004-.002h.001l-.512.86z"
-            mask="url(#PER_svg__b)"
+            mask={"url(#PER_svg__b_#{@id})"}
           />
-          <mask id="PER_svg__d" width="9" height="11" x="12" y="7" maskUnits="userSpaceOnUse">
-            <mask id="PER_svg__c" width="9" height="11" x="11.177" y="6.881" fill="#000" maskUnits="userSpaceOnUse">
+          <mask id={"PER_svg__d_#{@id}"} width="9" height="11" x="12" y="7" maskUnits="userSpaceOnUse">
+            <mask id={"PER_svg__c_#{@id}"} width="9" height="11" x="11.177" y="6.881" fill="#000" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M11.177 6.881h9v11h-9z" /><path
                 fill-rule="evenodd"
                 d="M16.087 8.905l.041-.023v.047c.193.106.677.355.993.355.4 0 .945-.402.945-.402l.911 1.286s-.614 1.287-.144 2.858c.47 1.572-.025 2.784-2.113 2.919 0 0-.412.078-.592.203v.115c0-.029-.015-.056-.041-.082-.026.026-.042.053-.042.082v-.116c-.18-.124-.592-.202-.592-.202-2.088-.135-2.582-1.347-2.113-2.919.47-1.572-.144-2.858-.144-2.858l.912-1.286s.544.402.945.402c.315 0 .8-.25.992-.355v-.047l.042.023z"
@@ -8851,10 +10840,10 @@ defmodule Flagpack do
             /><path
               fill="#fff"
               d="M16.128 8.882h1v-1.76l-1.512.9.512.86zm-.041.023l-.493.87.493.28.493-.28-.493-.87zm.041.024h-1v.59l.517.285.483-.875zm1.938-.047l.816-.578-.59-.833-.82.606.594.805zm.911 1.286l.903.43.253-.529-.34-.479-.816.578zm-.144 2.858l-.958.287.958-.287zm-2.113 2.919l-.064-.998-.062.004-.06.011.186.983zm-.592.203l-.568-.823-.432.298v.525h1zm-.041.033l.7-.714-.7-.687-.7.687.7.714zm-.042-.034h1v-.524l-.431-.298-.569.823zm-.592-.202l.187-.983-.06-.011-.062-.004-.065.998zm-2.257-5.777l-.816-.578-.339.48.253.529.902-.43zm.912-1.286l.594-.805-.821-.606-.59.833.816.578zm1.937.047l.483.875.517-.285v-.59h-1zm0-.047l.512-.86-1.512-.9v1.76h1zm.083 0l-.512-.86h.001l-.003.002-.02.011.986 1.74.04-.023.013-.007.005-.003h.001a.01.01 0 01.001-.001l-.512-.86zm1 .047v-.047h-2v.047h2zm-1.483.875c.114.063.32.172.555.268.203.083.556.212.92.212v-2c.043 0 .047.006 0-.006a1.44 1.44 0 01-.163-.058 3.487 3.487 0 01-.346-.167l-.966 1.751zm1.476.48c.468 0 .894-.211 1.098-.321a4.15 4.15 0 00.425-.266l.01-.007.003-.002.002-.001c0-.001.001-.001-.593-.805a251.207 251.207 0 01-.594-.805l.002-.001a.025.025 0 01.001-.001.554.554 0 01-.05.034c-.04.026-.095.06-.157.094-.063.034-.119.06-.162.074-.05.018-.04.007.015.007v2zm.129-.825l.911 1.287 1.632-1.156-.911-1.286-1.632 1.155zm1.727.71c-.902-.431-.902-.431-.903-.43v.002l-.002.003a.286.286 0 00-.014.031l-.03.068a5.208 5.208 0 00-.283.985 5.33 5.33 0 00.13 2.485l1.916-.573a3.33 3.33 0 01.093-2.149c0-.001 0 0 0 0l-.002.003-.001.002v.002l-.904-.43zm-1.102 3.144c.198.66.119 1.014.015 1.178-.086.136-.355.4-1.234.456l.128 1.996c1.21-.078 2.232-.489 2.797-1.385.549-.868.482-1.907.21-2.818l-1.916.573zm-1.155 2.632l-.187-.983h-.002l-.002.001-.007.002c-.006 0-.013.002-.021.004a4.414 4.414 0 00-.279.067c-.125.036-.42.122-.662.289l1.137 1.645c-.048.033-.07.038-.038.025.024-.009.06-.02.102-.033a2.153 2.153 0 01.148-.035h-.002l-.187-.982zm.408.318v-.116h-2v.116h2zm-1.742.632a.887.887 0 01-.258-.632h2c0-.407-.219-.676-.341-.796l-1.4 1.428zm0-1.428c-.122.12-.34.389-.34.796h2c0 .35-.19.563-.259.632l-1.4-1.428zm1.66.796v-.116h-2v.116h2zm-1.592-.318l-.187.982h-.002.005a1.611 1.611 0 01.142.035c.043.012.079.024.102.033.033.013.01.008-.037-.025l1.137-1.645a2.288 2.288 0 00-.663-.289 4.234 4.234 0 00-.306-.073h-.004l-.188.982zm-3.072-3.205c-.272.91-.338 1.95.21 2.818.566.896 1.588 1.307 2.797 1.385l.129-1.996c-.88-.057-1.148-.32-1.235-.456-.103-.164-.182-.517.016-1.178l-1.917-.573zm.814-2.572l-.903.43v-.002l-.002-.002v-.002l-.001-.001.008.019a3.21 3.21 0 01.163.578c.074.405.1.954-.079 1.552l1.917.573a5.33 5.33 0 00-.183-3.538 1.285 1.285 0 00-.014-.03L14.1 9.74v-.002c-.001-.001-.001-.001-.904.43zm.095-1.864l-.91 1.286 1.631 1.156.912-1.287-1.633-1.155zm1.762-.02c.055 0 .064.01.014-.007a1.192 1.192 0 01-.162-.074 2.146 2.146 0 01-.204-.127l-.594.806-.593.804.002.002.004.002.009.007a2.118 2.118 0 00.12.083c.075.049.181.115.306.183.204.11.63.32 1.098.32v-2zm.51-.231a3.59 3.59 0 01-.346.167 1.44 1.44 0 01-.163.058c-.047.012-.043.006-.001.006v2c.364 0 .718-.13.92-.212a5.46 5.46 0 00.555-.268l-.966-1.751zm1.482.876v-.047h-2v.047h2zm-1-.047l-.512.858.001.001.002.001.004.003.013.007.04.023.987-1.74a1.442 1.442 0 01-.02-.011l-.004-.002h.001l-.512.86z"
-              mask="url(#PER_svg__c)"
+              mask={"url(#PER_svg__c_#{@id})"}
             />
           </mask>
-          <g mask="url(#PER_svg__d)">
+          <g mask={"url(#PER_svg__d_#{@id})"}>
             <path fill="#67BAFF" d="M13.304 8.727h2.783v3.818h-2.783z" /><path
               fill="#fff"
               d="M16.087 8.727h2.783v3.818h-2.783z"
@@ -8886,31 +10875,42 @@ defmodule Flagpack do
   Renders the Philippines (the) flag.
 
   ## Examples
+
       <Flagpack.phl />
-      <Flagpack.phl class="w-5 h-5" />
+      <Flagpack.phl id="my-flag" />
+      <Flagpack.phl class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def phl(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PHL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PHL_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#PHL_svg__a)">
+        <g mask={"url(#PHL_svg__a_#{@id})"}>
           <path fill="#BF2714" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="PHL_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"PHL_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#PHL_svg__b)">
+          <g mask={"url(#PHL_svg__b_#{@id})"}>
             <path fill="#3D58DB" fill-rule="evenodd" d="M0-2v14h32V-2H0z" clip-rule="evenodd" />
           </g>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24l18-12L0 0z" clip-rule="evenodd" />
-          <mask id="PHL_svg__c" width="18" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"PHL_svg__c_#{@id}"} width="18" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24l18-12L0 0z" clip-rule="evenodd" />
           </mask>
-          <g fill="#FECA00" fill-rule="evenodd" clip-rule="evenodd" mask="url(#PHL_svg__c)">
+          <g fill="#FECA00" fill-rule="evenodd" clip-rule="evenodd" mask={"url(#PHL_svg__c_#{@id})"}>
             <path d="M13.605 10.92l1.276.492.759-.893.02 1.195 1.174.381-1.236.42.082 1.098-.814-.841-1.28.243.756-.968-.737-1.127zm-12 6l1.173.519.862-.92-.083 1.221 1.277.356-1.339.446.185 1.071-.933-.766-1.16.168.652-.942-.634-1.153zm0-12l1.298.478.737-.88.042 1.182 1.152.396L3.62 6.5l.06 1.112-.808-.806-1.286.208.778-.982-.759-1.113zm6.516 9.613a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" /><path d="M7.826 8.24l.134 1.606a.224.224 0 00.443.007l.177-1.6a.38.38 0 10-.754-.013zm-.418.776l.207.699c.02.064.085.105.158.092a.112.112 0 00.083-.135l-.166-.701a.158.158 0 00-.195-.116.13.13 0 00-.087.16zm1.123.728c-.017.06.018.12.085.138a.133.133 0 00.153-.088l.232-.69a.13.13 0 00-.097-.169.158.158 0 00-.183.114l-.19.695zm2.077-.703L9.49 10.276a.224.224 0 00.308.318l1.334-1.01a.38.38 0 10-.524-.543zm-.34 2.62l1.669-.129a.381.381 0 11-.013.754l-1.664-.182a.224.224 0 01.008-.443zm.866 2.659l-1.296-1.13a.224.224 0 00-.319.308l1.072 1.345a.381.381 0 10.543-.524zm-2.682-.351l.099 1.685a.381.381 0 11-.754-.013l.213-1.68a.224.224 0 01.442.008zm-2.631.91l1.101-1.34a.224.224 0 00-.307-.318l-1.318 1.116a.381.381 0 10.524.543zm.324-2.726l-1.68.139a.381.381 0 11.014-.755l1.673.174a.224.224 0 01-.007.442zm-.995-2.63l1.425 1.1a.224.224 0 00.318-.307l-1.2-1.318a.38.38 0 10-.543.524zm4.189.416l.347-.64a.13.13 0 01.19-.044c.067.048.085.14.042.211l-.38.613a.112.112 0 01-.153.036.135.135 0 01-.046-.176zm1.759 1.17l-.699.208a.135.135 0 00-.092.157c.014.06.074.097.134.083l.701-.166a.158.158 0 00.116-.195.13.13 0 00-.16-.087zm-.924 1.931l.641.347a.13.13 0 01.043.19.158.158 0 01-.21.042l-.614-.379a.112.112 0 01-.036-.154.135.135 0 01.176-.046zm-1.17 1.76l-.207-.699a.135.135 0 00-.157-.092.112.112 0 00-.083.134l.165.702a.158.158 0 00.195.116.13.13 0 00.088-.161zm-1.93-.923l-.348.64a.13.13 0 01-.19.044.158.158 0 01-.041-.212l.379-.613a.112.112 0 01.153-.036c.061.043.079.117.046.177zm-1.76-1.17l.7-.208a.135.135 0 00.091-.157.112.112 0 00-.134-.083l-.701.165a.158.158 0 00-.116.195.13.13 0 00.16.088zm.924-1.931l-.64-.348a.13.13 0 01-.044-.189.158.158 0 01.211-.042l.613.379a.112.112 0 01.036.153.135.135 0 01-.176.046zm3.728-.168c-.054.03-.073.099-.039.158a.133.133 0 00.171.046l.653-.324a.13.13 0 00.05-.188.158.158 0 00-.21-.05l-.625.358zm.265 1.71c.018-.066.08-.101.139-.085l.695.19a.158.158 0 01.109.199.13.13 0 01-.164.081l-.69-.232a.133.133 0 01-.089-.153zm-.724 1.35a.112.112 0 00-.158-.038.133.133 0 00-.047.17l.325.653a.13.13 0 00.187.05.158.158 0 00.05-.21l-.357-.625zm-1.71.265c.066.018.101.08.085.139l-.19.695a.158.158 0 01-.2.109.13.13 0 01-.08-.164l.231-.69a.133.133 0 01.154-.089zm-1.35-.724c.053-.03.072-.099.038-.158a.133.133 0 00-.171-.047l-.653.325a.13.13 0 00-.05.188.16.16 0 00.21.049l.626-.357zm-.266-1.71c-.018.066-.079.101-.138.085l-.695-.19a.158.158 0 01-.11-.2.13.13 0 01.164-.08l.691.231a.133.133 0 01.088.154zm.725-1.35c.03.053.098.072.158.038a.133.133 0 00.046-.171l-.324-.653a.13.13 0 00-.188-.05.158.158 0 00-.05.21l.358.626z" />
           </g>
         </g>
@@ -8923,24 +10923,35 @@ defmodule Flagpack do
   Renders the Palau flag.
 
   ## Examples
+
       <Flagpack.plw />
-      <Flagpack.plw class="w-5 h-5" />
+      <Flagpack.plw id="my-flag" />
+      <Flagpack.plw class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def plw(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PLW_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PLW_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#PLW_svg__a)">
+        <g mask={"url(#PLW_svg__a_#{@id})"}>
           <path fill="#61C6F0" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="PLW_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"PLW_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#PLW_svg__b)">
+          <g mask={"url(#PLW_svg__b_#{@id})"}>
             <path fill="#FBCD17" fill-rule="evenodd" d="M11.5 18a6.5 6.5 0 100-13 6.5 6.5 0 000 13z" clip-rule="evenodd" />
           </g>
         </g>
@@ -8953,19 +10964,30 @@ defmodule Flagpack do
   Renders the Papua New Guinea flag.
 
   ## Examples
+
       <Flagpack.png />
-      <Flagpack.png class="w-5 h-5" />
+      <Flagpack.png id="my-flag" />
+      <Flagpack.png class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def png(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PNG_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PNG_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#PNG_svg__a)">
+        <g mask={"url(#PNG_svg__a_#{@id})"}>
           <rect width="32" height="24" fill="#E11C1B" rx="2" /><path
             fill="#1D1D1D"
             fill-rule="evenodd"
@@ -8997,24 +11019,35 @@ defmodule Flagpack do
   Renders the Poland flag.
 
   ## Examples
+
       <Flagpack.pol />
-      <Flagpack.pol class="w-5 h-5" />
+      <Flagpack.pol id="my-flag" />
+      <Flagpack.pol class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def pol(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="POL_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"POL_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#POL_svg__a)">
+        <g mask={"url(#POL_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="POL_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"POL_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#POL_svg__b)">
+          <g mask={"url(#POL_svg__b_#{@id})"}>
             <path fill="#C51918" fill-rule="evenodd" d="M0 12v12h32V12H0z" clip-rule="evenodd" />
           </g>
         </g>
@@ -9027,29 +11060,42 @@ defmodule Flagpack do
   Renders the Puerto Rico flag.
 
   ## Examples
+
       <Flagpack.pri />
-      <Flagpack.pri class="w-5 h-5" />
+      <Flagpack.pri id="my-flag" />
+      <Flagpack.pri class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def pri(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PRI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PRI_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#PRI_svg__a)">
+        <g mask={"url(#PRI_svg__a_#{@id})"}>
           <path fill="#EF0000" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="PRI_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"PRI_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#PRI_svg__b)"><path fill="#EF0000" stroke="#F7FCFF" stroke-width="4" d="M0 8h-2v8h36V8H0z" /></g>
+          <g mask={"url(#PRI_svg__b_#{@id})"}>
+            <path fill="#EF0000" stroke="#F7FCFF" stroke-width="4" d="M0 8h-2v8h36V8H0z" />
+          </g>
           <path fill="#3D58DB" fill-rule="evenodd" d="M0 0v24l18-12L0 0z" clip-rule="evenodd" />
-          <mask id="PRI_svg__c" width="18" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"PRI_svg__c_#{@id}"} width="18" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24l18-12L0 0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#PRI_svg__c)">
+          <g mask={"url(#PRI_svg__c_#{@id})"}>
             <path
               fill="#F7FCFF"
               fill-rule="evenodd"
@@ -9067,14 +11113,25 @@ defmodule Flagpack do
   Renders the Korea (the Democratic People's Republic of) flag.
 
   ## Examples
+
       <Flagpack.prk />
-      <Flagpack.prk class="w-5 h-5" />
+      <Flagpack.prk id="my-flag" />
+      <Flagpack.prk class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def prk(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#PRK_svg__KP_-_Korea_(North)">
           <path fill="#3D58DB" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
@@ -9101,26 +11158,37 @@ defmodule Flagpack do
   Renders the Portugal flag.
 
   ## Examples
+
       <Flagpack.prt />
-      <Flagpack.prt class="w-5 h-5" />
+      <Flagpack.prt id="my-flag" />
+      <Flagpack.prt class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def prt(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PRT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PRT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#PRT_svg__a)">
+        <g mask={"url(#PRT_svg__a_#{@id})"}>
           <path fill="#EF0000" fill-rule="evenodd" d="M8 0h24v24H8V0z" clip-rule="evenodd" /><path
             fill="#2F8D00"
             fill-rule="evenodd"
             d="M0 0h12v24H0V0z"
             clip-rule="evenodd"
           />
-          <mask id="PRT_svg__b" width="16" height="16" x="4" y="4" maskUnits="userSpaceOnUse">
+          <mask id={"PRT_svg__b_#{@id}"} width="16" height="16" x="4" y="4" maskUnits="userSpaceOnUse">
             <path
               fill="#fff"
               fill-rule="evenodd"
@@ -9128,7 +11196,7 @@ defmodule Flagpack do
               clip-rule="evenodd"
             />
           </mask>
-          <g fill="#FFE017" mask="url(#PRT_svg__b)">
+          <g fill="#FFE017" mask={"url(#PRT_svg__b_#{@id})"}>
             <path fill-rule="evenodd" d="M11.428 4h1v2.699h-1V4zm0 13.494h1V20h-1v-2.506z" clip-rule="evenodd" /><path d="M4.314 12.404l-.28-.717C7.12 10.455 9.45 9.66 11.029 9.303c2.319-.526 4.866-.914 7.642-1.167l.068.768c-2.744.25-5.259.633-7.543 1.151-1.533.347-3.83 1.13-6.88 2.349z" /><path d="M19.14 7.664l-.226.736c-2.332-.736-4.231-1.053-5.691-.955l-.05-.769c1.567-.105 3.554.226 5.968.988zm.808 4.116l-.431.636c-1.19-.826-2.654-1.24-4.404-1.24v-.771c1.898 0 3.512.457 4.835 1.375z" /><path d="M19.302 12.01l.197.745c-2.563.695-4.969 1.088-7.218 1.181-2.265.094-4.905-.302-7.922-1.183l.211-.74c2.944.859 5.505 1.242 7.68 1.153 2.19-.09 4.541-.475 7.052-1.155z" /><path d="M19.012 15.636l-1.205 1.235c-2.288-2.287-4.303-3.922-6.032-4.904-1.758-1-4.051-2.014-6.875-3.04l.579-1.633c2.907 1.056 5.284 2.108 7.135 3.16 1.88 1.068 4.009 2.795 6.398 5.182zm-13.554.699l-.456-.618a9.275 9.275 0 011.188-.722c.85-.43 1.703-.7 2.517-.725l.119-.002v.771c-.032 0-.064 0-.096.002-.686.02-1.439.258-2.198.644a8.527 8.527 0 00-1.074.65z" /><path d="M5.812 16.603l.192-.747c2.54.67 4.498 1.003 5.865 1.003 1.362 0 3.388-.394 6.067-1.183l.213.74c-2.742.808-4.83 1.214-6.28 1.214-1.444 0-3.46-.343-6.057-1.027zm-.99-6.909L6.03 8.462l1.768 1.774-1.207 1.232-1.768-1.774z" /><path d="M14.836 15.848l.898-1.478 2.803 1.744-.897 1.478-2.804-1.744z" />
           </g>
           <path
@@ -9275,24 +11343,35 @@ defmodule Flagpack do
   Renders the Paraguay flag.
 
   ## Examples
+
       <Flagpack.pry />
-      <Flagpack.pry class="w-5 h-5" />
+      <Flagpack.pry id="my-flag" />
+      <Flagpack.pry class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def pry(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PRY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PRY_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#PRY_svg__a)">
+        <g mask={"url(#PRY_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="PRY_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"PRY_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#PRY_svg__b)">
+          <g mask={"url(#PRY_svg__b_#{@id})"}>
             <path stroke="#272727" stroke-width=".35" d="M19.825 12a3.825 3.825 0 11-7.65 0 3.825 3.825 0 017.65 0z" /><path
               fill="#272727"
               fill-rule="evenodd"
@@ -9327,19 +11406,30 @@ defmodule Flagpack do
   Renders the Palestine, State of flag.
 
   ## Examples
+
       <Flagpack.pse />
-      <Flagpack.pse class="w-5 h-5" />
+      <Flagpack.pse id="my-flag" />
+      <Flagpack.pse class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def pse(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PSE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PSE_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#PSE_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#PSE_svg__a_#{@id})"}>
           <path fill="#F7FCFF" d="M0 0h32v24H0V0z" /><path fill="#5EAA22" d="M0 0v8h32V0H0z" /><path
             fill="#272727"
             d="M0 16v8h32v-8H0z"
@@ -9354,29 +11444,40 @@ defmodule Flagpack do
   Renders the French Polyesia flag.
 
   ## Examples
+
       <Flagpack.pyf />
-      <Flagpack.pyf class="w-5 h-5" />
+      <Flagpack.pyf id="my-flag" />
+      <Flagpack.pyf class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def pyf(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="PYF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"PYF_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#PYF_svg__a)">
+        <g mask={"url(#PYF_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="PYF_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"PYF_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#PYF_svg__b)">
+          <g mask={"url(#PYF_svg__b_#{@id})"}>
             <path fill="#BF2714" fill-rule="evenodd" d="M0 0v6h32V0H0zm0 18v6h32v-6H0z" clip-rule="evenodd" />
-            <mask id="PYF_svg__c" width="12" height="12" x="10" y="6" maskUnits="userSpaceOnUse">
+            <mask id={"PYF_svg__c_#{@id}"} width="12" height="12" x="10" y="6" maskUnits="userSpaceOnUse">
               <path fill="#fff" fill-rule="evenodd" d="M16 18a6 6 0 100-12 6 6 0 000 12z" clip-rule="evenodd" />
             </mask>
-            <g mask="url(#PYF_svg__c)">
+            <g mask={"url(#PYF_svg__c_#{@id})"}>
               <path
                 fill="#5277B9"
                 fill-rule="evenodd"
@@ -9411,19 +11512,30 @@ defmodule Flagpack do
   Renders the Qatar flag.
 
   ## Examples
+
       <Flagpack.qat />
-      <Flagpack.qat class="w-5 h-5" />
+      <Flagpack.qat id="my-flag" />
+      <Flagpack.qat class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def qat(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="QAT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"QAT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#QAT_svg__a)">
+        <g mask={"url(#QAT_svg__a_#{@id})"}>
           <path fill="#B61C49" d="M0 0h32v24H0z" /><path
             fill="#F7FCFF"
             fill-rule="evenodd"
@@ -9440,19 +11552,30 @@ defmodule Flagpack do
   Renders the Réunion flag.
 
   ## Examples
+
       <Flagpack.reu />
-      <Flagpack.reu class="w-5 h-5" />
+      <Flagpack.reu id="my-flag" />
+      <Flagpack.reu class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def reu(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="REU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"REU_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#REU_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#REU_svg__a_#{@id})"}>
           <path fill="#F50100" d="M22 0h10v24H22V0z" /><path fill="#2E42A5" d="M0 0h10v24H0V0z" /><path
             fill="#F7FCFF"
             d="M10 0h12v24H10V0z"
@@ -9467,19 +11590,30 @@ defmodule Flagpack do
   Renders the Romania flag.
 
   ## Examples
+
       <Flagpack.rou />
-      <Flagpack.rou class="w-5 h-5" />
+      <Flagpack.rou id="my-flag" />
+      <Flagpack.rou class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def rou(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ROU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ROU_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#ROU_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#ROU_svg__a_#{@id})"}>
           <path fill="#FBCD17" d="M10 0h12v24H10V0z" /><path fill="#E11C1B" d="M22 0h10v24H22V0z" /><path
             fill="#2E42A5"
             d="M0 0h10v24H0V0z"
@@ -9494,24 +11628,35 @@ defmodule Flagpack do
   Renders the Russian Federation (the) flag.
 
   ## Examples
+
       <Flagpack.rus />
-      <Flagpack.rus class="w-5 h-5" />
+      <Flagpack.rus id="my-flag" />
+      <Flagpack.rus class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def rus(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="RUS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"RUS_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#RUS_svg__a)">
+        <g mask={"url(#RUS_svg__a_#{@id})"}>
           <path fill="#3D58DB" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="RUS_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"RUS_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#RUS_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#RUS_svg__b_#{@id})"}>
             <path fill="#F7FCFF" d="M0 0v8h32V0H0z" /><path fill="#C51918" d="M0 16v8h32v-8H0z" />
           </g>
         </g>
@@ -9524,24 +11669,35 @@ defmodule Flagpack do
   Renders the Rwanda flag.
 
   ## Examples
+
       <Flagpack.rwa />
-      <Flagpack.rwa class="w-5 h-5" />
+      <Flagpack.rwa id="my-flag" />
+      <Flagpack.rwa class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def rwa(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="RWA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"RWA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#RWA_svg__a)">
+        <g mask={"url(#RWA_svg__a_#{@id})"}>
           <path fill="#FECA00" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="RWA_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"RWA_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#RWA_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#RWA_svg__b_#{@id})"}>
             <path fill="#3CA5D9" d="M0 0v14h32V0H0z" /><path fill="#5A962A" d="M0 18v6h32v-6H0z" /><path
               fill="#FFDC17"
               d="M24.082 11.866a4.132 4.132 0 01-.185 0l-.605 1.974-.128-2.056a4.05 4.05 0 01-.182-.042l-1.047 1.78.355-2.027a3.95 3.95 0 01-.17-.083l-1.43 1.49.816-1.888a3.93 3.93 0 01-.146-.12l-1.739 1.122 1.233-1.649c-.04-.05-.078-.1-.116-.152l-1.95.695 1.581-1.32a4.042 4.042 0 01-.078-.177l-2.055.23 1.844-.923a3.889 3.889 0 01-.035-.19l-2.05-.245 2.007-.477c.002-.065.006-.13.011-.195l-1.938-.705 2.063-.006c.018-.063.037-.126.057-.188l-1.72-1.127 2.01.464c.031-.057.064-.113.099-.169l-1.412-1.49 1.849.912a3.64 3.64 0 01.135-.142L20.13 3.39l1.587 1.308a5.72 5.72 0 01.164-.106l-.586-1.96 1.24 1.636a4.98 4.98 0 01.184-.066l-.114-2.042.826 1.877c.064-.008.128-.016.193-.021L23.99 2l.367 2.017c.064.006.128.013.191.022l.827-1.879-.114 2.047a3.9 3.9 0 01.181.065l1.243-1.64-.588 1.967c.054.034.107.069.16.105L27.85 3.39l-1.032 1.781c.045.045.088.09.13.138l1.859-.916-1.42 1.498c.033.054.065.108.095.163l2.022-.467-1.731 1.135.054.18 2.077.006-1.951.71c.004.062.008.124.01.186l2.022.481-2.066.246c-.01.061-.02.122-.032.183l1.856.93-2.069-.233a3.902 3.902 0 01-.074.17l1.59 1.329-1.96-.699c-.036.05-.073.099-.111.147l1.24 1.658-1.747-1.128c-.047.04-.094.08-.142.117l.82 1.898-1.436-1.496c-.055.028-.11.056-.165.082l.355 2.033-1.049-1.784c-.059.016-.119.03-.18.043l-.128 2.059-.604-1.974zm-.136-1.451c1.4 0 2.536-1.12 2.536-2.5s-1.135-2.498-2.536-2.498c-1.4 0-2.536 1.118-2.536 2.499 0 1.38 1.135 2.499 2.536 2.499zm1.459-2.426a1.43 1.43 0 11-2.859 0 1.43 1.43 0 012.859 0z"
@@ -9557,19 +11713,30 @@ defmodule Flagpack do
   Renders the Saudi Arabia flag.
 
   ## Examples
+
       <Flagpack.sau />
-      <Flagpack.sau class="w-5 h-5" />
+      <Flagpack.sau id="my-flag" />
+      <Flagpack.sau class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def sau(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SAU_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SAU_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SAU_svg__a)">
+        <g mask={"url(#SAU_svg__a_#{@id})"}>
           <path fill="#67BD23" d="M0 0h32v24H0z" /><path
             fill="#fff"
             fill-rule="evenodd"
@@ -9597,19 +11764,30 @@ defmodule Flagpack do
   Renders the Sudan (the) flag.
 
   ## Examples
+
       <Flagpack.sdn />
-      <Flagpack.sdn class="w-5 h-5" />
+      <Flagpack.sdn id="my-flag" />
+      <Flagpack.sdn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def sdn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SDN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SDN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#SDN_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#SDN_svg__a_#{@id})"}>
           <path fill="#F7FCFF" d="M0 0h32v24H0V0z" /><path fill="#E31D1C" d="M0 0v8h32V0H0z" /><path
             fill="#272727"
             d="M0 16v8h32v-8H0z"
@@ -9624,19 +11802,30 @@ defmodule Flagpack do
   Renders the Senegal flag.
 
   ## Examples
+
       <Flagpack.sen />
-      <Flagpack.sen class="w-5 h-5" />
+      <Flagpack.sen id="my-flag" />
+      <Flagpack.sen class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def sen(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SEN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SEN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#SEN_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#SEN_svg__a_#{@id})"}>
           <path fill="#FBCD17" d="M10 0h12v24H10V0z" /><path
             fill="#006923"
             d="M16.075 14.49l-3.485 2.418 1.114-4.14-2.56-2.79h3.466l1.465-4.094 1.466 4.095h3.46l-2.554 2.788 1.279 3.897-3.65-2.174z"
@@ -9651,24 +11840,35 @@ defmodule Flagpack do
   Renders the Singapore flag.
 
   ## Examples
+
       <Flagpack.sgp />
-      <Flagpack.sgp class="w-5 h-5" />
+      <Flagpack.sgp id="my-flag" />
+      <Flagpack.sgp class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def sgp(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SGP_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SGP_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SGP_svg__a)">
+        <g mask={"url(#SGP_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SGP_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SGP_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#SGP_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#SGP_svg__b_#{@id})"}>
             <path fill="#E31D1C" d="M0 0v12h32V0H0z" /><path
               fill="#F1F9FF"
               d="M8.868 10.59S6.043 9.453 6.043 6.374s2.825-4.179 2.825-4.179c-1.373-.347-5.017-.037-5.017 4.179s3.589 5.01 5.017 4.216zm.724-.51l.811-.489.829.49-.203-.955.673-.754h-.912l-.387-.891-.387.891-.914.039.675.715-.185.955zm3.757-.543l-.81.489.185-.955-.675-.715.914-.038.386-.892.387.892h.912l-.673.753.203.955-.829-.49zM11.287 5.77l.81-.49.83.49-.204-.955.674-.753h-.912l-.387-.892-.387.892-.914.038.675.715-.185.955zM9.37 7.223l-.81.489.184-.955-.675-.715.914-.038.387-.892.387.892h.912l-.673.753.202.955-.828-.49zm4.548.445l.81-.49.829.49-.203-.955.673-.753h-.912l-.387-.892-.386.892-.915.039.675.714-.184.955z"
@@ -9684,24 +11884,37 @@ defmodule Flagpack do
   Renders the South Georgia and the South Sandwich Islands flag.
 
   ## Examples
+
       <Flagpack.sgs />
-      <Flagpack.sgs class="w-5 h-5" />
+      <Flagpack.sgs id="my-flag" />
+      <Flagpack.sgs class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def sgs(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SGS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SGS_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SGS_svg__a)"><path fill="#2B409A" fill-rule="evenodd" d="M0 .1h32v24H0V.1z" clip-rule="evenodd" /></g>
+        <g mask={"url(#SGS_svg__a_#{@id})"}>
+          <path fill="#2B409A" fill-rule="evenodd" d="M0 .1h32v24H0V.1z" clip-rule="evenodd" />
+        </g>
         <path fill="#2B409A" d="M0 0h18v14H0z" />
-        <mask id="SGS_svg__b" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SGS_svg__b_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h18v14H0z" />
         </mask>
-        <g mask="url(#SGS_svg__b)">
+        <g mask={"url(#SGS_svg__b_#{@id})"}>
           <path fill="#F7FCFF" d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z" /><path
             fill="#F50100"
             d="M-1.462 14.217l2.018 1.008L19.429-.933h-2.833l-18.058 15.15z"
@@ -9709,7 +11922,7 @@ defmodule Flagpack do
             fill="#F50100"
             d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
           />
-          <mask id="SGS_svg__c" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+          <mask id={"SGS_svg__c_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
             <path fill="#fff" d="M-2-2h22v18H-2z" /><path
               fill-rule="evenodd"
               d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -9719,7 +11932,7 @@ defmodule Flagpack do
           <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
             fill="#F7FCFF"
             d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-            mask="url(#SGS_svg__c)"
+            mask={"url(#SGS_svg__c_#{@id})"}
           />
         </g>
         <path
@@ -9755,7 +11968,7 @@ defmodule Flagpack do
           fill="#1E5AA6"
           d="M24.566 16.078l-.309.402 1.105 1.249a2.79 2.79 0 00.515-.338l-.576-.65.234-.673.337.38-1.053 1.313a2.325 2.325 0 01-.548-.33l.557-.69-.262-.663z"
         /><path
-          fill="url(#SGS_svg__d)"
+          fill={"url(#SGS_svg__d_#{@id})"}
           d="M28.386 12.851c0 .064.069 3.832.145 3.796.19-.09.234.106.234.106s.065.62-.099.703a2.408 2.408 0 01-.422.187l-.283-.206s-.288-.403-.353-.582c-.066-.178-.144-.976-.118-1.15.026-.171.046-1.18.033-1.232-.013-.051-.066-.894-.033-1.022.033-.127.235-.69.229-.69 0 0 .666.026.666.09z"
         /><path
           fill="#FF7000"
@@ -9818,7 +12031,14 @@ defmodule Flagpack do
           d="M23.73 18.108c.953.504 1.055.165 1.713-.315.045-.033.262.77 1.183.315 1.304-.644-1.117-1.718-1.46-1.695-.341.024-2.39 1.19-1.437 1.695z"
         />
         <defs>
-          <linearGradient id="SGS_svg__d" x1="28.275" x2="29.018" y1="15.607" y2="15.599" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id={"SGS_svg__d_#{@id}"}
+            x1="28.275"
+            x2="29.018"
+            y1="15.607"
+            y2="15.599"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stop-color="#D5DFFF" /><stop offset="1" stop-color="#fff" />
           </linearGradient>
         </defs>
@@ -9831,29 +12051,40 @@ defmodule Flagpack do
   Renders the Saint Helena, Ascension Island, Traistan da Cunha flag.
 
   ## Examples
+
       <Flagpack.shn />
-      <Flagpack.shn class="w-5 h-5" />
+      <Flagpack.shn id="my-flag" />
+      <Flagpack.shn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def shn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SHN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SHN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SHN_svg__a)">
+        <g mask={"url(#SHN_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SHN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SHN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#SHN_svg__b)">
+          <g mask={"url(#SHN_svg__b_#{@id})"}>
             <path fill="#2B409A" d="M0 0h18v14H0z" />
-            <mask id="SHN_svg__c" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"SHN_svg__c_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#SHN_svg__c)">
+            <g mask={"url(#SHN_svg__c_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -9864,7 +12095,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="SHN_svg__d" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"SHN_svg__d_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -9874,7 +12105,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#SHN_svg__d)"
+                mask={"url(#SHN_svg__d_#{@id})"}
               />
             </g>
             <path
@@ -9883,7 +12114,7 @@ defmodule Flagpack do
               stroke-width=".5"
               d="M22.038 9.783h-.25v.25c0 .433-.002.857-.004 1.271a89.36 89.36 0 00.014 2.77c.034 1.212.122 2.292.351 3.193.23.903.605 1.648 1.227 2.165.625.52 1.466.782 2.574.782 1.12 0 1.985-.327 2.634-.919.645-.586 1.055-1.412 1.311-2.37.511-1.907.436-4.43.295-6.907l-.014-.235h-8.138z"
             />
-            <mask id="SHN_svg__e" width="10" height="12" x="21" y="9" maskUnits="userSpaceOnUse">
+            <mask id={"SHN_svg__e_#{@id}"} width="10" height="12" x="21" y="9" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 stroke="#fff"
@@ -9891,9 +12122,9 @@ defmodule Flagpack do
                 d="M22.038 9.783h-.25v.25c0 .433-.002.857-.004 1.271a89.36 89.36 0 00.014 2.77c.034 1.212.122 2.292.351 3.193.23.903.605 1.648 1.227 2.165.625.52 1.466.782 2.574.782 1.12 0 1.985-.327 2.634-.919.645-.586 1.055-1.412 1.311-2.37.511-1.907.436-4.43.295-6.907l-.014-.235h-8.138z"
               />
             </mask>
-            <g mask="url(#SHN_svg__e)">
+            <g mask={"url(#SHN_svg__e_#{@id})"}>
               <path fill="#2E42A5" d="M24 18h6v2h-6z" />
-              <g filter="url(#SHN_svg__f)"><path fill="#FDFF00" d="M20 8h12v6H20z" /></g>
+              <g filter={"url(#SHN_svg__f_#{@id})"}><path fill="#FDFF00" d="M20 8h12v6H20z" /></g>
               <path
                 fill="#F7FCFF"
                 stroke="#272727"
@@ -9975,7 +12206,7 @@ defmodule Flagpack do
         </g>
         <defs>
           <filter
-            id="SHN_svg__f"
+            id={"SHN_svg__f_#{@id}"}
             width="12"
             height="7"
             x="20"
@@ -10001,24 +12232,35 @@ defmodule Flagpack do
   Renders the Svalbard, Jan Mayen flag.
 
   ## Examples
+
       <Flagpack.sjm />
-      <Flagpack.sjm class="w-5 h-5" />
+      <Flagpack.sjm id="my-flag" />
+      <Flagpack.sjm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def sjm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SJM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SJM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SJM_svg__a)">
+        <g mask={"url(#SJM_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SJM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SJM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#SJM_svg__b)">
+          <g mask={"url(#SJM_svg__b_#{@id})"}>
             <path fill="#2E42A5" stroke="#F7FCFF" stroke-width="2" d="M10-1H9V9H-1v6H9v10h6V15h18V9H15V-1h-5z" />
           </g>
         </g>
@@ -10031,24 +12273,35 @@ defmodule Flagpack do
   Renders the Solomon Islands flag.
 
   ## Examples
+
       <Flagpack.slb />
-      <Flagpack.slb class="w-5 h-5" />
+      <Flagpack.slb id="my-flag" />
+      <Flagpack.slb class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def slb(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SLB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SLB_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SLB_svg__a)">
+        <g mask={"url(#SLB_svg__a_#{@id})"}>
           <path fill="#3D58DB" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SLB_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SLB_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#SLB_svg__b)">
+          <g mask={"url(#SLB_svg__b_#{@id})"}>
             <path fill="#579D20" fill-rule="evenodd" d="M0 24h32V0L0 24z" clip-rule="evenodd" /><path
               fill="#FECA00"
               d="M-.782 24.745l-1.804-2.496L33.675-1.954 35.48.542-.781 24.745z"
@@ -10074,24 +12327,35 @@ defmodule Flagpack do
   Renders the Sierra Leone flag.
 
   ## Examples
+
       <Flagpack.sle />
-      <Flagpack.sle class="w-5 h-5" />
+      <Flagpack.sle id="my-flag" />
+      <Flagpack.sle class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def sle(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SLE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SLE_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SLE_svg__a)">
+        <g mask={"url(#SLE_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SLE_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SLE_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#SLE_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#SLE_svg__b_#{@id})"}>
             <path fill="#78D843" d="M0 0v8h32V0H0z" /><path fill="#3D58DB" d="M0 16v8h32v-8H0z" />
           </g>
         </g>
@@ -10104,24 +12368,35 @@ defmodule Flagpack do
   Renders the El Salvador flag.
 
   ## Examples
+
       <Flagpack.slv />
-      <Flagpack.slv class="w-5 h-5" />
+      <Flagpack.slv id="my-flag" />
+      <Flagpack.slv class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def slv(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SLV_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SLV_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SLV_svg__a)">
+        <g mask={"url(#SLV_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SLV_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SLV_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#SLV_svg__b)">
+          <g mask={"url(#SLV_svg__b_#{@id})"}>
             <path fill="#3D58DB" fill-rule="evenodd" d="M0 0v8h32V0H0zm0 16v8h32v-8H0z" clip-rule="evenodd" /><path
               stroke="#E8AA00"
               d="M19.425 11.858a3.642 3.642 0 11-7.283 0 3.642 3.642 0 017.283 0z"
@@ -10145,24 +12420,35 @@ defmodule Flagpack do
   Renders the San Marino flag.
 
   ## Examples
+
       <Flagpack.smr />
-      <Flagpack.smr class="w-5 h-5" />
+      <Flagpack.smr id="my-flag" />
+      <Flagpack.smr class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def smr(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SMR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SMR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SMR_svg__a)">
+        <g mask={"url(#SMR_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SMR_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SMR_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#SMR_svg__b)">
+          <g mask={"url(#SMR_svg__b_#{@id})"}>
             <path fill="#56C6F5" fill-rule="evenodd" d="M0 12v12h32V12H0z" clip-rule="evenodd" /><path
               fill="#006923"
               fill-rule="evenodd"
@@ -10276,19 +12562,30 @@ defmodule Flagpack do
   Renders the Somalia flag.
 
   ## Examples
+
       <Flagpack.som />
-      <Flagpack.som class="w-5 h-5" />
+      <Flagpack.som id="my-flag" />
+      <Flagpack.som class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def som(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SOM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SOM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#SOM_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#SOM_svg__a_#{@id})"}>
           <path fill="#56C6F5" d="M0 0h32v24H0V0z" /><path
             fill="#F7FCFF"
             d="M16.179 14.717l-3.764 2.393 1.262-4.189-2.684-2.737 3.701-.08 1.637-4.137 1.493 4.19 3.692.065-2.775 2.788 1.296 3.985-3.858-2.278z"
@@ -10303,14 +12600,25 @@ defmodule Flagpack do
   Renders the Saint Pierre and Miquelon flag.
 
   ## Examples
+
       <Flagpack.spm />
-      <Flagpack.spm class="w-5 h-5" />
+      <Flagpack.spm id="my-flag" />
+      <Flagpack.spm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def spm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <path fill="#C00" d="M0 0h8v8H0z" /><path fill="#08672F" d="M8 1.04V0h-.978L0 6.96V8h.978L8 1.04z" /><path
           fill="#08672F"
@@ -10360,24 +12668,35 @@ defmodule Flagpack do
   Renders the Serbia flag.
 
   ## Examples
+
       <Flagpack.srb />
-      <Flagpack.srb class="w-5 h-5" />
+      <Flagpack.srb id="my-flag" />
+      <Flagpack.srb class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def srb(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SRB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SRB_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SRB_svg__a)">
+        <g mask={"url(#SRB_svg__a_#{@id})"}>
           <path fill="#4857A1" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SRB_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SRB_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#SRB_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#SRB_svg__b_#{@id})"}>
             <path fill="#C51918" d="M0 0v8h32V0H0z" /><path fill="#F7FCFF" d="M0 16v8h32v-8H0z" /><path
               fill="#F6C540"
               d="M11.456 3.803l-.113-.453c.096.03.2.06.312.091l-.002-.006c1.32.12 3.361.803 3.74 1.529.148.28.002.52-.19.833l-.088.146c-.096.163-.183.319-.265.466-.297.53-.528.944-.88 1.156l.007 1.201-5.895-.05-.008-1.214c-.301-.225-.517-.61-.787-1.093-.082-.147-.169-.303-.265-.466l-.088-.146c-.191-.313-.337-.552-.19-.833.285-.546 1.579-1.076 2.764-1.357.234-.083.478-.16.72-.235l.107.078c.094-.012.185-.023.272-.03l.136.302h.48s.29.86.29 1.339c0 .478-.29.873-.29.873v.33l.158.015c0-.029.003-.059.008-.09.028-.157.115-.274.193-.26.08.014.12.153.093.31a.57.57 0 01-.018.074c.31.042.66.101.99.162.125-.244.278-.485.425-.714.378-.595.71-1.116.4-1.427a.874.874 0 00-.302-.165 9.614 9.614 0 00-1.427-.244l-.014-.078-.273-.044zm2.24 2.88l.27.057v.172c.584-.45.998-1.447 1.035-1.774.022-.197-.29-.424-.78-.63.232.44-.079.876-.468 1.423-.146.206-.304.428-.448.671l.143.03a.522.522 0 01.018-.15c.042-.154.138-.262.215-.242.078.021.107.163.065.318a.536.536 0 01-.05.125zm-3.012-.417v-.368s-.251-.28-.29-.864c-.028-.418.058-.91.11-1.155-.375.047-.77.121-1.152.212-.254.071-.456.152-.546.243-.31.31.022.832.4 1.427.142.222.29.454.413.689.213-.046.427-.089.627-.123a.555.555 0 01-.018-.1c-.014-.16.04-.294.12-.301.08-.007.155.116.169.276a.574.574 0 01.001.083l.166-.02zM8.526 5.93c-.399-.56-.715-1.003-.452-1.453-.574.222-.96.463-.938.66.035.309.406 1.216.94 1.695.037-.01.243-.068.534-.142a.535.535 0 01-.057-.123c-.05-.152-.027-.296.049-.32.076-.025.178.078.227.23a.522.522 0 01.027.15l.116-.028c-.143-.243-.3-.463-.446-.669z"
@@ -10426,19 +12745,30 @@ defmodule Flagpack do
   Renders the South Sudan flag.
 
   ## Examples
+
       <Flagpack.ssd />
-      <Flagpack.ssd class="w-5 h-5" />
+      <Flagpack.ssd id="my-flag" />
+      <Flagpack.ssd class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ssd(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SSD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SSD_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SSD_svg__a)">
+        <g mask={"url(#SSD_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#272727"
             fill-rule="evenodd"
@@ -10465,19 +12795,30 @@ defmodule Flagpack do
   Renders the Sao Tome and Principe flag.
 
   ## Examples
+
       <Flagpack.stp />
-      <Flagpack.stp class="w-5 h-5" />
+      <Flagpack.stp id="my-flag" />
+      <Flagpack.stp class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def stp(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="STP_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"STP_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#STP_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#STP_svg__a_#{@id})"}>
           <path fill="#FBCD17" d="M0 0v24h32V0H0z" /><path fill="#73BE4A" d="M0 0v8h32V0H0zm0 16v8h32v-8H0z" /><path
             fill="#C51918"
             d="M0 0v24l10-12L0 0z"
@@ -10495,19 +12836,30 @@ defmodule Flagpack do
   Renders the Suriname flag.
 
   ## Examples
+
       <Flagpack.sur />
-      <Flagpack.sur class="w-5 h-5" />
+      <Flagpack.sur id="my-flag" />
+      <Flagpack.sur class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def sur(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SUR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SUR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SUR_svg__a)">
+        <g mask={"url(#SUR_svg__a_#{@id})"}>
           <path fill="#4E8B1D" fill-rule="evenodd" d="M0 16h32v8H0v-8zM0 0h32v6H0V0z" clip-rule="evenodd" /><path
             fill="#AF0100"
             stroke="#fff"
@@ -10529,24 +12881,35 @@ defmodule Flagpack do
   Renders the Slovakia flag.
 
   ## Examples
+
       <Flagpack.svk />
-      <Flagpack.svk class="w-5 h-5" />
+      <Flagpack.svk id="my-flag" />
+      <Flagpack.svk class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def svk(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SVK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SVK_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SVK_svg__a)">
+        <g mask={"url(#SVK_svg__a_#{@id})"}>
           <path fill="#3D58DB" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SVK_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SVK_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#SVK_svg__b)">
+          <g mask={"url(#SVK_svg__b_#{@id})"}>
             <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v8h32V0H0z" clip-rule="evenodd" /><path
               fill="#E31D1C"
               fill-rule="evenodd"
@@ -10557,14 +12920,14 @@ defmodule Flagpack do
               stroke="#fff"
               d="M15.604 6.03l.497-.053-.047-.447H5.877l-.031.467.499.033-.499-.033h0v.004l-.001.012-.003.046-.011.176a124.712 124.712 0 00-.143 2.688c-.064 1.54-.107 3.342.005 4.184.218 1.642 1.218 5.33 5.087 7l.202.087.2-.09c3.674-1.642 4.903-4.95 5.187-6.995.143-1.031.07-2.836-.03-4.336a81.662 81.662 0 00-.232-2.737l-.004-.043-.002-.012v-.003h0l-.497.052z"
             />
-            <mask id="SVK_svg__c" width="12" height="16" x="5" y="5" maskUnits="userSpaceOnUse">
+            <mask id={"SVK_svg__c_#{@id}"} width="12" height="16" x="5" y="5" maskUnits="userSpaceOnUse">
               <path
                 fill="#fff"
                 stroke="#fff"
                 d="M15.604 6.03l.497-.053-.047-.447H5.877l-.031.467.499.033-.499-.033h0v.004l-.001.012-.003.046-.011.176a124.712 124.712 0 00-.143 2.688c-.064 1.54-.107 3.342.005 4.184.218 1.642 1.218 5.33 5.087 7l.202.087.2-.09c3.674-1.642 4.903-4.95 5.187-6.995.143-1.031.07-2.836-.03-4.336a81.662 81.662 0 00-.232-2.737l-.004-.043-.002-.012v-.003h0l-.497.052z"
               />
             </mask>
-            <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#SVK_svg__c)">
+            <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#SVK_svg__c_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M10.257 6.59s.207.314.299.795c.093.482.108 1.324.108 1.324l-1.958-.24v1.485l2.002-.256-.032 1.41s-.6.062-1.09 0c-.492-.062-1.46-.322-1.46-.322v1.7s.983-.314 1.46-.386c.475-.073 1.09 0 1.09 0v2.088h.813V12.1s.888-.078 1.419.006c.53.084 1.033.38 1.033.38v-1.7s-.51.254-.99.317-1.462.005-1.462.005l.032-1.41s.665-.068 1.039-.018c.373.05.84.274.84.274V8.468s-.455.248-.814.293c-.358.045-1.109-.052-1.109-.052s.014-.87.09-1.293c.078-.424.296-.826.296-.826h-1.606z"
@@ -10584,24 +12947,35 @@ defmodule Flagpack do
   Renders the Slovenia flag.
 
   ## Examples
+
       <Flagpack.svn />
-      <Flagpack.svn class="w-5 h-5" />
+      <Flagpack.svn id="my-flag" />
+      <Flagpack.svn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def svn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SVN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SVN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SVN_svg__a)">
+        <g mask={"url(#SVN_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SVN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SVN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#SVN_svg__b)">
+          <g mask={"url(#SVN_svg__b_#{@id})"}>
             <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v8h32V0H0z" clip-rule="evenodd" /><path
               fill="#C51918"
               fill-rule="evenodd"
@@ -10637,24 +13011,35 @@ defmodule Flagpack do
   Renders the Sweden flag.
 
   ## Examples
+
       <Flagpack.swe />
-      <Flagpack.swe class="w-5 h-5" />
+      <Flagpack.swe id="my-flag" />
+      <Flagpack.swe class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def swe(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SWE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SWE_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SWE_svg__a)">
+        <g mask={"url(#SWE_svg__a_#{@id})"}>
           <path fill="#3D58DB" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SWE_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SWE_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#SWE_svg__b)">
+          <g mask={"url(#SWE_svg__b_#{@id})"}>
             <path fill="#FECA00" fill-rule="evenodd" d="M10 0h4v10h18v4H14v10h-4V14H0v-4h10V0z" clip-rule="evenodd" />
           </g>
         </g>
@@ -10667,19 +13052,30 @@ defmodule Flagpack do
   Renders the Eswatini flag.
 
   ## Examples
+
       <Flagpack.swz />
-      <Flagpack.swz class="w-5 h-5" />
+      <Flagpack.swz id="my-flag" />
+      <Flagpack.swz class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def swz(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SWZ_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SWZ_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SWZ_svg__a)">
+        <g mask={"url(#SWZ_svg__a_#{@id})"}>
           <path fill="#3D58DB" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#C51918"
             stroke="#FFD018"
@@ -10710,7 +13106,7 @@ defmodule Flagpack do
             d="M8.817 12.053s2.842-5.98 6.906-5.98c4.063 0 7 5.98 7 5.98s-3.586 5.901-6.953 5.901c-3.367 0-6.953-5.901-6.953-5.901z"
             clip-rule="evenodd"
           />
-          <mask id="SWZ_svg__b" width="15" height="12" x="8" y="6" maskUnits="userSpaceOnUse">
+          <mask id={"SWZ_svg__b_#{@id}"} width="15" height="12" x="8" y="6" maskUnits="userSpaceOnUse">
             <path
               fill="#fff"
               fill-rule="evenodd"
@@ -10718,7 +13114,7 @@ defmodule Flagpack do
               clip-rule="evenodd"
             />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#SWZ_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#SWZ_svg__b_#{@id})"}>
             <path
               fill="#272727"
               d="M15.924 5.68s-.927 1.126-.618 2.2c.31 1.074 1.03.96 1.03 1.906s-.333 1.91 0 1.91c.332 0 .447.653.143 1.096-.304.442-.573.456-.555 1.176.018.72 1.592 1.427.83 1.427-.763 0-1.768.74-1.448.74.32 0 1.993.577 1.993 1.334v1.362H8.57V5.681h7.353z"
@@ -10749,31 +13145,42 @@ defmodule Flagpack do
   Renders the Sint Maarten flag.
 
   ## Examples
+
       <Flagpack.sxm />
-      <Flagpack.sxm class="w-5 h-5" />
+      <Flagpack.sxm id="my-flag" />
+      <Flagpack.sxm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def sxm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SXM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SXM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SXM_svg__a)">
+        <g mask={"url(#SXM_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SXM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SXM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#SXM_svg__b)">
+          <g mask={"url(#SXM_svg__b_#{@id})"}>
             <path fill="#2E42A5" fill-rule="evenodd" d="M0 12v12h32V12H0z" clip-rule="evenodd" />
           </g>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0-2v28l20-14L0-2z" clip-rule="evenodd" />
-          <mask id="SXM_svg__c" width="20" height="28" x="0" y="-2" maskUnits="userSpaceOnUse">
+          <mask id={"SXM_svg__c_#{@id}"} width="20" height="28" x="0" y="-2" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0-2v28l20-14L0-2z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#SXM_svg__c)">
+          <g mask={"url(#SXM_svg__c_#{@id})"}>
             <path
               fill="#FBCD17"
               fill-rule="evenodd"
@@ -10824,24 +13231,35 @@ defmodule Flagpack do
   Renders the Seychelles flag.
 
   ## Examples
+
       <Flagpack.syc />
-      <Flagpack.syc class="w-5 h-5" />
+      <Flagpack.syc id="my-flag" />
+      <Flagpack.syc class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def syc(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SYC_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SYC_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#SYC_svg__a)">
+        <g mask={"url(#SYC_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="SYC_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"SYC_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#SYC_svg__b)">
+          <g mask={"url(#SYC_svg__b_#{@id})"}>
             <path fill="#FFD018" fill-rule="evenodd" d="M0 23.997L16.151-2h16.151L0 23.997z" clip-rule="evenodd" /><path
               fill="#E31D1C"
               d="M0 23.997l34.463-12.999V-5.103L0 23.997z"
@@ -10862,19 +13280,30 @@ defmodule Flagpack do
   Renders the Syrian Arab Republic (the) flag.
 
   ## Examples
+
       <Flagpack.syr />
-      <Flagpack.syr class="w-5 h-5" />
+      <Flagpack.syr id="my-flag" />
+      <Flagpack.syr class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def syr(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="SYR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"SYR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#SYR_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#SYR_svg__a_#{@id})"}>
           <path fill="#F7FCFF" d="M0 0h32v24H0V0z" /><path
             fill="#409100"
             d="M9.001 13.247L7.754 14l.285-1.47L7 11.432l1.406-.06L9.001 10l.595 1.372H11L9.964 12.53l.312 1.47L9 13.247zm14 0L21.754 14l.284-1.47L21 11.432l1.406-.06.595-1.371.595 1.372H25l-1.036 1.159.312 1.469L23 13.247z"
@@ -10889,24 +13318,35 @@ defmodule Flagpack do
   Renders the Turks and Caicos Islands (the) flag.
 
   ## Examples
+
       <Flagpack.tca />
-      <Flagpack.tca class="w-5 h-5" />
+      <Flagpack.tca id="my-flag" />
+      <Flagpack.tca class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tca(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TCA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TCA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#TCA_svg__a)">
+        <g mask={"url(#TCA_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="TCA_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"TCA_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#TCA_svg__b)">
+          <g mask={"url(#TCA_svg__b_#{@id})"}>
             <path
               fill="#FECA00"
               fill-rule="evenodd"
@@ -10935,10 +13375,10 @@ defmodule Flagpack do
               d="M21.52 12.834s1.733.357 1.733.92c0 .563.698.766.87.614.171-.152 1.38-.259 1.38-.993s.1-.934-.193-1.4c-.294-.466-.906-2.042-1.046-1.41-.141.63-.353 1.098-.745.722-.391-.377-.894-1.173-1.07-.723-.177.45.559.903 0 .903-.56 0-.166.03-.166.41 0 .382.066.741-.349.741s-.415.216-.415.216z"
               clip-rule="evenodd"
             /><path fill="#2B409A" d="M0 0h18v14H0z" />
-            <mask id="TCA_svg__c" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"TCA_svg__c_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#TCA_svg__c)">
+            <g mask={"url(#TCA_svg__c_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -10949,7 +13389,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="TCA_svg__d" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"TCA_svg__d_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -10959,7 +13399,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#TCA_svg__d)"
+                mask={"url(#TCA_svg__d_#{@id})"}
               />
             </g>
           </g>
@@ -10973,19 +13413,30 @@ defmodule Flagpack do
   Renders the Chad flag.
 
   ## Examples
+
       <Flagpack.tcd />
-      <Flagpack.tcd class="w-5 h-5" />
+      <Flagpack.tcd id="my-flag" />
+      <Flagpack.tcd class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tcd(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TCD_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TCD_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#TCD_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#TCD_svg__a_#{@id})"}>
           <path fill="#E11C1B" d="M22 0h10v24H22V0z" /><path fill="#2E42A5" d="M0 0h12v24H0V0z" /><path
             fill="#FBCD17"
             d="M10 0h12v24H10V0z"
@@ -11000,19 +13451,30 @@ defmodule Flagpack do
   Renders the Togo flag.
 
   ## Examples
+
       <Flagpack.tgo />
-      <Flagpack.tgo class="w-5 h-5" />
+      <Flagpack.tgo id="my-flag" />
+      <Flagpack.tgo class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tgo(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TGO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TGO_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#TGO_svg__a)">
+        <g mask={"url(#TGO_svg__a_#{@id})"}>
           <path fill="#5EAA22" stroke="#F7FCFF" stroke-width="2" d="M0-1h-1v26h34V-1H0z" /><path
             fill="#FECA00"
             fill-rule="evenodd"
@@ -11034,19 +13496,30 @@ defmodule Flagpack do
   Renders the Thailand flag.
 
   ## Examples
+
       <Flagpack.tha />
-      <Flagpack.tha class="w-5 h-5" />
+      <Flagpack.tha id="my-flag" />
+      <Flagpack.tha class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tha(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="THA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"THA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#THA_svg__a)">
+        <g mask={"url(#THA_svg__a_#{@id})"}>
           <path fill="#F50101" fill-rule="evenodd" d="M0 16h32v8H0v-8zM0 0h32v6H0V0z" clip-rule="evenodd" /><path
             fill="#3D58DB"
             stroke="#fff"
@@ -11063,19 +13536,30 @@ defmodule Flagpack do
   Renders the Tajikistan flag.
 
   ## Examples
+
       <Flagpack.tjk />
-      <Flagpack.tjk class="w-5 h-5" />
+      <Flagpack.tjk id="my-flag" />
+      <Flagpack.tjk class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tjk(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TJK_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TJK_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#TJK_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#TJK_svg__a_#{@id})"}>
           <path fill="#F7FCFF" d="M0 0h32v24H0V0z" /><path fill="#C51918" d="M0 0v8h32V0H0z" /><path
             fill="#409100"
             d="M0 16v8h32v-8H0z"
@@ -11096,29 +13580,40 @@ defmodule Flagpack do
   Renders the Turkmenistan flag.
 
   ## Examples
+
       <Flagpack.tkm />
-      <Flagpack.tkm class="w-5 h-5" />
+      <Flagpack.tkm id="my-flag" />
+      <Flagpack.tkm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tkm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TKM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TKM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#TKM_svg__a)">
+        <g mask={"url(#TKM_svg__a_#{@id})"}>
           <path fill="#29C470" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="TKM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"TKM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#TKM_svg__b)">
+          <g mask={"url(#TKM_svg__b_#{@id})"}>
             <path fill="#C51918" d="M2-.323h10V26H2z" />
-            <mask id="TKM_svg__c" width="10" height="27" x="2" y="-1" maskUnits="userSpaceOnUse">
+            <mask id={"TKM_svg__c_#{@id}"} width="10" height="27" x="2" y="-1" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M2-.323h10V26H2z" />
             </mask>
-            <g mask="url(#TKM_svg__c)">
+            <g mask={"url(#TKM_svg__c_#{@id})"}>
               <path
                 fill="#E8AA00"
                 fill-rule="evenodd"
@@ -11153,7 +13648,7 @@ defmodule Flagpack do
                 d="M5.652 15.508v.148h-.141v.204h.141v.149h.494v-.149h.142v-.204h-.142v-.149h-.494zm2.547.148v-.149h-.494v.15h-.141v.203h.141v.149H8.2v-.149h.142v-.204H8.2z"
                 clip-rule="evenodd"
               />
-              <mask id="TKM_svg__d" width="6" height="4" x="4" y="17" maskUnits="userSpaceOnUse">
+              <mask id={"TKM_svg__d_#{@id}"} width="6" height="4" x="4" y="17" maskUnits="userSpaceOnUse">
                 <path
                   fill="#fff"
                   fill-rule="evenodd"
@@ -11161,7 +13656,7 @@ defmodule Flagpack do
                   clip-rule="evenodd"
                 />
               </mask>
-              <g mask="url(#TKM_svg__d)">
+              <g mask={"url(#TKM_svg__d_#{@id})"}>
                 <path fill="#E8AA00" d="M4.47 19.096h2.762v1.823H4.47v-1.823z" /><path
                   fill="#F9E8E7"
                   d="M4.188 17.273h3.044v1.823H4.188z"
@@ -11320,19 +13815,30 @@ defmodule Flagpack do
   Renders the Timor-Leste flag.
 
   ## Examples
+
       <Flagpack.tls />
-      <Flagpack.tls class="w-5 h-5" />
+      <Flagpack.tls id="my-flag" />
+      <Flagpack.tls class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tls(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TLS_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TLS_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#TLS_svg__a)">
+        <g mask={"url(#TLS_svg__a_#{@id})"}>
           <path fill="#E31D1C" stroke="#F7FCFF" stroke-width="2" d="M0-1h-1v26h34V-1H0z" /><path
             fill="#FECA00"
             fill-rule="evenodd"
@@ -11354,24 +13860,35 @@ defmodule Flagpack do
   Renders the Tonga flag.
 
   ## Examples
+
       <Flagpack.ton />
-      <Flagpack.ton class="w-5 h-5" />
+      <Flagpack.ton id="my-flag" />
+      <Flagpack.ton class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ton(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TON_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TON_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#TON_svg__a)">
+        <g mask={"url(#TON_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="TON_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"TON_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#TON_svg__b)">
+          <g mask={"url(#TON_svg__b_#{@id})"}>
             <path fill="#F7FCFF" d="M0 0h18v16H0z" /><path
               fill="#E31D1C"
               fill-rule="evenodd"
@@ -11389,24 +13906,35 @@ defmodule Flagpack do
   Renders the Trinidad and Tobago flag.
 
   ## Examples
+
       <Flagpack.tto />
-      <Flagpack.tto class="w-5 h-5" />
+      <Flagpack.tto id="my-flag" />
+      <Flagpack.tto class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tto(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TTO_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TTO_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#TTO_svg__a)">
+        <g mask={"url(#TTO_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="TTO_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"TTO_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#TTO_svg__b)">
+          <g mask={"url(#TTO_svg__b_#{@id})"}>
             <path
               fill="#272727"
               stroke="#F7FCFF"
@@ -11424,24 +13952,35 @@ defmodule Flagpack do
   Renders the Tunisia flag.
 
   ## Examples
+
       <Flagpack.tun />
-      <Flagpack.tun class="w-5 h-5" />
+      <Flagpack.tun id="my-flag" />
+      <Flagpack.tun class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tun(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TUN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TUN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#TUN_svg__a)">
+        <g mask={"url(#TUN_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="TUN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"TUN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#TUN_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#TUN_svg__b_#{@id})"}>
             <path fill="#F7FCFF" d="M16 20a8 8 0 100-16 8 8 0 000 16z" /><path
               fill="#E31D1C"
               d="M17.403 17.65s-4.217-1.15-4.217-5.676c0-4.527 4.217-5.776 4.217-5.776-1.744-.675-6.846.36-6.846 5.775 0 5.416 5.245 6.391 6.846 5.678zm-.232-6.662l-2.092.765 2.248.786.076 2.104 1.368-1.635 2.256.16-1.625-1.326.979-1.915-1.913.644-1.325-1.656.028 2.073z"
@@ -11457,24 +13996,35 @@ defmodule Flagpack do
   Renders the Turkey flag.
 
   ## Examples
+
       <Flagpack.tur />
-      <Flagpack.tur class="w-5 h-5" />
+      <Flagpack.tur id="my-flag" />
+      <Flagpack.tur class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tur(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TUR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TUR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#TUR_svg__a)">
+        <g mask={"url(#TUR_svg__a_#{@id})"}>
           <path fill="#E31D1C" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="TUR_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"TUR_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#TUR_svg__b)">
+          <g mask={"url(#TUR_svg__b_#{@id})"}>
             <path
               fill="#F7FCFF"
               fill-rule="evenodd"
@@ -11492,29 +14042,40 @@ defmodule Flagpack do
   Renders the Tuvalu flag.
 
   ## Examples
+
       <Flagpack.tuv />
-      <Flagpack.tuv class="w-5 h-5" />
+      <Flagpack.tuv id="my-flag" />
+      <Flagpack.tuv class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tuv(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TUV_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TUV_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#TUV_svg__a)">
+        <g mask={"url(#TUV_svg__a_#{@id})"}>
           <path fill="#00B4FF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="TUV_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"TUV_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#TUV_svg__b)">
+          <g mask={"url(#TUV_svg__b_#{@id})"}>
             <path fill="#2B409A" d="M0 0h18v14H0z" />
-            <mask id="TUV_svg__c" width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
+            <mask id={"TUV_svg__c_#{@id}"} width="18" height="14" x="0" y="0" maskUnits="userSpaceOnUse">
               <path fill="#fff" d="M0 0h18v14H0z" />
             </mask>
-            <g mask="url(#TUV_svg__c)">
+            <g mask={"url(#TUV_svg__c_#{@id})"}>
               <path
                 fill="#F7FCFF"
                 d="M-2.004 13l3.96 1.737L18.09 1.889l2.09-2.582-4.236-.58-6.58 5.536-5.297 3.73L-2.004 13z"
@@ -11525,7 +14086,7 @@ defmodule Flagpack do
                 fill="#F50100"
                 d="M19.87 13.873l-2.019 1.009-8.036-6.918-2.383-.773L-2.38-.684H.453l9.807 7.688 2.605.927 7.004 5.942z"
               />
-              <mask id="TUV_svg__d" width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
+              <mask id={"TUV_svg__d_#{@id}"} width="22" height="18" x="-2" y="-2" fill="#000" maskUnits="userSpaceOnUse">
                 <path fill="#fff" d="M-2-2h22v18H-2z" /><path
                   fill-rule="evenodd"
                   d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z"
@@ -11535,7 +14096,7 @@ defmodule Flagpack do
               <path fill="#F50100" fill-rule="evenodd" d="M9.985 0h-2v6H0v2h7.985v6h2V8H18V6H9.985V0z" clip-rule="evenodd" /><path
                 fill="#F7FCFF"
                 d="M7.985 0v-1.5h-1.5V0h1.5zm2 0h1.5v-1.5h-1.5V0zm-2 6v1.5h1.5V6h-1.5zM0 6V4.5h-1.5V6H0zm0 2h-1.5v1.5H0V8zm7.985 0h1.5V6.5h-1.5V8zm0 6h-1.5v1.5h1.5V14zm2 0v1.5h1.5V14h-1.5zm0-6V6.5h-1.5V8h1.5zM18 8v1.5h1.5V8H18zm0-2h1.5V4.5H18V6zM9.985 6h-1.5v1.5h1.5V6zm-2-4.5h2v-3h-2v3zm1.5 4.5V0h-3v6h3zM0 7.5h7.985v-3H0v3zm1.5.5V6h-3v2h3zm6.485-1.5H0v3h7.985v-3zm1.5 7.5V8h-3v6h3zm.5-1.5h-2v3h2v-3zM8.485 8v6h3V8h-3zM18 6.5H9.985v3H18v-3zM16.5 6v2h3V6h-3zM9.985 7.5H18v-3H9.985v3zM8.485 0v6h3V0h-3z"
-                mask="url(#TUV_svg__d)"
+                mask={"url(#TUV_svg__d_#{@id})"}
               />
             </g>
             <path
@@ -11555,24 +14116,35 @@ defmodule Flagpack do
   Renders the Taiwan flag.
 
   ## Examples
+
       <Flagpack.twn />
-      <Flagpack.twn class="w-5 h-5" />
+      <Flagpack.twn id="my-flag" />
+      <Flagpack.twn class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def twn(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TWN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TWN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#TWN_svg__a)">
+        <g mask={"url(#TWN_svg__a_#{@id})"}>
           <path fill="#EF0000" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="TWN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"TWN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#TWN_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#TWN_svg__b_#{@id})"}>
             <path fill="#2E42A5" d="M0 0v14h18V0H0z" /><path
               fill="#FEFFFF"
               d="M8.73 10.81l-1.482 1.85-.359-2.342-2.207.86.86-2.208L3.2 8.611 5.048 7.13 3.2 5.648l2.342-.359-.86-2.207 2.207.86.359-2.342L8.73 3.448 10.21 1.6l.36 2.342 2.207-.86-.86 2.207 2.341.359L12.41 7.13l1.848 1.481-2.341.36.86 2.207-2.208-.86-.359 2.341-1.481-1.848zm0-.818a2.862 2.862 0 100-5.725 2.862 2.862 0 000 5.725zm2.29-2.862a2.29 2.29 0 11-4.58 0 2.29 2.29 0 014.58 0z"
@@ -11588,24 +14160,35 @@ defmodule Flagpack do
   Renders the Tanzania, the United Republic of flag.
 
   ## Examples
+
       <Flagpack.tza />
-      <Flagpack.tza class="w-5 h-5" />
+      <Flagpack.tza id="my-flag" />
+      <Flagpack.tza class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def tza(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="TZA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"TZA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#TZA_svg__a)">
+        <g mask={"url(#TZA_svg__a_#{@id})"}>
           <path fill="#3195F9" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="TZA_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"TZA_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#TZA_svg__b)">
+          <g mask={"url(#TZA_svg__b_#{@id})"}>
             <path fill="#73BE4A" fill-rule="evenodd" d="M0 0v24L32 0H0z" clip-rule="evenodd" /><path
               fill="#272727"
               stroke="#FFD018"
@@ -11623,24 +14206,35 @@ defmodule Flagpack do
   Renders the Uganda flag.
 
   ## Examples
+
       <Flagpack.uga />
-      <Flagpack.uga class="w-5 h-5" />
+      <Flagpack.uga id="my-flag" />
+      <Flagpack.uga class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def uga(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="UGA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"UGA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#UGA_svg__a)">
+        <g mask={"url(#UGA_svg__a_#{@id})"}>
           <path fill="#FECA00" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="UGA_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"UGA_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#UGA_svg__b)">
+          <g mask={"url(#UGA_svg__b_#{@id})"}>
             <path fill="#272727" d="M0 0h32v4H0z" /><path fill="#D74800" d="M0 8h32v4H0z" /><path
               fill="#272727"
               d="M0 12h32v4H0z"
@@ -11686,24 +14280,35 @@ defmodule Flagpack do
   Renders the Ukraine flag.
 
   ## Examples
+
       <Flagpack.ukr />
-      <Flagpack.ukr class="w-5 h-5" />
+      <Flagpack.ukr id="my-flag" />
+      <Flagpack.ukr class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ukr(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="UKR_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"UKR_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#UKR_svg__a)">
+        <g mask={"url(#UKR_svg__a_#{@id})"}>
           <path fill="#3195F9" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="UKR_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"UKR_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#UKR_svg__b)">
+          <g mask={"url(#UKR_svg__b_#{@id})"}>
             <path fill="#FECA00" fill-rule="evenodd" d="M0 12v12h32V12H0z" clip-rule="evenodd" />
           </g>
         </g>
@@ -11716,19 +14321,30 @@ defmodule Flagpack do
   Renders the United States Minor Outlying Islands (the) flag.
 
   ## Examples
+
       <Flagpack.umi />
-      <Flagpack.umi class="w-5 h-5" />
+      <Flagpack.umi id="my-flag" />
+      <Flagpack.umi class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def umi(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="UMI_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"UMI_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#UMI_svg__a)">
+        <g mask={"url(#UMI_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#E31D1C"
             fill-rule="evenodd"
@@ -11750,24 +14366,35 @@ defmodule Flagpack do
   Renders the Uruguay flag.
 
   ## Examples
+
       <Flagpack.ury />
-      <Flagpack.ury class="w-5 h-5" />
+      <Flagpack.ury id="my-flag" />
+      <Flagpack.ury class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ury(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="URY_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"URY_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#URY_svg__a)">
+        <g mask={"url(#URY_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="URY_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"URY_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#URY_svg__b)">
+          <g mask={"url(#URY_svg__b_#{@id})"}>
             <path fill="#2E42A5" d="M0 2h32v3H0zm0 6h32v3H0zm0 6h32v3H0zm0 5h32v3H0z" /><path
               fill="#F7FCFF"
               d="M0 0h14v14H0z"
@@ -11825,19 +14452,30 @@ defmodule Flagpack do
   Renders the United States of America flag.
 
   ## Examples
+
       <Flagpack.usa />
-      <Flagpack.usa class="w-5 h-5" />
+      <Flagpack.usa id="my-flag" />
+      <Flagpack.usa class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def usa(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="USA_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"USA_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#USA_svg__a)">
+        <g mask={"url(#USA_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#E31D1C"
             fill-rule="evenodd"
@@ -11859,19 +14497,30 @@ defmodule Flagpack do
   Renders the Uzbekistan flag.
 
   ## Examples
+
       <Flagpack.uzb />
-      <Flagpack.uzb class="w-5 h-5" />
+      <Flagpack.uzb id="my-flag" />
+      <Flagpack.uzb class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def uzb(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="UZB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"UZB_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#UZB_svg__a)">
+        <g mask={"url(#UZB_svg__a_#{@id})"}>
           <path fill="#14DC5A" fill-rule="evenodd" d="M0 16h32v8H0v-8z" clip-rule="evenodd" /><path
             fill="#0099B5"
             fill-rule="evenodd"
@@ -11893,19 +14542,30 @@ defmodule Flagpack do
   Renders the Holy See flag.
 
   ## Examples
+
       <Flagpack.vat />
-      <Flagpack.vat class="w-5 h-5" />
+      <Flagpack.vat id="my-flag" />
+      <Flagpack.vat class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def vat(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="VAT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"VAT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#VAT_svg__a)">
+        <g mask={"url(#VAT_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#FFDC17"
             fill-rule="evenodd"
@@ -11960,19 +14620,30 @@ defmodule Flagpack do
   Renders the Saint Vincent and the Grenadines flag.
 
   ## Examples
+
       <Flagpack.vct />
-      <Flagpack.vct class="w-5 h-5" />
+      <Flagpack.vct id="my-flag" />
+      <Flagpack.vct class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def vct(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="VCT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"VCT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#VCT_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#VCT_svg__a_#{@id})"}>
           <path fill="#FFDC17" d="M8 0h16v24H8V0z" /><path fill="#5FBF2B" d="M24 0h8v24h-8V0z" /><path
             fill="#2E42A5"
             d="M0 0h8v24H0V0z"
@@ -11990,24 +14661,35 @@ defmodule Flagpack do
   Renders the Venezuela (Bolivarian Republic of) flag.
 
   ## Examples
+
       <Flagpack.ven />
-      <Flagpack.ven class="w-5 h-5" />
+      <Flagpack.ven id="my-flag" />
+      <Flagpack.ven class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def ven(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="VEN_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"VEN_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#VEN_svg__a)">
+        <g mask={"url(#VEN_svg__a_#{@id})"}>
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="VEN_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"VEN_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#VEN_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#VEN_svg__b_#{@id})"}>
             <path fill="#FECA00" d="M0 0v8h32V0H0z" /><path fill="#E31D1C" d="M0 16v8h32v-8H0z" /><path
               fill="#F7FCFF"
               d="M12.737 11.86l.982-.558 1.103.557-.396-1.133.824-.832h-1.048l-.484-1.072-.412 1.072h-1.23l.925.817h-1.037L11.48 9.64l-.412 1.072h-1.23l.942.833-.18.726h-.785l-.483-1.072-.413 1.072H7.69l.942.833-.174.703h-.343l-.484-1.072-.412 1.072h-1.23l.941.833-.28 1.133.983-.558 1.102.557-.396-1.133.824-.832H9.11l.224-.127 1.103.557-.396-1.133.472-.477-.013.051.983-.557 1.102.557-.396-1.133.819-.827.01.01-.28 1.132zm6.486-.044l-.983-.558-1.102.558.396-1.133-.824-.833h1.048l.484-1.072.412 1.072h1.23l-.925.818h1.042l.483-1.073.413 1.073h1.23l-.942.832.18.727h.785l.483-1.073.412 1.073h1.23l-.941.832.174.703h.343l.484-1.072.412 1.072h1.23l-.942.833.28 1.133-.982-.558-1.102.558.396-1.133-.824-.833h.053l-.225-.127-1.102.557.396-1.133-.472-.477.013.051-.983-.557-1.103.557.396-1.133-.82-.83-.014.013.281 1.133z"
@@ -12026,14 +14708,25 @@ defmodule Flagpack do
   Renders the Virgin Islands (British) flag.
 
   ## Examples
+
       <Flagpack.vgb />
-      <Flagpack.vgb class="w-5 h-5" />
+      <Flagpack.vgb id="my-flag" />
+      <Flagpack.vgb class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def vgb(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g mask="url(#VGB_svg__VG_-_Virgin_Islands_(British)">
           <path fill="#2E42A5" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
@@ -12130,14 +14823,25 @@ defmodule Flagpack do
   Renders the Virgin Islands (U.S.) flag.
 
   ## Examples
+
       <Flagpack.vir />
-      <Flagpack.vir class="w-5 h-5" />
+      <Flagpack.vir id="my-flag" />
+      <Flagpack.vir class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def vir(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
         <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#VIR_svg__VI_-_Virgin_Islands_(U_S_)">
           <path fill="#F7FCFF" d="M0 0v24h32V0H0z" />
@@ -12172,29 +14876,40 @@ defmodule Flagpack do
   Renders the Vietnam flag.
 
   ## Examples
+
       <Flagpack.vnm />
-      <Flagpack.vnm class="w-5 h-5" />
+      <Flagpack.vnm id="my-flag" />
+      <Flagpack.vnm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def vnm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="VNM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"VNM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#VNM_svg__a)">
+        <g mask={"url(#VNM_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#E31D1C"
             fill-rule="evenodd"
             d="M0 0v24h32V0H0z"
             clip-rule="evenodd"
           />
-          <mask id="VNM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"VNM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#VNM_svg__b)">
+          <g mask={"url(#VNM_svg__b_#{@id})"}>
             <path
               fill="#FFD221"
               fill-rule="evenodd"
@@ -12212,19 +14927,30 @@ defmodule Flagpack do
   Renders the Vanuatu flag.
 
   ## Examples
+
       <Flagpack.vut />
-      <Flagpack.vut class="w-5 h-5" />
+      <Flagpack.vut id="my-flag" />
+      <Flagpack.vut class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def vut(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="VUT_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"VUT_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#VUT_svg__a)">
+        <g mask={"url(#VUT_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#C51918"
             fill-rule="evenodd"
@@ -12236,7 +14962,7 @@ defmodule Flagpack do
             d="M0-2l16.67 14L0 26V-2z"
             clip-rule="evenodd"
           />
-          <mask id="VUT_svg__b" width="36" height="40" x="-2" y="-8.355" fill="#000" maskUnits="userSpaceOnUse">
+          <mask id={"VUT_svg__b_#{@id}"} width="36" height="40" x="-2" y="-8.355" fill="#000" maskUnits="userSpaceOnUse">
             <path fill="#fff" d="M-2-8.355h36v40H-2z" /><path
               fill-rule="evenodd"
               d="M0-3.355L17.408 10H32v4H17.17L0 26.811v-4.47L14 12 0 1.534v-4.889z"
@@ -12251,7 +14977,7 @@ defmodule Flagpack do
           /><path
             fill="#272727"
             d="M17.408 10l-1.217 1.587.539.413h.678v-2zM0-3.355l1.217-1.587L-2-7.41v4.055h2zM32 10h2V8h-2v2zm0 4v2h2v-2h-2zm-14.83 0v-2h-.665l-.532.397L17.17 14zM0 26.811h-2V30.8l3.196-2.385L0 26.811zm0-4.47l-1.188-1.61-.812.6v1.01h2zM14 12l1.188 1.609 2.165-1.6-2.156-1.61L14 12zM0 1.534h-2v1.002l.803.6L0 1.534zm18.626 6.88L1.217-4.943l-2.434 3.174L16.19 11.587l2.435-3.174zM32 8H17.408v4H32V8zm2 6v-4h-4v4h4zm-16.83 2H32v-4H17.17v4zM1.195 28.414l17.17-12.811-2.393-3.206-17.17 12.812 2.393 3.205zM-2 22.34v4.471h4v-4.47h-4zm14.812-11.949l-14 10.34 2.376 3.218 14-10.34-2.376-3.218zm-14.01-7.255l14 10.466 2.396-3.204-14-10.465-2.395 3.203zM-2-3.355v4.89h4v-4.89h-4z"
-            mask="url(#VUT_svg__b)"
+            mask={"url(#VUT_svg__b_#{@id})"}
           /><path
             fill="#FFD018"
             d="M4.874 16.768l.002-1.58c1.408-.311 2.341-.715 2.795-1.201C8.79 12.609 8.046 9.38 5.75 9.4c-1.139 0-2.316.542-2.316 1.819 0 1.585.327 2.263 1.443 2.263 1.109 0 1.515.06 2.246-.936l.793.245c-.783 1.067-1.838 1.91-3.041 1.91-1.982 0-3.06-1.495-3.06-3.223 0-2.133 1.731-3.627 3.82-3.627 1.557 0 4.021 1.909 4.021 3.627 0 1.72 0 2.508-1.35 3.709-.545.483-1.893 1.347-3.431 1.58z"
@@ -12276,19 +15002,30 @@ defmodule Flagpack do
   Renders the Wallis and Futuna flag.
 
   ## Examples
+
       <Flagpack.wlf />
-      <Flagpack.wlf class="w-5 h-5" />
+      <Flagpack.wlf id="my-flag" />
+      <Flagpack.wlf class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def wlf(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="WLF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"WLF_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#WLF_svg__a)">
+        <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#WLF_svg__a_#{@id})"}>
           <path fill="#C51918" d="M22 0h10v24H22V0z" /><path fill="#2E42A5" d="M0 0h12v24H0V0z" /><path
             fill="#F7FCFF"
             d="M10 0h12v24H10V0z"
@@ -12303,24 +15040,35 @@ defmodule Flagpack do
   Renders the Samoa flag.
 
   ## Examples
+
       <Flagpack.wsm />
-      <Flagpack.wsm class="w-5 h-5" />
+      <Flagpack.wsm id="my-flag" />
+      <Flagpack.wsm class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def wsm(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="WSM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"WSM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#WSM_svg__a)">
+        <g mask={"url(#WSM_svg__a_#{@id})"}>
           <path fill="#C51918" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="WSM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"WSM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#WSM_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#WSM_svg__b_#{@id})"}>
             <path fill="#2E42A5" d="M0 0v14h16V0H0z" /><path
               fill="#FEFFFF"
               d="M3.566 7.772l-1.06.64.241-1.249-.882-.934 1.195-.051.506-1.166.505 1.166h1.194l-.881.985.265 1.249-1.083-.64zm8 0l-1.06.64.241-1.249-.882-.934 1.195-.051.506-1.166.505 1.166h1.194l-.881.985.265 1.249-1.083-.64zm-4.1-3.634l-.998.602.227-1.175-.83-.88 1.125-.047.476-1.098.476 1.098h1.123l-.83.927.25 1.175-1.02-.602zm1.08 4.287l-.623.377.142-.735-.52-.55.704-.03.297-.685.298.686h.702l-.518.58.156.734-.638-.377zm-1.137 4.403l-1.497.904.342-1.763-1.247-1.32 1.688-.071.714-1.646.714 1.646h1.684l-1.243 1.39.374 1.764-1.53-.904z"
@@ -12336,24 +15084,35 @@ defmodule Flagpack do
   Renders the Yemen flag.
 
   ## Examples
+
       <Flagpack.yem />
-      <Flagpack.yem class="w-5 h-5" />
+      <Flagpack.yem id="my-flag" />
+      <Flagpack.yem class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def yem(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="YEM_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"YEM_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#YEM_svg__a)">
+        <g mask={"url(#YEM_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="YEM_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"YEM_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g fill-rule="evenodd" clip-rule="evenodd" mask="url(#YEM_svg__b)">
+          <g fill-rule="evenodd" clip-rule="evenodd" mask={"url(#YEM_svg__b_#{@id})"}>
             <path fill="#E31D1C" d="M0 0v8h32V0H0z" /><path fill="#272727" d="M0 16v8h32v-8H0z" />
           </g>
         </g>
@@ -12366,26 +15125,37 @@ defmodule Flagpack do
   Renders the South Africa flag.
 
   ## Examples
+
       <Flagpack.zaf />
-      <Flagpack.zaf class="w-5 h-5" />
+      <Flagpack.zaf id="my-flag" />
+      <Flagpack.zaf class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def zaf(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ZAF_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ZAF_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ZAF_svg__a)">
+        <g mask={"url(#ZAF_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#E31D1C"
             fill-rule="evenodd"
             d="M0 0v8h32V0H0z"
             clip-rule="evenodd"
           /><path fill="#3D58DB" fill-rule="evenodd" d="M0 16v8h32v-8H0z" clip-rule="evenodd" />
-          <mask id="ZAF_svg__b" width="36" height="38" x="-2" y="-7" fill="#000" maskUnits="userSpaceOnUse">
+          <mask id={"ZAF_svg__b_#{@id}"} width="36" height="38" x="-2" y="-7" fill="#000" maskUnits="userSpaceOnUse">
             <path fill="#fff" d="M-2-7h36v38H-2z" /><path
               fill-rule="evenodd"
               d="M15.429 10L0-2v28l15.429-12H32v-4H15.429z"
@@ -12395,7 +15165,7 @@ defmodule Flagpack do
           <path fill="#5EAA22" fill-rule="evenodd" d="M15.429 10L0-2v28l15.429-12H32v-4H15.429z" clip-rule="evenodd" /><path
             fill="#F7FCFF"
             d="M0-2l1.228-1.579L-2-6.089V-2h2zm15.429 12L14.2 11.579l.541.421h.687v-2zM0 26h-2v4.09l3.228-2.511L0 26zm15.429-12v-2h-.687l-.541.421L15.429 14zM32 14v2h2v-2h-2zm0-4h2V8h-2v2zM-1.228-.421l15.429 12 2.456-3.158-15.43-12L-1.227-.42zM2 26V-2h-4v28h4zm12.2-13.579l-15.428 12 2.456 3.158 15.429-12L14.2 12.42zM32 12H15.429v4H32v-4zm-2-2v4h4v-4h-4zm-14.571 2H32V8H15.429v4z"
-            mask="url(#ZAF_svg__b)"
+            mask={"url(#ZAF_svg__b_#{@id})"}
           /><path fill="#272727" stroke="#FECA00" stroke-width="2" d="M.6 5.2L-1 4v16l1.6-1.2 8-6 1.067-.8-1.067-.8-8-6z" />
         </g>
       </svg>
@@ -12407,29 +15177,40 @@ defmodule Flagpack do
   Renders the Zambia flag.
 
   ## Examples
+
       <Flagpack.zmb />
-      <Flagpack.zmb class="w-5 h-5" />
+      <Flagpack.zmb id="my-flag" />
+      <Flagpack.zmb class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def zmb(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ZMB_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ZMB_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ZMB_svg__a)">
+        <g mask={"url(#ZMB_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0h32v24H0V0z" clip-rule="evenodd" /><path
             fill="#5EAA22"
             fill-rule="evenodd"
             d="M0 0v24h32V0H0z"
             clip-rule="evenodd"
           />
-          <mask id="ZMB_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ZMB_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#ZMB_svg__b)">
+          <g mask={"url(#ZMB_svg__b_#{@id})"}>
             <path fill="#FF8126" d="M27 10h5v14h-5z" /><path fill="#272727" d="M22 10h5v14h-5z" /><path
               fill="#C51918"
               d="M17 10h5v14h-5z"
@@ -12453,24 +15234,35 @@ defmodule Flagpack do
   Renders the Zimbabwe flag.
 
   ## Examples
+
       <Flagpack.zwe />
-      <Flagpack.zwe class="w-5 h-5" />
+      <Flagpack.zwe id="my-flag" />
+      <Flagpack.zwe class="size-5" />
   """
-  attr :class, :string, default: nil, required: false, doc: "class to be added to the component"
+  attr :id, :string,
+    default: nil,
+    required: false,
+    doc: """
+    The ID for the outer div element and suffix for internal SVG IDs. When not provided, a unique ID will be generated.
+    """
+
+  attr :class, :string, default: nil, required: false, doc: "Additional CSS classes to apply to the outer div element."
 
   def zwe(assigns) do
+    assigns = assign(assigns, :id, assigns.id || unique_id())
+
     ~H"""
-    <div class={@class}>
+    <div id={@id} class={@class}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 24">
-        <mask id="ZWE_svg__a" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+        <mask id={"ZWE_svg__a_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
           <path fill="#fff" d="M0 0h32v24H0z" />
         </mask>
-        <g mask="url(#ZWE_svg__a)">
+        <g mask={"url(#ZWE_svg__a_#{@id})"}>
           <path fill="#F7FCFF" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
-          <mask id="ZWE_svg__b" width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
+          <mask id={"ZWE_svg__b_#{@id}"} width="32" height="24" x="0" y="0" maskUnits="userSpaceOnUse">
             <path fill="#fff" fill-rule="evenodd" d="M0 0v24h32V0H0z" clip-rule="evenodd" />
           </mask>
-          <g mask="url(#ZWE_svg__b)">
+          <g mask={"url(#ZWE_svg__b_#{@id})"}>
             <path fill="#FECA00" fill-rule="evenodd" d="M0 2v20h32V2H0z" clip-rule="evenodd" /><path
               fill="#272727"
               stroke="#E31D1C"
@@ -12484,7 +15276,7 @@ defmodule Flagpack do
             stroke-width="2"
             d="M.597-.802L-1-1.991V25.96l1.587-1.15 16.331-11.85 1.102-.799-1.092-.812L.597-.802z"
           />
-          <mask id="ZWE_svg__c" width="22" height="32" x="-2" y="-4" maskUnits="userSpaceOnUse">
+          <mask id={"ZWE_svg__c_#{@id}"} width="22" height="32" x="-2" y="-4" maskUnits="userSpaceOnUse">
             <path
               fill="#fff"
               stroke="#fff"
@@ -12492,7 +15284,7 @@ defmodule Flagpack do
               d="M.597-.802L-1-1.991V25.96l1.587-1.15 16.331-11.85 1.102-.799-1.092-.812L.597-.802z"
             />
           </mask>
-          <g mask="url(#ZWE_svg__c)">
+          <g mask={"url(#ZWE_svg__c_#{@id})"}>
             <path
               fill="#E31D1C"
               fill-rule="evenodd"
@@ -12513,5 +15305,12 @@ defmodule Flagpack do
       </svg>
     </div>
     """
+  end
+
+  @doc false
+  def unique_id do
+    :crypto.strong_rand_bytes(16)
+    |> Base.url_encode64()
+    |> binary_part(0, 16)
   end
 end
